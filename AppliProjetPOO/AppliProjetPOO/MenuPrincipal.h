@@ -1,6 +1,7 @@
 #pragma once
 
 #include "TableauBord.h"
+#include "Stats.h"
 
 namespace AppliProjetPOO {
 
@@ -21,7 +22,9 @@ namespace AppliProjetPOO {
 
 
 
-	private: Form^ activeForm = nullptr;
+	private: 
+		Form^ activeForm = nullptr;
+		
 	private: void openChildForm(Form^ childForm)
 	{
 		if (activeForm != nullptr)
@@ -38,7 +41,7 @@ namespace AppliProjetPOO {
 		childForm->BringToFront();
 		childForm->Show();
 
-	}
+	};
 
 	private:
 		void startUI(Form^ frm)
@@ -55,8 +58,7 @@ namespace AppliProjetPOO {
 		{
 
 			InitializeComponent();
-			AppliProjetPOO::TableauBord^ tblBord = gcnew TableauBord();
-			startUI(tblBord);
+			startUI(gcnew AppliProjetPOO::TableauBord );
 
 			//
 			//TODO: ajoutez ici le code du constructeur
@@ -435,7 +437,7 @@ namespace AppliProjetPOO {
 		pnlNav->Top = btnTableauBord->Top;
 		pnlNav->Left = btnTableauBord->Left;
 		btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
-
+		openChildForm(gcnew AppliProjetPOO::TableauBord);
 
 	}
 
@@ -469,6 +471,7 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnStat->Height;
 		pnlNav->Top = btnStat->Top;
 		btnStat->BackColor = Color::FromArgb(46, 51, 73);
+		openChildForm(gcnew AppliProjetPOO::Stats);
 	}
 
 	private: System::Void btnTableauBord_Leave(System::Object^ sender, System::EventArgs^ e)
