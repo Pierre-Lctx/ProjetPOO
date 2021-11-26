@@ -18,12 +18,12 @@ namespace AppliProjetPOO {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
-	
-			
+
+
 
 	private: Form^ activeForm = nullptr;
 	private: void openChildForm(Form^ childForm)
-		{
+	{
 		if (activeForm != nullptr)
 			activeForm->Close();
 
@@ -38,17 +38,17 @@ namespace AppliProjetPOO {
 		childForm->BringToFront();
 		childForm->Show();
 
-		}
-		
-	private:	
+	}
+
+	private:
 		void startUI(Form^ frm)
 		{
-				this->pnlNav->Height = btnTableauBord->Height;
-				this->pnlNav->Top = btnTableauBord->Top;
-				this->btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
-				openChildForm(frm);
-				this->lblActiveForm->Text = "Tableau de bord";
-				
+			this->pnlNav->Height = btnTableauBord->Height;
+			this->pnlNav->Top = btnTableauBord->Top;
+			this->btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
+			openChildForm(frm);
+			this->lblActiveForm->Text = "Tableau de bord";
+
 		}
 	public:
 		MyForm(void)
@@ -62,7 +62,7 @@ namespace AppliProjetPOO {
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-	
+
 	protected:
 		/// <summary>
 		/// Nettoyage des ressources utilisées.
@@ -113,7 +113,7 @@ namespace AppliProjetPOO {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -122,6 +122,7 @@ namespace AppliProjetPOO {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->pnlNav = (gcnew System::Windows::Forms::Panel());
 			this->btnOption = (gcnew System::Windows::Forms::Button());
@@ -190,6 +191,7 @@ namespace AppliProjetPOO {
 			this->btnOption->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnOption->UseVisualStyleBackColor = true;
 			this->btnOption->Click += gcnew System::EventHandler(this, &MyForm::btnOption_Click);
+			this->btnOption->Image = gcnew System::Drawing::Bitmap("resources\\Settings.png");
 			// 
 			// btnStat
 			// 
@@ -209,6 +211,7 @@ namespace AppliProjetPOO {
 			this->btnStat->UseVisualStyleBackColor = true;
 			this->btnStat->Click += gcnew System::EventHandler(this, &MyForm::btnStat_Click);
 			this->btnStat->Leave += gcnew System::EventHandler(this, &MyForm::btnStat_Leave);
+			this->btnStat->Image = gcnew System::Drawing::Bitmap("resources\\stats.png");
 			// 
 			// btnCommande
 			// 
@@ -228,6 +231,7 @@ namespace AppliProjetPOO {
 			this->btnCommande->UseVisualStyleBackColor = true;
 			this->btnCommande->Click += gcnew System::EventHandler(this, &MyForm::btnCommande_Click);
 			this->btnCommande->Leave += gcnew System::EventHandler(this, &MyForm::btnCommande_Leave);
+			this->btnCommande->Image = gcnew System::Drawing::Bitmap("resources\\commande.png");
 			// 
 			// btnClient
 			// 
@@ -247,6 +251,7 @@ namespace AppliProjetPOO {
 			this->btnClient->UseVisualStyleBackColor = true;
 			this->btnClient->Click += gcnew System::EventHandler(this, &MyForm::btnClient_Click);
 			this->btnClient->Leave += gcnew System::EventHandler(this, &MyForm::btnClient_Leave);
+			this->btnClient->Image = gcnew System::Drawing::Bitmap("resources\\client.png");
 			// 
 			// btnStock
 			// 
@@ -266,6 +271,7 @@ namespace AppliProjetPOO {
 			this->btnStock->UseVisualStyleBackColor = true;
 			this->btnStock->Click += gcnew System::EventHandler(this, &MyForm::btnStock_Click);
 			this->btnStock->Leave += gcnew System::EventHandler(this, &MyForm::btnStock_Leave);
+			this->btnStock->Image = gcnew System::Drawing::Bitmap("resources\\Stock.png");
 			// 
 			// btnPerso
 			// 
@@ -285,6 +291,7 @@ namespace AppliProjetPOO {
 			this->btnPerso->UseVisualStyleBackColor = true;
 			this->btnPerso->Click += gcnew System::EventHandler(this, &MyForm::btnPerso_Click);
 			this->btnPerso->Leave += gcnew System::EventHandler(this, &MyForm::btnPerso_Leave);
+			this->btnPerso->Image = gcnew System::Drawing::Bitmap("resources\\personnel.png");
 			// 
 			// btnTableauBord
 			// 
@@ -304,6 +311,7 @@ namespace AppliProjetPOO {
 			this->btnTableauBord->UseVisualStyleBackColor = true;
 			this->btnTableauBord->Click += gcnew System::EventHandler(this, &MyForm::btnTableauBord_Click);
 			this->btnTableauBord->Leave += gcnew System::EventHandler(this, &MyForm::btnTableauBord_Leave);
+			this->btnTableauBord->Image = gcnew System::Drawing::Bitmap("resources\\Home.png");
 			// 
 			// panel2
 			// 
@@ -338,6 +346,7 @@ namespace AppliProjetPOO {
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
+			this->pictureBox1->Image = gcnew System::Drawing::Bitmap("resources\\user.png");
 			// 
 			// panel3
 			// 
@@ -420,13 +429,13 @@ namespace AppliProjetPOO {
 	{
 
 	}
-private: System::Void btnTableauBord_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnTableauBord_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnTableauBord->Height;
 		pnlNav->Top = btnTableauBord->Top;
 		pnlNav->Left = btnTableauBord->Left;
 		btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
-		
+
 
 	}
 
@@ -437,77 +446,76 @@ private: System::Void btnTableauBord_Click(System::Object^ sender, System::Event
 		btnPerso->BackColor = Color::FromArgb(46, 51, 73);
 	}
 
-	private: System::Void btnStock_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnStock_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnStock->Height;
 		pnlNav->Top = btnStock->Top;
 		btnStock->BackColor = Color::FromArgb(46, 51, 73);
 	}
-	private: System::Void btnClient_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnClient_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnClient->Height;
 		pnlNav->Top = btnClient->Top;
 		btnClient->BackColor = Color::FromArgb(46, 51, 73);
 	}
-	private: System::Void btnCommande_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnCommande_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnCommande->Height;
 		pnlNav->Top = btnCommande->Top;
 		btnCommande->BackColor = Color::FromArgb(46, 51, 73);
 	}
-	private: System::Void btnStat_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnStat_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnStat->Height;
 		pnlNav->Top = btnStat->Top;
 		btnStat->BackColor = Color::FromArgb(46, 51, 73);
 	}
 
-	private: System::Void btnTableauBord_Leave(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnTableauBord_Leave(System::Object^ sender, System::EventArgs^ e)
 	{
 		btnTableauBord->BackColor = Color::FromArgb(24, 30, 54);
 	}
-	private: System::Void btnPerso_Leave(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnPerso_Leave(System::Object^ sender, System::EventArgs^ e)
 	{
 		btnPerso->BackColor = Color::FromArgb(24, 30, 54);
 	}
-	private: System::Void btnStock_Leave(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnStock_Leave(System::Object^ sender, System::EventArgs^ e)
 	{
 		btnStock->BackColor = Color::FromArgb(24, 30, 54);
 	}
-	private: System::Void btnClient_Leave(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnClient_Leave(System::Object^ sender, System::EventArgs^ e)
 	{
 		btnClient->BackColor = Color::FromArgb(24, 30, 54);
 	}
-	private: System::Void btnCommande_Leave(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnCommande_Leave(System::Object^ sender, System::EventArgs^ e)
 	{
 		btnCommande->BackColor = Color::FromArgb(24, 30, 54);
 	}
-	private: System::Void btnStat_Leave(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void btnStat_Leave(System::Object^ sender, System::EventArgs^ e)
 	{
 		btnStat->BackColor = Color::FromArgb(24, 30, 54);
 	}
-private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void pnlFormShow_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	Application::Exit();
-}
-
-private: System::Void button1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-	{
-	this->button1->BackColor = Color::FromArgb(223, 55, 55);
-	this->button1->ForeColor = Color::FromArgb(255, 255, 255);
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void button1_MouseLeave(System::Object^ sender, System::EventArgs^ e) 
-	{
-	this->button1->BackColor = Color::FromArgb(46, 51, 73); 
-	this->button1->ForeColor = Color::FromArgb(147, 83, 221);
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-};
+	private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void pnlFormShow_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		Application::Exit();
+	}
+	private: System::Void button1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+	{
+		this->button1->BackColor = Color::FromArgb(223, 55, 55);
+		this->button1->ForeColor = Color::FromArgb(255, 255, 255);
+	}
+	private: System::Void button1_MouseLeave(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->button1->BackColor = Color::FromArgb(46, 51, 73);
+		this->button1->ForeColor = Color::FromArgb(147, 83, 221);
+	}
+	};
 }
