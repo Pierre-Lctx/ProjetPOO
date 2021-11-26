@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LogIn.h"
+#include "TableauBord.h"
 
 namespace AppliProjetPOO {
 
@@ -34,8 +34,9 @@ namespace AppliProjetPOO {
 
 		pnlFormShow->Controls->Add(childForm);
 		pnlFormShow->Tag = childForm;
-		pnlFormShow->BringToFront();
-		pnlFormShow->Show();
+
+		childForm->BringToFront();
+		childForm->Show();
 
 		}
 		
@@ -45,8 +46,8 @@ namespace AppliProjetPOO {
 				this->pnlNav->Height = btnTableauBord->Height;
 				this->pnlNav->Top = btnTableauBord->Top;
 				this->btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
-				this->lblTest->Text = frm->ToString();
 				openChildForm(frm);
+				this->lblActiveForm->Text = "Tableau de bord";
 				
 		}
 	public:
@@ -54,8 +55,8 @@ namespace AppliProjetPOO {
 		{
 
 			InitializeComponent();
-			LogIn^ frmLogIn = gcnew LogIn();
-			startUI(frmLogIn);
+			AppliProjetPOO::TableauBord^ tblBord = gcnew TableauBord();
+			startUI(tblBord);
 
 			//
 			//TODO: ajoutez ici le code du constructeur
@@ -99,7 +100,9 @@ namespace AppliProjetPOO {
 
 	private: System::Windows::Forms::Button^ btnPerso;
 	private: System::Windows::Forms::Panel^ pnlNav;
-	private: System::Windows::Forms::Label^ lblTest;
+	private: System::Windows::Forms::Label^ lblActiveForm;
+	private: System::Windows::Forms::Button^ button1;
+
 
 
 
@@ -131,8 +134,9 @@ namespace AppliProjetPOO {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->lblTest = (gcnew System::Windows::Forms::Label());
+			this->lblActiveForm = (gcnew System::Windows::Forms::Label());
 			this->pnlFormShow = (gcnew System::Windows::Forms::Panel());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -332,29 +336,30 @@ namespace AppliProjetPOO {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Image = gcnew System::Drawing::Bitmap("resources\\user.png");
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
 			// 
 			// panel3
 			// 
-			this->panel3->Controls->Add(this->lblTest);
+			this->panel3->Controls->Add(this->button1);
+			this->panel3->Controls->Add(this->lblActiveForm);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel3->Location = System::Drawing::Point(186, 0);
 			this->panel3->Name = L"panel3";
 			this->panel3->Size = System::Drawing::Size(1294, 85);
 			this->panel3->TabIndex = 1;
 			// 
-			// lblTest
+			// lblActiveForm
 			// 
-			this->lblTest->AutoSize = true;
-			this->lblTest->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblActiveForm->AutoSize = true;
+			this->lblActiveForm->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lblTest->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblTest->Location = System::Drawing::Point(222, 42);
-			this->lblTest->Name = L"lblTest";
-			this->lblTest->Size = System::Drawing::Size(49, 16);
-			this->lblTest->TabIndex = 0;
-			this->lblTest->Text = L"lblTest";
+			this->lblActiveForm->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(158)), static_cast<System::Int32>(static_cast<System::Byte>(161)),
+				static_cast<System::Int32>(static_cast<System::Byte>(176)));
+			this->lblActiveForm->Location = System::Drawing::Point(20, 17);
+			this->lblActiveForm->Name = L"lblActiveForm";
+			this->lblActiveForm->Size = System::Drawing::Size(201, 32);
+			this->lblActiveForm->TabIndex = 0;
+			this->lblActiveForm->Text = L"lblActiveForm";
 			// 
 			// pnlFormShow
 			// 
@@ -364,6 +369,22 @@ namespace AppliProjetPOO {
 			this->pnlFormShow->Size = System::Drawing::Size(1294, 635);
 			this->pnlFormShow->TabIndex = 2;
 			this->pnlFormShow->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pnlFormShow_Paint);
+			// 
+			// button1
+			// 
+			this->button1->FlatAppearance->BorderSize = 0;
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+				static_cast<System::Int32>(static_cast<System::Byte>(221)));
+			this->button1->Location = System::Drawing::Point(1197, 22);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"X";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// MyForm
 			// 
@@ -469,6 +490,10 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
 private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void pnlFormShow_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	
 }
 };
 }
