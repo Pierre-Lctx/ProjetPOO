@@ -20,12 +20,10 @@ namespace AppliProjetPOO {
 		TableauBord(void)
 		{
 			InitializeComponent();
-			Fct^ f = gcnew Fct();
+
+			Fct^ f = gcnew Fct(); // Obj de la classe fct pour appeler la fonction suivante
 			f->initializeWarningBtn(countWarning(), btnWarning1, btnWarning2, btnWarning3, btnWarning4, btnWarning5, btnWarning6, btnWarning7, btnWarning8, btnWarning9, btnWarning10, btnWarning11, btnWarning12, btnSeeWarning);
 			
-			//
-			//TODO: ajoutez ici le code du constructeur
-			//
 		}
 
 	protected:

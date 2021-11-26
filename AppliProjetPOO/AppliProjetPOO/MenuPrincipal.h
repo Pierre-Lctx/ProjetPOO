@@ -426,11 +426,11 @@ namespace AppliProjetPOO {
 		}
 #pragma endregion
 
+#pragma region ButtonNavigation
+		private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e)
+		{
 
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-
-	}
+		}
 	private: System::Void btnTableauBord_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnTableauBord->Height;
@@ -520,5 +520,8 @@ namespace AppliProjetPOO {
 		this->button1->BackColor = Color::FromArgb(46, 51, 73);
 		this->button1->ForeColor = Color::FromArgb(147, 83, 221);
 	}
+#pragma endregion
+
+	
 	};
 }
