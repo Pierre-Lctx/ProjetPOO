@@ -67,7 +67,7 @@ namespace AppliProjetPOO {
 
 	private: int countWarning()
 	{
-		int nbWarning = 20;
+		int nbWarning = 2;
 		return nbWarning;
 	}
 
@@ -123,6 +123,8 @@ namespace AppliProjetPOO {
 			// 
 			// pnlWarning
 			// 
+			this->pnlWarning->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(75)), static_cast<System::Int32>(static_cast<System::Byte>(80)),
+				static_cast<System::Int32>(static_cast<System::Byte>(105)));
 			this->pnlWarning->Controls->Add(this->btnSeeWarning);
 			this->pnlWarning->Controls->Add(this->btnWarning12);
 			this->pnlWarning->Controls->Add(this->btnWarning11);
