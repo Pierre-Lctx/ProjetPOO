@@ -150,6 +150,7 @@ namespace AppliProjetPOO {
 			this->Name = L"MyForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
@@ -163,6 +164,8 @@ namespace AppliProjetPOO {
 private: System::Void btnDashBoard_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
