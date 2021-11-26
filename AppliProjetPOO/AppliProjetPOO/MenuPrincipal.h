@@ -493,7 +493,7 @@ private: System::Void pnlFormShow_Paint(System::Object^ sender, System::Windows:
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
 {
-	
+	Application::Exit();
 }
 };
 }
