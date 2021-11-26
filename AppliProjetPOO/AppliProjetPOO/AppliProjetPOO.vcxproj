@@ -92,7 +92,14 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <EntryPointSymbol>MainAcceuil</EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
     </Link>
+    <EmbeddedResource>
+      <LogicalName>
+        <LogicalName>$(IntDir)$(RootNamespace).%(Filename).resources</LogicalName>
+      </LogicalName>
+    </EmbeddedResource>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -121,11 +128,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LogIn.cpp" />
+    <ClCompile Include="MyForm1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MyForm1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LogIn.resx">
+      <DependentUpon>LogIn.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm1.resx">
+      <DependentUpon>MyForm1.h</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\Sans titre-1.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
