@@ -97,7 +97,6 @@
     </Link>
     <EmbeddedResource>
       <LogicalName>
-        <LogicalName>$(IntDir)$(RootNamespace).%(Filename).resources</LogicalName>
       </LogicalName>
     </EmbeddedResource>
   </ItemDefinitionGroup>
@@ -128,13 +127,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LogIn.cpp" />
-    <ClCompile Include="MyForm1.cpp" />
+    <ClCompile Include="MenuPrincipal.cpp" />
+    <ClCompile Include="MyProfile1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MyForm1.h">
+    <ClInclude Include="MenuPrincipal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MyProfile1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -142,12 +145,19 @@
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyForm1.resx">
-      <DependentUpon>MyForm1.h</DependentUpon>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\Sans titre-1.png" />
+    <Image Include="resources\client.png" />
+    <Image Include="resources\commande.png" />
+    <Image Include="resources\Home.png" />
+    <Image Include="resources\personnel.png" />
+    <Image Include="resources\Settings.png" />
+    <Image Include="resources\stats.png" />
+    <Image Include="resources\Stock.png" />
+    <Image Include="resources\user.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
