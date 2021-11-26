@@ -1,4 +1,4 @@
-#include "MyForm1.h"
+#include "MenuPrincipal.h"
 
 
 using namespace System;
