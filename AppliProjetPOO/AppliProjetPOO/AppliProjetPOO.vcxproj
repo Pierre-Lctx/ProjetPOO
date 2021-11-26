@@ -97,7 +97,6 @@
     </Link>
     <EmbeddedResource>
       <LogicalName>
-        <LogicalName>$(IntDir)$(RootNamespace).%(Filename).resources</LogicalName>
       </LogicalName>
     </EmbeddedResource>
   </ItemDefinitionGroup>
@@ -147,7 +146,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\Sans titre-1.png" />
+    <Image Include="resources\client.png" />
+    <Image Include="resources\commande.png" />
+    <Image Include="resources\Home.png" />
+    <Image Include="resources\personnel.png" />
+    <Image Include="resources\Settings.png" />
+    <Image Include="resources\stats.png" />
+    <Image Include="resources\Stock.png" />
+    <Image Include="resources\user.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
