@@ -10,12 +10,12 @@ namespace AppliProjetPOO {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Description résumée de LogIn
+	/// Description résumée de MyForm
 	/// </summary>
-	public ref class LogIn : public System::Windows::Forms::Form
+	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
-		LogIn(void)
+		MyForm(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace AppliProjetPOO {
 		/// <summary>
 		/// Nettoyage des ressources utilisées.
 		/// </summary>
-		~LogIn()
+		~MyForm()
 		{
 			if (components)
 			{
@@ -48,21 +48,12 @@ namespace AppliProjetPOO {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->SuspendLayout();
-			// 
-			// LogIn
-			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->components = gcnew System::ComponentModel::Container();
+			this->Size = System::Drawing::Size(300,300);
+			this->Text = L"MyForm";
+			this->Padding = System::Windows::Forms::Padding(0);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Name = L"LogIn";
-			this->Text = L"LogIn";
-			this->Load += gcnew System::EventHandler(this, &LogIn::LogIn_Load);
-			this->ResumeLayout(false);
-
 		}
 #pragma endregion
-	private: System::Void LogIn_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
 	};
 }
