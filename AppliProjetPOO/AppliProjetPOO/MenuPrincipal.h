@@ -357,13 +357,15 @@ namespace AppliProjetPOO {
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
 				static_cast<System::Int32>(static_cast<System::Byte>(221)));
-			this->button1->Location = System::Drawing::Point(1197, 22);
+			this->button1->Location = System::Drawing::Point(1230, 22);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(35, 23);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"X";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			this->button1->MouseLeave += gcnew System::EventHandler(this, &MyForm::button1_MouseLeave);
+			this->button1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::button1_MouseMove);
 			// 
 			// lblActiveForm
 			// 
@@ -497,5 +499,15 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	Application::Exit();
 }
 
+private: System::Void button1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+	{
+	this->button1->BackColor = Color::FromArgb(223, 55, 55);
+	this->button1->ForeColor = Color::FromArgb(255, 255, 255);
+	}
+private: System::Void button1_MouseLeave(System::Object^ sender, System::EventArgs^ e) 
+	{
+	this->button1->BackColor = Color::FromArgb(46, 51, 73); 
+	this->button1->ForeColor = Color::FromArgb(147, 83, 221);
+	}
 };
 }
