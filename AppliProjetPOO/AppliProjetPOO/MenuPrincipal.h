@@ -108,6 +108,7 @@ namespace AppliProjetPOO {
 
 
 
+
 	private:
 		/// <summary>
 		/// Variable nécessaire au concepteur.
@@ -134,9 +135,9 @@ namespace AppliProjetPOO {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->lblActiveForm = (gcnew System::Windows::Forms::Label());
 			this->pnlFormShow = (gcnew System::Windows::Forms::Panel());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -348,6 +349,22 @@ namespace AppliProjetPOO {
 			this->panel3->Size = System::Drawing::Size(1294, 85);
 			this->panel3->TabIndex = 1;
 			// 
+			// button1
+			// 
+			this->button1->FlatAppearance->BorderSize = 0;
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+				static_cast<System::Int32>(static_cast<System::Byte>(221)));
+			this->button1->Location = System::Drawing::Point(1197, 22);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"X";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
 			// lblActiveForm
 			// 
 			this->lblActiveForm->AutoSize = true;
@@ -369,22 +386,6 @@ namespace AppliProjetPOO {
 			this->pnlFormShow->Size = System::Drawing::Size(1294, 635);
 			this->pnlFormShow->TabIndex = 2;
 			this->pnlFormShow->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pnlFormShow_Paint);
-			// 
-			// button1
-			// 
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
-				static_cast<System::Int32>(static_cast<System::Byte>(221)));
-			this->button1->Location = System::Drawing::Point(1197, 22);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"X";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// MyForm
 			// 
@@ -495,5 +496,6 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 {
 	Application::Exit();
 }
+
 };
 }
