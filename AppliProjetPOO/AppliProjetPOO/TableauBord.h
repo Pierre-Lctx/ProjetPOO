@@ -21,9 +21,10 @@ namespace AppliProjetPOO {
 		{
 			InitializeComponent();
 
-			Fct^ f = gcnew Fct(); // Obj de la classe fct pour appeler la fonction suivante
-			f->initializeWarningBtn(countWarning(), btnWarning1, btnWarning2, btnWarning3, btnWarning4, btnWarning5, btnWarning6, btnWarning7, btnWarning8, btnWarning9, btnWarning10, btnWarning11, btnWarning12, btnSeeWarning);
-			
+			// Obj de la classe fct pour appeler les fonctions suivantes
+			Fct^ f = gcnew Fct(btnWarning1, btnWarning2, btnWarning3, btnWarning4, btnWarning5, btnWarning6, btnWarning7, btnWarning8, btnWarning9, btnWarning10, btnWarning11, btnWarning12, btnSeeWarning);
+			f->initializeWarningBtn(countWarning());
+			f->fillBtnText();
 		}
 
 	protected:
@@ -65,7 +66,7 @@ namespace AppliProjetPOO {
 
 	private: int countWarning()
 	{
-		int nbWarning = 2;
+		int nbWarning = 13;
 		return nbWarning;
 	}
 
