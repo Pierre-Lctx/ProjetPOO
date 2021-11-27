@@ -9,6 +9,7 @@ namespace AppliProjetPOO {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
 
 	/// <summary>
@@ -16,20 +17,13 @@ namespace AppliProjetPOO {
 	/// </summary>
 	public ref class LogIn : public System::Windows::Forms::Form
 	{
+	private:
+		MyForm^ mainForm = gcnew MyForm();
+
 	public:
 		LogIn(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: ajoutez ici le code du constructeur
-			//
-
-			MyForm^ mainForm;
-
-			mainForm = gcnew MyForm();
-
-			//textBoxUsername->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(keypressed);
-			//textBoxPassword->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(keypressed);
 		}
 
 	protected:
@@ -111,6 +105,7 @@ namespace AppliProjetPOO {
 			this->textBoxUsername->Name = L"textBoxUsername";
 			this->textBoxUsername->Size = System::Drawing::Size(350, 40);
 			this->textBoxUsername->TabIndex = 2;
+			this->textBoxUsername->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LogIn::textBoxUsername_KeyPress);
 			// 
 			// textBoxPassword
 			// 
@@ -124,6 +119,7 @@ namespace AppliProjetPOO {
 			this->textBoxPassword->Name = L"textBoxPassword";
 			this->textBoxPassword->Size = System::Drawing::Size(350, 40);
 			this->textBoxPassword->TabIndex = 4;
+			this->textBoxPassword->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LogIn::textBoxPassword_KeyPress);
 			// 
 			// label2
 			// 
@@ -185,18 +181,19 @@ namespace AppliProjetPOO {
 		}
 #pragma endregion
 
-#pragma region Suppression de la touche entrer
+#pragma region Bloc a Key
 
-	private: void keypressed(System::Object^ o, System::Windows::Forms::KeyPressEventArgs^ e)
+	private: void keypressed(System::Windows::Forms::KeyPressEventArgs^ e)
 	{
-		// The keypressed method uses the KeyChar property to check 
-		// whether the ENTER key is pressed. 
-
-		// If the ENTER key is pressed, the Handled property is set to true, 
-		// to indicate the event is handled.
-		if (e->KeyChar == (char)System::Windows::Forms::Keys::Return)
+		e->Handled = false;
+		switch (e->KeyChar)
 		{
+		case (char)System::Windows::Forms::Keys::Enter:
 			e->Handled = true;
+			break;
+		default:
+			e->Handled = false;
+			break;
 		}
 	}
 
@@ -209,8 +206,28 @@ namespace AppliProjetPOO {
 
 	private: System::Void Connexion_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		this->Hide();
-		MyForm().Show();
+		SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-P3RNDHD;Initial Catalog=TestBDDCon;Integrated Security=True");
+		con->Open();
+		String^  query = "SELECT *from Login Where Name = '" + textBoxUsername->Text + "' and Password = '" + textBoxPassword->Text +"'";
+		SqlDataAdapter^ SDA = gcnew SqlDataAdapter(query, con);
+		DataTable^ DT = gcnew DataTable();
+		SDA->Fill(DT);
+
+		if (DT->Rows->Count == 1)
+		{	
+			MessageBoxButtons::OK;
+			MessageBox::Show("Your are Logged in !");
+			this->Hide();
+			mainForm->Show();
+		}
+		else
+		{
+			MessageBox::Show("Wrong Username or Password");
+			textBoxUsername->Clear();
+			textBoxPassword->Clear();
+		}
+
+		
 	}
 
 	private: System::Void checkBoxShowPassword_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
@@ -218,5 +235,13 @@ namespace AppliProjetPOO {
 		
 	}
 
+private: System::Void textBoxUsername_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) 
+{
+	keypressed(e);
+}
+private: System::Void textBoxPassword_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) 
+{
+	keypressed(e);
+}
 };
 }
