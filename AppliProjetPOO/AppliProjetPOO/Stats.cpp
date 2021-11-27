@@ -1,15 +1,14 @@
-#include "MyForm1.h"
-
+#include "Stats.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
 
 
 [STAThreadAttribute]
-void MainAcceuil(array<String^>^ args)
+void MainSats(array<String^>^ args)
 {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	AppliProjetPOO::MyForm monFormulaire;
+	AppliProjetPOO::Stats monFormulaire;
 	Application::Run(% monFormulaire);
 }
