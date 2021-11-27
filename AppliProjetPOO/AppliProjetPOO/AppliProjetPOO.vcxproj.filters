@@ -24,6 +24,15 @@
     <ClCompile Include="MyProfile1.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Stats.cpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClCompile>
+    <ClCompile Include="TableauBord.cpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClCompile>
+    <ClCompile Include="Fct.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LogIn.h">
@@ -33,6 +42,15 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="MyProfile1.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Stats.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="TableauBord.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Fct.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,6 +77,12 @@
       <Filter>Fichiers de ressources</Filter>
     </Image>
     <Image Include="resources\user.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\Warning.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\next.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>
