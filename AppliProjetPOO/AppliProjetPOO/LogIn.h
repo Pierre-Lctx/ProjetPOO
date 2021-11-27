@@ -167,7 +167,8 @@ namespace AppliProjetPOO {
 			this->pctBoxPassVisible->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pctBoxPassVisible.Image")));
 			this->pctBoxPassVisible->Location = System::Drawing::Point(534, 404);
 			this->pctBoxPassVisible->Name = L"pctBoxPassVisible";
-			this->pctBoxPassVisible->Size = System::Drawing::Size(31, 27);
+			this->pctBoxPassVisible->Size = System::Drawing::Size(40, 20);
+			this->pctBoxPassVisible->SizeMode = System::Windows::Forms::PictureBoxSizeMode::AutoSize;
 			this->pctBoxPassVisible->TabIndex = 9;
 			this->pctBoxPassVisible->TabStop = false;
 			this->pctBoxPassVisible->Click += gcnew System::EventHandler(this, &LogIn::pictureBox2_Click);
