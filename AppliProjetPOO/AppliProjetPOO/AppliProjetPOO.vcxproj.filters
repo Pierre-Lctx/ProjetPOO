@@ -94,5 +94,11 @@
     <Image Include="..\..\..\..\..\Warning.png">
       <Filter>Fichiers de ressources\resources</Filter>
     </Image>
+    <Image Include="resources\passVisiblePink.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\passVisiblePurple.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>
