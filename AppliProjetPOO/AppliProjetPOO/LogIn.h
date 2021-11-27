@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MyForm1.h"
+#include "MenuPrincipal.h"
 
 namespace AppliProjetPOO {
 
