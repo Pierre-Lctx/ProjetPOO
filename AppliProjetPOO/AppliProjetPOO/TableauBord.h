@@ -96,7 +96,7 @@ namespace AppliProjetPOO {
 
 	private: int countWarning()
 	{
-		int nbWarning = 13;
+		int nbWarning = 2;
 		return nbWarning;
 	}
 

@@ -279,8 +279,8 @@ void Fct::fillBtnText()
 	this->tabBtn[6]->Text = getTabText(6);
 	this->tabBtn[7]->Text = getTabText(7);
 	this->tabBtn[8]->Text = getTabText(8);
-	this->tabBtn[9]->Text = getTabText(10);
-	this->tabBtn[10]->Text = getTabText(11);
+	this->tabBtn[9]->Text = getTabText(9);
+	this->tabBtn[10]->Text = getTabText(10);
 	this->tabBtn[11]->Text = getTabText(11);
 	
 }
