@@ -3,6 +3,7 @@
 #include "TableauBord.h"
 #include "Stats.h"
 #include "MyProfile1.h"
+#include "Personnel.h"
 
 namespace AppliProjetPOO {
 
@@ -471,6 +472,8 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnPerso->Height;
 		pnlNav->Top = btnPerso->Top;
 		btnPerso->BackColor = Color::FromArgb(46, 51, 73);
+		openChildForm(gcnew AppliProjetPOO::Personnel);
+		this->lblActiveForm->Text = "Gerer le Personnel";
 	}
 
 	private: System::Void btnStock_Click(System::Object^ sender, System::EventArgs^ e)

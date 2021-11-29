@@ -134,6 +134,7 @@
     <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="MyProfile1.cpp" />
+    <ClCompile Include="Personnel.cpp" />
     <ClCompile Include="Stats.cpp" />
     <ClCompile Include="TableauBord.cpp" />
   </ItemGroup>
@@ -155,6 +156,9 @@
     <ClInclude Include="MyProfile1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Personnel.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Stats.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -171,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personnel.resx">
+      <DependentUpon>Personnel.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stats.resx">
       <DependentUpon>Stats.h</DependentUpon>
