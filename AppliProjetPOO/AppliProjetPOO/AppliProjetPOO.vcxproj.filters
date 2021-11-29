@@ -100,5 +100,11 @@
     <Image Include="resources\passVisiblePurple.png">
       <Filter>Fichiers de ressources\resources</Filter>
     </Image>
+    <Image Include="resources\employeBig.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\employeMini.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>
