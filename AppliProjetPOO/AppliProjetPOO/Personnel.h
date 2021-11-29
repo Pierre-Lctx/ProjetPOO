@@ -149,6 +149,7 @@ namespace AppliProjetPOO {
 			});
 			this->dataGridView1->Location = System::Drawing::Point(41, 96);
 			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
 			this->dataGridView1->Size = System::Drawing::Size(844, 306);
 			this->dataGridView1->TabIndex = 2;
 			// 
