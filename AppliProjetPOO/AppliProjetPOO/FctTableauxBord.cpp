@@ -1,4 +1,4 @@
-#include "Fct.h"
+#include "FctTableauxBord.h"
 
 Fct::Fct(Button^ b1, Button^ b2, Button^ b3, Button^ b4, Button^ b5, Button^ b6, Button^ b7, Button^ b8, Button^ b9, Button^ b10, Button^ b11, Button^ b12, Button^ bsee)
 {
@@ -15,6 +15,7 @@ Fct::Fct(Button^ b1, Button^ b2, Button^ b3, Button^ b4, Button^ b5, Button^ b6,
 	btn11 = b11;
 	btn12 = b12;
 	btnSee = bsee;
+	
 }
 
 // Déclaration de la fonction utilisé dans le form TableauBord pour afficher ou cacher les boutons warnings 
@@ -284,3 +285,4 @@ void Fct::fillBtnText()
 	this->tabBtn[11]->Text = getTabText(11);
 	
 }
+
