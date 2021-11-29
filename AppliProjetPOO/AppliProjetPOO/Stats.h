@@ -108,14 +108,21 @@ namespace AppliProjetPOO {
 			this->chart1->Size = System::Drawing::Size(1006, 267);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
+
+			//Couleurs sur l'Axe X
 			this->chart1->ChartAreas[0]->AxisX->LineColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisY->LineColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisX->InterlacedColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisY->InterlacedColor = Color::White;
 			this->chart1->ChartAreas[0]->AxisX->MajorGrid->LineColor = Color::White;
+			this->chart1->ChartAreas[0]->AxisX->InterlacedColor = Color::White;
+			this->chart1->ChartAreas[0]->AxisX->LabelStyle->ForeColor = Color::White;
+			this->chart1->ChartAreas[0]->AxisX->MajorTickMark->LineColor = Color::White;
+
+			//Couleurs sur l'Axe Y
+			this->chart1->ChartAreas[0]->AxisY->LineColor = Color::White;
+			this->chart1->ChartAreas[0]->AxisY->InterlacedColor = Color::White;		
 			this->chart1->ChartAreas[0]->AxisY->MajorGrid->LineColor = Color::White;
 			this->chart1->ChartAreas[0]->AxisY->LabelStyle->ForeColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisX->LabelStyle->ForeColor = Color::White;
+			this->chart1->ChartAreas[0]->AxisY->MajorTickMark->LineColor = Color::White;
+
 			// 
 			// panel2
 			// 
