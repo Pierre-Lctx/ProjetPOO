@@ -193,7 +193,7 @@ namespace AppliProjetPOO {
 			this->btnOption->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnOption->UseVisualStyleBackColor = true;
 			this->btnOption->Click += gcnew System::EventHandler(this, &MyForm::btnOption_Click);
-			this->btnOption->Image = gcnew System::Drawing::Bitmap("resources\\Settings.png");
+			this->btnOption->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\Settings.png")));
 			// 
 			// btnStat
 			// 
@@ -213,7 +213,7 @@ namespace AppliProjetPOO {
 			this->btnStat->UseVisualStyleBackColor = true;
 			this->btnStat->Click += gcnew System::EventHandler(this, &MyForm::btnStat_Click);
 			this->btnStat->Leave += gcnew System::EventHandler(this, &MyForm::btnStat_Leave);
-			this->btnStat->Image = gcnew System::Drawing::Bitmap("resources\\stats.png");
+			this->btnStat->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\stats.png")));
 			// 
 			// btnCommande
 			// 
@@ -233,7 +233,7 @@ namespace AppliProjetPOO {
 			this->btnCommande->UseVisualStyleBackColor = true;
 			this->btnCommande->Click += gcnew System::EventHandler(this, &MyForm::btnCommande_Click);
 			this->btnCommande->Leave += gcnew System::EventHandler(this, &MyForm::btnCommande_Leave);
-			this->btnCommande->Image = gcnew System::Drawing::Bitmap("resources\\commande.png");
+			this->btnCommande->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\commande.png")));
 			// 
 			// btnClient
 			// 
@@ -253,7 +253,7 @@ namespace AppliProjetPOO {
 			this->btnClient->UseVisualStyleBackColor = true;
 			this->btnClient->Click += gcnew System::EventHandler(this, &MyForm::btnClient_Click);
 			this->btnClient->Leave += gcnew System::EventHandler(this, &MyForm::btnClient_Leave);
-			this->btnClient->Image = gcnew System::Drawing::Bitmap("resources\\client.png");
+			this->btnClient->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\client.png")));
 			// 
 			// btnStock
 			// 
@@ -273,7 +273,7 @@ namespace AppliProjetPOO {
 			this->btnStock->UseVisualStyleBackColor = true;
 			this->btnStock->Click += gcnew System::EventHandler(this, &MyForm::btnStock_Click);
 			this->btnStock->Leave += gcnew System::EventHandler(this, &MyForm::btnStock_Leave);
-			this->btnStock->Image = gcnew System::Drawing::Bitmap("resources\\Stock.png");
+			this->btnStock->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\Stock.png")));
 			// 
 			// btnPerso
 			// 
@@ -293,7 +293,7 @@ namespace AppliProjetPOO {
 			this->btnPerso->UseVisualStyleBackColor = true;
 			this->btnPerso->Click += gcnew System::EventHandler(this, &MyForm::btnPerso_Click);
 			this->btnPerso->Leave += gcnew System::EventHandler(this, &MyForm::btnPerso_Leave);
-			this->btnPerso->Image = gcnew System::Drawing::Bitmap("resources\\personnel.png");
+			this->btnPerso->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\personnel.png")));
 			// 
 			// btnTableauBord
 			// 
@@ -313,7 +313,7 @@ namespace AppliProjetPOO {
 			this->btnTableauBord->UseVisualStyleBackColor = true;
 			this->btnTableauBord->Click += gcnew System::EventHandler(this, &MyForm::btnTableauBord_Click);
 			this->btnTableauBord->Leave += gcnew System::EventHandler(this, &MyForm::btnTableauBord_Leave);
-			this->btnTableauBord->Image = gcnew System::Drawing::Bitmap("resources\\Home.png");
+			this->btnTableauBord->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\Home.png")));
 			// 
 			// panel2
 			// 
@@ -348,7 +348,7 @@ namespace AppliProjetPOO {
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
-			this->pictureBox1->Image = gcnew System::Drawing::Bitmap("resources\\user.png");
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\user.png")));
 			// 
 			// panel3
 			// 
