@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers de ressources\resources">
+      <UniqueIdentifier>{98c73231-e2df-4912-86ff-1d1a8ed2b5b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LogIn.cpp">
@@ -31,6 +34,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClCompile>
     <ClCompile Include="Fct.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Conect.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,37 +59,46 @@
     <ClInclude Include="Fct.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Conect.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\client.png">
-      <Filter>Fichiers de ressources</Filter>
+      <Filter>Fichiers de ressources\resources</Filter>
     </Image>
     <Image Include="resources\commande.png">
-      <Filter>Fichiers de ressources</Filter>
+      <Filter>Fichiers de ressources\resources</Filter>
     </Image>
     <Image Include="resources\Home.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="resources\personnel.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="resources\Settings.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="resources\stats.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="resources\Stock.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="resources\user.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Warning.png">
-      <Filter>Fichiers de ressources</Filter>
+      <Filter>Fichiers de ressources\resources</Filter>
     </Image>
     <Image Include="..\..\..\..\..\next.png">
-      <Filter>Fichiers de ressources</Filter>
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\personnel.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\Settings.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\stats.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\Stock.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\user.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\Warning.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\passVisiblePink.png">
+      <Filter>Fichiers de ressources\resources</Filter>
+    </Image>
+    <Image Include="resources\passVisiblePurple.png">
+      <Filter>Fichiers de ressources\resources</Filter>
     </Image>
   </ItemGroup>
 </Project>

@@ -92,7 +92,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <EntryPointSymbol>MainAcceuil</EntryPointSymbol>
+      <EntryPointSymbol>MainLog</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
     <EmbeddedResource>
@@ -127,6 +127,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Conect.cpp" />
     <ClCompile Include="Fct.cpp" />
     <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="TableauBord.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Conect.h" />
     <ClInclude Include="Fct.h" />
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
@@ -172,6 +174,8 @@
     <Image Include="resources\client.png" />
     <Image Include="resources\commande.png" />
     <Image Include="resources\Home.png" />
+    <Image Include="resources\passVisiblePink.png" />
+    <Image Include="resources\passVisiblePurple.png" />
     <Image Include="resources\personnel.png" />
     <Image Include="resources\Settings.png" />
     <Image Include="resources\stats.png" />
