@@ -179,8 +179,13 @@
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.h</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Personnel.resx">
       <DependentUpon>Personnel.h</DependentUpon>
+
+    <EmbeddedResource Include="MyProfile1.resx">
+      <DependentUpon>MyProfile1.h</DependentUpon>
+      
     </EmbeddedResource>
     <EmbeddedResource Include="Stats.resx">
       <DependentUpon>Stats.h</DependentUpon>
