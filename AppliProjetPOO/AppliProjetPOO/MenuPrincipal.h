@@ -2,8 +2,11 @@
 
 #include "TableauBord.h"
 #include "Stats.h"
+
 #include "MyProfile1.h"
 #include "Personnel.h"
+#include "CreatePerson.h"
+
 
 namespace AppliProjetPOO {
 
@@ -17,7 +20,7 @@ namespace AppliProjetPOO {
 
 
 	/// <summary>
-	/// Description résumée de MyForm
+	/// Description rÃ©sumÃ©e de MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -72,7 +75,7 @@ namespace AppliProjetPOO {
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~MyForm()
 		{
@@ -111,14 +114,14 @@ namespace AppliProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -487,6 +490,8 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnClient->Height;
 		pnlNav->Top = btnClient->Top;
 		btnClient->BackColor = Color::FromArgb(46, 51, 73);
+		openChildForm(gcnew AppliProjetPOO::CreatePerson);
+		this->lblActiveForm->Text = "Gestion Client";
 	}
 	private: System::Void btnCommande_Click(System::Object^ sender, System::EventArgs^ e)
 	{

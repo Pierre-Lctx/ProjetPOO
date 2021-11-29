@@ -82,7 +82,7 @@
     <Link>
       <AdditionalDependencies />
       <SubSystem>Windows</SubSystem>
-      <EntryPointSymbol>Main</EntryPointSymbol>
+      <EntryPointSymbol>MainLog</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -167,6 +167,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Adresse.resx">
+      <DependentUpon>Adresse.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreatePerson.resx">
       <DependentUpon>CreatePerson.h</DependentUpon>
     </EmbeddedResource>
