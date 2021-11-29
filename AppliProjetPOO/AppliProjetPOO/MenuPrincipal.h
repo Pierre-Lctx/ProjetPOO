@@ -2,6 +2,7 @@
 
 #include "TableauBord.h"
 #include "Stats.h"
+#include "MyProfile1.h"
 
 namespace AppliProjetPOO {
 
@@ -536,7 +537,8 @@ namespace AppliProjetPOO {
 	//picture Click pour acceder au form MyProfile
 	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-
+		openChildForm(gcnew AppliProjetPOO::MyProfile);
+		lblActiveForm->Text = "Mon Profil";
 	}
 
 
