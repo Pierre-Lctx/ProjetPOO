@@ -224,6 +224,8 @@ void Fct::initializeWarningBtn(int fct)
 		btnSee->Text = "Voir plus (+" + (fct-12).ToString() + ")";
 		btnSee->Visible = true;
 	}
+
+	fillBtnText();
 }
 
 void Fct::setTabTextWarning()

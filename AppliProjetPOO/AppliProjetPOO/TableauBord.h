@@ -24,7 +24,6 @@ namespace AppliProjetPOO {
 			// Obj de la classe fct pour appeler les fonctions suivantes
 			Fct^ f = gcnew Fct(btnWarning1, btnWarning2, btnWarning3, btnWarning4, btnWarning5, btnWarning6, btnWarning7, btnWarning8, btnWarning9, btnWarning10, btnWarning11, btnWarning12, btnSeeWarning);
 			f->initializeWarningBtn(countWarning());
-			f->fillBtnText();
 		}
 
 	protected:
@@ -54,14 +53,45 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnWarning4;
 	private: System::Windows::Forms::Button^ btnWarning3;
 	private: System::Windows::Forms::Button^ btnWarning2;
-	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Panel^ panel2;
-	private: System::Windows::Forms::Panel^ panel3;
-	private: System::Windows::Forms::Panel^ panel4;
-	private: System::Windows::Forms::PictureBox^ pictureBox2;
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Panel^ pnlKeyPoint;
+	private: System::Windows::Forms::Panel^ pnlWeekEarning;
+
+
+
+	private: System::Windows::Forms::Panel^ pnlTitleKeyPoint;
+	private: System::Windows::Forms::Panel^ pnlTitleWeekEarning;
+
+	private: System::Windows::Forms::PictureBox^ picCustomer;
+
+
+
+
+
+
 	private: System::Windows::Forms::PictureBox^ pictureBox3;
+
+
+
+
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::PictureBox^ picPersonnem;
+	private: System::Windows::Forms::Label^ lblCommande;
+
+	private: System::Windows::Forms::Label^ lblClient;
+
+
+	private: System::Windows::Forms::Label^ lblNameEmploye;
+	private: System::Windows::Forms::Label^ lblNbCommandePass;
+
+	private: System::Windows::Forms::Label^ lblNbNewClient;
+	private: System::Windows::Forms::Label^ lblNbEmployé;
+	private: System::Windows::Forms::Label^ lblEarning;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label2;
 
 	private: int countWarning()
@@ -100,24 +130,33 @@ namespace AppliProjetPOO {
 			this->btnWarning1 = (gcnew System::Windows::Forms::Button());
 			this->pnlWTitle = (gcnew System::Windows::Forms::Panel());
 			this->lblWarning = (gcnew System::Windows::Forms::Label());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->pnlKeyPoint = (gcnew System::Windows::Forms::Panel());
+			this->lblCommande = (gcnew System::Windows::Forms::Label());
+			this->lblClient = (gcnew System::Windows::Forms::Label());
+			this->lblNameEmploye = (gcnew System::Windows::Forms::Label());
+			this->picPersonnem = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
+			this->picCustomer = (gcnew System::Windows::Forms::PictureBox());
+			this->pnlTitleKeyPoint = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->panel4 = (gcnew System::Windows::Forms::Panel());
+			this->pnlWeekEarning = (gcnew System::Windows::Forms::Panel());
+			this->pnlTitleWeekEarning = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->lblNbEmployé = (gcnew System::Windows::Forms::Label());
+			this->lblNbNewClient = (gcnew System::Windows::Forms::Label());
+			this->lblNbCommandePass = (gcnew System::Windows::Forms::Label());
+			this->lblEarning = (gcnew System::Windows::Forms::Label());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pnlWarning->SuspendLayout();
 			this->pnlWTitle->SuspendLayout();
-			this->panel1->SuspendLayout();
+			this->pnlKeyPoint->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picPersonnem))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picCustomer))->BeginInit();
+			this->pnlTitleKeyPoint->SuspendLayout();
+			this->pnlWeekEarning->SuspendLayout();
+			this->pnlTitleWeekEarning->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-			this->panel3->SuspendLayout();
-			this->panel2->SuspendLayout();
-			this->panel4->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// pnlWarning
@@ -427,55 +466,101 @@ namespace AppliProjetPOO {
 			this->lblWarning->TabIndex = 0;
 			this->lblWarning->Text = L"Point d\'Attention";
 			// 
-			// panel1
+			// pnlKeyPoint
 			// 
-			this->panel1->Controls->Add(this->pictureBox3);
-			this->panel1->Controls->Add(this->pictureBox2);
-			this->panel1->Controls->Add(this->pictureBox1);
-			this->panel1->Controls->Add(this->panel3);
-			this->panel1->Location = System::Drawing::Point(445, 19);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(831, 218);
-			this->panel1->TabIndex = 1;
+			this->pnlKeyPoint->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->pnlKeyPoint->Controls->Add(this->lblNbCommandePass);
+			this->pnlKeyPoint->Controls->Add(this->lblNbNewClient);
+			this->pnlKeyPoint->Controls->Add(this->lblNbEmployé);
+			this->pnlKeyPoint->Controls->Add(this->lblCommande);
+			this->pnlKeyPoint->Controls->Add(this->lblClient);
+			this->pnlKeyPoint->Controls->Add(this->lblNameEmploye);
+			this->pnlKeyPoint->Controls->Add(this->picPersonnem);
+			this->pnlKeyPoint->Controls->Add(this->pictureBox3);
+			this->pnlKeyPoint->Controls->Add(this->picCustomer);
+			this->pnlKeyPoint->Controls->Add(this->pnlTitleKeyPoint);
+			this->pnlKeyPoint->Location = System::Drawing::Point(445, 19);
+			this->pnlKeyPoint->Name = L"pnlKeyPoint";
+			this->pnlKeyPoint->Size = System::Drawing::Size(831, 218);
+			this->pnlKeyPoint->TabIndex = 1;
+			// 
+			// lblCommande
+			// 
+			this->lblCommande->AutoSize = true;
+			this->lblCommande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblCommande->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			this->lblCommande->Location = System::Drawing::Point(633, 149);
+			this->lblCommande->Name = L"lblCommande";
+			this->lblCommande->Size = System::Drawing::Size(181, 20);
+			this->lblCommande->TabIndex = 7;
+			this->lblCommande->Text = L"Commandes Passées";
+			// 
+			// lblClient
+			// 
+			this->lblClient->AutoSize = true;
+			this->lblClient->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblClient->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			this->lblClient->Location = System::Drawing::Point(338, 149);
+			this->lblClient->Name = L"lblClient";
+			this->lblClient->Size = System::Drawing::Size(147, 20);
+			this->lblClient->TabIndex = 6;
+			this->lblClient->Text = L"Nouveaux Clients";
+			// 
+			// lblNameEmploye
+			// 
+			this->lblNameEmploye->AutoSize = true;
+			this->lblNameEmploye->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblNameEmploye->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			this->lblNameEmploye->Location = System::Drawing::Point(22, 149);
+			this->lblNameEmploye->Name = L"lblNameEmploye";
+			this->lblNameEmploye->Size = System::Drawing::Size(158, 20);
+			this->lblNameEmploye->TabIndex = 5;
+			this->lblNameEmploye->Text = L"Nombre d\'Employé";
+			// 
+			// picPersonnem
+			// 
+			this->picPersonnem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picPersonnem.Image")));
+			this->picPersonnem->Location = System::Drawing::Point(49, 59);
+			this->picPersonnem->Name = L"picPersonnem";
+			this->picPersonnem->Size = System::Drawing::Size(103, 80);
+			this->picPersonnem->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->picPersonnem->TabIndex = 4;
+			this->picPersonnem->TabStop = false;
 			// 
 			// pictureBox3
 			// 
+			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
 			this->pictureBox3->Location = System::Drawing::Point(671, 59);
 			this->pictureBox3->Name = L"pictureBox3";
 			this->pictureBox3->Size = System::Drawing::Size(103, 80);
+			this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox3->TabIndex = 3;
 			this->pictureBox3->TabStop = false;
 			// 
-			// pictureBox2
+			// picCustomer
 			// 
-			this->pictureBox2->Location = System::Drawing::Point(359, 59);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(103, 80);
-			this->pictureBox2->TabIndex = 2;
-			this->pictureBox2->TabStop = false;
+			this->picCustomer->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picCustomer.Image")));
+			this->picCustomer->Location = System::Drawing::Point(359, 59);
+			this->picCustomer->Name = L"picCustomer";
+			this->picCustomer->Size = System::Drawing::Size(103, 80);
+			this->picCustomer->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->picCustomer->TabIndex = 2;
+			this->picCustomer->TabStop = false;
 			// 
-			// pictureBox1
+			// pnlTitleKeyPoint
 			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.InitialImage")));
-			this->pictureBox1->Location = System::Drawing::Point(53, 59);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(103, 80);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			this->pictureBox1->TabIndex = 1;
-			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &TableauBord::pictureBox1_Click);
-			// 
-			// panel3
-			// 
-			this->panel3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
+			this->pnlTitleKeyPoint->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			this->panel3->Controls->Add(this->label1);
-			this->panel3->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel3->Location = System::Drawing::Point(0, 0);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(831, 45);
-			this->panel3->TabIndex = 0;
+			this->pnlTitleKeyPoint->Controls->Add(this->label1);
+			this->pnlTitleKeyPoint->Dock = System::Windows::Forms::DockStyle::Top;
+			this->pnlTitleKeyPoint->Location = System::Drawing::Point(0, 0);
+			this->pnlTitleKeyPoint->Name = L"pnlTitleKeyPoint";
+			this->pnlTitleKeyPoint->Size = System::Drawing::Size(831, 45);
+			this->pnlTitleKeyPoint->TabIndex = 0;
 			// 
 			// label1
 			// 
@@ -490,24 +575,28 @@ namespace AppliProjetPOO {
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Points Clefs de la Semaine";
 			// 
-			// panel2
+			// pnlWeekEarning
 			// 
-			this->panel2->Controls->Add(this->panel4);
-			this->panel2->Location = System::Drawing::Point(650, 318);
-			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(422, 240);
-			this->panel2->TabIndex = 2;
+			this->pnlWeekEarning->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->pnlWeekEarning->Controls->Add(this->pictureBox1);
+			this->pnlWeekEarning->Controls->Add(this->lblEarning);
+			this->pnlWeekEarning->Controls->Add(this->pnlTitleWeekEarning);
+			this->pnlWeekEarning->Location = System::Drawing::Point(650, 318);
+			this->pnlWeekEarning->Name = L"pnlWeekEarning";
+			this->pnlWeekEarning->Size = System::Drawing::Size(422, 200);
+			this->pnlWeekEarning->TabIndex = 2;
 			// 
-			// panel4
+			// pnlTitleWeekEarning
 			// 
-			this->panel4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
-				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			this->panel4->Controls->Add(this->label2);
-			this->panel4->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel4->Location = System::Drawing::Point(0, 0);
-			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(422, 45);
-			this->panel4->TabIndex = 0;
+			this->pnlTitleWeekEarning->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)),
+				static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->pnlTitleWeekEarning->Controls->Add(this->label2);
+			this->pnlTitleWeekEarning->Dock = System::Windows::Forms::DockStyle::Top;
+			this->pnlTitleWeekEarning->Location = System::Drawing::Point(0, 0);
+			this->pnlTitleWeekEarning->Name = L"pnlTitleWeekEarning";
+			this->pnlTitleWeekEarning->Size = System::Drawing::Size(422, 45);
+			this->pnlTitleWeekEarning->TabIndex = 0;
 			// 
 			// label2
 			// 
@@ -522,6 +611,68 @@ namespace AppliProjetPOO {
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Revenus de la Semaine";
 			// 
+			// lblNbEmployé
+			// 
+			this->lblNbEmployé->AutoSize = true;
+			this->lblNbEmployé->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblNbEmployé->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+				static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->lblNbEmployé->Location = System::Drawing::Point(86, 179);
+			this->lblNbEmployé->Name = L"lblNbEmployé";
+			this->lblNbEmployé->Size = System::Drawing::Size(24, 16);
+			this->lblNbEmployé->TabIndex = 8;
+			this->lblNbEmployé->Text = L"15";
+			// 
+			// lblNbNewClient
+			// 
+			this->lblNbNewClient->AutoSize = true;
+			this->lblNbNewClient->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblNbNewClient->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+				static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->lblNbNewClient->Location = System::Drawing::Point(394, 179);
+			this->lblNbNewClient->Name = L"lblNbNewClient";
+			this->lblNbNewClient->Size = System::Drawing::Size(36, 16);
+			this->lblNbNewClient->TabIndex = 9;
+			this->lblNbNewClient->Text = L"+ 20";
+			// 
+			// lblNbCommandePass
+			// 
+			this->lblNbCommandePass->AutoSize = true;
+			this->lblNbCommandePass->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblNbCommandePass->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)),
+				static_cast<System::Int32>(static_cast<System::Byte>(154)), static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->lblNbCommandePass->Location = System::Drawing::Point(703, 179);
+			this->lblNbCommandePass->Name = L"lblNbCommandePass";
+			this->lblNbCommandePass->Size = System::Drawing::Size(36, 16);
+			this->lblNbCommandePass->TabIndex = 10;
+			this->lblNbCommandePass->Text = L"+ 20";
+			// 
+			// lblEarning
+			// 
+			this->lblEarning->AutoSize = true;
+			this->lblEarning->Font = (gcnew System::Drawing::Font(L"Century Gothic", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblEarning->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+				static_cast<System::Int32>(static_cast<System::Byte>(221)));
+			this->lblEarning->Location = System::Drawing::Point(201, 122);
+			this->lblEarning->Name = L"lblEarning";
+			this->lblEarning->Size = System::Drawing::Size(144, 38);
+			this->lblEarning->TabIndex = 1;
+			this->lblEarning->Text = L"+ 1500 €";
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(30, 48);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(135, 112);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox1->TabIndex = 2;
+			this->pictureBox1->TabStop = false;
+			// 
 			// TableauBord
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -529,8 +680,8 @@ namespace AppliProjetPOO {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->ClientSize = System::Drawing::Size(1294, 635);
-			this->Controls->Add(this->panel2);
-			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->pnlWeekEarning);
+			this->Controls->Add(this->pnlKeyPoint);
 			this->Controls->Add(this->pnlWarning);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"TableauBord";
@@ -539,15 +690,18 @@ namespace AppliProjetPOO {
 			this->pnlWarning->ResumeLayout(false);
 			this->pnlWTitle->ResumeLayout(false);
 			this->pnlWTitle->PerformLayout();
-			this->panel1->ResumeLayout(false);
+			this->pnlKeyPoint->ResumeLayout(false);
+			this->pnlKeyPoint->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picPersonnem))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picCustomer))->EndInit();
+			this->pnlTitleKeyPoint->ResumeLayout(false);
+			this->pnlTitleKeyPoint->PerformLayout();
+			this->pnlWeekEarning->ResumeLayout(false);
+			this->pnlWeekEarning->PerformLayout();
+			this->pnlTitleWeekEarning->ResumeLayout(false);
+			this->pnlTitleWeekEarning->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-			this->panel3->ResumeLayout(false);
-			this->panel3->PerformLayout();
-			this->panel2->ResumeLayout(false);
-			this->panel4->ResumeLayout(false);
-			this->panel4->PerformLayout();
 			this->ResumeLayout(false);
 
 		}

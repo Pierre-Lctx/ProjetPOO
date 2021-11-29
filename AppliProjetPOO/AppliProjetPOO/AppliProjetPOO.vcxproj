@@ -92,7 +92,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <EntryPointSymbol>MainLog</EntryPointSymbol>
+      <EntryPointSymbol>MainAcceuil</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
     <EmbeddedResource>
@@ -173,6 +173,8 @@
     <Image Include="..\..\..\..\..\Warning.png" />
     <Image Include="resources\client.png" />
     <Image Include="resources\commande.png" />
+    <Image Include="resources\employeBig.png" />
+    <Image Include="resources\employeMini.png" />
     <Image Include="resources\Home.png" />
     <Image Include="resources\passVisiblePink.png" />
     <Image Include="resources\passVisiblePurple.png" />
