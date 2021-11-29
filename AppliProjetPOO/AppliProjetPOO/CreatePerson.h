@@ -14,6 +14,10 @@ namespace AppliProjetPOO {
 	/// </summary>
 	public ref class CreatePerson : public System::Windows::Forms::Form
 	{
+	private :
+		bool changeClient = false;
+		bool changeEmploye = false;
+
 	public:
 		CreatePerson(void)
 		{
@@ -42,8 +46,8 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Label^ label1;
 	protected:
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::CheckBox^ checkBoxClient;
-	private: System::Windows::Forms::CheckBox^ checkBoxEmploye;
+
+
 
 
 	private: System::Windows::Forms::Label^ label3;
@@ -85,6 +89,8 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::RadioButton^ rbClient;
+	private: System::Windows::Forms::RadioButton^ rbEmploye;
 
 	private:
 		/// <summary>
@@ -101,8 +107,6 @@ namespace AppliProjetPOO {
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->checkBoxClient = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBoxEmploye = (gcnew System::Windows::Forms::CheckBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->labelNom = (gcnew System::Windows::Forms::Label());
 			this->labelPrenom = (gcnew System::Windows::Forms::Label());
@@ -123,6 +127,8 @@ namespace AppliProjetPOO {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->rbClient = (gcnew System::Windows::Forms::RadioButton());
+			this->rbEmploye = (gcnew System::Windows::Forms::RadioButton());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -150,36 +156,6 @@ namespace AppliProjetPOO {
 			this->label2->Size = System::Drawing::Size(319, 36);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Statut de la personne";
-			// 
-			// checkBoxClient
-			// 
-			this->checkBoxClient->AutoSize = true;
-			this->checkBoxClient->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->checkBoxClient->ForeColor = System::Drawing::Color::White;
-			this->checkBoxClient->Location = System::Drawing::Point(39, 207);
-			this->checkBoxClient->Margin = System::Windows::Forms::Padding(2);
-			this->checkBoxClient->Name = L"checkBoxClient";
-			this->checkBoxClient->Size = System::Drawing::Size(103, 34);
-			this->checkBoxClient->TabIndex = 2;
-			this->checkBoxClient->Text = L"Client";
-			this->checkBoxClient->UseVisualStyleBackColor = true;
-			this->checkBoxClient->CheckedChanged += gcnew System::EventHandler(this, &CreatePerson::checkBoxClient_CheckedChanged);
-			// 
-			// checkBoxEmploye
-			// 
-			this->checkBoxEmploye->AutoSize = true;
-			this->checkBoxEmploye->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->checkBoxEmploye->ForeColor = System::Drawing::Color::White;
-			this->checkBoxEmploye->Location = System::Drawing::Point(39, 245);
-			this->checkBoxEmploye->Margin = System::Windows::Forms::Padding(2);
-			this->checkBoxEmploye->Name = L"checkBoxEmploye";
-			this->checkBoxEmploye->Size = System::Drawing::Size(136, 34);
-			this->checkBoxEmploye->TabIndex = 3;
-			this->checkBoxEmploye->Text = L"Employé";
-			this->checkBoxEmploye->UseVisualStyleBackColor = true;
-			this->checkBoxEmploye->CheckedChanged += gcnew System::EventHandler(this, &CreatePerson::checkBoxEmploye_CheckedChanged);
 			// 
 			// label3
 			// 
@@ -414,6 +390,36 @@ namespace AppliProjetPOO {
 			this->button4->Text = L"Ajouter";
 			this->button4->UseVisualStyleBackColor = true;
 			// 
+			// rbClient
+			// 
+			this->rbClient->AutoSize = true;
+			this->rbClient->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->rbClient->ForeColor = System::Drawing::Color::White;
+			this->rbClient->Location = System::Drawing::Point(54, 214);
+			this->rbClient->Name = L"rbClient";
+			this->rbClient->Size = System::Drawing::Size(102, 34);
+			this->rbClient->TabIndex = 27;
+			this->rbClient->TabStop = true;
+			this->rbClient->Text = L"Client";
+			this->rbClient->UseVisualStyleBackColor = true;
+			this->rbClient->CheckedChanged += gcnew System::EventHandler(this, &CreatePerson::rbClient_CheckedChanged);
+			// 
+			// rbEmploye
+			// 
+			this->rbEmploye->AutoSize = true;
+			this->rbEmploye->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->rbEmploye->ForeColor = System::Drawing::Color::White;
+			this->rbEmploye->Location = System::Drawing::Point(54, 271);
+			this->rbEmploye->Name = L"rbEmploye";
+			this->rbEmploye->Size = System::Drawing::Size(135, 34);
+			this->rbEmploye->TabIndex = 28;
+			this->rbEmploye->TabStop = true;
+			this->rbEmploye->Text = L"Employé";
+			this->rbEmploye->UseVisualStyleBackColor = true;
+			this->rbEmploye->CheckedChanged += gcnew System::EventHandler(this, &CreatePerson::rbEmploye_CheckedChanged);
+			// 
 			// CreatePerson
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 17);
@@ -421,6 +427,8 @@ namespace AppliProjetPOO {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->ClientSize = System::Drawing::Size(1278, 596);
+			this->Controls->Add(this->rbEmploye);
+			this->Controls->Add(this->rbClient);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
@@ -441,8 +449,6 @@ namespace AppliProjetPOO {
 			this->Controls->Add(this->labelPrenom);
 			this->Controls->Add(this->labelNom);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->checkBoxEmploye);
-			this->Controls->Add(this->checkBoxClient);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Font = (gcnew System::Drawing::Font(L"Century Gothic", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -464,9 +470,9 @@ namespace AppliProjetPOO {
 
 	private: System::Boolean checkIsNotVoid()
 	{
-		if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && checkBoxClient->Checked)
+		if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && rbClient->Checked)
 			return true;
-		else if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && checkBoxEmploye->Checked)
+		else if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && rbEmploye->Checked)
 			return true;
 		else
 			return false;
@@ -483,22 +489,43 @@ namespace AppliProjetPOO {
 			MessageBox::Show("Vous devez remplir tous les champs !");
 		}
 	}
-	private: System::Void checkBoxClient_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+
+
+	
+private: System::Void rbClient_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+{
+	if (changeClient == true)
 	{
+		changeClient = false;
+		labelLivraison->Visible = true;
+		labelFacturation->Visible = true;
+		labelPersonnelle->Visible = true;
+	}
+	else
+	{
+		changeClient = true;
 		labelLivraison->Visible = true;
 		labelFacturation->Visible = true;
 		labelPersonnelle->Visible = false;
 
-
 	}
-
-	private: System::Void checkBoxEmploye_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+}
+private: System::Void rbEmploye_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (changeEmploye == true)
 	{
+		changeEmploye = false;
+		labelLivraison->Visible = true;
+		labelFacturation->Visible = true;
+		labelPersonnelle->Visible = false;
+	}
+	else
+	{
+		changeEmploye = true;
 		labelLivraison->Visible = true;
 		labelFacturation->Visible = true;
 		labelPersonnelle->Visible = true;
-
-
 	}
+}
 };
 }

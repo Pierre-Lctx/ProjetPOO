@@ -403,7 +403,7 @@ private: System::Void btnCreer_Click(System::Object^ sender, System::EventArgs^ 
 }
 private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e) 
 {
-	active->Hide();
+	active->Close();
 }
 };
 }
