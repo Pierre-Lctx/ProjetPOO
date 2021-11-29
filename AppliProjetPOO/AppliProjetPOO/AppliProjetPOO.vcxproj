@@ -130,10 +130,11 @@
     <ClCompile Include="Adresse.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="CreatePerson.cpp" />
-    <ClCompile Include="Fct.cpp" />
+    <ClCompile Include="FctTableauxBord.cpp" />
     <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="MyProfile1.cpp" />
+    <ClCompile Include="Personnel.cpp" />
     <ClCompile Include="Stats.cpp" />
     <ClCompile Include="TableauBord.cpp" />
   </ItemGroup>
@@ -145,7 +146,7 @@
     <ClInclude Include="CreatePerson.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Fct.h" />
+    <ClInclude Include="FctTableauxBord.h" />
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -153,6 +154,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyProfile1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Personnel.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Stats.h">
@@ -174,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personnel.resx">
+      <DependentUpon>Personnel.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stats.resx">
       <DependentUpon>Stats.h</DependentUpon>
