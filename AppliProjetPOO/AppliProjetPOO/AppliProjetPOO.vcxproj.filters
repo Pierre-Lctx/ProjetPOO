@@ -27,12 +27,6 @@
     <ClCompile Include="MyProfile1.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Stats.cpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClCompile>
-    <ClCompile Include="TableauBord.cpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClCompile>
     <ClCompile Include="FctTableauxBord.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -43,6 +37,12 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Adresse.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Stats.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="TableauBord.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
