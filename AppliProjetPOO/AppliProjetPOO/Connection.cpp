@@ -94,5 +94,5 @@ bool Connect::connection(String^ mail, String^ password)
 	}
 
 	closeConnection();
-	
+
 }
