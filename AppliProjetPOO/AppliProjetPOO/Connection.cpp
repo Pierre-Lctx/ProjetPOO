@@ -73,3 +73,26 @@ void Connect::closeConnection()
 {
 	this->conn->Close();
 }
+
+bool Connect::connection(String^ mail, String^ password)
+{
+	String^ query = "select Personne.ID_PERSONNE from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Personnel ON Personne.ID_PERSONNE = Personnel.ID_PERSONNE WHERE Personne.ADRESSE_MAIL ='" + mail + "' AND Personnel.MOT_DE_PASSE='" + password + "';";
+
+	openConnection();
+
+	SqlDataAdapter^ SDA = gcnew SqlDataAdapter(query, this->conn);
+	DataTable^ DT = gcnew DataTable();
+	SDA->Fill(DT);
+
+	if (DT->Rows->Count == 1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+	closeConnection();
+	
+}

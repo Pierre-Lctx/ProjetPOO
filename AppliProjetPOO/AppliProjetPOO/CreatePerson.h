@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Adresse.h"
+
 namespace AppliProjetPOO {
 
 	using namespace System;
@@ -14,6 +16,8 @@ namespace AppliProjetPOO {
 	/// </summary>
 	public ref class CreatePerson : public System::Windows::Forms::Form
 	{
+	private: Adresse^ adresseForm = gcnew Adresse();
+
 	public:
 		CreatePerson(void)
 		{
@@ -82,9 +86,12 @@ namespace AppliProjetPOO {
 
 
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Button^ buttonLivraison;
+	private: System::Windows::Forms::Button^ buttonFacturation;
+	private: System::Windows::Forms::Button^ buttonPersonnelle;
+
+
+
 
 	private:
 		/// <summary>
@@ -120,9 +127,9 @@ namespace AppliProjetPOO {
 			this->labelLivraison = (gcnew System::Windows::Forms::Label());
 			this->labelPersonnelle = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->buttonLivraison = (gcnew System::Windows::Forms::Button());
+			this->buttonFacturation = (gcnew System::Windows::Forms::Button());
+			this->buttonPersonnelle = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -381,38 +388,41 @@ namespace AppliProjetPOO {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &CreatePerson::button1_Click);
 			// 
-			// button2
+			// buttonLivraison
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->buttonLivraison->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(935, 377);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(181, 32);
-			this->button2->TabIndex = 24;
-			this->button2->Text = L"Ajouter";
-			this->button2->UseVisualStyleBackColor = true;
+			this->buttonLivraison->Location = System::Drawing::Point(935, 377);
+			this->buttonLivraison->Name = L"buttonLivraison";
+			this->buttonLivraison->Size = System::Drawing::Size(181, 32);
+			this->buttonLivraison->TabIndex = 24;
+			this->buttonLivraison->Text = L"Ajouter";
+			this->buttonLivraison->UseVisualStyleBackColor = true;
+			this->buttonLivraison->Click += gcnew System::EventHandler(this, &CreatePerson::button2_Click);
 			// 
-			// button3
+			// buttonFacturation
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->buttonFacturation->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(935, 419);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(181, 32);
-			this->button3->TabIndex = 25;
-			this->button3->Text = L"Ajouter";
-			this->button3->UseVisualStyleBackColor = true;
+			this->buttonFacturation->Location = System::Drawing::Point(935, 419);
+			this->buttonFacturation->Name = L"buttonFacturation";
+			this->buttonFacturation->Size = System::Drawing::Size(181, 32);
+			this->buttonFacturation->TabIndex = 25;
+			this->buttonFacturation->Text = L"Ajouter";
+			this->buttonFacturation->UseVisualStyleBackColor = true;
+			this->buttonFacturation->Click += gcnew System::EventHandler(this, &CreatePerson::button3_Click);
 			// 
-			// button4
+			// buttonPersonnelle
 			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->buttonPersonnelle->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(935, 463);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(181, 32);
-			this->button4->TabIndex = 26;
-			this->button4->Text = L"Ajouter";
-			this->button4->UseVisualStyleBackColor = true;
+			this->buttonPersonnelle->Location = System::Drawing::Point(935, 463);
+			this->buttonPersonnelle->Name = L"buttonPersonnelle";
+			this->buttonPersonnelle->Size = System::Drawing::Size(181, 32);
+			this->buttonPersonnelle->TabIndex = 26;
+			this->buttonPersonnelle->Text = L"Ajouter";
+			this->buttonPersonnelle->UseVisualStyleBackColor = true;
+			this->buttonPersonnelle->Click += gcnew System::EventHandler(this, &CreatePerson::button4_Click);
 			// 
 			// CreatePerson
 			// 
@@ -421,9 +431,9 @@ namespace AppliProjetPOO {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->ClientSize = System::Drawing::Size(1278, 596);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->buttonPersonnelle);
+			this->Controls->Add(this->buttonFacturation);
+			this->Controls->Add(this->buttonLivraison);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->labelPersonnelle);
 			this->Controls->Add(this->labelFacturation);
@@ -488,7 +498,9 @@ namespace AppliProjetPOO {
 		labelFacturation->Visible = true;
 		labelPersonnelle->Visible = false;
 
-
+		buttonLivraison->Visible = true;
+		buttonFacturation->Visible = true;
+		buttonPersonnelle->Visible = false;
 	}
 
 	private: System::Void checkBoxEmploye_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
@@ -497,7 +509,21 @@ namespace AppliProjetPOO {
 		labelFacturation->Visible = true;
 		labelPersonnelle->Visible = true;
 
-
+		buttonLivraison->Visible = true;
+		buttonFacturation->Visible = true;
+		buttonPersonnelle->Visible = false;
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	adresseForm->ShowDialog();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	adresseForm->ShowDialog();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	adresseForm->ShowDialog();
+}
 };
 }

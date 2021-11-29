@@ -2,6 +2,7 @@
 
 #include "TableauBord.h"
 #include "Stats.h"
+#include "CreatePerson.h"
 
 namespace AppliProjetPOO {
 
@@ -483,6 +484,8 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnClient->Height;
 		pnlNav->Top = btnClient->Top;
 		btnClient->BackColor = Color::FromArgb(46, 51, 73);
+		openChildForm(gcnew AppliProjetPOO::CreatePerson);
+		this->lblActiveForm->Text = "Gestion Client";
 	}
 	private: System::Void btnCommande_Click(System::Object^ sender, System::EventArgs^ e)
 	{
