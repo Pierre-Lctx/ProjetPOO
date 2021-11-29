@@ -9,6 +9,7 @@ namespace AppliProjetPOO {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
 
 	/// <summary>
@@ -16,20 +17,13 @@ namespace AppliProjetPOO {
 	/// </summary>
 	public ref class LogIn : public System::Windows::Forms::Form
 	{
+	private:
+		MyForm^ mainForm = gcnew MyForm();
+
 	public:
 		LogIn(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: ajoutez ici le code du constructeur
-			//
-
-			MyForm^ mainForm;
-
-			mainForm = gcnew MyForm();
-
-			//textBoxUsername->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(keypressed);
-			//textBoxPassword->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(keypressed);
 		}
 
 	protected:
@@ -49,8 +43,11 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::TextBox^ textBoxUsername;
 	private: System::Windows::Forms::TextBox^ textBoxPassword;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::CheckBox^ checkBoxShowPassword;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Label^ lblShowPass;
+	private: System::Windows::Forms::PictureBox^ pctBoxPassVisible;
+
 
 	private:
 		/// <summary>
@@ -65,14 +62,17 @@ namespace AppliProjetPOO {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LogIn::typeid));
 			this->Connexion = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBoxUsername = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxPassword = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->checkBoxShowPassword = (gcnew System::Windows::Forms::CheckBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->lblShowPass = (gcnew System::Windows::Forms::Label());
+			this->pctBoxPassVisible = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pctBoxPassVisible))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// Connexion
@@ -111,6 +111,7 @@ namespace AppliProjetPOO {
 			this->textBoxUsername->Name = L"textBoxUsername";
 			this->textBoxUsername->Size = System::Drawing::Size(350, 40);
 			this->textBoxUsername->TabIndex = 2;
+			this->textBoxUsername->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LogIn::textBoxUsername_KeyPress);
 			// 
 			// textBoxPassword
 			// 
@@ -122,8 +123,10 @@ namespace AppliProjetPOO {
 			this->textBoxPassword->Location = System::Drawing::Point(200, 350);
 			this->textBoxPassword->Multiline = true;
 			this->textBoxPassword->Name = L"textBoxPassword";
+			this->textBoxPassword->PasswordChar = '*';
 			this->textBoxPassword->Size = System::Drawing::Size(350, 40);
 			this->textBoxPassword->TabIndex = 4;
+			this->textBoxPassword->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LogIn::textBoxPassword_KeyPress);
 			// 
 			// label2
 			// 
@@ -137,20 +140,6 @@ namespace AppliProjetPOO {
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Password  :";
 			// 
-			// checkBoxShowPassword
-			// 
-			this->checkBoxShowPassword->AutoSize = true;
-			this->checkBoxShowPassword->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->checkBoxShowPassword->ForeColor = System::Drawing::Color::White;
-			this->checkBoxShowPassword->Location = System::Drawing::Point(403, 396);
-			this->checkBoxShowPassword->Name = L"checkBoxShowPassword";
-			this->checkBoxShowPassword->Size = System::Drawing::Size(147, 25);
-			this->checkBoxShowPassword->TabIndex = 5;
-			this->checkBoxShowPassword->Text = L"Show Password";
-			this->checkBoxShowPassword->UseVisualStyleBackColor = true;
-			this->checkBoxShowPassword->CheckedChanged += gcnew System::EventHandler(this, &LogIn::checkBoxShowPassword_CheckedChanged);
-			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Location = System::Drawing::Point(200, 25);
@@ -159,6 +148,31 @@ namespace AppliProjetPOO {
 			this->pictureBox1->TabIndex = 6;
 			this->pictureBox1->TabStop = false;
 			// 
+			// lblShowPass
+			// 
+			this->lblShowPass->AutoSize = true;
+			this->lblShowPass->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblShowPass->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+				static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->lblShowPass->Location = System::Drawing::Point(399, 404);
+			this->lblShowPass->Name = L"lblShowPass";
+			this->lblShowPass->Size = System::Drawing::Size(129, 19);
+			this->lblShowPass->TabIndex = 8;
+			this->lblShowPass->Text = L"Voir Mot de Passe";
+			// 
+			// pctBoxPassVisible
+			// 
+			this->pctBoxPassVisible->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->pctBoxPassVisible->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pctBoxPassVisible.Image")));
+			this->pctBoxPassVisible->Location = System::Drawing::Point(534, 404);
+			this->pctBoxPassVisible->Name = L"pctBoxPassVisible";
+			this->pctBoxPassVisible->Size = System::Drawing::Size(40, 20);
+			this->pctBoxPassVisible->SizeMode = System::Windows::Forms::PictureBoxSizeMode::AutoSize;
+			this->pctBoxPassVisible->TabIndex = 9;
+			this->pctBoxPassVisible->TabStop = false;
+			this->pctBoxPassVisible->Click += gcnew System::EventHandler(this, &LogIn::pictureBox2_Click);
+			// 
 			// LogIn
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
@@ -166,8 +180,9 @@ namespace AppliProjetPOO {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(54)));
 			this->ClientSize = System::Drawing::Size(584, 611);
+			this->Controls->Add(this->pctBoxPassVisible);
+			this->Controls->Add(this->lblShowPass);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->checkBoxShowPassword);
 			this->Controls->Add(this->textBoxPassword);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBoxUsername);
@@ -179,24 +194,26 @@ namespace AppliProjetPOO {
 			this->Text = L"LogIn";
 			this->Load += gcnew System::EventHandler(this, &LogIn::LogIn_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pctBoxPassVisible))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-#pragma region Suppression de la touche entrer
+#pragma region Bloc a Key
 
-	private: void keypressed(System::Object^ o, System::Windows::Forms::KeyPressEventArgs^ e)
+	private: void keypressed(System::Windows::Forms::KeyPressEventArgs^ e)
 	{
-		// The keypressed method uses the KeyChar property to check 
-		// whether the ENTER key is pressed. 
-
-		// If the ENTER key is pressed, the Handled property is set to true, 
-		// to indicate the event is handled.
-		if (e->KeyChar == (char)System::Windows::Forms::Keys::Return)
+		e->Handled = false;
+		switch (e->KeyChar)
 		{
+		case (char)System::Windows::Forms::Keys::Enter:
 			e->Handled = true;
+			break;
+		default:
+			e->Handled = false;
+			break;
 		}
 	}
 
@@ -209,8 +226,28 @@ namespace AppliProjetPOO {
 
 	private: System::Void Connexion_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		this->Hide();
-		MyForm().Show();
+		SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-P3RNDHD;Initial Catalog=TestBDDCon;Integrated Security=True");
+		con->Open();
+		String^  query = "SELECT *from Login Where Name = '" + textBoxUsername->Text + "' and Password = '" + textBoxPassword->Text +"'";
+		SqlDataAdapter^ SDA = gcnew SqlDataAdapter(query, con);
+		DataTable^ DT = gcnew DataTable();
+		SDA->Fill(DT);
+
+		if (DT->Rows->Count == 1)
+		{	
+			MessageBoxButtons::OK;
+			MessageBox::Show("Your are Logged in !");
+			this->Hide();
+			mainForm->Show();
+		}
+		else
+		{
+			MessageBox::Show("Wrong Username or Password");
+			textBoxUsername->Clear();
+			textBoxPassword->Clear();
+		}
+
+		
 	}
 
 	private: System::Void checkBoxShowPassword_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
@@ -218,5 +255,27 @@ namespace AppliProjetPOO {
 		
 	}
 
+private: System::Void textBoxUsername_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) 
+{
+	keypressed(e);
+}
+private: System::Void textBoxPassword_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) 
+{
+	keypressed(e);
+}
+private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) 
+{	
+	if (textBoxPassword->UseSystemPasswordChar == true)
+	{
+		textBoxPassword->UseSystemPasswordChar = false;
+		this->pctBoxPassVisible->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\passVisiblePink.png")));
+		
+	}
+	else 
+	{
+		textBoxPassword->UseSystemPasswordChar = true;
+		this->pctBoxPassVisible->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\passVisiblePurple.png")));
+	}
+}
 };
 }
