@@ -48,6 +48,8 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID_Personnel;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nom_Personnel;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Prenom_Personne;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Telephone_Personnel;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Adresse_Mail_Personnel;
 
 
 	private:
@@ -64,6 +66,10 @@ namespace AppliProjetPOO {
 		void InitializeComponent(void)
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->ID_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Nom_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Prenom_Personne = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
@@ -72,14 +78,12 @@ namespace AppliProjetPOO {
 			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->ID_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nom_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Prenom_Personne = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Telephone_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Adresse_Mail_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->panel3->SuspendLayout();
 			this->panel2->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -91,6 +95,36 @@ namespace AppliProjetPOO {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(927, 405);
 			this->panel1->TabIndex = 0;
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)),
+				static_cast<System::Int32>(static_cast<System::Byte>(51)), static_cast<System::Int32>(static_cast<System::Byte>(73)));
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
+				this->ID_Personnel,
+					this->Nom_Personnel, this->Prenom_Personne, this->Telephone_Personnel, this->Adresse_Mail_Personnel
+			});
+			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->dataGridView1->Location = System::Drawing::Point(0, 96);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->Size = System::Drawing::Size(927, 309);
+			this->dataGridView1->TabIndex = 2;
+			// 
+			// ID_Personnel
+			// 
+			this->ID_Personnel->HeaderText = L"ID";
+			this->ID_Personnel->Name = L"ID_Personnel";
+			// 
+			// Nom_Personnel
+			// 
+			this->Nom_Personnel->HeaderText = L"Nom";
+			this->Nom_Personnel->Name = L"Nom_Personnel";
+			// 
+			// Prenom_Personne
+			// 
+			this->Prenom_Personne->HeaderText = L"Prenom";
+			this->Prenom_Personne->Name = L"Prenom_Personne";
 			// 
 			// panel3
 			// 
@@ -193,35 +227,15 @@ namespace AppliProjetPOO {
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Rechercher un Membre du Personnel";
 			// 
-			// dataGridView1
+			// Telephone_Personnel
 			// 
-			this->dataGridView1->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)),
-				static_cast<System::Int32>(static_cast<System::Byte>(51)), static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->ID_Personnel,
-					this->Nom_Personnel, this->Prenom_Personne
-			});
-			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->dataGridView1->Location = System::Drawing::Point(0, 96);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(927, 309);
-			this->dataGridView1->TabIndex = 2;
+			this->Telephone_Personnel->HeaderText = L"Telephone";
+			this->Telephone_Personnel->Name = L"Telephone_Personnel";
 			// 
-			// ID_Personnel
+			// Adresse_Mail_Personnel
 			// 
-			this->ID_Personnel->HeaderText = L"ID";
-			this->ID_Personnel->Name = L"ID_Personnel";
-			// 
-			// Nom_Personnel
-			// 
-			this->Nom_Personnel->HeaderText = L"Nom";
-			this->Nom_Personnel->Name = L"Nom_Personnel";
-			// 
-			// Prenom_Personne
-			// 
-			this->Prenom_Personne->HeaderText = L"Prenom";
-			this->Prenom_Personne->Name = L"Prenom_Personne";
+			this->Adresse_Mail_Personnel->HeaderText = L"Column1";
+			this->Adresse_Mail_Personnel->Name = L"Adresse_Mail_Personnel";
 			// 
 			// Personnel
 			// 
@@ -235,11 +249,11 @@ namespace AppliProjetPOO {
 			this->Name = L"Personnel";
 			this->Text = L"Personnel";
 			this->panel1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->panel3->ResumeLayout(false);
 			this->panel3->PerformLayout();
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
