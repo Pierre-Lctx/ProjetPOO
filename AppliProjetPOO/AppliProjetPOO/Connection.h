@@ -36,6 +36,6 @@ namespace connection
 		DataSet^ getRows(String^, String^);
 		void openConnection();
 		void closeConnection();
-		bool connection(String^, String^);
+		
 	};
 }
