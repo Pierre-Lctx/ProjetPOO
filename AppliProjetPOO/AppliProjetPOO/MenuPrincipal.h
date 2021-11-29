@@ -85,9 +85,6 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
-
-
-
 	private: System::Windows::Forms::Button^ btnTableauBord;
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Panel^ pnlFormShow;
@@ -109,15 +106,6 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnExit;
 	private: System::Windows::Forms::Panel^ pnlDrag1;
 	private: System::Windows::Forms::Panel^ pnlDrag2;
-
-
-
-
-
-
-
-
-
 
 	private:
 		/// <summary>
