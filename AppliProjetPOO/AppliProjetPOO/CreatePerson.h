@@ -26,9 +26,6 @@ namespace AppliProjetPOO {
 			labelFacturation->Visible = false;
 			labelPersonnelle->Visible = false;
 
-			textBoxAdresseLivraison->Visible = false;
-			textBoxAdresseFacturation->Visible = false;
-			textBoxAdressePersonnelle->Visible = false;
 		}
 
 	protected:
@@ -466,9 +463,9 @@ namespace AppliProjetPOO {
 
 	private: System::Boolean checkIsNotVoid()
 	{
-		if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && textBoxAdresseLivraison->Text == "" && textBoxAdresseFacturation->Text == "" && checkBoxClient->Checked)
+		if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && checkBoxClient->Checked)
 			return true;
-		else if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && textBoxAdressePersonnelle->Text == "" && checkBoxEmploye->Checked)
+		else if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && checkBoxEmploye->Checked)
 			return true;
 		else
 			return false;
@@ -491,9 +488,7 @@ namespace AppliProjetPOO {
 		labelFacturation->Visible = true;
 		labelPersonnelle->Visible = false;
 
-		textBoxAdresseLivraison->Visible = true;
-		textBoxAdresseFacturation->Visible = true;
-		textBoxAdressePersonnelle->Visible = false;
+
 	}
 
 	private: System::Void checkBoxEmploye_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
@@ -502,9 +497,7 @@ namespace AppliProjetPOO {
 		labelFacturation->Visible = true;
 		labelPersonnelle->Visible = true;
 
-		textBoxAdresseLivraison->Visible = true;
-		textBoxAdresseFacturation->Visible = true;
-		textBoxAdressePersonnelle->Visible = true;
+
 	}
 };
 }
