@@ -92,7 +92,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <EntryPointSymbol>MainLog</EntryPointSymbol>
+      <EntryPointSymbol>MainAcceuil</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
     <EmbeddedResource>
@@ -127,7 +127,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Conect.cpp" />
+    <ClCompile Include="Adresse.cpp" />
+    <ClCompile Include="Connection.cpp" />
+    <ClCompile Include="CreatePerson.cpp" />
     <ClCompile Include="Fct.cpp" />
     <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
@@ -136,7 +138,13 @@
     <ClCompile Include="TableauBord.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Conect.h" />
+    <ClInclude Include="Adresse.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Connection.h" />
+    <ClInclude Include="CreatePerson.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Fct.h" />
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
@@ -155,6 +163,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CreatePerson.resx">
+      <DependentUpon>CreatePerson.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.h</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +184,8 @@
     <Image Include="..\..\..\..\..\Warning.png" />
     <Image Include="resources\client.png" />
     <Image Include="resources\commande.png" />
+    <Image Include="resources\employeBig.png" />
+    <Image Include="resources\employeMini.png" />
     <Image Include="resources\Home.png" />
     <Image Include="resources\passVisiblePink.png" />
     <Image Include="resources\passVisiblePurple.png" />
