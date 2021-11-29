@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Fct.h"
+#include "FctTableauxBord.h"
 
 namespace AppliProjetPOO {
 
