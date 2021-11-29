@@ -24,12 +24,14 @@ namespace AppliProjetPOO {
 
 	private: 
 		Form^ activeForm = nullptr;
+		Point PanelMouseDownLocation;
 		
 	private: void openChildForm(Form^ childForm)
 	{
 		if (activeForm != nullptr)
 			activeForm->Close();
 
+		
 		activeForm = childForm;
 		childForm->TopLevel = false;
 		childForm->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
@@ -42,6 +44,7 @@ namespace AppliProjetPOO {
 		childForm->Show();
 
 	};
+	
 
 	private:
 		void startUI(Form^ frm)
@@ -82,9 +85,6 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
-
-
-
 	private: System::Windows::Forms::Button^ btnTableauBord;
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Panel^ pnlFormShow;
@@ -103,13 +103,9 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnPerso;
 	private: System::Windows::Forms::Panel^ pnlNav;
 	private: System::Windows::Forms::Label^ lblActiveForm;
-	private: System::Windows::Forms::Button^ button1;
-
-
-
-
-
-
+	private: System::Windows::Forms::Button^ btnExit;
+	private: System::Windows::Forms::Panel^ pnlDrag1;
+	private: System::Windows::Forms::Panel^ pnlDrag2;
 
 	private:
 		/// <summary>
@@ -124,7 +120,6 @@ namespace AppliProjetPOO {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->pnlNav = (gcnew System::Windows::Forms::Panel());
 			this->btnOption = (gcnew System::Windows::Forms::Button());
@@ -135,16 +130,19 @@ namespace AppliProjetPOO {
 			this->btnPerso = (gcnew System::Windows::Forms::Button());
 			this->btnTableauBord = (gcnew System::Windows::Forms::Button());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->pnlDrag2 = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->pnlDrag1 = (gcnew System::Windows::Forms::Panel());
+			this->btnExit = (gcnew System::Windows::Forms::Button());
 			this->lblActiveForm = (gcnew System::Windows::Forms::Label());
 			this->pnlFormShow = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panel3->SuspendLayout();
+			this->pnlDrag1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -193,6 +191,7 @@ namespace AppliProjetPOO {
 			this->btnOption->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnOption->UseVisualStyleBackColor = true;
 			this->btnOption->Click += gcnew System::EventHandler(this, &MyForm::btnOption_Click);
+			this->btnOption->Leave += gcnew System::EventHandler(this, &MyForm::btnOption_Leave);
 			this->btnOption->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\Settings.png")));
 			// 
 			// btnStat
@@ -317,6 +316,7 @@ namespace AppliProjetPOO {
 			// 
 			// panel2
 			// 
+			this->panel2->Controls->Add(this->pnlDrag2);
 			this->panel2->Controls->Add(this->label1);
 			this->panel2->Controls->Add(this->pictureBox1);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Top;
@@ -325,6 +325,16 @@ namespace AppliProjetPOO {
 			this->panel2->Size = System::Drawing::Size(186, 144);
 			this->panel2->TabIndex = 1;
 			// 
+			// pnlDrag2
+			// 
+			this->pnlDrag2->Dock = System::Windows::Forms::DockStyle::Top;
+			this->pnlDrag2->Location = System::Drawing::Point(0, 0);
+			this->pnlDrag2->Name = L"pnlDrag2";
+			this->pnlDrag2->Size = System::Drawing::Size(186, 26);
+			this->pnlDrag2->TabIndex = 0;
+			this->pnlDrag2->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pnlDrag2_MouseDown);
+			this->pnlDrag2->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pnlDrag2_MouseMove);
+			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
@@ -332,27 +342,27 @@ namespace AppliProjetPOO {
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
 				static_cast<System::Int32>(static_cast<System::Byte>(221)));
-			this->label1->Location = System::Drawing::Point(33, 88);
+			this->label1->Location = System::Drawing::Point(27, 98);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(124, 16);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Nom d\'utilisateur";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(60, 22);
+			this->pictureBox1->Location = System::Drawing::Point(59, 32);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(63, 63);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\user.png")));
 			// 
 			// panel3
 			// 
-			this->panel3->Controls->Add(this->button1);
+			this->panel3->Controls->Add(this->pnlDrag1);
 			this->panel3->Controls->Add(this->lblActiveForm);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel3->Location = System::Drawing::Point(186, 0);
@@ -360,23 +370,37 @@ namespace AppliProjetPOO {
 			this->panel3->Size = System::Drawing::Size(1294, 85);
 			this->panel3->TabIndex = 1;
 			// 
-			// button1
+			// pnlDrag1
 			// 
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->pnlDrag1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
+				static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->pnlDrag1->Controls->Add(this->btnExit);
+			this->pnlDrag1->Dock = System::Windows::Forms::DockStyle::Top;
+			this->pnlDrag1->Location = System::Drawing::Point(0, 0);
+			this->pnlDrag1->Name = L"pnlDrag1";
+			this->pnlDrag1->Size = System::Drawing::Size(1294, 26);
+			this->pnlDrag1->TabIndex = 1;
+			this->pnlDrag1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pnlDrag1_MouseDown);
+			this->pnlDrag1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pnlDrag1_MouseMove);
+			// 
+			// btnExit
+			// 
+			this->btnExit->Dock = System::Windows::Forms::DockStyle::Right;
+			this->btnExit->FlatAppearance->BorderSize = 0;
+			this->btnExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnExit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+			this->btnExit->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
 				static_cast<System::Int32>(static_cast<System::Byte>(221)));
-			this->button1->Location = System::Drawing::Point(1230, 22);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(35, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"X";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
-			this->button1->MouseLeave += gcnew System::EventHandler(this, &MyForm::button1_MouseLeave);
-			this->button1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::button1_MouseMove);
+			this->btnExit->Location = System::Drawing::Point(1259, 0);
+			this->btnExit->Name = L"btnExit";
+			this->btnExit->Size = System::Drawing::Size(35, 26);
+			this->btnExit->TabIndex = 1;
+			this->btnExit->Text = L"X";
+			this->btnExit->UseVisualStyleBackColor = true;
+			this->btnExit->Click += gcnew System::EventHandler(this, &MyForm::btnExit_Click);
+			this->btnExit->MouseLeave += gcnew System::EventHandler(this, &MyForm::btnExit_MouseLeave);
+			this->btnExit->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::btnExit_MouseMove);
 			// 
 			// lblActiveForm
 			// 
@@ -385,7 +409,7 @@ namespace AppliProjetPOO {
 				static_cast<System::Byte>(0)));
 			this->lblActiveForm->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(158)), static_cast<System::Int32>(static_cast<System::Byte>(161)),
 				static_cast<System::Int32>(static_cast<System::Byte>(176)));
-			this->lblActiveForm->Location = System::Drawing::Point(20, 17);
+			this->lblActiveForm->Location = System::Drawing::Point(6, 41);
 			this->lblActiveForm->Name = L"lblActiveForm";
 			this->lblActiveForm->Size = System::Drawing::Size(201, 32);
 			this->lblActiveForm->TabIndex = 0;
@@ -421,16 +445,15 @@ namespace AppliProjetPOO {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->panel3->ResumeLayout(false);
 			this->panel3->PerformLayout();
+			this->pnlDrag1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 
 #pragma region ButtonNavigation
-		private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e)
-		{
 
-		}
+	//Bouton du menu avec Animation et redirection
 	private: System::Void btnTableauBord_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnTableauBord->Height;
@@ -438,6 +461,7 @@ namespace AppliProjetPOO {
 		pnlNav->Left = btnTableauBord->Left;
 		btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
 		openChildForm(gcnew AppliProjetPOO::TableauBord);
+		this->lblActiveForm->Text = "Tableau de bord";
 
 	}
 
@@ -472,8 +496,14 @@ namespace AppliProjetPOO {
 		pnlNav->Top = btnStat->Top;
 		btnStat->BackColor = Color::FromArgb(46, 51, 73);
 		openChildForm(gcnew AppliProjetPOO::Stats);
+		this->lblActiveForm->Text = "Statistiques";
 	}
-
+	private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		pnlNav->Height = btnOption->Height;
+		pnlNav->Top = btnOption->Top;
+		btnOption->BackColor = Color::FromArgb(46, 51, 73);
+	}
 	private: System::Void btnTableauBord_Leave(System::Object^ sender, System::EventArgs^ e)
 	{
 		btnTableauBord->BackColor = Color::FromArgb(24, 30, 54);
@@ -498,30 +528,77 @@ namespace AppliProjetPOO {
 	{
 		btnStat->BackColor = Color::FromArgb(24, 30, 54);
 	}
-	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void btnOption_Leave(System::Object^ sender, System::EventArgs^ e) 
+	{
+		btnStat->BackColor = Color::FromArgb(24, 30, 54);
 	}
+
+	//picture Click pour acceder au form MyProfile
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+
+	}
+
+
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void pnlFormShow_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+
+
+	//Bouton Exit pour fermer toute l'application
+	private: System::Void btnExit_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
 	{
-		Application::Exit();
+		this->btnExit->BackColor = Color::FromArgb(223, 55, 55);
+		this->btnExit->ForeColor = Color::FromArgb(255, 255, 255);
 	}
-	private: System::Void button1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+	private: System::Void btnExit_MouseLeave(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->button1->BackColor = Color::FromArgb(223, 55, 55);
-		this->button1->ForeColor = Color::FromArgb(255, 255, 255);
+		this->btnExit->BackColor = Color::FromArgb(24, 30, 54);
+		this->btnExit->ForeColor = Color::FromArgb(147, 83, 221);
 	}
-	private: System::Void button1_MouseLeave(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->button1->BackColor = Color::FromArgb(46, 51, 73);
-		this->button1->ForeColor = Color::FromArgb(147, 83, 221);
+			   Application::Exit();
 	}
 #pragma endregion
 
 	
-	};
+#pragma region DragForm
+
+private: void dragFormMouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	if (e->Button == System::Windows::Forms::MouseButtons::Left)
+		PanelMouseDownLocation = e->Location;
+}
+	private: void dragFormMouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+	{
+		if (e->Button == System::Windows::Forms::MouseButtons::Left)
+		{
+			MyForm::Left += e->X - PanelMouseDownLocation.X;
+			MyForm::Top += e->Y - PanelMouseDownLocation.Y;
+		}
+	}
+
+private: System::Void pnlDrag1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	dragFormMouseDown(sender, e);
+}
+private: System::Void pnlDrag1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	dragFormMouseMove(sender, e);
+}
+private: System::Void pnlDrag2_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	dragFormMouseDown(sender, e);
+}
+private: System::Void pnlDrag2_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	dragFormMouseMove(sender, e);
+}
+#pragma endregion
+
+
+
+};
 }
