@@ -4,6 +4,7 @@
 #include "Stats.h"
 #include "MyProfile1.h"
 #include "Personnel.h"
+#include "Controleur.h"
 
 namespace AppliProjetPOO {
 
@@ -25,27 +26,9 @@ namespace AppliProjetPOO {
 
 
 	private: 
-		Form^ activeForm = nullptr;
 		Point PanelMouseDownLocation;
-		
-	private: void openChildForm(Form^ childForm)
-	{
-		if (activeForm != nullptr)
-			activeForm->Close();
-
-		
-		activeForm = childForm;
-		childForm->TopLevel = false;
-		childForm->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-		childForm->Dock = System::Windows::Forms::DockStyle::Fill;
-
-		pnlFormShow->Controls->Add(childForm);
-		pnlFormShow->Tag = childForm;
-
-		childForm->BringToFront();
-		childForm->Show();
-
-	};
+		Controleur^ C = gcnew Controleur();
+	
 	
 
 	private:
@@ -54,7 +37,7 @@ namespace AppliProjetPOO {
 			this->pnlNav->Height = btnTableauBord->Height;
 			this->pnlNav->Top = btnTableauBord->Top;
 			this->btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
-			openChildForm(frm);
+			C->openChildForm(frm, pnlFormShow);
 			this->lblActiveForm->Text = "Tableau de bord";
 
 		}
@@ -462,7 +445,7 @@ namespace AppliProjetPOO {
 		pnlNav->Top = btnTableauBord->Top;
 		pnlNav->Left = btnTableauBord->Left;
 		btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
-		openChildForm(gcnew AppliProjetPOO::TableauBord);
+		C->openChildForm(gcnew AppliProjetPOO::TableauBord, pnlFormShow);
 		this->lblActiveForm->Text = "Tableau de bord";
 
 	}
@@ -472,7 +455,7 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnPerso->Height;
 		pnlNav->Top = btnPerso->Top;
 		btnPerso->BackColor = Color::FromArgb(46, 51, 73);
-		openChildForm(gcnew AppliProjetPOO::Personnel);
+		C->openChildForm(gcnew AppliProjetPOO::Personnel, pnlFormShow);
 		this->lblActiveForm->Text = "Gerer le Personnel";
 	}
 
@@ -499,7 +482,7 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnStat->Height;
 		pnlNav->Top = btnStat->Top;
 		btnStat->BackColor = Color::FromArgb(46, 51, 73);
-		openChildForm(gcnew AppliProjetPOO::Stats);
+		C->openChildForm(gcnew AppliProjetPOO::Stats, pnlFormShow);
 		this->lblActiveForm->Text = "Statistiques";
 	}
 	private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e) 
@@ -540,7 +523,7 @@ namespace AppliProjetPOO {
 	//picture Click pour acceder au form MyProfile
 	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		openChildForm(gcnew AppliProjetPOO::MyProfile);
+		C->openChildForm(gcnew AppliProjetPOO::MyProfile, pnlFormShow);
 		lblActiveForm->Text = "Mon Profil";
 	}
 

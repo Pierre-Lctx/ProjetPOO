@@ -447,6 +447,7 @@ namespace AppliProjetPOO {
 			this->Controls->Add(this->label1);
 			this->Font = (gcnew System::Drawing::Font(L"Century Gothic", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
 			this->Margin = System::Windows::Forms::Padding(3, 5, 3, 5);
 			this->Name = L"CreatePerson";
 			this->Text = L"CreatePerson";
