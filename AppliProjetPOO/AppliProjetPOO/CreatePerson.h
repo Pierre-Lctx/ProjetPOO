@@ -453,7 +453,7 @@ private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs
 			numRue1 = adr1->getNumRue();
 			batiment1 = adr1->getBatiment();
 			etage1 = adr1->getEtage();
-			numApp1 = adr1->getNumApp();
+			numApp1 = adr1->getCodePostal();
 		}
 		else
 		{
@@ -479,7 +479,7 @@ private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs
 			numRue1 = adr1->getNumRue();
 			batiment1 = adr1->getBatiment();
 			etage1 = adr1->getEtage();
-			numApp1 = adr1->getNumApp();
+			numApp1 = adr1->getCodePostal();
 		}
 		else
 		{
@@ -509,7 +509,7 @@ private: System::Void btnAdress2_Click(System::Object^ sender, System::EventArgs
 			numRue2 = adr2->getNumRue();
 			batiment2 = adr2->getBatiment();
 			etage2 = adr2->getEtage();
-			numApp1 = adr2->getNumApp();
+			numApp1 = adr2->getCodePostal();
 		}
 		else
 		{

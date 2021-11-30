@@ -96,3 +96,8 @@ bool Connect::connection(String^ mail, String^ password)
 	closeConnection();
 
 }
+
+SqlConnection^ Connect::getConn()
+{
+	return this->conn;
+}

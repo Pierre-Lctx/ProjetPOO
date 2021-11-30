@@ -1,4 +1,5 @@
 #pragma once
+#include "Connection.h"
 
 namespace AppliProjetPOO 
 {
@@ -8,6 +9,7 @@ namespace AppliProjetPOO
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
 
 	/// <summary>
@@ -15,6 +17,13 @@ namespace AppliProjetPOO
 	/// </summary>
 	public ref class Stats : public System::Windows::Forms::Form
 	{
+	private:
+		DateTime^ prevDate = gcnew DateTime(0001, 1, 1, 1, 01, 01);
+		String^ Article;
+
+	
+
+		   SqlConnection^ con = gcnew SqlConnection("Data Source=" + Environment::MachineName + ";Initial Catalog=DBProjet;Integrated Security=True");
 	public:
 		Stats(void)
 		{
@@ -36,29 +45,24 @@ namespace AppliProjetPOO
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Panel^ panel1;
+	
 	protected:
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::ComboBox^ cbArticle;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Label^ lblValueInfo;
+	private: System::Windows::Forms::Label^ lblTitleInfo;
+	private: System::Windows::Forms::Label^ lblNonGraph;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ graphSimulation;
+
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Panel^ panel4;
 	private: System::Windows::Forms::Button^ btnPrixMoyen;
 	private: System::Windows::Forms::Button^ btnArticleReapro;
-
-
-
 	private: System::Windows::Forms::Button^ btnChiffreAffaire;
-
 	private: System::Windows::Forms::ComboBox^ cbMois;
-
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ nomArticle;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ stockArticle;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ prixHT;
@@ -69,27 +73,16 @@ namespace AppliProjetPOO
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ couleurArticle;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ natureArticle;
 	private: System::Windows::Forms::Label^ lblTVA;
-
 	private: System::Windows::Forms::Button^ btnValeurAchatStock;
-
 	private: System::Windows::Forms::Button^ btnValeurStock;
-
 	private: System::Windows::Forms::Button^ btnMoins10Article;
-
 	private: System::Windows::Forms::Button^ btnPlus10Article;
-
 	private: System::Windows::Forms::ComboBox^ cbIDClient;
-
 	private: System::Windows::Forms::Button^ btnTotalClientPrix;
-
 	private: System::Windows::Forms::ComboBox^ cbAnnee;
-
-
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ btnLoad;
-
 	private: System::Windows::Forms::Button^ btnClear;
-
 	private: System::Windows::Forms::ComboBox^ comboBox7;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ComboBox^ comboBox6;
@@ -115,11 +108,14 @@ namespace AppliProjetPOO
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea5 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->graphSimulation = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->lblNonGraph = (gcnew System::Windows::Forms::Label());
+			this->lblValueInfo = (gcnew System::Windows::Forms::Label());
+			this->lblTitleInfo = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->nomArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -145,6 +141,9 @@ namespace AppliProjetPOO
 			this->btnChiffreAffaire = (gcnew System::Windows::Forms::Button());
 			this->btnPrixMoyen = (gcnew System::Windows::Forms::Button());
 			this->panel4 = (gcnew System::Windows::Forms::Panel());
+			this->cbArticle = (gcnew System::Windows::Forms::ComboBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->btnLoad = (gcnew System::Windows::Forms::Button());
 			this->btnClear = (gcnew System::Windows::Forms::Button());
 			this->comboBox7 = (gcnew System::Windows::Forms::ComboBox());
@@ -155,9 +154,8 @@ namespace AppliProjetPOO
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
 			this->lblTVA = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->graphSimulation))->BeginInit();
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->panel3->SuspendLayout();
@@ -166,43 +164,86 @@ namespace AppliProjetPOO
 			// 
 			// panel1
 			// 
-			this->panel1->Controls->Add(this->chart1);
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->panel1->Controls->Add(this->graphSimulation);
+			this->panel1->Controls->Add(this->lblNonGraph);
+			this->panel1->Controls->Add(this->lblValueInfo);
+			this->panel1->Controls->Add(this->lblTitleInfo);
 			this->panel1->Location = System::Drawing::Point(144, 12);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1006, 267);
 			this->panel1->TabIndex = 0;
 			// 
-			// chart1
+			// graphSimulation
 			// 
-			this->chart1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
+			this->graphSimulation->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			chartArea5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			chartArea2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			chartArea5->BorderColor = System::Drawing::Color::White;
-			chartArea5->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea5);
-			this->chart1->Dock = System::Windows::Forms::DockStyle::Fill;
-			legend5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			chartArea2->BorderColor = System::Drawing::Color::White;
+			chartArea2->Name = L"ChartArea1";
+			this->graphSimulation->ChartAreas->Add(chartArea2);
+			this->graphSimulation->Dock = System::Windows::Forms::DockStyle::Fill;
+			legend2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			legend5->ForeColor = System::Drawing::Color::White;
-			legend5->HeaderSeparatorColor = System::Drawing::Color::White;
-			legend5->ItemColumnSeparatorColor = System::Drawing::Color::White;
-			legend5->Name = L"Legend1";
-			legend5->TitleBackColor = System::Drawing::Color::White;
-			legend5->TitleForeColor = System::Drawing::Color::White;
-			legend5->TitleSeparatorColor = System::Drawing::Color::White;
-			this->chart1->Legends->Add(legend5);
-			this->chart1->Location = System::Drawing::Point(0, 0);
-			this->chart1->Name = L"chart1";
-			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
-			series5->ChartArea = L"ChartArea1";
-			series5->LabelForeColor = System::Drawing::Color::White;
-			series5->Legend = L"Legend1";
-			series5->Name = L"Series1";
-			this->chart1->Series->Add(series5);
-			this->chart1->Size = System::Drawing::Size(1006, 267);
-			this->chart1->TabIndex = 0;
-			this->chart1->Text = L"chart1";
+			legend2->ForeColor = System::Drawing::Color::White;
+			legend2->HeaderSeparatorColor = System::Drawing::Color::White;
+			legend2->ItemColumnSeparatorColor = System::Drawing::Color::White;
+			legend2->Name = L"Legend1";
+			legend2->TitleBackColor = System::Drawing::Color::White;
+			legend2->TitleForeColor = System::Drawing::Color::White;
+			legend2->TitleSeparatorColor = System::Drawing::Color::White;
+			this->graphSimulation->Legends->Add(legend2);
+			this->graphSimulation->Location = System::Drawing::Point(0, 0);
+			this->graphSimulation->Name = L"graphSimulation";
+			this->graphSimulation->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
+			series2->ChartArea = L"ChartArea1";
+			series2->LabelForeColor = System::Drawing::Color::White;
+			series2->Legend = L"Legend1";
+			series2->Name = L"Series1";
+			this->graphSimulation->Series->Add(series2);
+			this->graphSimulation->Size = System::Drawing::Size(1006, 267);
+			this->graphSimulation->TabIndex = 0;
+			// 
+			// lblNonGraph
+			// 
+			this->lblNonGraph->AutoSize = true;
+			this->lblNonGraph->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblNonGraph->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(200)), static_cast<System::Int32>(static_cast<System::Byte>(200)),
+				static_cast<System::Int32>(static_cast<System::Byte>(200)));
+			this->lblNonGraph->Location = System::Drawing::Point(391, 135);
+			this->lblNonGraph->Name = L"lblNonGraph";
+			this->lblNonGraph->Size = System::Drawing::Size(212, 20);
+			this->lblNonGraph->TabIndex = 2;
+			this->lblNonGraph->Text = L"Aucun Graphique Disponible";
+			// 
+			// lblValueInfo
+			// 
+			this->lblValueInfo->AutoSize = true;
+			this->lblValueInfo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblValueInfo->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+				static_cast<System::Int32>(static_cast<System::Byte>(221)));
+			this->lblValueInfo->Location = System::Drawing::Point(440, 116);
+			this->lblValueInfo->Name = L"lblValueInfo";
+			this->lblValueInfo->Size = System::Drawing::Size(118, 42);
+			this->lblValueInfo->TabIndex = 1;
+			this->lblValueInfo->Text = L"label8";
+			// 
+			// lblTitleInfo
+			// 
+			this->lblTitleInfo->AutoSize = true;
+			this->lblTitleInfo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblTitleInfo->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+				static_cast<System::Int32>(static_cast<System::Byte>(221)));
+			this->lblTitleInfo->Location = System::Drawing::Point(143, 29);
+			this->lblTitleInfo->Name = L"lblTitleInfo";
+			this->lblTitleInfo->Size = System::Drawing::Size(118, 42);
+			this->lblTitleInfo->TabIndex = 0;
+			this->lblTitleInfo->Text = L"label7";
 			// 
 			// panel2
 			// 
@@ -396,6 +437,7 @@ namespace AppliProjetPOO
 			this->cbAnnee->Name = L"cbAnnee";
 			this->cbAnnee->Size = System::Drawing::Size(70, 21);
 			this->cbAnnee->TabIndex = 8;
+			this->cbAnnee->Text = L"annee";
 			// 
 			// label1
 			// 
@@ -424,6 +466,7 @@ namespace AppliProjetPOO
 			this->cbMois->Name = L"cbMois";
 			this->cbMois->Size = System::Drawing::Size(49, 21);
 			this->cbMois->TabIndex = 6;
+			this->cbMois->Text = L"mois";
 			// 
 			// btnArticleReapro
 			// 
@@ -454,6 +497,7 @@ namespace AppliProjetPOO
 			this->btnChiffreAffaire->TabIndex = 2;
 			this->btnChiffreAffaire->Text = L"Chiffre d\'Affaire par mois";
 			this->btnChiffreAffaire->UseVisualStyleBackColor = true;
+			this->btnChiffreAffaire->Click += gcnew System::EventHandler(this, &Stats::btnChiffreAffaire_Click);
 			// 
 			// btnPrixMoyen
 			// 
@@ -469,10 +513,13 @@ namespace AppliProjetPOO
 			this->btnPrixMoyen->TabIndex = 1;
 			this->btnPrixMoyen->Text = L"Prix d\'un Panier Moyen";
 			this->btnPrixMoyen->UseVisualStyleBackColor = true;
+			this->btnPrixMoyen->Click += gcnew System::EventHandler(this, &Stats::btnPrixMoyen_Click);
 			// 
 			// panel4
 			// 
 			this->panel4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel4->Controls->Add(this->cbArticle);
+			this->panel4->Controls->Add(this->label6);
 			this->panel4->Controls->Add(this->label3);
 			this->panel4->Controls->Add(this->btnLoad);
 			this->panel4->Controls->Add(this->btnClear);
@@ -489,6 +536,47 @@ namespace AppliProjetPOO
 			this->panel4->Size = System::Drawing::Size(539, 134);
 			this->panel4->TabIndex = 0;
 			// 
+			// cbArticle
+			// 
+			this->cbArticle->FormattingEnabled = true;
+			this->cbArticle->Location = System::Drawing::Point(79, 11);
+			this->cbArticle->Name = L"cbArticle";
+			this->cbArticle->Size = System::Drawing::Size(266, 21);
+			this->cbArticle->TabIndex = 27;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->label6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+				static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->label6->Location = System::Drawing::Point(18, 15);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(55, 15);
+			this->label6->TabIndex = 26;
+			this->label6->Text = L"Article :";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->label3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->label3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+				static_cast<System::Int32>(static_cast<System::Byte>(221)));
+			this->label3->Location = System::Drawing::Point(357, 10);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(158, 20);
+			this->label3->TabIndex = 25;
+			this->label3->Text = L"Faire une Simulation";
+			// 
 			// btnLoad
 			// 
 			this->btnLoad->Location = System::Drawing::Point(270, 106);
@@ -497,6 +585,7 @@ namespace AppliProjetPOO
 			this->btnLoad->TabIndex = 24;
 			this->btnLoad->Text = L"Ajouter";
 			this->btnLoad->UseVisualStyleBackColor = true;
+			this->btnLoad->Click += gcnew System::EventHandler(this, &Stats::btnLoad_Click);
 			// 
 			// btnClear
 			// 
@@ -511,7 +600,7 @@ namespace AppliProjetPOO
 			// 
 			this->comboBox7->FormattingEnabled = true;
 			this->comboBox7->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"5%", L"3%", L"2%" });
-			this->comboBox7->Location = System::Drawing::Point(441, 71);
+			this->comboBox7->Location = System::Drawing::Point(395, 77);
 			this->comboBox7->Name = L"comboBox7";
 			this->comboBox7->Size = System::Drawing::Size(43, 21);
 			this->comboBox7->TabIndex = 22;
@@ -526,11 +615,11 @@ namespace AppliProjetPOO
 				static_cast<System::Byte>(0)));
 			this->label5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
 				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label5->Location = System::Drawing::Point(282, 77);
+			this->label5->Location = System::Drawing::Point(249, 77);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(153, 15);
+			this->label5->Size = System::Drawing::Size(140, 15);
 			this->label5->TabIndex = 21;
-			this->label5->Text = L"Marge Commerciale  : ";
+			this->label5->Text = L"Demarche Inconnu : ";
 			// 
 			// comboBox6
 			// 
@@ -561,7 +650,7 @@ namespace AppliProjetPOO
 			// 
 			this->comboBox5->FormattingEnabled = true;
 			this->comboBox5->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"15%", L"10%", L"5%" });
-			this->comboBox5->Location = System::Drawing::Point(441, 36);
+			this->comboBox5->Location = System::Drawing::Point(408, 47);
 			this->comboBox5->Name = L"comboBox5";
 			this->comboBox5->Size = System::Drawing::Size(43, 21);
 			this->comboBox5->TabIndex = 18;
@@ -576,7 +665,7 @@ namespace AppliProjetPOO
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
 				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label2->Location = System::Drawing::Point(282, 42);
+			this->label2->Location = System::Drawing::Point(249, 48);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(153, 15);
 			this->label2->TabIndex = 17;
@@ -607,22 +696,6 @@ namespace AppliProjetPOO
 			this->lblTVA->TabIndex = 15;
 			this->lblTVA->Text = L"TVA : ";
 			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
-				static_cast<System::Int32>(static_cast<System::Byte>(93)));
-			this->label3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
-				static_cast<System::Int32>(static_cast<System::Byte>(221)));
-			this->label3->Location = System::Drawing::Point(191, 10);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(156, 18);
-			this->label3->TabIndex = 25;
-			this->label3->Text = L"Faire une Simulation";
-			// 
 			// Stats
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -638,7 +711,8 @@ namespace AppliProjetPOO
 			this->Text = L"Stats";
 			this->Load += gcnew System::EventHandler(this, &Stats::Stats_Load);
 			this->panel1->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
+			this->panel1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->graphSimulation))->EndInit();
 			this->panel2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->panel3->ResumeLayout(false);
@@ -651,13 +725,133 @@ namespace AppliProjetPOO
 #pragma endregion
 	private: System::Void Stats_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
-		chart1->Series[0]->Points->AddXY("Peter", 1000);
-		chart1->Series[0]->Points->AddXY("Robert", 1500);
-	
-		
+		this->graphSimulation->Visible = false;
+		this->lblValueInfo->Visible = false;
+		this->lblTitleInfo->Visible = false;
+		this->lblNonGraph->Visible = true;
+
+		String^ rqtYear = "SELECT DATE_COMMANDE From Commande";
+
+		SqlCommand^ cmdYear = gcnew SqlCommand(rqtYear, con);
+
+		con->Open();
+
+		SqlDataReader^ drYear = cmdYear->ExecuteReader();
+
+		while (drYear->Read())
+		{
+			DateTime^ addDate = drYear->GetDateTime(0);
+
+			if (addDate->Year != prevDate->Year)
+				cbAnnee->Items->Add(addDate->Year);
+
+			prevDate = addDate;
+		}
+
+		drYear->Close();
+
+		String^ rqtIdClient = "SELECT ID_CLIENT From Client";
+
+		SqlCommand^ cmdIdClient = gcnew SqlCommand(rqtIdClient, con);
+
+		SqlDataReader^ drIdClient = cmdIdClient->ExecuteReader();
+
+		while (drIdClient->Read())
+		{
+			cbIDClient->Items->Add(drIdClient->GetInt32(0));
+		}
+
+		drIdClient->Close();
+
+		String^ rqtArticle = "SELECT NOM_ARTICLE From Article";
+
+		SqlCommand^ cmdArticle = gcnew SqlCommand(rqtArticle, con);
+
+		SqlDataReader^ drArticle = cmdArticle->ExecuteReader();
+
+		while (drArticle->Read())
+		{
+			cbArticle->Items->Add(drArticle->GetString(0));
+		}
+
+		drArticle->Close();
+
+		con->Close();
 	}
 
 
 
+private: System::Void btnPrixMoyen_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	this->graphSimulation->Visible = false;
+	this->lblNonGraph->Visible = false;
+	this->lblTitleInfo->Visible = true;
+	this->lblTitleInfo->Text = this->btnPrixMoyen->Text + " :";
+	this->lblValueInfo->Visible = true;
+	
+
+	String^ rqtPrixMoyen = "select avg(MONTANT_TTC) from Paiement";
+
+	SqlCommand^ cmdPrixMoyen = gcnew SqlCommand(rqtPrixMoyen, con);
+
+	con->Open();
+
+	SqlDataReader^ drPrixMoyen = cmdPrixMoyen->ExecuteReader();
+
+	if (drPrixMoyen->Read())
+	{
+		lblValueInfo->Text = drPrixMoyen->GetDouble(0).ToString() + " €";
+		
+	}
+
+	drPrixMoyen->Close();
+
+	con->Close();
+
+}
+private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e)
+{
+
+}
+private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	if (cbMois->Text != "mois"  && cbAnnee->Text != "annee" )
+	{
+		this->graphSimulation->Visible = false;
+		this->lblNonGraph->Visible = false;
+		this->lblTitleInfo->Visible = true;
+		this->lblTitleInfo->Text = "Le chiffre d'affaire pour le "+ cbMois->Text + "/" + cbAnnee->Text + " est :";
+		this->lblValueInfo->Visible = true;
+
+		String^ rqtChiffreAffaire = " select sum(MONTANT_HT) from Paiement where month(DATE_PAIEMENT) = "+ cbMois->Text + " and year(DATE_PAIEMENT) = " + cbAnnee->Text;
+
+		SqlCommand^ cmdChiffreAffaire = gcnew SqlCommand(rqtChiffreAffaire, con);
+
+		con->Open();
+
+		SqlDataReader^ drChiffreAffaire = cmdChiffreAffaire->ExecuteReader();
+
+		if (drChiffreAffaire->Read())
+		{		
+			try 
+			{
+				lblValueInfo->Text = drChiffreAffaire->GetDouble(0).ToString() + " €";
+			}
+			catch (...)
+			{
+				lblValueInfo->Text = "0 €";
+			}
+						
+		}
+	
+		drChiffreAffaire->Close();
+
+		con->Close();
+	}
+	else
+	{
+		MessageBox::Show("La Date n'est pas Valide !", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+	}
+}
 };
 }
