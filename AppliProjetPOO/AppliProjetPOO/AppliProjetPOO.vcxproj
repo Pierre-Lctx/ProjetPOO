@@ -130,7 +130,7 @@
     <ClCompile Include="Adresse.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="CreatePerson.cpp" />
-    <ClCompile Include="FctTableauxBord.cpp" />
+    <ClCompile Include="Controleur.cpp" />
     <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="MenuPersonne.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
@@ -148,7 +148,7 @@
     <ClInclude Include="CreatePerson.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="FctTableauxBord.h" />
+    <ClInclude Include="Controleur.h" />
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -169,6 +169,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Adresse.resx">
+      <DependentUpon>Adresse.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreatePerson.resx">
       <DependentUpon>CreatePerson.h</DependentUpon>
     </EmbeddedResource>
