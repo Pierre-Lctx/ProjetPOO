@@ -128,13 +128,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="CreatePerson.cpp" />
     <ClCompile Include="Controleur.cpp" />
     <ClCompile Include="LogIn.cpp" />
-    <ClCompile Include="MenuPersonne.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
-    <ClCompile Include="MyForm1.cpp" />
     <ClCompile Include="MyProfile1.cpp" />
     <ClCompile Include="Personnel.cpp" />
     <ClCompile Include="Stats.cpp" />
@@ -142,6 +141,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Client.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Connection.h" />
@@ -171,6 +173,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Adresse.resx">
       <DependentUpon>Adresse.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client.resx">
+      <DependentUpon>Client.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreatePerson.resx">
       <DependentUpon>CreatePerson.h</DependentUpon>
