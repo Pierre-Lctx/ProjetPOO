@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Controleur.h"
 #include "CreatePerson.h"
 
@@ -12,58 +13,42 @@ namespace AppliProjetPOO {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Description résumée de Personnel
+	/// Description résumée de Client
 	/// </summary>
-	public ref class Personnel : public System::Windows::Forms::Form
+	public ref class Client : public System::Windows::Forms::Form
 	{
 	private:
 		Form^ active = nullptr;
 		bool IDclick = false;
 		bool NomClick = false;
 		bool PrenomClick = false;
-		
+
 	public:
-		Personnel(void)
+		Client(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
-			this->tbID->ReadOnly = true;
-			this->tbNom->ReadOnly = true;
-			this->tbPrenom->ReadOnly = true;
 		}
 
 	protected:
 		/// <summary>
 		/// Nettoyage des ressources utilisées.
 		/// </summary>
-		~Personnel()
+		~Client()
 		{
 			if (components)
 			{
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Panel^ pnlButtonChoix;
+	protected:
+	private: System::Windows::Forms::Button^ btnCreer;
+	private: System::Windows::Forms::Button^ btnSupprimer;
+	private: System::Windows::Forms::Button^ btnModifier;
 	private: System::Windows::Forms::Panel^ pnlMain;
-	private: System::Windows::Forms::Panel^ pnlTitle;
-	protected:
-
-	protected:
-
-	private: System::Windows::Forms::Panel^ pnlFilter;
-	private: System::Windows::Forms::TextBox^ tbPrenom;
-
-
-	private: System::Windows::Forms::TextBox^ tbNom;
-
-	private: System::Windows::Forms::TextBox^ tbID;
-
-	private: System::Windows::Forms::RadioButton^ rbNomPrenom;
-
-	private: System::Windows::Forms::RadioButton^ rbID;
-
-	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID_Personnel;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nom_Personnel;
@@ -73,20 +58,14 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date_Naissance_Personnel;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DateEmbauche_Personnel;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Adresse_Personnel;
-	private: System::Windows::Forms::Button^ btnCreer;
-	private: System::Windows::Forms::Button^ btnModifier;
-	private: System::Windows::Forms::Button^ btnSupprimer;
-
-
-
-	private: System::Windows::Forms::Panel^ pnlButtonChoix;
-
-
-
-
-
-
-
+	private: System::Windows::Forms::Panel^ pnlFilter;
+	private: System::Windows::Forms::TextBox^ tbPrenom;
+	private: System::Windows::Forms::TextBox^ tbNom;
+	private: System::Windows::Forms::TextBox^ tbID;
+	private: System::Windows::Forms::RadioButton^ rbNomPrenom;
+	private: System::Windows::Forms::RadioButton^ rbID;
+	private: System::Windows::Forms::Panel^ pnlTitle;
+	private: System::Windows::Forms::Label^ label2;
 
 	private:
 		/// <summary>
@@ -101,6 +80,10 @@ namespace AppliProjetPOO {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->pnlButtonChoix = (gcnew System::Windows::Forms::Panel());
+			this->btnCreer = (gcnew System::Windows::Forms::Button());
+			this->btnSupprimer = (gcnew System::Windows::Forms::Button());
+			this->btnModifier = (gcnew System::Windows::Forms::Button());
 			this->pnlMain = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->ID_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -119,16 +102,71 @@ namespace AppliProjetPOO {
 			this->rbID = (gcnew System::Windows::Forms::RadioButton());
 			this->pnlTitle = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->btnCreer = (gcnew System::Windows::Forms::Button());
-			this->btnModifier = (gcnew System::Windows::Forms::Button());
-			this->btnSupprimer = (gcnew System::Windows::Forms::Button());
-			this->pnlButtonChoix = (gcnew System::Windows::Forms::Panel());
+			this->pnlButtonChoix->SuspendLayout();
 			this->pnlMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->pnlFilter->SuspendLayout();
 			this->pnlTitle->SuspendLayout();
-			this->pnlButtonChoix->SuspendLayout();
 			this->SuspendLayout();
+			// 
+			// pnlButtonChoix
+			// 
+			this->pnlButtonChoix->Controls->Add(this->btnCreer);
+			this->pnlButtonChoix->Controls->Add(this->btnSupprimer);
+			this->pnlButtonChoix->Controls->Add(this->btnModifier);
+			this->pnlButtonChoix->Location = System::Drawing::Point(176, 510);
+			this->pnlButtonChoix->Name = L"pnlButtonChoix";
+			this->pnlButtonChoix->Size = System::Drawing::Size(927, 30);
+			this->pnlButtonChoix->TabIndex = 6;
+			// 
+			// btnCreer
+			// 
+			this->btnCreer->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
+				static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->btnCreer->FlatAppearance->BorderSize = 0;
+			this->btnCreer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnCreer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnCreer->ForeColor = System::Drawing::Color::White;
+			this->btnCreer->Location = System::Drawing::Point(0, 3);
+			this->btnCreer->Name = L"btnCreer";
+			this->btnCreer->Size = System::Drawing::Size(158, 23);
+			this->btnCreer->TabIndex = 1;
+			this->btnCreer->Text = L"Créer un client";
+			this->btnCreer->UseVisualStyleBackColor = false;
+			this->btnCreer->Click += gcnew System::EventHandler(this, &Client::btnCreer_Click);
+			// 
+			// btnSupprimer
+			// 
+			this->btnSupprimer->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
+				static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->btnSupprimer->FlatAppearance->BorderSize = 0;
+			this->btnSupprimer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnSupprimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnSupprimer->ForeColor = System::Drawing::Color::White;
+			this->btnSupprimer->Location = System::Drawing::Point(769, 3);
+			this->btnSupprimer->Name = L"btnSupprimer";
+			this->btnSupprimer->Size = System::Drawing::Size(158, 23);
+			this->btnSupprimer->TabIndex = 3;
+			this->btnSupprimer->Text = L"Supprimer un client";
+			this->btnSupprimer->UseVisualStyleBackColor = false;
+			// 
+			// btnModifier
+			// 
+			this->btnModifier->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
+				static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->btnModifier->FlatAppearance->BorderSize = 0;
+			this->btnModifier->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnModifier->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnModifier->ForeColor = System::Drawing::Color::White;
+			this->btnModifier->Location = System::Drawing::Point(412, 4);
+			this->btnModifier->Name = L"btnModifier";
+			this->btnModifier->Size = System::Drawing::Size(158, 23);
+			this->btnModifier->TabIndex = 2;
+			this->btnModifier->Text = L"Modifier un client";
+			this->btnModifier->UseVisualStyleBackColor = false;
 			// 
 			// pnlMain
 			// 
@@ -137,10 +175,10 @@ namespace AppliProjetPOO {
 			this->pnlMain->Controls->Add(this->dataGridView1);
 			this->pnlMain->Controls->Add(this->pnlFilter);
 			this->pnlMain->Controls->Add(this->pnlTitle);
-			this->pnlMain->Location = System::Drawing::Point(176, 40);
+			this->pnlMain->Location = System::Drawing::Point(176, 57);
 			this->pnlMain->Name = L"pnlMain";
 			this->pnlMain->Size = System::Drawing::Size(927, 405);
-			this->pnlMain->TabIndex = 0;
+			this->pnlMain->TabIndex = 5;
 			// 
 			// dataGridView1
 			// 
@@ -235,8 +273,6 @@ namespace AppliProjetPOO {
 			this->tbPrenom->Size = System::Drawing::Size(136, 20);
 			this->tbPrenom->TabIndex = 4;
 			this->tbPrenom->Text = L"Entrer le Prénom...";
-			this->tbPrenom->Click += gcnew System::EventHandler(this, &Personnel::tbPrenom_Click);
-			this->tbPrenom->Leave += gcnew System::EventHandler(this, &Personnel::tbPrenom_Leave);
 			// 
 			// tbNom
 			// 
@@ -250,8 +286,6 @@ namespace AppliProjetPOO {
 			this->tbNom->Size = System::Drawing::Size(132, 20);
 			this->tbNom->TabIndex = 3;
 			this->tbNom->Text = L"Entrer le Nom...";
-			this->tbNom->Click += gcnew System::EventHandler(this, &Personnel::tbNom_Click);
-			this->tbNom->Leave += gcnew System::EventHandler(this, &Personnel::tbNom_Leave);
 			// 
 			// tbID
 			// 
@@ -265,8 +299,6 @@ namespace AppliProjetPOO {
 			this->tbID->Size = System::Drawing::Size(81, 20);
 			this->tbID->TabIndex = 2;
 			this->tbID->Text = L"Entrer l\'ID...";
-			this->tbID->Click += gcnew System::EventHandler(this, &Personnel::tbID_Click);
-			this->tbID->Leave += gcnew System::EventHandler(this, &Personnel::tbID_Leave);
 			// 
 			// rbNomPrenom
 			// 
@@ -282,7 +314,6 @@ namespace AppliProjetPOO {
 			this->rbNomPrenom->TabStop = true;
 			this->rbNomPrenom->Text = L"Recherche par Nom et Prenom";
 			this->rbNomPrenom->UseVisualStyleBackColor = true;
-			this->rbNomPrenom->CheckedChanged += gcnew System::EventHandler(this, &Personnel::rbNomPrenom_CheckedChanged);
 			// 
 			// rbID
 			// 
@@ -299,7 +330,6 @@ namespace AppliProjetPOO {
 			this->rbID->TabStop = true;
 			this->rbID->Text = L"Recherche par ID";
 			this->rbID->UseVisualStyleBackColor = true;
-			this->rbID->CheckedChanged += gcnew System::EventHandler(this, &Personnel::rbID_CheckedChanged);
 			// 
 			// pnlTitle
 			// 
@@ -321,148 +351,91 @@ namespace AppliProjetPOO {
 				static_cast<System::Int32>(static_cast<System::Byte>(221)));
 			this->label2->Location = System::Drawing::Point(323, 14);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(282, 18);
+			this->label2->Size = System::Drawing::Size(164, 18);
 			this->label2->TabIndex = 2;
-			this->label2->Text = L"Rechercher un Membre du Personnel";
+			this->label2->Text = L"Rechercher un Client";
 			// 
-			// btnCreer
-			// 
-			this->btnCreer->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
-				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			this->btnCreer->FlatAppearance->BorderSize = 0;
-			this->btnCreer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnCreer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnCreer->ForeColor = System::Drawing::Color::White;
-			this->btnCreer->Location = System::Drawing::Point(0, 3);
-			this->btnCreer->Name = L"btnCreer";
-			this->btnCreer->Size = System::Drawing::Size(158, 23);
-			this->btnCreer->TabIndex = 1;
-			this->btnCreer->Text = L"Créer un personnel";
-			this->btnCreer->UseVisualStyleBackColor = false;
-			this->btnCreer->Click += gcnew System::EventHandler(this, &Personnel::btnCreer_Click);
-			this->btnCreer->Leave += gcnew System::EventHandler(this, &Personnel::btnCreer_Leave);
-			// 
-			// btnModifier
-			// 
-			this->btnModifier->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
-				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			this->btnModifier->FlatAppearance->BorderSize = 0;
-			this->btnModifier->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnModifier->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnModifier->ForeColor = System::Drawing::Color::White;
-			this->btnModifier->Location = System::Drawing::Point(412, 4);
-			this->btnModifier->Name = L"btnModifier";
-			this->btnModifier->Size = System::Drawing::Size(158, 23);
-			this->btnModifier->TabIndex = 2;
-			this->btnModifier->Text = L"Modifier un personnel";
-			this->btnModifier->UseVisualStyleBackColor = false;
-			// 
-			// btnSupprimer
-			// 
-			this->btnSupprimer->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
-				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			this->btnSupprimer->FlatAppearance->BorderSize = 0;
-			this->btnSupprimer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnSupprimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnSupprimer->ForeColor = System::Drawing::Color::White;
-			this->btnSupprimer->Location = System::Drawing::Point(769, 3);
-			this->btnSupprimer->Name = L"btnSupprimer";
-			this->btnSupprimer->Size = System::Drawing::Size(158, 23);
-			this->btnSupprimer->TabIndex = 3;
-			this->btnSupprimer->Text = L"Supprimer un personnel";
-			this->btnSupprimer->UseVisualStyleBackColor = false;
-			// 
-			// pnlButtonChoix
-			// 
-			this->pnlButtonChoix->Controls->Add(this->btnCreer);
-			this->pnlButtonChoix->Controls->Add(this->btnSupprimer);
-			this->pnlButtonChoix->Controls->Add(this->btnModifier);
-			this->pnlButtonChoix->Location = System::Drawing::Point(176, 493);
-			this->pnlButtonChoix->Name = L"pnlButtonChoix";
-			this->pnlButtonChoix->Size = System::Drawing::Size(927, 30);
-			this->pnlButtonChoix->TabIndex = 4;
-			// 
-			// Personnel
+			// Client
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			this->ClientSize = System::Drawing::Size(1294, 635);
+			this->ClientSize = System::Drawing::Size(1278, 596);
 			this->Controls->Add(this->pnlButtonChoix);
 			this->Controls->Add(this->pnlMain);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Name = L"Personnel";
-			this->Text = L"Personnel";
+			this->Name = L"Client";
+			this->Text = L"Client";
+			this->pnlButtonChoix->ResumeLayout(false);
 			this->pnlMain->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->pnlFilter->ResumeLayout(false);
 			this->pnlFilter->PerformLayout();
 			this->pnlTitle->ResumeLayout(false);
 			this->pnlTitle->PerformLayout();
-			this->pnlButtonChoix->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+	private: System::Void btnCreer_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		CreatePerson^ frmCreatePerson = gcnew CreatePerson("client");
+		active = frmCreatePerson;
+		frmCreatePerson->ShowDialog();
 
-private: System::Void btnCreer_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	CreatePerson^ frmCreatePerson = gcnew CreatePerson("employe");
-	active = frmCreatePerson;
-	frmCreatePerson->ShowDialog();
-	
+	}
+	private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e)
+	{
+		active->Close();
+	}
+	private: System::Void rbID_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbID->ReadOnly = false;
+		this->tbNom->ReadOnly = true;
+		this->tbPrenom->ReadOnly = true;
+	}
 
-}
-private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e) 
-{
-	active->Close();
-}
-private: System::Void rbID_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->tbID->ReadOnly = false;
-	this->tbNom->ReadOnly = true;
-	this->tbPrenom->ReadOnly = true;
-}
-private: System::Void rbNomPrenom_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->tbID->ReadOnly = true;
-	this->tbNom->ReadOnly = false;
-	this->tbPrenom->ReadOnly = false;
-}
-private: System::Void tbID_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->tbID->Text = "";
-}
-private: System::Void tbID_Leave(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (tbID->Text == "")
-		this->tbID->Text = "Entrer l'ID...";
+	private: System::Void rbNomPrenom_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbID->ReadOnly = true;
+		this->tbNom->ReadOnly = false;
+		this->tbPrenom->ReadOnly = false;
+	}
 
-} 
-private: System::Void tbNom_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void tbID_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbID->Text = "";
+	}
+
+	private: System::Void tbID_Leave(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (tbID->Text == "")
+			this->tbID->Text = "Entrer l'ID...";
+
+	}
+
+	private: System::Void tbNom_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->tbNom->Text = "";
 	}
-private: System::Void tbNom_Leave(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (tbNom->Text == "")
-		this->tbNom->Text = "Entrer le Nom...";
-	
-}
-private: System::Void tbPrenom_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->tbPrenom->Text = "";
-}
-private: System::Void tbPrenom_Leave(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (tbPrenom->Text == "")
-		this->tbPrenom->Text = "Entrer le Prenom...";
-	
-}
 
+	private: System::Void tbNom_Leave(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (tbNom->Text == "")
+			this->tbNom->Text = "Entrer le Nom...";
+
+	}
+
+	private: System::Void tbPrenom_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbPrenom->Text = "";
+	}
+
+	private: System::Void tbPrenom_Leave(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (tbPrenom->Text == "")
+			this->tbPrenom->Text = "Entrer le Prenom...";
+
+	}
 };
 }

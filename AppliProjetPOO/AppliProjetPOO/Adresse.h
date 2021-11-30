@@ -126,7 +126,7 @@ namespace AppliProjetPOO {
 			this->label4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::Color::White;
-			this->label4->Location = System::Drawing::Point(34, 300);
+			this->label4->Location = System::Drawing::Point(34, 341);
 			this->label4->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(149, 33);
@@ -139,7 +139,7 @@ namespace AppliProjetPOO {
 			this->label5->Font = (gcnew System::Drawing::Font(L"Century Gothic", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label5->ForeColor = System::Drawing::Color::White;
-			this->label5->Location = System::Drawing::Point(34, 358);
+			this->label5->Location = System::Drawing::Point(34, 390);
 			this->label5->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(149, 33);
@@ -165,25 +165,25 @@ namespace AppliProjetPOO {
 			this->tbRue->Margin = System::Windows::Forms::Padding(6);
 			this->tbRue->Multiline = true;
 			this->tbRue->Name = L"tbRue";
-			this->tbRue->Size = System::Drawing::Size(210, 33);
+			this->tbRue->Size = System::Drawing::Size(219, 33);
 			this->tbRue->TabIndex = 7;
 			// 
 			// tbBatiment
 			// 
-			this->tbBatiment->Location = System::Drawing::Point(218, 300);
+			this->tbBatiment->Location = System::Drawing::Point(218, 341);
 			this->tbBatiment->Margin = System::Windows::Forms::Padding(6);
 			this->tbBatiment->Multiline = true;
 			this->tbBatiment->Name = L"tbBatiment";
-			this->tbBatiment->Size = System::Drawing::Size(210, 33);
+			this->tbBatiment->Size = System::Drawing::Size(219, 33);
 			this->tbBatiment->TabIndex = 8;
 			// 
 			// tbEtage
 			// 
-			this->tbEtage->Location = System::Drawing::Point(218, 358);
+			this->tbEtage->Location = System::Drawing::Point(218, 390);
 			this->tbEtage->Margin = System::Windows::Forms::Padding(6);
 			this->tbEtage->Multiline = true;
 			this->tbEtage->Name = L"tbEtage";
-			this->tbEtage->Size = System::Drawing::Size(210, 33);
+			this->tbEtage->Size = System::Drawing::Size(219, 33);
 			this->tbEtage->TabIndex = 9;
 			// 
 			// tbNumRue
@@ -192,7 +192,7 @@ namespace AppliProjetPOO {
 			this->tbNumRue->Margin = System::Windows::Forms::Padding(6);
 			this->tbNumRue->Multiline = true;
 			this->tbNumRue->Name = L"tbNumRue";
-			this->tbNumRue->Size = System::Drawing::Size(159, 33);
+			this->tbNumRue->Size = System::Drawing::Size(148, 33);
 			this->tbNumRue->TabIndex = 10;
 			// 
 			// cbVille
@@ -201,7 +201,7 @@ namespace AppliProjetPOO {
 			this->cbVille->Location = System::Drawing::Point(218, 113);
 			this->cbVille->Margin = System::Windows::Forms::Padding(6);
 			this->cbVille->Name = L"cbVille";
-			this->cbVille->Size = System::Drawing::Size(210, 33);
+			this->cbVille->Size = System::Drawing::Size(219, 33);
 			this->cbVille->TabIndex = 11;
 			// 
 			// label7
@@ -210,20 +210,20 @@ namespace AppliProjetPOO {
 			this->label7->Font = (gcnew System::Drawing::Font(L"Century Gothic", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label7->ForeColor = System::Drawing::Color::White;
-			this->label7->Location = System::Drawing::Point(34, 412);
+			this->label7->Location = System::Drawing::Point(34, 285);
 			this->label7->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(242, 33);
+			this->label7->Size = System::Drawing::Size(216, 33);
 			this->label7->TabIndex = 12;
-			this->label7->Text = L"Numero d\'App.   :";
+			this->label7->Text = L"Code Postale  :";
 			// 
 			// tbNumApp
 			// 
-			this->tbNumApp->Location = System::Drawing::Point(289, 412);
+			this->tbNumApp->Location = System::Drawing::Point(262, 285);
 			this->tbNumApp->Margin = System::Windows::Forms::Padding(6);
 			this->tbNumApp->Multiline = true;
 			this->tbNumApp->Name = L"tbNumApp";
-			this->tbNumApp->Size = System::Drawing::Size(159, 33);
+			this->tbNumApp->Size = System::Drawing::Size(175, 33);
 			this->tbNumApp->TabIndex = 13;
 			// 
 			// btnValider
