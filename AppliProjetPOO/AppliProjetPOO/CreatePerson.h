@@ -314,7 +314,7 @@ namespace AppliProjetPOO {
 			// 
 			this->btnAdress1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnAdress1->Location = System::Drawing::Point(182, 70);
+			this->btnAdress1->Location = System::Drawing::Point(191, 70);
 			this->btnAdress1->Name = L"btnAdress1";
 			this->btnAdress1->Size = System::Drawing::Size(181, 32);
 			this->btnAdress1->TabIndex = 24;
@@ -326,7 +326,7 @@ namespace AppliProjetPOO {
 			// 
 			this->btnAdress2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnAdress2->Location = System::Drawing::Point(182, 116);
+			this->btnAdress2->Location = System::Drawing::Point(191, 116);
 			this->btnAdress2->Name = L"btnAdress2";
 			this->btnAdress2->Size = System::Drawing::Size(181, 32);
 			this->btnAdress2->TabIndex = 25;
@@ -398,13 +398,18 @@ namespace AppliProjetPOO {
 		{
 			label1->Text = "Ajouter un Employer";
 			lblAdress1->Visible = true;
+			lblAdress1->Text = "Personnelle    :";
 			lblAdress2->Visible = false;
 			btnAdress2->Visible = false;
 			pnlAdress->Size = System::Drawing::Size(372, 109);
+
 		}
 		if (typePerson == "Client")
 		{
 			label1->Text = "Ajouter un Client";
+			lblAdress1->Visible = true;
+			lblAdress2->Visible = true;
+			btnAdress2->Visible = true;
 		}
 	}
 		   
