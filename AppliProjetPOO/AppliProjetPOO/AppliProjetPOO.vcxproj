@@ -92,7 +92,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <EntryPointSymbol>MainLog</EntryPointSymbol>
+      <EntryPointSymbol>MainAcceuil</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
     <EmbeddedResource>
@@ -132,9 +132,7 @@
     <ClCompile Include="CreatePerson.cpp" />
     <ClCompile Include="Controleur.cpp" />
     <ClCompile Include="LogIn.cpp" />
-    <ClCompile Include="MenuPersonne.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
-    <ClCompile Include="MyForm1.cpp" />
     <ClCompile Include="MyProfile1.cpp" />
     <ClCompile Include="Personnel.cpp" />
     <ClCompile Include="Stats.cpp" />

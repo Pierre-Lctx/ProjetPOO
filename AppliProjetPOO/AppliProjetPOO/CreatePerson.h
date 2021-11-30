@@ -405,6 +405,9 @@ namespace AppliProjetPOO {
 		if (typePerson == "Client")
 		{
 			label1->Text = "Ajouter un Client";
+			lblAdress1->Visible = true;
+			lblAdress2->Visible = true;
+			btnAdress2->Visible = true;
 		}
 	}
 		   
