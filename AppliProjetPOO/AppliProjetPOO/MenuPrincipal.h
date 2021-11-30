@@ -2,11 +2,9 @@
 
 #include "TableauBord.h"
 #include "Stats.h"
-
 #include "MyProfile1.h"
 #include "Personnel.h"
-#include "CreatePerson.h"
-
+#include "Controleur.h"
 
 namespace AppliProjetPOO {
 
@@ -20,7 +18,7 @@ namespace AppliProjetPOO {
 
 
 	/// <summary>
-	/// Description rÃ©sumÃ©e de MyForm
+	/// Description résumée de MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -28,27 +26,9 @@ namespace AppliProjetPOO {
 
 
 	private: 
-		Form^ activeForm = nullptr;
 		Point PanelMouseDownLocation;
-		
-	private: void openChildForm(Form^ childForm)
-	{
-		if (activeForm != nullptr)
-			activeForm->Close();
-
-		
-		activeForm = childForm;
-		childForm->TopLevel = false;
-		childForm->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-		childForm->Dock = System::Windows::Forms::DockStyle::Fill;
-
-		pnlFormShow->Controls->Add(childForm);
-		pnlFormShow->Tag = childForm;
-
-		childForm->BringToFront();
-		childForm->Show();
-
-	};
+		Controleur^ C = gcnew Controleur();
+	
 	
 
 	private:
@@ -57,7 +37,7 @@ namespace AppliProjetPOO {
 			this->pnlNav->Height = btnTableauBord->Height;
 			this->pnlNav->Top = btnTableauBord->Top;
 			this->btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
-			openChildForm(frm);
+			C->openChildForm(frm, pnlFormShow);
 			this->lblActiveForm->Text = "Tableau de bord";
 
 		}
@@ -75,7 +55,7 @@ namespace AppliProjetPOO {
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisÃ©es.
+		/// Nettoyage des ressources utilisées.
 		/// </summary>
 		~MyForm()
 		{
@@ -114,14 +94,14 @@ namespace AppliProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nÃ©cessaire au concepteur.
+		/// Variable nécessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
+		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -465,7 +445,7 @@ namespace AppliProjetPOO {
 		pnlNav->Top = btnTableauBord->Top;
 		pnlNav->Left = btnTableauBord->Left;
 		btnTableauBord->BackColor = Color::FromArgb(46, 51, 73);
-		openChildForm(gcnew AppliProjetPOO::TableauBord);
+		C->openChildForm(gcnew AppliProjetPOO::TableauBord, pnlFormShow);
 		this->lblActiveForm->Text = "Tableau de bord";
 
 	}
@@ -475,7 +455,7 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnPerso->Height;
 		pnlNav->Top = btnPerso->Top;
 		btnPerso->BackColor = Color::FromArgb(46, 51, 73);
-		openChildForm(gcnew AppliProjetPOO::Personnel);
+		C->openChildForm(gcnew AppliProjetPOO::Personnel, pnlFormShow);
 		this->lblActiveForm->Text = "Gerer le Personnel";
 	}
 
@@ -490,8 +470,6 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnClient->Height;
 		pnlNav->Top = btnClient->Top;
 		btnClient->BackColor = Color::FromArgb(46, 51, 73);
-		openChildForm(gcnew AppliProjetPOO::CreatePerson);
-		this->lblActiveForm->Text = "Gestion Client";
 	}
 	private: System::Void btnCommande_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -504,7 +482,7 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnStat->Height;
 		pnlNav->Top = btnStat->Top;
 		btnStat->BackColor = Color::FromArgb(46, 51, 73);
-		openChildForm(gcnew AppliProjetPOO::Stats);
+		C->openChildForm(gcnew AppliProjetPOO::Stats, pnlFormShow);
 		this->lblActiveForm->Text = "Statistiques";
 	}
 	private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e) 
@@ -545,7 +523,7 @@ namespace AppliProjetPOO {
 	//picture Click pour acceder au form MyProfile
 	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		openChildForm(gcnew AppliProjetPOO::MyProfile);
+		C->openChildForm(gcnew AppliProjetPOO::MyProfile, pnlFormShow);
 		lblActiveForm->Text = "Mon Profil";
 	}
 
