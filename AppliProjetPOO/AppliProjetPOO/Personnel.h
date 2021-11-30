@@ -414,6 +414,7 @@ private: System::Void btnCreer_Click(System::Object^ sender, System::EventArgs^ 
 	CreatePerson^ frmCreatePerson = gcnew CreatePerson("employe");
 	active = frmCreatePerson;
 	frmCreatePerson->ShowDialog();
+	
 
 }
 private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e) 
