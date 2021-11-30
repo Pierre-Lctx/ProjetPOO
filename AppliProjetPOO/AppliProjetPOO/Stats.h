@@ -50,11 +50,15 @@ namespace AppliProjetPOO
 
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Panel^ panel4;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ btnPrixMoyen;
+	private: System::Windows::Forms::Button^ btnArticleReapro;
 
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::ComboBox^ comboBox1;
+
+
+	private: System::Windows::Forms::Button^ btnChiffreAffaire;
+
+	private: System::Windows::Forms::ComboBox^ cbMois;
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ nomArticle;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ stockArticle;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ prixHT;
@@ -64,17 +68,28 @@ namespace AppliProjetPOO
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ demarqueInconnu;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ couleurArticle;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ natureArticle;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Button^ button8;
-	private: System::Windows::Forms::Button^ button7;
-	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::Button^ button5;
-	private: System::Windows::Forms::ComboBox^ comboBox3;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::Label^ lblTVA;
+
+	private: System::Windows::Forms::Button^ btnValeurAchatStock;
+
+	private: System::Windows::Forms::Button^ btnValeurStock;
+
+	private: System::Windows::Forms::Button^ btnMoins10Article;
+
+	private: System::Windows::Forms::Button^ btnPlus10Article;
+
+	private: System::Windows::Forms::ComboBox^ cbIDClient;
+
+	private: System::Windows::Forms::Button^ btnTotalClientPrix;
+
+	private: System::Windows::Forms::ComboBox^ cbAnnee;
+
+
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Button^ button10;
-	private: System::Windows::Forms::Button^ button9;
+	private: System::Windows::Forms::Button^ btnLoad;
+
+	private: System::Windows::Forms::Button^ btnClear;
+
 	private: System::Windows::Forms::ComboBox^ comboBox7;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ComboBox^ comboBox6;
@@ -82,13 +97,7 @@ namespace AppliProjetPOO
 	private: System::Windows::Forms::ComboBox^ comboBox5;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::ComboBox^ comboBox4;
-
-
-
-
-
-
-
+	private: System::Windows::Forms::Label^ label3;
 
 
 	protected:
@@ -106,9 +115,9 @@ namespace AppliProjetPOO
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea5 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
@@ -123,29 +132,30 @@ namespace AppliProjetPOO
 			this->couleurArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->natureArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->button8 = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->btnValeurAchatStock = (gcnew System::Windows::Forms::Button());
+			this->btnValeurStock = (gcnew System::Windows::Forms::Button());
+			this->btnMoins10Article = (gcnew System::Windows::Forms::Button());
+			this->btnPlus10Article = (gcnew System::Windows::Forms::Button());
+			this->cbIDClient = (gcnew System::Windows::Forms::ComboBox());
+			this->btnTotalClientPrix = (gcnew System::Windows::Forms::Button());
+			this->cbAnnee = (gcnew System::Windows::Forms::ComboBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->cbMois = (gcnew System::Windows::Forms::ComboBox());
+			this->btnArticleReapro = (gcnew System::Windows::Forms::Button());
+			this->btnChiffreAffaire = (gcnew System::Windows::Forms::Button());
+			this->btnPrixMoyen = (gcnew System::Windows::Forms::Button());
 			this->panel4 = (gcnew System::Windows::Forms::Panel());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->comboBox5 = (gcnew System::Windows::Forms::ComboBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->comboBox6 = (gcnew System::Windows::Forms::ComboBox());
-			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->btnLoad = (gcnew System::Windows::Forms::Button());
+			this->btnClear = (gcnew System::Windows::Forms::Button());
 			this->comboBox7 = (gcnew System::Windows::Forms::ComboBox());
-			this->button9 = (gcnew System::Windows::Forms::Button());
-			this->button10 = (gcnew System::Windows::Forms::Button());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->comboBox6 = (gcnew System::Windows::Forms::ComboBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->comboBox5 = (gcnew System::Windows::Forms::ComboBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
+			this->lblTVA = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->panel2->SuspendLayout();
@@ -166,53 +176,40 @@ namespace AppliProjetPOO
 			// 
 			this->chart1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			chartArea1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			chartArea5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			chartArea1->BorderColor = System::Drawing::Color::White;
-			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
+			chartArea5->BorderColor = System::Drawing::Color::White;
+			chartArea5->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea5);
 			this->chart1->Dock = System::Windows::Forms::DockStyle::Fill;
-			legend1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			legend5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			legend1->ForeColor = System::Drawing::Color::White;
-			legend1->HeaderSeparatorColor = System::Drawing::Color::White;
-			legend1->ItemColumnSeparatorColor = System::Drawing::Color::White;
-			legend1->Name = L"Legend1";
-			legend1->TitleBackColor = System::Drawing::Color::White;
-			legend1->TitleForeColor = System::Drawing::Color::White;
-			legend1->TitleSeparatorColor = System::Drawing::Color::White;
-			this->chart1->Legends->Add(legend1);
+			legend5->ForeColor = System::Drawing::Color::White;
+			legend5->HeaderSeparatorColor = System::Drawing::Color::White;
+			legend5->ItemColumnSeparatorColor = System::Drawing::Color::White;
+			legend5->Name = L"Legend1";
+			legend5->TitleBackColor = System::Drawing::Color::White;
+			legend5->TitleForeColor = System::Drawing::Color::White;
+			legend5->TitleSeparatorColor = System::Drawing::Color::White;
+			this->chart1->Legends->Add(legend5);
 			this->chart1->Location = System::Drawing::Point(0, 0);
 			this->chart1->Name = L"chart1";
 			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
-			series1->ChartArea = L"ChartArea1";
-			series1->LabelForeColor = System::Drawing::Color::White;
-			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
-			this->chart1->Series->Add(series1);
+			series5->ChartArea = L"ChartArea1";
+			series5->LabelForeColor = System::Drawing::Color::White;
+			series5->Legend = L"Legend1";
+			series5->Name = L"Series1";
+			this->chart1->Series->Add(series5);
 			this->chart1->Size = System::Drawing::Size(1006, 267);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
-			//Couleurs sur l'Axe X
-			this->chart1->ChartAreas[0]->AxisX->LineColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisX->MajorGrid->LineColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisX->InterlacedColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisX->LabelStyle->ForeColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisX->MajorTickMark->LineColor = Color::White;
-
-			//Couleurs sur l'Axe Y
-			this->chart1->ChartAreas[0]->AxisY->LineColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisY->InterlacedColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisY->MajorGrid->LineColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisY->LabelStyle->ForeColor = Color::White;
-			this->chart1->ChartAreas[0]->AxisY->MajorTickMark->LineColor = Color::White;
 			// 
 			// panel2
 			// 
 			this->panel2->Controls->Add(this->dataGridView1);
-			this->panel2->Location = System::Drawing::Point(560, 303);
+			this->panel2->Location = System::Drawing::Point(560, 285);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(722, 315);
+			this->panel2->Size = System::Drawing::Size(722, 333);
 			this->panel2->TabIndex = 1;
 			// 
 			// dataGridView1
@@ -230,7 +227,7 @@ namespace AppliProjetPOO
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->dataGridView1->Location = System::Drawing::Point(0, 0);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(722, 315);
+			this->dataGridView1->Size = System::Drawing::Size(722, 333);
 			this->dataGridView1->TabIndex = 0;
 			// 
 			// nomArticle
@@ -291,114 +288,114 @@ namespace AppliProjetPOO
 			// 
 			this->panel3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
 				static_cast<System::Int32>(static_cast<System::Byte>(93)));
-			this->panel3->Controls->Add(this->button8);
-			this->panel3->Controls->Add(this->button7);
-			this->panel3->Controls->Add(this->button6);
-			this->panel3->Controls->Add(this->button5);
-			this->panel3->Controls->Add(this->comboBox3);
-			this->panel3->Controls->Add(this->button4);
-			this->panel3->Controls->Add(this->comboBox2);
+			this->panel3->Controls->Add(this->btnValeurAchatStock);
+			this->panel3->Controls->Add(this->btnValeurStock);
+			this->panel3->Controls->Add(this->btnMoins10Article);
+			this->panel3->Controls->Add(this->btnPlus10Article);
+			this->panel3->Controls->Add(this->cbIDClient);
+			this->panel3->Controls->Add(this->btnTotalClientPrix);
+			this->panel3->Controls->Add(this->cbAnnee);
 			this->panel3->Controls->Add(this->label1);
-			this->panel3->Controls->Add(this->comboBox1);
-			this->panel3->Controls->Add(this->button3);
-			this->panel3->Controls->Add(this->button2);
-			this->panel3->Controls->Add(this->button1);
+			this->panel3->Controls->Add(this->cbMois);
+			this->panel3->Controls->Add(this->btnArticleReapro);
+			this->panel3->Controls->Add(this->btnChiffreAffaire);
+			this->panel3->Controls->Add(this->btnPrixMoyen);
 			this->panel3->Controls->Add(this->panel4);
-			this->panel3->Location = System::Drawing::Point(12, 303);
+			this->panel3->Location = System::Drawing::Point(12, 285);
 			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(542, 315);
+			this->panel3->Size = System::Drawing::Size(542, 333);
 			this->panel3->TabIndex = 2;
 			// 
-			// button8
+			// btnValeurAchatStock
 			// 
-			this->button8->FlatAppearance->BorderSize = 0;
-			this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnValeurAchatStock->FlatAppearance->BorderSize = 0;
+			this->btnValeurAchatStock->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnValeurAchatStock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button8->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->button8->Location = System::Drawing::Point(274, 167);
-			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(208, 23);
-			this->button8->TabIndex = 14;
-			this->button8->Text = L"Valeur d\'Achat du Stock";
-			this->button8->UseVisualStyleBackColor = true;
+			this->btnValeurAchatStock->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)),
+				static_cast<System::Int32>(static_cast<System::Byte>(154)), static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->btnValeurAchatStock->Location = System::Drawing::Point(274, 167);
+			this->btnValeurAchatStock->Name = L"btnValeurAchatStock";
+			this->btnValeurAchatStock->Size = System::Drawing::Size(208, 23);
+			this->btnValeurAchatStock->TabIndex = 14;
+			this->btnValeurAchatStock->Text = L"Valeur d\'Achat du Stock";
+			this->btnValeurAchatStock->UseVisualStyleBackColor = true;
 			// 
-			// button7
+			// btnValeurStock
 			// 
-			this->button7->FlatAppearance->BorderSize = 0;
-			this->button7->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnValeurStock->FlatAppearance->BorderSize = 0;
+			this->btnValeurStock->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnValeurStock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button7->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+			this->btnValeurStock->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
 				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->button7->Location = System::Drawing::Point(274, 132);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(208, 23);
-			this->button7->TabIndex = 13;
-			this->button7->Text = L"Valeur Commerciale du Stock";
-			this->button7->UseVisualStyleBackColor = true;
+			this->btnValeurStock->Location = System::Drawing::Point(274, 132);
+			this->btnValeurStock->Name = L"btnValeurStock";
+			this->btnValeurStock->Size = System::Drawing::Size(208, 23);
+			this->btnValeurStock->TabIndex = 13;
+			this->btnValeurStock->Text = L"Valeur Commerciale du Stock";
+			this->btnValeurStock->UseVisualStyleBackColor = true;
 			// 
-			// button6
+			// btnMoins10Article
 			// 
-			this->button6->FlatAppearance->BorderSize = 0;
-			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnMoins10Article->FlatAppearance->BorderSize = 0;
+			this->btnMoins10Article->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnMoins10Article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->button6->Location = System::Drawing::Point(3, 167);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(234, 23);
-			this->button6->TabIndex = 12;
-			this->button6->Text = L"Les 10 Articles les Moins Vendus";
-			this->button6->UseVisualStyleBackColor = true;
+			this->btnMoins10Article->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)),
+				static_cast<System::Int32>(static_cast<System::Byte>(154)), static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->btnMoins10Article->Location = System::Drawing::Point(3, 167);
+			this->btnMoins10Article->Name = L"btnMoins10Article";
+			this->btnMoins10Article->Size = System::Drawing::Size(234, 23);
+			this->btnMoins10Article->TabIndex = 12;
+			this->btnMoins10Article->Text = L"Les 10 Articles les Moins Vendus";
+			this->btnMoins10Article->UseVisualStyleBackColor = true;
 			// 
-			// button5
+			// btnPlus10Article
 			// 
-			this->button5->FlatAppearance->BorderSize = 0;
-			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnPlus10Article->FlatAppearance->BorderSize = 0;
+			this->btnPlus10Article->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnPlus10Article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->button5->Location = System::Drawing::Point(3, 134);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(234, 23);
-			this->button5->TabIndex = 11;
-			this->button5->Text = L"Les 10 Articles les Moins Vendus";
-			this->button5->UseVisualStyleBackColor = true;
+			this->btnPlus10Article->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)),
+				static_cast<System::Int32>(static_cast<System::Byte>(154)), static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->btnPlus10Article->Location = System::Drawing::Point(3, 134);
+			this->btnPlus10Article->Name = L"btnPlus10Article";
+			this->btnPlus10Article->Size = System::Drawing::Size(234, 23);
+			this->btnPlus10Article->TabIndex = 11;
+			this->btnPlus10Article->Text = L"Les 10 Articles les Plus Vendus";
+			this->btnPlus10Article->UseVisualStyleBackColor = true;
 			// 
-			// comboBox3
+			// cbIDClient
 			// 
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Location = System::Drawing::Point(227, 105);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(56, 21);
-			this->comboBox3->TabIndex = 10;
+			this->cbIDClient->FormattingEnabled = true;
+			this->cbIDClient->Location = System::Drawing::Point(227, 105);
+			this->cbIDClient->Name = L"cbIDClient";
+			this->cbIDClient->Size = System::Drawing::Size(56, 21);
+			this->cbIDClient->TabIndex = 10;
 			// 
-			// button4
+			// btnTotalClientPrix
 			// 
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnTotalClientPrix->FlatAppearance->BorderSize = 0;
+			this->btnTotalClientPrix->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnTotalClientPrix->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->button4->Location = System::Drawing::Point(18, 105);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(203, 23);
-			this->button4->TabIndex = 9;
-			this->button4->Text = L"Paiement Total pour le Client";
-			this->button4->UseVisualStyleBackColor = true;
+			this->btnTotalClientPrix->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)),
+				static_cast<System::Int32>(static_cast<System::Byte>(154)), static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->btnTotalClientPrix->Location = System::Drawing::Point(18, 105);
+			this->btnTotalClientPrix->Name = L"btnTotalClientPrix";
+			this->btnTotalClientPrix->Size = System::Drawing::Size(203, 23);
+			this->btnTotalClientPrix->TabIndex = 9;
+			this->btnTotalClientPrix->Text = L"Paiement Total pour le Client";
+			this->btnTotalClientPrix->UseVisualStyleBackColor = true;
 			// 
-			// comboBox2
+			// cbAnnee
 			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Location = System::Drawing::Point(289, 50);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(70, 21);
-			this->comboBox2->TabIndex = 8;
+			this->cbAnnee->FormattingEnabled = true;
+			this->cbAnnee->Location = System::Drawing::Point(289, 50);
+			this->cbAnnee->Name = L"cbAnnee";
+			this->cbAnnee->Size = System::Drawing::Size(70, 21);
+			this->cbAnnee->TabIndex = 8;
 			// 
 			// label1
 			// 
@@ -416,67 +413,69 @@ namespace AppliProjetPOO
 			this->label1->TabIndex = 7;
 			this->label1->Text = L"-";
 			// 
-			// comboBox1
+			// cbMois
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
-				L"01", L"02", L"03", L"04", L"05", L"06", L"07",
-					L"08", L"09", L"10", L"11", L"12"
+			this->cbMois->FormattingEnabled = true;
+			this->cbMois->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
+				L"01", L"02", L"03", L"04", L"05", L"06", L"07", L"08",
+					L"09", L"10", L"11", L"12"
 			});
-			this->comboBox1->Location = System::Drawing::Point(216, 50);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(49, 21);
-			this->comboBox1->TabIndex = 6;
+			this->cbMois->Location = System::Drawing::Point(216, 50);
+			this->cbMois->Name = L"cbMois";
+			this->cbMois->Size = System::Drawing::Size(49, 21);
+			this->cbMois->TabIndex = 6;
 			// 
-			// button3
+			// btnArticleReapro
 			// 
-			this->button3->FlatAppearance->BorderSize = 0;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnArticleReapro->FlatAppearance->BorderSize = 0;
+			this->btnArticleReapro->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnArticleReapro->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->button3->Location = System::Drawing::Point(18, 76);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(192, 23);
-			this->button3->TabIndex = 3;
-			this->button3->Text = L"Articles à Réaprovisionner";
-			this->button3->UseVisualStyleBackColor = true;
+			this->btnArticleReapro->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)),
+				static_cast<System::Int32>(static_cast<System::Byte>(154)), static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->btnArticleReapro->Location = System::Drawing::Point(18, 76);
+			this->btnArticleReapro->Name = L"btnArticleReapro";
+			this->btnArticleReapro->Size = System::Drawing::Size(192, 23);
+			this->btnArticleReapro->TabIndex = 3;
+			this->btnArticleReapro->Text = L"Articles à Réaprovisionner";
+			this->btnArticleReapro->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// btnChiffreAffaire
 			// 
-			this->button2->FlatAppearance->BorderSize = 0;
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnChiffreAffaire->FlatAppearance->BorderSize = 0;
+			this->btnChiffreAffaire->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnChiffreAffaire->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->button2->Location = System::Drawing::Point(18, 47);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(175, 23);
-			this->button2->TabIndex = 2;
-			this->button2->Text = L"Chiffre d\'Affaire par mois";
-			this->button2->UseVisualStyleBackColor = true;
+			this->btnChiffreAffaire->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)),
+				static_cast<System::Int32>(static_cast<System::Byte>(154)), static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->btnChiffreAffaire->Location = System::Drawing::Point(18, 47);
+			this->btnChiffreAffaire->Name = L"btnChiffreAffaire";
+			this->btnChiffreAffaire->Size = System::Drawing::Size(175, 23);
+			this->btnChiffreAffaire->TabIndex = 2;
+			this->btnChiffreAffaire->Text = L"Chiffre d\'Affaire par mois";
+			this->btnChiffreAffaire->UseVisualStyleBackColor = true;
 			// 
-			// button1
+			// btnPrixMoyen
 			// 
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnPrixMoyen->FlatAppearance->BorderSize = 0;
+			this->btnPrixMoyen->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnPrixMoyen->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+			this->btnPrixMoyen->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
 				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->button1->Location = System::Drawing::Point(25, 18);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(168, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Prix d\'un Panier Moyen";
-			this->button1->UseVisualStyleBackColor = true;
+			this->btnPrixMoyen->Location = System::Drawing::Point(25, 18);
+			this->btnPrixMoyen->Name = L"btnPrixMoyen";
+			this->btnPrixMoyen->Size = System::Drawing::Size(168, 23);
+			this->btnPrixMoyen->TabIndex = 1;
+			this->btnPrixMoyen->Text = L"Prix d\'un Panier Moyen";
+			this->btnPrixMoyen->UseVisualStyleBackColor = true;
 			// 
 			// panel4
 			// 
-			this->panel4->Controls->Add(this->button10);
-			this->panel4->Controls->Add(this->button9);
+			this->panel4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel4->Controls->Add(this->label3);
+			this->panel4->Controls->Add(this->btnLoad);
+			this->panel4->Controls->Add(this->btnClear);
 			this->panel4->Controls->Add(this->comboBox7);
 			this->panel4->Controls->Add(this->label5);
 			this->panel4->Controls->Add(this->comboBox6);
@@ -484,86 +483,38 @@ namespace AppliProjetPOO
 			this->panel4->Controls->Add(this->comboBox5);
 			this->panel4->Controls->Add(this->label2);
 			this->panel4->Controls->Add(this->comboBox4);
-			this->panel4->Controls->Add(this->label3);
+			this->panel4->Controls->Add(this->lblTVA);
 			this->panel4->Location = System::Drawing::Point(3, 196);
 			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(539, 116);
+			this->panel4->Size = System::Drawing::Size(539, 134);
 			this->panel4->TabIndex = 0;
 			// 
-			// label3
+			// btnLoad
 			// 
-			this->label3->AutoSize = true;
-			this->label3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
-				static_cast<System::Int32>(static_cast<System::Byte>(93)));
-			this->label3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label3->Location = System::Drawing::Point(19, 19);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(43, 15);
-			this->label3->TabIndex = 15;
-			this->label3->Text = L"TVA : ";
+			this->btnLoad->Location = System::Drawing::Point(270, 106);
+			this->btnLoad->Name = L"btnLoad";
+			this->btnLoad->Size = System::Drawing::Size(75, 23);
+			this->btnLoad->TabIndex = 24;
+			this->btnLoad->Text = L"Ajouter";
+			this->btnLoad->UseVisualStyleBackColor = true;
 			// 
-			// comboBox4
+			// btnClear
 			// 
-			this->comboBox4->FormattingEnabled = true;
-			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"20%", L"10%", L"5,5%" });
-			this->comboBox4->Location = System::Drawing::Point(68, 13);
-			this->comboBox4->Name = L"comboBox4";
-			this->comboBox4->Size = System::Drawing::Size(43, 21);
-			this->comboBox4->TabIndex = 16;
+			this->btnClear->Location = System::Drawing::Point(158, 106);
+			this->btnClear->Name = L"btnClear";
+			this->btnClear->Size = System::Drawing::Size(75, 23);
+			this->btnClear->TabIndex = 23;
+			this->btnClear->Text = L"Vider";
+			this->btnClear->UseVisualStyleBackColor = true;
 			// 
-			// label2
+			// comboBox7
 			// 
-			this->label2->AutoSize = true;
-			this->label2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
-				static_cast<System::Int32>(static_cast<System::Byte>(93)));
-			this->label2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label2->Location = System::Drawing::Point(175, 19);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(153, 15);
-			this->label2->TabIndex = 17;
-			this->label2->Text = L"Marge Commerciale  : ";
-			// 
-			// comboBox5
-			// 
-			this->comboBox5->FormattingEnabled = true;
-			this->comboBox5->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"15%", L"10%", L"5%" });
-			this->comboBox5->Location = System::Drawing::Point(334, 13);
-			this->comboBox5->Name = L"comboBox5";
-			this->comboBox5->Size = System::Drawing::Size(43, 21);
-			this->comboBox5->TabIndex = 18;
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
-				static_cast<System::Int32>(static_cast<System::Byte>(93)));
-			this->label4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label4->Location = System::Drawing::Point(12, 59);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(161, 15);
-			this->label4->TabIndex = 19;
-			this->label4->Text = L"Remise Commerciale  : ";
-			// 
-			// comboBox6
-			// 
-			this->comboBox6->FormattingEnabled = true;
-			this->comboBox6->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"6%", L"5%" });
-			this->comboBox6->Location = System::Drawing::Point(178, 53);
-			this->comboBox6->Name = L"comboBox6";
-			this->comboBox6->Size = System::Drawing::Size(43, 21);
-			this->comboBox6->TabIndex = 20;
+			this->comboBox7->FormattingEnabled = true;
+			this->comboBox7->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"5%", L"3%", L"2%" });
+			this->comboBox7->Location = System::Drawing::Point(441, 71);
+			this->comboBox7->Name = L"comboBox7";
+			this->comboBox7->Size = System::Drawing::Size(43, 21);
+			this->comboBox7->TabIndex = 22;
 			// 
 			// label5
 			// 
@@ -575,38 +526,102 @@ namespace AppliProjetPOO
 				static_cast<System::Byte>(0)));
 			this->label5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
 				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label5->Location = System::Drawing::Point(283, 59);
+			this->label5->Location = System::Drawing::Point(282, 77);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(153, 15);
 			this->label5->TabIndex = 21;
 			this->label5->Text = L"Marge Commerciale  : ";
 			// 
-			// comboBox7
+			// comboBox6
 			// 
-			this->comboBox7->FormattingEnabled = true;
-			this->comboBox7->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"5%", L"3%", L"2%" });
-			this->comboBox7->Location = System::Drawing::Point(442, 53);
-			this->comboBox7->Name = L"comboBox7";
-			this->comboBox7->Size = System::Drawing::Size(43, 21);
-			this->comboBox7->TabIndex = 22;
+			this->comboBox6->FormattingEnabled = true;
+			this->comboBox6->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"6%", L"5%" });
+			this->comboBox6->Location = System::Drawing::Point(178, 71);
+			this->comboBox6->Name = L"comboBox6";
+			this->comboBox6->Size = System::Drawing::Size(43, 21);
+			this->comboBox6->TabIndex = 20;
 			// 
-			// button9
+			// label4
 			// 
-			this->button9->Location = System::Drawing::Point(159, 90);
-			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(75, 23);
-			this->button9->TabIndex = 23;
-			this->button9->Text = L"button9";
-			this->button9->UseVisualStyleBackColor = true;
+			this->label4->AutoSize = true;
+			this->label4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->label4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+				static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->label4->Location = System::Drawing::Point(11, 77);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(161, 15);
+			this->label4->TabIndex = 19;
+			this->label4->Text = L"Remise Commerciale  : ";
 			// 
-			// button10
+			// comboBox5
 			// 
-			this->button10->Location = System::Drawing::Point(271, 90);
-			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(75, 23);
-			this->button10->TabIndex = 24;
-			this->button10->Text = L"button10";
-			this->button10->UseVisualStyleBackColor = true;
+			this->comboBox5->FormattingEnabled = true;
+			this->comboBox5->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"15%", L"10%", L"5%" });
+			this->comboBox5->Location = System::Drawing::Point(441, 36);
+			this->comboBox5->Name = L"comboBox5";
+			this->comboBox5->Size = System::Drawing::Size(43, 21);
+			this->comboBox5->TabIndex = 18;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->label2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+				static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->label2->Location = System::Drawing::Point(282, 42);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(153, 15);
+			this->label2->TabIndex = 17;
+			this->label2->Text = L"Marge Commerciale  : ";
+			// 
+			// comboBox4
+			// 
+			this->comboBox4->FormattingEnabled = true;
+			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"20%", L"10%", L"5,5%" });
+			this->comboBox4->Location = System::Drawing::Point(78, 42);
+			this->comboBox4->Name = L"comboBox4";
+			this->comboBox4->Size = System::Drawing::Size(43, 21);
+			this->comboBox4->TabIndex = 16;
+			// 
+			// lblTVA
+			// 
+			this->lblTVA->AutoSize = true;
+			this->lblTVA->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->lblTVA->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->lblTVA->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblTVA->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
+				static_cast<System::Int32>(static_cast<System::Byte>(208)));
+			this->lblTVA->Location = System::Drawing::Point(18, 48);
+			this->lblTVA->Name = L"lblTVA";
+			this->lblTVA->Size = System::Drawing::Size(43, 15);
+			this->lblTVA->TabIndex = 15;
+			this->lblTVA->Text = L"TVA : ";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(93)));
+			this->label3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+				static_cast<System::Int32>(static_cast<System::Byte>(221)));
+			this->label3->Location = System::Drawing::Point(191, 10);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(156, 18);
+			this->label3->TabIndex = 25;
+			this->label3->Text = L"Faire une Simulation";
 			// 
 			// Stats
 			// 
@@ -641,8 +656,7 @@ namespace AppliProjetPOO
 	
 		
 	}
-private: System::Void monthCalendar1_DateChanged(System::Object^ sender, System::Windows::Forms::DateRangeEventArgs^ e) {
-}
+
 
 
 };
