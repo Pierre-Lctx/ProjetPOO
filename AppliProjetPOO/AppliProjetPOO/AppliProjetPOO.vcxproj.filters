@@ -27,7 +27,7 @@
     <ClCompile Include="MyProfile1.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="FctTableauxBord.cpp">
+    <ClCompile Include="Controleur.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="CreatePerson.cpp">
@@ -46,7 +46,13 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Personnel.cpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MyForm1.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPersonne.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +71,7 @@
     <ClInclude Include="TableauBord.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="FctTableauxBord.h">
+    <ClInclude Include="Controleur.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CreatePerson.h">

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FctTableauxBord.h"
+#include "Controleur.h"
 
 namespace AppliProjetPOO {
 
@@ -22,8 +22,8 @@ namespace AppliProjetPOO {
 			InitializeComponent();
 
 			// Obj de la classe fct pour appeler les fonctions suivantes
-			Fct^ f = gcnew Fct(btnWarning1, btnWarning2, btnWarning3, btnWarning4, btnWarning5, btnWarning6, btnWarning7, btnWarning8, btnWarning9, btnWarning10, btnWarning11, btnWarning12, btnSeeWarning);
-			f->initializeWarningBtn(countWarning());
+			Controleur^ f = gcnew Controleur();
+			f->initializeWarningBtn(countWarning(), btnWarning1, btnWarning2, btnWarning3, btnWarning4, btnWarning5, btnWarning6, btnWarning7, btnWarning8, btnWarning9, btnWarning10, btnWarning11, btnWarning12, btnSeeWarning);
 		}
 
 	protected:
@@ -55,43 +55,20 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnWarning2;
 	private: System::Windows::Forms::Panel^ pnlKeyPoint;
 	private: System::Windows::Forms::Panel^ pnlWeekEarning;
-
-
-
 	private: System::Windows::Forms::Panel^ pnlTitleKeyPoint;
 	private: System::Windows::Forms::Panel^ pnlTitleWeekEarning;
-
 	private: System::Windows::Forms::PictureBox^ picCustomer;
-
-
-
-
-
-
 	private: System::Windows::Forms::PictureBox^ pictureBox3;
-
-
-
-
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ picPersonnem;
 	private: System::Windows::Forms::Label^ lblCommande;
-
 	private: System::Windows::Forms::Label^ lblClient;
-
-
 	private: System::Windows::Forms::Label^ lblNameEmploye;
 	private: System::Windows::Forms::Label^ lblNbCommandePass;
-
 	private: System::Windows::Forms::Label^ lblNbNewClient;
 	private: System::Windows::Forms::Label^ lblNbEmployé;
 	private: System::Windows::Forms::Label^ lblEarning;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-
-
-
-
-
 	private: System::Windows::Forms::Label^ label2;
 
 	private: int countWarning()

@@ -21,17 +21,17 @@ namespace AppliProjetPOO {
 	{
 	private:
 		MyForm^ mainForm = gcnew MyForm();
-	
-	private : Connect^ connecteur;
-	
+
+	private: Connect^ connecteur;
+
 	public:
 		LogIn(void)
 		{
 			InitializeComponent();
 			connecteur = gcnew Connect();
 		}
-		
-	
+
+
 
 	protected:
 		/// <summary>
@@ -48,10 +48,8 @@ namespace AppliProjetPOO {
 	protected:
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBoxMail;
-
 	private: System::Windows::Forms::TextBox^ textBoxPassword;
 	private: System::Windows::Forms::Label^ label2;
-
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ lblShowPass;
 	private: System::Windows::Forms::PictureBox^ pctBoxPassVisible;
@@ -61,7 +59,7 @@ namespace AppliProjetPOO {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -229,18 +227,18 @@ namespace AppliProjetPOO {
 
 #pragma endregion
 
-	private: System::Void LogIn_Load(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void LogIn_Load(System::Object^ sender, System::EventArgs^ e)
 	{
 
 	}
 
-	private: System::Void Connexion_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void Connexion_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		String^ mail, ^password;
+		String^ mail, ^ password;
 
 		mail = textBoxMail->Text;
 		password = textBoxPassword->Text;
-		
+
 		if (connecteur->connection(mail, password))
 		{
 			this->Hide();
@@ -252,32 +250,32 @@ namespace AppliProjetPOO {
 		}
 	}
 
-	private: System::Void checkBoxShowPassword_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void checkBoxShowPassword_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
-		
+
 	}
 
-private: System::Void textBoxUsername_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) 
-{
-	keypressed(e);
-}
-private: System::Void textBoxPassword_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) 
-{
-	keypressed(e);
-}
-private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) 
-{	
-	if (textBoxPassword->UseSystemPasswordChar == true)
+	private: System::Void textBoxUsername_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 	{
-		textBoxPassword->UseSystemPasswordChar = false;
-		this->pctBoxPassVisible->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\passVisiblePink.png")));
-		
+		keypressed(e);
 	}
-	else 
+	private: System::Void textBoxPassword_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 	{
-		textBoxPassword->UseSystemPasswordChar = true;
-		this->pctBoxPassVisible->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\passVisiblePurple.png")));
+		keypressed(e);
 	}
-}
-};
+	private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (textBoxPassword->UseSystemPasswordChar == true)
+		{
+			textBoxPassword->UseSystemPasswordChar = false;
+			this->pctBoxPassVisible->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\passVisiblePink.png")));
+
+		}
+		else
+		{
+			textBoxPassword->UseSystemPasswordChar = true;
+			this->pctBoxPassVisible->Image = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\passVisiblePurple.png")));
+		}
+	}
+	};
 }

@@ -82,7 +82,7 @@
     <Link>
       <AdditionalDependencies />
       <SubSystem>Windows</SubSystem>
-      <EntryPointSymbol>MainLog</EntryPointSymbol>
+      <EntryPointSymbol>Main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -92,7 +92,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <EntryPointSymbol>MainAcceuil</EntryPointSymbol>
+      <EntryPointSymbol>MainLog</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
     <EmbeddedResource>
@@ -130,9 +130,11 @@
     <ClCompile Include="Adresse.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="CreatePerson.cpp" />
-    <ClCompile Include="FctTableauxBord.cpp" />
+    <ClCompile Include="Controleur.cpp" />
     <ClCompile Include="LogIn.cpp" />
+    <ClCompile Include="MenuPersonne.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
+    <ClCompile Include="MyForm1.cpp" />
     <ClCompile Include="MyProfile1.cpp" />
     <ClCompile Include="Personnel.cpp" />
     <ClCompile Include="Stats.cpp" />
@@ -146,7 +148,7 @@
     <ClInclude Include="CreatePerson.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="FctTableauxBord.h" />
+    <ClInclude Include="Controleur.h" />
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -179,13 +181,8 @@
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.h</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Personnel.resx">
       <DependentUpon>Personnel.h</DependentUpon>
-
-    <EmbeddedResource Include="MyProfile1.resx">
-      <DependentUpon>MyProfile1.h</DependentUpon>
-      
     </EmbeddedResource>
     <EmbeddedResource Include="Stats.resx">
       <DependentUpon>Stats.h</DependentUpon>

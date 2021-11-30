@@ -1,6 +1,14 @@
-#include "FctTableauxBord.h"
+#include "Controleur.h"
 
-Fct::Fct(Button^ b1, Button^ b2, Button^ b3, Button^ b4, Button^ b5, Button^ b6, Button^ b7, Button^ b8, Button^ b9, Button^ b10, Button^ b11, Button^ b12, Button^ bsee)
+Controleur::Controleur()
+{
+	activeForm = nullptr;
+	
+}
+
+#pragma region Tableaux de bord fct
+// Déclaration de la fonction utilisé dans le form TableauBord pour afficher ou cacher les boutons warnings 
+void Controleur::initializeWarningBtn(int i, Button^ b1, Button^ b2, Button^ b3, Button^ b4, Button^ b5, Button^ b6, Button^ b7, Button^ b8, Button^ b9, Button^ b10, Button^ b11, Button^ b12, Button^ bsee)
 {
 	btn1 = b1;
 	btn2 = b2;
@@ -15,16 +23,10 @@ Fct::Fct(Button^ b1, Button^ b2, Button^ b3, Button^ b4, Button^ b5, Button^ b6,
 	btn11 = b11;
 	btn12 = b12;
 	btnSee = bsee;
-	
-}
 
-// Déclaration de la fonction utilisé dans le form TableauBord pour afficher ou cacher les boutons warnings 
-void Fct::initializeWarningBtn(int fct)
-{
-
-	if (fct < 13)
+	if (i < 13)
 	{
-		switch (fct)
+		switch (i)
 		{
 		case 1:
 			btn1->Visible = true;
@@ -205,10 +207,10 @@ void Fct::initializeWarningBtn(int fct)
 			btn11->Visible = true;
 			btn12->Visible = true;
 			btnSee->Visible = false;
-		
+
 		}
 	}
-	if (fct >= 13)
+	if (i >= 13)
 	{
 		btn1->Visible = true;
 		btn2->Visible = true;
@@ -222,14 +224,14 @@ void Fct::initializeWarningBtn(int fct)
 		btn10->Visible = true;
 		btn11->Visible = true;
 		btn12->Visible = true;
-		btnSee->Text = "Voir plus (+" + (fct-12).ToString() + ")";
+		btnSee->Text = "Voir plus (+" + (i - 12).ToString() + ")";
 		btnSee->Visible = true;
 	}
 
 	fillBtnText();
 }
 
-void Fct::setTabTextWarning()
+void Controleur::setTabTextWarning()
 {
 	this->tabText[0] = "Warning 1";
 	this->tabText[1] = "Warning 2";
@@ -246,7 +248,7 @@ void Fct::setTabTextWarning()
 
 }
 
-void Fct::setTabBtnWarning()
+void Controleur::setTabBtnWarning()
 {
 	this->tabBtn[0] = btn1;
 	this->tabBtn[1] = btn2;
@@ -262,12 +264,12 @@ void Fct::setTabBtnWarning()
 	this->tabBtn[11] = btn12;
 }
 
-String^ Fct::getTabText(int i)
+String^ Controleur::getTabText(int i)
 {
 	return tabText[i];
 }
 
-void Fct::fillBtnText() 
+void Controleur::fillBtnText()
 {
 	setTabBtnWarning();
 	setTabTextWarning();
@@ -283,6 +285,28 @@ void Fct::fillBtnText()
 	this->tabBtn[9]->Text = getTabText(9);
 	this->tabBtn[10]->Text = getTabText(10);
 	this->tabBtn[11]->Text = getTabText(11);
-	
+
 }
 
+#pragma endregion
+
+
+void Controleur::openChildForm(Form^ childForm, Panel^ pnlForm)
+{
+	if (activeForm != nullptr)
+		activeForm->Close();
+
+
+	activeForm = childForm;
+	childForm->TopLevel = false;
+
+	childForm->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+	childForm->Dock = System::Windows::Forms::DockStyle::Fill;
+
+	pnlForm->Controls->Add(childForm);
+	pnlForm->Tag = childForm;
+
+	childForm->BringToFront();
+	childForm->Show();
+
+};
