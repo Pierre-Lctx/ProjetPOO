@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Adresse.h"
+
 namespace AppliProjetPOO {
 
 	using namespace System;
@@ -17,18 +19,25 @@ namespace AppliProjetPOO {
 	private :
 		bool changeClient = false;
 		bool changeEmploye = false;
+		bool adr1App,  adr2App;
+		String^ typePerson;
+		String^ ville1, ^ rue1, ^ numRue1, ^ batiment1, ^ etage1, ^ numApp1, ^ ville2, ^ rue2, ^ numRue2, ^ batiment2, ^ etage2, ^ numApp2;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Panel^ pnlAdress;
 
+	
 	public:
-		CreatePerson(void)
+		CreatePerson(String^ type)
 		{
 			InitializeComponent();
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
 
-			labelLivraison->Visible = false;
-			labelFacturation->Visible = false;
-			labelPersonnelle->Visible = false;
+			typePerson = type;
+			lblAdress1->Visible = false;
+			lblAdress2->Visible = false;
+			
 
 		}
 
@@ -45,53 +54,24 @@ namespace AppliProjetPOO {
 		}
 	private: System::Windows::Forms::Label^ label1;
 	protected:
-	private: System::Windows::Forms::Label^ label2;
-
-
-
-
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ labelNom;
 	private: System::Windows::Forms::Label^ labelPrenom;
 	private: System::Windows::Forms::Label^ labelGenre;
-
-
-
 	private: System::Windows::Forms::ComboBox^ comboBoxGenre;
-
 	private: System::Windows::Forms::TextBox^ textBoxPrenom;
-
 	private: System::Windows::Forms::TextBox^ textBoxNom;
-
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ textBoxAdresseMail;
 	private: System::Windows::Forms::TextBox^ textBoxNumTelephone;
 	private: System::Windows::Forms::Label^ labelNumTelephone;
 	private: System::Windows::Forms::Label^ labelAdresseMail;
-
-
-
-
 	private: System::Windows::Forms::Label^ label10;
-
-
-	private: System::Windows::Forms::Label^ labelFacturation;
-
-
-
-	private: System::Windows::Forms::Label^ labelLivraison;
-
-
-	private: System::Windows::Forms::Label^ labelPersonnelle;
-
-
+	private: System::Windows::Forms::Label^ lblAdress2;
+	private: System::Windows::Forms::Label^ lblAdress1;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::RadioButton^ rbClient;
-	private: System::Windows::Forms::RadioButton^ rbEmploye;
-
+	private: System::Windows::Forms::Button^ btnAdress1;
+	private: System::Windows::Forms::Button^ btnAdress2;
 	private:
 		/// <summary>
 		/// Variable nécessaire au concepteur.
@@ -106,7 +86,6 @@ namespace AppliProjetPOO {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->labelNom = (gcnew System::Windows::Forms::Label());
 			this->labelPrenom = (gcnew System::Windows::Forms::Label());
@@ -120,15 +99,15 @@ namespace AppliProjetPOO {
 			this->labelNumTelephone = (gcnew System::Windows::Forms::Label());
 			this->labelAdresseMail = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
-			this->labelFacturation = (gcnew System::Windows::Forms::Label());
-			this->labelLivraison = (gcnew System::Windows::Forms::Label());
-			this->labelPersonnelle = (gcnew System::Windows::Forms::Label());
+			this->lblAdress2 = (gcnew System::Windows::Forms::Label());
+			this->lblAdress1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->rbClient = (gcnew System::Windows::Forms::RadioButton());
-			this->rbEmploye = (gcnew System::Windows::Forms::RadioButton());
+			this->btnAdress1 = (gcnew System::Windows::Forms::Button());
+			this->btnAdress2 = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->pnlAdress = (gcnew System::Windows::Forms::Panel());
+			this->panel1->SuspendLayout();
+			this->pnlAdress->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -144,26 +123,13 @@ namespace AppliProjetPOO {
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Ajout d\'une personne";
 			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(33, 153);
-			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(319, 36);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"Statut de la personne";
-			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::Color::White;
-			this->label3->Location = System::Drawing::Point(33, 332);
+			this->label3->Location = System::Drawing::Point(2, 14);
 			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(374, 36);
@@ -176,7 +142,7 @@ namespace AppliProjetPOO {
 			this->labelNom->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelNom->ForeColor = System::Drawing::Color::White;
-			this->labelNom->Location = System::Drawing::Point(34, 379);
+			this->labelNom->Location = System::Drawing::Point(3, 67);
 			this->labelNom->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelNom->Name = L"labelNom";
 			this->labelNom->Size = System::Drawing::Size(120, 30);
@@ -189,7 +155,7 @@ namespace AppliProjetPOO {
 			this->labelPrenom->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelPrenom->ForeColor = System::Drawing::Color::White;
-			this->labelPrenom->Location = System::Drawing::Point(34, 421);
+			this->labelPrenom->Location = System::Drawing::Point(4, 120);
 			this->labelPrenom->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelPrenom->Name = L"labelPrenom";
 			this->labelPrenom->Size = System::Drawing::Size(119, 30);
@@ -202,7 +168,7 @@ namespace AppliProjetPOO {
 			this->labelGenre->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelGenre->ForeColor = System::Drawing::Color::White;
-			this->labelGenre->Location = System::Drawing::Point(34, 461);
+			this->labelGenre->Location = System::Drawing::Point(4, 179);
 			this->labelGenre->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelGenre->Name = L"labelGenre";
 			this->labelGenre->Size = System::Drawing::Size(123, 30);
@@ -212,7 +178,7 @@ namespace AppliProjetPOO {
 			// comboBoxGenre
 			// 
 			this->comboBoxGenre->FormattingEnabled = true;
-			this->comboBoxGenre->Location = System::Drawing::Point(161, 466);
+			this->comboBoxGenre->Location = System::Drawing::Point(127, 184);
 			this->comboBoxGenre->Margin = System::Windows::Forms::Padding(2);
 			this->comboBoxGenre->Name = L"comboBoxGenre";
 			this->comboBoxGenre->Size = System::Drawing::Size(246, 25);
@@ -220,7 +186,7 @@ namespace AppliProjetPOO {
 			// 
 			// textBoxPrenom
 			// 
-			this->textBoxPrenom->Location = System::Drawing::Point(161, 421);
+			this->textBoxPrenom->Location = System::Drawing::Point(127, 129);
 			this->textBoxPrenom->Margin = System::Windows::Forms::Padding(2);
 			this->textBoxPrenom->Multiline = true;
 			this->textBoxPrenom->Name = L"textBoxPrenom";
@@ -229,7 +195,7 @@ namespace AppliProjetPOO {
 			// 
 			// textBoxNom
 			// 
-			this->textBoxNom->Location = System::Drawing::Point(161, 379);
+			this->textBoxNom->Location = System::Drawing::Point(130, 76);
 			this->textBoxNom->Margin = System::Windows::Forms::Padding(2);
 			this->textBoxNom->Multiline = true;
 			this->textBoxNom->Name = L"textBoxNom";
@@ -242,7 +208,7 @@ namespace AppliProjetPOO {
 			this->label7->Font = (gcnew System::Drawing::Font(L"Century Gothic", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label7->ForeColor = System::Drawing::Color::White;
-			this->label7->Location = System::Drawing::Point(704, 153);
+			this->label7->Location = System::Drawing::Point(64, 411);
 			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(250, 36);
@@ -251,7 +217,7 @@ namespace AppliProjetPOO {
 			// 
 			// textBoxAdresseMail
 			// 
-			this->textBoxAdresseMail->Location = System::Drawing::Point(1003, 207);
+			this->textBoxAdresseMail->Location = System::Drawing::Point(266, 474);
 			this->textBoxAdresseMail->Margin = System::Windows::Forms::Padding(2);
 			this->textBoxAdresseMail->Multiline = true;
 			this->textBoxAdresseMail->Name = L"textBoxAdresseMail";
@@ -260,7 +226,7 @@ namespace AppliProjetPOO {
 			// 
 			// textBoxNumTelephone
 			// 
-			this->textBoxNumTelephone->Location = System::Drawing::Point(1003, 249);
+			this->textBoxNumTelephone->Location = System::Drawing::Point(949, 474);
 			this->textBoxNumTelephone->Margin = System::Windows::Forms::Padding(2);
 			this->textBoxNumTelephone->Multiline = true;
 			this->textBoxNumTelephone->Name = L"textBoxNumTelephone";
@@ -273,7 +239,7 @@ namespace AppliProjetPOO {
 			this->labelNumTelephone->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelNumTelephone->ForeColor = System::Drawing::Color::White;
-			this->labelNumTelephone->Location = System::Drawing::Point(705, 249);
+			this->labelNumTelephone->Location = System::Drawing::Point(632, 474);
 			this->labelNumTelephone->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelNumTelephone->Name = L"labelNumTelephone";
 			this->labelNumTelephone->Size = System::Drawing::Size(293, 30);
@@ -286,12 +252,12 @@ namespace AppliProjetPOO {
 			this->labelAdresseMail->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelAdresseMail->ForeColor = System::Drawing::Color::White;
-			this->labelAdresseMail->Location = System::Drawing::Point(709, 207);
+			this->labelAdresseMail->Location = System::Drawing::Point(65, 474);
 			this->labelAdresseMail->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelAdresseMail->Name = L"labelAdresseMail";
-			this->labelAdresseMail->Size = System::Drawing::Size(290, 30);
+			this->labelAdresseMail->Size = System::Drawing::Size(178, 30);
 			this->labelAdresseMail->TabIndex = 12;
-			this->labelAdresseMail->Text = L"Adresse mail                 :";
+			this->labelAdresseMail->Text = L"Adresse mail :";
 			// 
 			// label10
 			// 
@@ -299,51 +265,38 @@ namespace AppliProjetPOO {
 			this->label10->Font = (gcnew System::Drawing::Font(L"Century Gothic", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label10->ForeColor = System::Drawing::Color::White;
-			this->label10->Location = System::Drawing::Point(704, 332);
+			this->label10->Location = System::Drawing::Point(14, 18);
 			this->label10->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(125, 36);
 			this->label10->TabIndex = 16;
 			this->label10->Text = L"Adresse";
 			// 
-			// labelFacturation
+			// lblAdress2
 			// 
-			this->labelFacturation->AutoSize = true;
-			this->labelFacturation->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblAdress2->AutoSize = true;
+			this->lblAdress2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->labelFacturation->ForeColor = System::Drawing::Color::White;
-			this->labelFacturation->Location = System::Drawing::Point(707, 421);
-			this->labelFacturation->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->labelFacturation->Name = L"labelFacturation";
-			this->labelFacturation->Size = System::Drawing::Size(162, 30);
-			this->labelFacturation->TabIndex = 18;
-			this->labelFacturation->Text = L"Facturation :";
+			this->lblAdress2->ForeColor = System::Drawing::Color::White;
+			this->lblAdress2->Location = System::Drawing::Point(15, 114);
+			this->lblAdress2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblAdress2->Name = L"lblAdress2";
+			this->lblAdress2->Size = System::Drawing::Size(162, 30);
+			this->lblAdress2->TabIndex = 18;
+			this->lblAdress2->Text = L"Facturation :";
 			// 
-			// labelLivraison
+			// lblAdress1
 			// 
-			this->labelLivraison->AutoSize = true;
-			this->labelLivraison->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblAdress1->AutoSize = true;
+			this->lblAdress1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->labelLivraison->ForeColor = System::Drawing::Color::White;
-			this->labelLivraison->Location = System::Drawing::Point(705, 379);
-			this->labelLivraison->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->labelLivraison->Name = L"labelLivraison";
-			this->labelLivraison->Size = System::Drawing::Size(164, 30);
-			this->labelLivraison->TabIndex = 17;
-			this->labelLivraison->Text = L"Livraison      :";
-			// 
-			// labelPersonnelle
-			// 
-			this->labelPersonnelle->AutoSize = true;
-			this->labelPersonnelle->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->labelPersonnelle->ForeColor = System::Drawing::Color::White;
-			this->labelPersonnelle->Location = System::Drawing::Point(705, 466);
-			this->labelPersonnelle->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->labelPersonnelle->Name = L"labelPersonnelle";
-			this->labelPersonnelle->Size = System::Drawing::Size(164, 30);
-			this->labelPersonnelle->TabIndex = 21;
-			this->labelPersonnelle->Text = L"Personnelle :";
+			this->lblAdress1->ForeColor = System::Drawing::Color::White;
+			this->lblAdress1->Location = System::Drawing::Point(15, 72);
+			this->lblAdress1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblAdress1->Name = L"lblAdress1";
+			this->lblAdress1->Size = System::Drawing::Size(164, 30);
+			this->lblAdress1->TabIndex = 17;
+			this->lblAdress1->Text = L"Livraison      :";
 			// 
 			// button1
 			// 
@@ -357,68 +310,55 @@ namespace AppliProjetPOO {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &CreatePerson::button1_Click);
 			// 
-			// button2
+			// btnAdress1
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnAdress1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(935, 377);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(181, 32);
-			this->button2->TabIndex = 24;
-			this->button2->Text = L"Ajouter";
-			this->button2->UseVisualStyleBackColor = true;
+			this->btnAdress1->Location = System::Drawing::Point(182, 70);
+			this->btnAdress1->Name = L"btnAdress1";
+			this->btnAdress1->Size = System::Drawing::Size(181, 32);
+			this->btnAdress1->TabIndex = 24;
+			this->btnAdress1->Text = L"Ajouter";
+			this->btnAdress1->UseVisualStyleBackColor = true;
+			this->btnAdress1->Click += gcnew System::EventHandler(this, &CreatePerson::btnAdress1_Click);
 			// 
-			// button3
+			// btnAdress2
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnAdress2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(935, 419);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(181, 32);
-			this->button3->TabIndex = 25;
-			this->button3->Text = L"Ajouter";
-			this->button3->UseVisualStyleBackColor = true;
+			this->btnAdress2->Location = System::Drawing::Point(182, 116);
+			this->btnAdress2->Name = L"btnAdress2";
+			this->btnAdress2->Size = System::Drawing::Size(181, 32);
+			this->btnAdress2->TabIndex = 25;
+			this->btnAdress2->Text = L"Ajouter";
+			this->btnAdress2->UseVisualStyleBackColor = true;
+			this->btnAdress2->Click += gcnew System::EventHandler(this, &CreatePerson::btnAdress2_Click);
 			// 
-			// button4
+			// panel1
 			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(935, 463);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(181, 32);
-			this->button4->TabIndex = 26;
-			this->button4->Text = L"Ajouter";
-			this->button4->UseVisualStyleBackColor = true;
+			this->panel1->Controls->Add(this->label3);
+			this->panel1->Controls->Add(this->labelNom);
+			this->panel1->Controls->Add(this->labelPrenom);
+			this->panel1->Controls->Add(this->labelGenre);
+			this->panel1->Controls->Add(this->textBoxNom);
+			this->panel1->Controls->Add(this->textBoxPrenom);
+			this->panel1->Controls->Add(this->comboBoxGenre);
+			this->panel1->Location = System::Drawing::Point(61, 153);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(405, 215);
+			this->panel1->TabIndex = 27;
 			// 
-			// rbClient
+			// pnlAdress
 			// 
-			this->rbClient->AutoSize = true;
-			this->rbClient->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->rbClient->ForeColor = System::Drawing::Color::White;
-			this->rbClient->Location = System::Drawing::Point(54, 214);
-			this->rbClient->Name = L"rbClient";
-			this->rbClient->Size = System::Drawing::Size(102, 34);
-			this->rbClient->TabIndex = 27;
-			this->rbClient->TabStop = true;
-			this->rbClient->Text = L"Client";
-			this->rbClient->UseVisualStyleBackColor = true;
-			this->rbClient->CheckedChanged += gcnew System::EventHandler(this, &CreatePerson::rbClient_CheckedChanged);
-			// 
-			// rbEmploye
-			// 
-			this->rbEmploye->AutoSize = true;
-			this->rbEmploye->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->rbEmploye->ForeColor = System::Drawing::Color::White;
-			this->rbEmploye->Location = System::Drawing::Point(54, 271);
-			this->rbEmploye->Name = L"rbEmploye";
-			this->rbEmploye->Size = System::Drawing::Size(135, 34);
-			this->rbEmploye->TabIndex = 28;
-			this->rbEmploye->TabStop = true;
-			this->rbEmploye->Text = L"Employé";
-			this->rbEmploye->UseVisualStyleBackColor = true;
-			this->rbEmploye->CheckedChanged += gcnew System::EventHandler(this, &CreatePerson::rbEmploye_CheckedChanged);
+			this->pnlAdress->Controls->Add(this->label10);
+			this->pnlAdress->Controls->Add(this->lblAdress1);
+			this->pnlAdress->Controls->Add(this->lblAdress2);
+			this->pnlAdress->Controls->Add(this->btnAdress2);
+			this->pnlAdress->Controls->Add(this->btnAdress1);
+			this->pnlAdress->Location = System::Drawing::Point(692, 153);
+			this->pnlAdress->Name = L"pnlAdress";
+			this->pnlAdress->Size = System::Drawing::Size(372, 154);
+			this->pnlAdress->TabIndex = 28;
 			// 
 			// CreatePerson
 			// 
@@ -427,29 +367,14 @@ namespace AppliProjetPOO {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->ClientSize = System::Drawing::Size(1278, 596);
-			this->Controls->Add(this->rbEmploye);
-			this->Controls->Add(this->rbClient);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->pnlAdress);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->labelPersonnelle);
-			this->Controls->Add(this->labelFacturation);
-			this->Controls->Add(this->labelLivraison);
-			this->Controls->Add(this->label10);
 			this->Controls->Add(this->textBoxAdresseMail);
 			this->Controls->Add(this->textBoxNumTelephone);
 			this->Controls->Add(this->labelNumTelephone);
 			this->Controls->Add(this->labelAdresseMail);
 			this->Controls->Add(this->label7);
-			this->Controls->Add(this->textBoxNom);
-			this->Controls->Add(this->textBoxPrenom);
-			this->Controls->Add(this->comboBoxGenre);
-			this->Controls->Add(this->labelGenre);
-			this->Controls->Add(this->labelPrenom);
-			this->Controls->Add(this->labelNom);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Font = (gcnew System::Drawing::Font(L"Century Gothic", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -458,6 +383,10 @@ namespace AppliProjetPOO {
 			this->Name = L"CreatePerson";
 			this->Text = L"CreatePerson";
 			this->Load += gcnew System::EventHandler(this, &CreatePerson::CreatePerson_Load);
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
+			this->pnlAdress->ResumeLayout(false);
+			this->pnlAdress->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -465,14 +394,25 @@ namespace AppliProjetPOO {
 #pragma endregion
 	private: System::Void CreatePerson_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
-
+		if (typePerson == "employe")
+		{
+			label1->Text = "Ajouter un Employer";
+			lblAdress1->Visible = true;
+			lblAdress2->Visible = false;
+			btnAdress2->Visible = false;
+			pnlAdress->Size = System::Drawing::Size(372, 109);
+		}
+		if (typePerson == "Client")
+		{
+			label1->Text = "Ajouter un Client";
+		}
 	}
-
+		   
 	private: System::Boolean checkIsNotVoid()
 	{
-		if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && rbClient->Checked)
+		if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "")
 			return true;
-		else if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "" && rbEmploye->Checked)
+		else if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "")
 			return true;
 		else
 			return false;
@@ -489,42 +429,88 @@ namespace AppliProjetPOO {
 			MessageBox::Show("Vous devez remplir tous les champs !");
 		}
 	}
+private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (typePerson == "employe")
+	{
+		Adresse^ adr1 = gcnew Adresse();
 
+		adr1->ShowDialog();
+		adr1App = adr1->getTypeLocation();
 
+		if (adr1App == true)
+		{
+			ville1 = adr1->getVille();
+			rue1 = adr1->getRue();
+			numRue1 = adr1->getNumRue();
+			batiment1 = adr1->getBatiment();
+			etage1 = adr1->getEtage();
+			numApp1 = adr1->getNumApp();
+		}
+		else
+		{
+			ville1 = adr1->getVille();
+			rue1 = adr1->getRue();
+			numRue1 = adr1->getNumRue();
+		}
+		
+		adr1->Close();
+	}
+	if (typePerson == "Client")
+	{
+		
+		Adresse^ adr1 = gcnew Adresse();
+
+		adr1->ShowDialog();
+		adr1App = adr1->getTypeLocation();
+
+		if (adr1App == true)
+		{
+			ville1 = adr1->getVille();
+			rue1 = adr1->getRue();
+			numRue1 = adr1->getNumRue();
+			batiment1 = adr1->getBatiment();
+			etage1 = adr1->getEtage();
+			numApp1 = adr1->getNumApp();
+		}
+		else
+		{
+			ville1 = adr1->getVille();
+			rue1 = adr1->getRue();
+			numRue1 = adr1->getNumRue();
+		}
+
+		adr1->Close();
+	}
 	
-private: System::Void rbClient_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (changeClient == true)
-	{
-		changeClient = false;
-		labelLivraison->Visible = true;
-		labelFacturation->Visible = true;
-		labelPersonnelle->Visible = true;
-	}
-	else
-	{
-		changeClient = true;
-		labelLivraison->Visible = true;
-		labelFacturation->Visible = true;
-		labelPersonnelle->Visible = false;
-
-	}
 }
-private: System::Void rbEmploye_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+private: System::Void btnAdress2_Click(System::Object^ sender, System::EventArgs^ e) 
 {
-	if (changeEmploye == true)
+	if (typePerson == "Client")
 	{
-		changeEmploye = false;
-		labelLivraison->Visible = true;
-		labelFacturation->Visible = true;
-		labelPersonnelle->Visible = false;
-	}
-	else
-	{
-		changeEmploye = true;
-		labelLivraison->Visible = true;
-		labelFacturation->Visible = true;
-		labelPersonnelle->Visible = true;
+
+		Adresse^ adr2 = gcnew Adresse();
+
+		adr2->ShowDialog();
+		adr2App = adr2->getTypeLocation();
+
+		if (adr2App == true)
+		{
+			ville2 = adr2->getVille();
+			rue2 = adr2->getRue();
+			numRue2 = adr2->getNumRue();
+			batiment2 = adr2->getBatiment();
+			etage2 = adr2->getEtage();
+			numApp1 = adr2->getNumApp();
+		}
+		else
+		{
+			ville2 = adr2->getVille();
+			rue2 = adr2->getRue();
+			numRue1 = adr2->getNumRue();
+		}
+
+		adr2->Close();
 	}
 }
 };

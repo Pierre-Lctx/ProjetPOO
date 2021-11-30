@@ -299,6 +299,7 @@ void Controleur::openChildForm(Form^ childForm, Panel^ pnlForm)
 
 	activeForm = childForm;
 	childForm->TopLevel = false;
+
 	childForm->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 	childForm->Dock = System::Windows::Forms::DockStyle::Fill;
 

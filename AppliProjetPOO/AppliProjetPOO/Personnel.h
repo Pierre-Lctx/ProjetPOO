@@ -18,6 +18,9 @@ namespace AppliProjetPOO {
 	{
 	private:
 		Form^ active = nullptr;
+		bool IDclick = false;
+		bool NomClick = false;
+		bool PrenomClick = false;
 		
 	public:
 		Personnel(void)
@@ -26,6 +29,9 @@ namespace AppliProjetPOO {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+			this->tbID->ReadOnly = true;
+			this->tbNom->ReadOnly = true;
+			this->tbPrenom->ReadOnly = true;
 		}
 
 	protected:
@@ -229,6 +235,8 @@ namespace AppliProjetPOO {
 			this->tbPrenom->Size = System::Drawing::Size(136, 20);
 			this->tbPrenom->TabIndex = 4;
 			this->tbPrenom->Text = L"Entrer le Prénom...";
+			this->tbPrenom->Click += gcnew System::EventHandler(this, &Personnel::tbPrenom_Click);
+			this->tbPrenom->Leave += gcnew System::EventHandler(this, &Personnel::tbPrenom_Leave);
 			// 
 			// tbNom
 			// 
@@ -242,6 +250,8 @@ namespace AppliProjetPOO {
 			this->tbNom->Size = System::Drawing::Size(132, 20);
 			this->tbNom->TabIndex = 3;
 			this->tbNom->Text = L"Entrer le Nom...";
+			this->tbNom->Click += gcnew System::EventHandler(this, &Personnel::tbNom_Click);
+			this->tbNom->Leave += gcnew System::EventHandler(this, &Personnel::tbNom_Leave);
 			// 
 			// tbID
 			// 
@@ -255,6 +265,8 @@ namespace AppliProjetPOO {
 			this->tbID->Size = System::Drawing::Size(81, 20);
 			this->tbID->TabIndex = 2;
 			this->tbID->Text = L"Entrer l\'ID...";
+			this->tbID->Click += gcnew System::EventHandler(this, &Personnel::tbID_Click);
+			this->tbID->Leave += gcnew System::EventHandler(this, &Personnel::tbID_Leave);
 			// 
 			// rbNomPrenom
 			// 
@@ -270,6 +282,7 @@ namespace AppliProjetPOO {
 			this->rbNomPrenom->TabStop = true;
 			this->rbNomPrenom->Text = L"Recherche par Nom et Prenom";
 			this->rbNomPrenom->UseVisualStyleBackColor = true;
+			this->rbNomPrenom->CheckedChanged += gcnew System::EventHandler(this, &Personnel::rbNomPrenom_CheckedChanged);
 			// 
 			// rbID
 			// 
@@ -286,6 +299,7 @@ namespace AppliProjetPOO {
 			this->rbID->TabStop = true;
 			this->rbID->Text = L"Recherche par ID";
 			this->rbID->UseVisualStyleBackColor = true;
+			this->rbID->CheckedChanged += gcnew System::EventHandler(this, &Personnel::rbID_CheckedChanged);
 			// 
 			// pnlTitle
 			// 
@@ -397,7 +411,7 @@ namespace AppliProjetPOO {
 
 private: System::Void btnCreer_Click(System::Object^ sender, System::EventArgs^ e) 
 {
-	CreatePerson^ frmCreatePerson = gcnew CreatePerson();
+	CreatePerson^ frmCreatePerson = gcnew CreatePerson("employe");
 	active = frmCreatePerson;
 	frmCreatePerson->ShowDialog();
 
@@ -406,5 +420,48 @@ private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ 
 {
 	active->Close();
 }
+private: System::Void rbID_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+{
+	this->tbID->ReadOnly = false;
+	this->tbNom->ReadOnly = true;
+	this->tbPrenom->ReadOnly = true;
+}
+private: System::Void rbNomPrenom_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+{
+	this->tbID->ReadOnly = true;
+	this->tbNom->ReadOnly = false;
+	this->tbPrenom->ReadOnly = false;
+}
+private: System::Void tbID_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	this->tbID->Text = "";
+}
+private: System::Void tbID_Leave(System::Object^ sender, System::EventArgs^ e) 
+{
+	if (tbID->Text == "")
+		this->tbID->Text = "Entrer l'ID...";
+
+} 
+private: System::Void tbNom_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbNom->Text = "";
+	}
+private: System::Void tbNom_Leave(System::Object^ sender, System::EventArgs^ e) 
+{
+	if (tbNom->Text == "")
+		this->tbNom->Text = "Entrer le Nom...";
+	
+}
+private: System::Void tbPrenom_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	this->tbPrenom->Text = "";
+}
+private: System::Void tbPrenom_Leave(System::Object^ sender, System::EventArgs^ e) 
+{
+	if (tbPrenom->Text == "")
+		this->tbPrenom->Text = "Entrer le Prenom...";
+	
+}
+
 };
 }
