@@ -5,6 +5,7 @@
 #include "MyProfile1.h"
 #include "Personnel.h"
 #include "Controleur.h"
+#include "Client.h"
 
 namespace AppliProjetPOO {
 
@@ -470,6 +471,8 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnClient->Height;
 		pnlNav->Top = btnClient->Top;
 		btnClient->BackColor = Color::FromArgb(46, 51, 73);
+		C->openChildForm(gcnew AppliProjetPOO::Client, pnlFormShow);
+		this->lblActiveForm->Text = "Gérer les clients";
 	}
 	private: System::Void btnCommande_Click(System::Object^ sender, System::EventArgs^ e)
 	{
