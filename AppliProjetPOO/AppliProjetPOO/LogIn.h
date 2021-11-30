@@ -48,10 +48,8 @@ namespace AppliProjetPOO {
 	protected:
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBoxMail;
-
 	private: System::Windows::Forms::TextBox^ textBoxPassword;
 	private: System::Windows::Forms::Label^ label2;
-
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ lblShowPass;
 	private: System::Windows::Forms::PictureBox^ pctBoxPassVisible;

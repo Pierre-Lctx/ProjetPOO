@@ -1,6 +1,7 @@
 #pragma once
 
-namespace AppliProjetPOO {
+namespace AppliProjetPOO 
+{
 
 	using namespace System;
 	using namespace System::ComponentModel;
