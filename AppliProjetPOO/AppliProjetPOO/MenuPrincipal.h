@@ -6,6 +6,7 @@
 #include "Personnel.h"
 #include "Controleur.h"
 #include "Client.h"
+#include "MyProfile1.h"
 
 namespace AppliProjetPOO {
 
