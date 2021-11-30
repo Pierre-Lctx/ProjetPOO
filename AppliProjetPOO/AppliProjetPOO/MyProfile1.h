@@ -595,7 +595,8 @@ namespace AppliProjetPOO {
 		labelMatricule->Visible = true;
 		labelEmail->Visible = true;
 		labelTelephone->Visible = true;
-
+		labelDateEmbauche->Visible = true;
+		labelDateNaissance->Visible = true;
 		labelSuperieur->Visible = true;
 
 		// textBox
