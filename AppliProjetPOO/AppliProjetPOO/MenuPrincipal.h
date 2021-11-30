@@ -6,6 +6,8 @@
 #include "Personnel.h"
 #include "Controleur.h"
 #include "Client.h"
+#include "Stocks.h"
+#include "Commandes.h"
 
 namespace AppliProjetPOO {
 
@@ -457,7 +459,7 @@ namespace AppliProjetPOO {
 		pnlNav->Top = btnPerso->Top;
 		btnPerso->BackColor = Color::FromArgb(46, 51, 73);
 		C->openChildForm(gcnew AppliProjetPOO::Personnel, pnlFormShow);
-		this->lblActiveForm->Text = "Gerer le Personnel";
+		this->lblActiveForm->Text = "Gérer le Personnel";
 	}
 
 	private: System::Void btnStock_Click(System::Object^ sender, System::EventArgs^ e)
@@ -465,6 +467,8 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnStock->Height;
 		pnlNav->Top = btnStock->Top;
 		btnStock->BackColor = Color::FromArgb(46, 51, 73);
+		C->openChildForm(gcnew AppliProjetPOO::Stocks, pnlFormShow);
+		this->lblActiveForm->Text = "Gérer les stocks";
 	}
 	private: System::Void btnClient_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -479,6 +483,8 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnCommande->Height;
 		pnlNav->Top = btnCommande->Top;
 		btnCommande->BackColor = Color::FromArgb(46, 51, 73);
+		C->openChildForm(gcnew AppliProjetPOO::Commandes, pnlFormShow);
+		this->lblActiveForm->Text = "Gérer les commandes";
 	}
 	private: System::Void btnStat_Click(System::Object^ sender, System::EventArgs^ e)
 	{
