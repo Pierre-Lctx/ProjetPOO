@@ -32,6 +32,8 @@ namespace AppliProjetPOO {
 			this->tbID->ReadOnly = true;
 			this->tbNom->ReadOnly = true;
 			this->tbPrenom->ReadOnly = true;
+
+
 		}
 
 	protected:
