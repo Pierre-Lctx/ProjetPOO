@@ -128,8 +128,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
+    <ClCompile Include="Article.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Commandes.cpp" />
     <ClCompile Include="Connection.cpp" />
+    <ClCompile Include="CreateCommande.cpp" />
     <ClCompile Include="CreatePerson.cpp" />
     <ClCompile Include="Controleur.cpp" />
     <ClCompile Include="LogIn.cpp" />
@@ -137,16 +140,26 @@
     <ClCompile Include="MyProfile1.cpp" />
     <ClCompile Include="Personnel.cpp" />
     <ClCompile Include="Stats.cpp" />
+    <ClCompile Include="Stocks.cpp" />
     <ClCompile Include="TableauBord.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Article.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Client.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Commandes.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Connection.h" />
+    <ClInclude Include="CreateCommande.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="CreatePerson.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -167,6 +180,9 @@
     <ClInclude Include="Stats.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Stocks.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="TableauBord.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -175,8 +191,17 @@
     <EmbeddedResource Include="Adresse.resx">
       <DependentUpon>Adresse.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Article.resx">
+      <DependentUpon>Article.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commandes.resx">
+      <DependentUpon>Commandes.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateCommande.resx">
+      <DependentUpon>CreateCommande.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreatePerson.resx">
       <DependentUpon>CreatePerson.h</DependentUpon>
@@ -195,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stats.resx">
       <DependentUpon>Stats.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stocks.resx">
+      <DependentUpon>Stocks.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableauBord.resx">
       <DependentUpon>TableauBord.h</DependentUpon>

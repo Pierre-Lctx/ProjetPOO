@@ -6,7 +6,7 @@ using namespace System::Windows::Forms;
 
 
 [STAThreadAttribute]
-void MainAcceuil(array<String^>^ args)
+void MainAcceuil()
 {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
