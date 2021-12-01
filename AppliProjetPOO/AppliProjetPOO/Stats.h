@@ -31,6 +31,7 @@ namespace AppliProjetPOO
 		dgvStat->Columns["natureArticle"]->Visible = false;
 		dgvStat->Columns["couleurArticle"]->Visible = false;
 		dgvStat->Columns["stockArticle"]->Visible = false;
+		graphSimulation->Series[0]->Points->Clear();
 		
 	}
 	private: void hideAllLblInfo()
@@ -55,7 +56,7 @@ namespace AppliProjetPOO
 
 	
 
-		   SqlConnection^ con = gcnew SqlConnection("Data Source=LAPTOP-07RHIAUR\\MSSQL_BAPTISTE;Initial Catalog=DBProjet;Integrated Security=True");
+		   SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-P3RNDHD;Initial Catalog=DBProjet;Integrated Security=True");
 	public:
 		Stats(void)
 		{
@@ -136,9 +137,9 @@ namespace AppliProjetPOO
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->graphSimulation = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->lblNonGraph = (gcnew System::Windows::Forms::Label());
@@ -207,32 +208,44 @@ namespace AppliProjetPOO
 			// 
 			this->graphSimulation->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			chartArea2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			chartArea1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			chartArea2->BorderColor = System::Drawing::Color::White;
-			chartArea2->Name = L"ChartArea1";
-			this->graphSimulation->ChartAreas->Add(chartArea2);
+			chartArea1->BorderColor = System::Drawing::Color::White;
+			chartArea1->Name = L"ChartArea1";
+			this->graphSimulation->ChartAreas->Add(chartArea1);
 			this->graphSimulation->Dock = System::Windows::Forms::DockStyle::Fill;
-			legend2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			legend1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			legend2->ForeColor = System::Drawing::Color::White;
-			legend2->HeaderSeparatorColor = System::Drawing::Color::White;
-			legend2->ItemColumnSeparatorColor = System::Drawing::Color::White;
-			legend2->Name = L"Legend1";
-			legend2->TitleBackColor = System::Drawing::Color::White;
-			legend2->TitleForeColor = System::Drawing::Color::White;
-			legend2->TitleSeparatorColor = System::Drawing::Color::White;
-			this->graphSimulation->Legends->Add(legend2);
+			legend1->ForeColor = System::Drawing::Color::White;
+			legend1->HeaderSeparatorColor = System::Drawing::Color::White;
+			legend1->ItemColumnSeparatorColor = System::Drawing::Color::White;
+			legend1->Name = L"Legend1";
+			legend1->TitleBackColor = System::Drawing::Color::White;
+			legend1->TitleForeColor = System::Drawing::Color::White;
+			legend1->TitleSeparatorColor = System::Drawing::Color::White;
+			this->graphSimulation->Legends->Add(legend1);
 			this->graphSimulation->Location = System::Drawing::Point(0, 0);
 			this->graphSimulation->Name = L"graphSimulation";
 			this->graphSimulation->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
-			series2->ChartArea = L"ChartArea1";
-			series2->LabelForeColor = System::Drawing::Color::White;
-			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
-			this->graphSimulation->Series->Add(series2);
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Prix du stock De l\'article d\'après la simultation";
+			this->graphSimulation->Series->Add(series1);
 			this->graphSimulation->Size = System::Drawing::Size(1006, 267);
 			this->graphSimulation->TabIndex = 0;
+			//Couleurs sur l'Axe X
+			this->graphSimulation->ChartAreas[0]->AxisX->LineColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisX->MajorGrid->LineColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisX->InterlacedColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisX->LabelStyle->ForeColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisX->MajorTickMark->LineColor = Color::White;
+
+			//Couleurs sur l'Axe Y
+			this->graphSimulation->ChartAreas[0]->AxisY->LineColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisY->InterlacedColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisY->MajorGrid->LineColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisY->LabelStyle->ForeColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisY->MajorTickMark->LineColor = Color::White;
 			// 
 			// lblNonGraph
 			// 
@@ -628,6 +641,7 @@ namespace AppliProjetPOO
 			this->btnClear->TabIndex = 23;
 			this->btnClear->Text = L"Vider";
 			this->btnClear->UseVisualStyleBackColor = true;
+			this->btnClear->Click += gcnew System::EventHandler(this, &Stats::btnClear_Click);
 			// 
 			// cbDemarche
 			// 
@@ -1083,6 +1097,8 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		dgvStat->Columns["stockArticle"]->Visible = true;
 
 		graphSimulation->Visible = true;
+		graphSimulation->Series[0]->Points->Clear();
+		
 
 		
 	
@@ -1100,10 +1116,11 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		}
 		nbLigneDGV++;
 	
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < nbLigneDGV; i++)
 		{
-				double calculValue = Convert::ToDouble(dgvStat[i, 3])*((Convert::ToDouble(dgvStat[i,4])+ Convert::ToDouble(cbTVA->Text))* (Convert::ToDouble(dgvStat[i, 4])+(Convert::ToDouble(cbMarge->Text)* Convert::ToDouble(dgvStat[i, 4]));
-				
+			double calculValue = 0+i;
+			//calculValue = Convert::ToDouble(dgvStat[i, 3]) * ((Convert::ToDouble(dgvStat[i, 4]) + Convert::ToDouble(cbTVA->Text)) * (Convert::ToDouble(dgvStat[i, 4]) + (Convert::ToDouble(cbMarge->Text) * (Convert::ToDouble(dgvStat[i, 4])));
+			graphSimulation->Series[0]->Points->AddXY("Simulation" + i, calculValue);
 		}
 
 		drArticleSimu->Close();
@@ -1117,5 +1134,14 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 
 
 	}
+private: System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	hideAllDG();
+	hideAllLblInfo();
+	lblNonGraph->Visible = true;
+	dgvStat->Rows->Clear();
+	graphSimulation->Visible = false;
+
+}
 };
 }
