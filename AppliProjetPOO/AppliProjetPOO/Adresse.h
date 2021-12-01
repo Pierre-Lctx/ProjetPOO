@@ -15,7 +15,7 @@ namespace AppliProjetPOO {
 	public ref class Adresse : public System::Windows::Forms::Form
 	{
 	private:
-		String^ ville, ^ rue, ^ numRue, ^ batiment, ^ etage, ^ numApp;
+		String^ ville, ^ rue, ^ numRue, ^ batiment, ^ etage, ^ codePostal;
 		bool liveApp;
 	public:
 		Adresse(void)
@@ -50,7 +50,9 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::TextBox^ tbNumRue;
 	private: System::Windows::Forms::ComboBox^ cbVille;
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::TextBox^ tbNumApp;
+	private: System::Windows::Forms::TextBox^ tbCodePostal;
+
+
 	private: System::Windows::Forms::Button^ btnValider;
 	private:
 		/// <summary>
@@ -77,7 +79,7 @@ namespace AppliProjetPOO {
 			this->tbNumRue = (gcnew System::Windows::Forms::TextBox());
 			this->cbVille = (gcnew System::Windows::Forms::ComboBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->tbNumApp = (gcnew System::Windows::Forms::TextBox());
+			this->tbCodePostal = (gcnew System::Windows::Forms::TextBox());
 			this->btnValider = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
@@ -217,14 +219,14 @@ namespace AppliProjetPOO {
 			this->label7->TabIndex = 12;
 			this->label7->Text = L"Code Postale  :";
 			// 
-			// tbNumApp
+			// tbCodePostal
 			// 
-			this->tbNumApp->Location = System::Drawing::Point(262, 285);
-			this->tbNumApp->Margin = System::Windows::Forms::Padding(6);
-			this->tbNumApp->Multiline = true;
-			this->tbNumApp->Name = L"tbNumApp";
-			this->tbNumApp->Size = System::Drawing::Size(175, 33);
-			this->tbNumApp->TabIndex = 13;
+			this->tbCodePostal->Location = System::Drawing::Point(262, 285);
+			this->tbCodePostal->Margin = System::Windows::Forms::Padding(6);
+			this->tbCodePostal->Multiline = true;
+			this->tbCodePostal->Name = L"tbCodePostal";
+			this->tbCodePostal->Size = System::Drawing::Size(175, 33);
+			this->tbCodePostal->TabIndex = 13;
 			// 
 			// btnValider
 			// 
@@ -250,7 +252,7 @@ namespace AppliProjetPOO {
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->ClientSize = System::Drawing::Size(504, 552);
 			this->Controls->Add(this->btnValider);
-			this->Controls->Add(this->tbNumApp);
+			this->Controls->Add(this->tbCodePostal);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->cbVille);
 			this->Controls->Add(this->tbNumRue);
@@ -295,9 +297,9 @@ namespace AppliProjetPOO {
 			{
 				return etage;
 			}
-			String^ getNumApp()
+			String^ getCodePostal()
 			{
-				return numApp;
+				return codePostal;
 			}
 			bool getTypeLocation()
 			{
@@ -306,11 +308,10 @@ namespace AppliProjetPOO {
 	
 private: System::Void btnValider_Click(System::Object^ sender, System::EventArgs^ e) 
 {
-	if (cbVille->Text == "" || tbRue->Text == "" || tbNumRue->Text == "" || tbBatiment->Text == "" || tbEtage->Text == "" || tbNumApp->Text == "")
+	if (cbVille->Text == "" || tbRue->Text == "" || tbNumRue->Text == "" || tbBatiment->Text == "" || tbEtage->Text == "" || tbCodePostal->Text == "")
 	{
-		MessageBoxButtons::OK;
-		MessageBoxIcon::Warning;
-		MessageBox::Show("Erreur");
+
+		MessageBox::Show("Tout les champs ne sont pas encore remplis !", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning );
 	}
 }
 };
