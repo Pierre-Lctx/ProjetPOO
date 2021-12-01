@@ -51,6 +51,18 @@
     <ClCompile Include="Client.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Stocks.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Article.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Commandes.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateCommande.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LogIn.h">
@@ -84,6 +96,22 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Client.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+
+    <ClInclude Include="Stocks.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Article.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Commandes.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateCommande.h">
+
+    <ClInclude Include="gestionProfile.h">
+
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
