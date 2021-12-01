@@ -98,6 +98,7 @@
     <ClInclude Include="Client.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+
     <ClInclude Include="Stocks.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -108,6 +109,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CreateCommande.h">
+
+    <ClInclude Include="gestionProfile.h">
+
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

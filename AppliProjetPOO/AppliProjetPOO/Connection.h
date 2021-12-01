@@ -37,5 +37,6 @@ namespace connection
 		void openConnection();
 		void closeConnection();
 		bool connection(String^, String^);
+		SqlConnection^ getConn();
 	};
 }

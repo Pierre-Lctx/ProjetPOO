@@ -164,6 +164,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Controleur.h" />
+    <ClInclude Include="gestionProfile.h" />
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -210,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyProfile1.resx">
+      <DependentUpon>MyProfile1.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personnel.resx">
       <DependentUpon>Personnel.h</DependentUpon>
