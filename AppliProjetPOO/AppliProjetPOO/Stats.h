@@ -1,6 +1,6 @@
 #pragma once
 #include "Connection.h"
-#include <list>
+
 
 namespace AppliProjetPOO 
 {
@@ -10,7 +10,6 @@ namespace AppliProjetPOO
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
-	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
 	using namespace connection;
 
@@ -948,42 +947,50 @@ private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::E
 	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
-	lblTitleInfo->Visible = true;
-	lblValueInfo->Visible = true;
-
-	String^ rqtNomClient = "SELECT NOM_PERSONNE, PRENOM_PERSONNE From Personne INNER JOIN Client ON Personne.ID_PERSONNE = " + cbIDClient->Text;
-
-	SqlCommand^ cmdNomClient = gcnew SqlCommand(rqtNomClient, conn->getConn());
-	
-	conn->openConnection();
-
-	SqlDataReader^ drNomClient = cmdNomClient->ExecuteReader();
-
-	if (drNomClient->Read())
+	if (cbIDClient->Text != "")
 	{
-		lblTitleInfo->Text = "Le Client ";
-		lblTitleInfo->Text += drNomClient->GetString(1) + "\r\n";
-		lblTitleInfo->Text += drNomClient->GetString(0) + "\r\n";
-		lblTitleInfo->Text += "a dépenser au total :";
+		lblTitleInfo->Visible = true;
+		lblValueInfo->Visible = true;
+
+		String^ rqtNomClient = "SELECT NOM_PERSONNE, PRENOM_PERSONNE From Personne INNER JOIN Client ON Personne.ID_PERSONNE = " + cbIDClient->Text;
+
+		SqlCommand^ cmdNomClient = gcnew SqlCommand(rqtNomClient, conn->getConn());
+
+		conn->openConnection();
+
+		SqlDataReader^ drNomClient = cmdNomClient->ExecuteReader();
+
+		if (drNomClient->Read())
+		{
+			lblTitleInfo->Text = "Le Client ";
+			lblTitleInfo->Text += drNomClient->GetString(1) + "\r\n";
+			lblTitleInfo->Text += drNomClient->GetString(0) + "\r\n";
+			lblTitleInfo->Text += "a dépenser au total :";
+		}
+		drNomClient->Close();
+
+		String^ rqtClientPrix = "select sum(Paiement.MONTANT_TTC) from Paiement inner join Commande on Paiement.ID_COMMANDE = Commande.ID_COMMANDE inner join Client on Commande.ID_CLIENT = " + cbIDClient->Text;
+
+		SqlCommand^ cmdClientPrix = gcnew SqlCommand(rqtClientPrix, conn->getConn());
+
+		SqlDataReader^ drClientPrix = cmdClientPrix->ExecuteReader();
+
+		if (drClientPrix->Read())
+		{
+			lblValueInfo->Text = drClientPrix->GetDouble(0).ToString() + " ";
+		}
+		drClientPrix->Close();
+
+		conn->closeConnection();
+
+
 	}
-	drNomClient->Close();
-
-	String^ rqtClientPrix = "select sum(Paiement.MONTANT_TTC) from Paiement inner join Commande on Paiement.ID_COMMANDE = Commande.ID_COMMANDE inner join Client on Commande.ID_CLIENT = " + cbIDClient->Text;
-	
-	SqlCommand^ cmdClientPrix = gcnew SqlCommand(rqtClientPrix, conn->getConn());
-	
-	SqlDataReader^ drClientPrix = cmdClientPrix->ExecuteReader();
-
-	if (drClientPrix->Read())
+	else
 	{
-		lblValueInfo->Text = drClientPrix->GetDouble(0).ToString()  + " ";
+		MessageBox::Show("Le champs n'est pas remplis", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 	}
-	drClientPrix->Close();
-
-	conn->closeConnection();
-
-
-}
+	}
+	
 private: System::Void btnPlus10Article_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	hideAllDG();

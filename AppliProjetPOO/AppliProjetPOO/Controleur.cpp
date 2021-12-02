@@ -3,12 +3,13 @@
 Controleur::Controleur()
 {
 	activeForm = nullptr;
-	
+	con = gcnew Connect();
+	i = 0;
 }
 
 #pragma region Tableaux de bord fct
 // Déclaration de la fonction utilisé dans le form TableauBord pour afficher ou cacher les boutons warnings 
-void Controleur::initializeWarningBtn(int i, Button^ b1, Button^ b2, Button^ b3, Button^ b4, Button^ b5, Button^ b6, Button^ b7, Button^ b8, Button^ b9, Button^ b10, Button^ b11, Button^ b12, Button^ bsee)
+void Controleur::initializeWarningBtn(Button^ b1, Button^ b2, Button^ b3, Button^ b4, Button^ b5, Button^ b6, Button^ b7, Button^ b8, Button^ b9, Button^ b10, Button^ b11, Button^ b12, Button^ bsee)
 {
 	btn1 = b1;
 	btn2 = b2;
@@ -26,7 +27,7 @@ void Controleur::initializeWarningBtn(int i, Button^ b1, Button^ b2, Button^ b3,
 
 	if (i < 13)
 	{
-		switch (i)
+		switch (nbWarning)
 		{
 		case 1:
 			btn1->Visible = true;
@@ -233,19 +234,24 @@ void Controleur::initializeWarningBtn(int i, Button^ b1, Button^ b2, Button^ b3,
 
 void Controleur::setTabTextWarning()
 {
-	this->tabText[0] = "Warning 1";
-	this->tabText[1] = "Warning 2";
-	this->tabText[2] = "Warning 3";
-	this->tabText[3] = "Warning 4";
-	this->tabText[4] = "Warning 5";
-	this->tabText[5] = "Warning 6";
-	this->tabText[6] = "Warning 7";
-	this->tabText[7] = "Warning 8";
-	this->tabText[8] = "Warning 9";
-	this->tabText[9] = "Warning 10";
-	this->tabText[10] = "Warning 11";
-	this->tabText[11] = "Warning 12";
+	i = 0;
 
+	String^ rqtStock = "select count(ID_ARTICLE), NOM_ARTICLE from ARTICLE where STOCK < SEUIL_APPROVISIONNEMENT group by NOM_ARTICLE;";
+
+	SqlCommand^ cmdStock = gcnew SqlCommand(rqtStock, con->getConn());
+
+	con->openConnection();
+
+	SqlDataReader^ drStock = cmdStock->ExecuteReader();
+
+	while (drStock->Read())
+	{
+		tabText[i] = drStock->GetString(1);
+		i++;
+		nbWarning = drStock->GetInt32(0);
+	}
+	drStock->Close();
+	con->closeConnection();
 }
 
 void Controleur::setTabBtnWarning()
