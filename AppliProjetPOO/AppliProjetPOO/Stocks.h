@@ -47,6 +47,9 @@ namespace AppliProjetPOO {
 			}
 
 			conn->closeConnection();
+
+			buttonSupprimerValidation->Visible = false;
+			textBoxIDSuppr->Visible = false;
 		}
 
 	private:
@@ -119,6 +122,13 @@ namespace AppliProjetPOO {
 			this->btnModifier = (gcnew System::Windows::Forms::Button());
 			this->pnlMain = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->NOM_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->STOCK = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PRIX_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->SEUIL_APPROVISIONEMENT = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->TVA_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->NATURE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->COULEUR = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pnlFilter = (gcnew System::Windows::Forms::Panel());
 			this->tbType = (gcnew System::Windows::Forms::TextBox());
 			this->tbNom = (gcnew System::Windows::Forms::TextBox());
@@ -129,13 +139,6 @@ namespace AppliProjetPOO {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->buttonSupprimerValidation = (gcnew System::Windows::Forms::Button());
 			this->textBoxIDSuppr = (gcnew System::Windows::Forms::TextBox());
-			this->NOM_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->STOCK = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->PRIX_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->SEUIL_APPROVISIONEMENT = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->TVA_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->NATURE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->COULEUR = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pnlButtonChoix->SuspendLayout();
 			this->pnlMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -235,6 +238,41 @@ namespace AppliProjetPOO {
 			this->dataGridView1->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
 			this->dataGridView1->Size = System::Drawing::Size(844, 306);
 			this->dataGridView1->TabIndex = 2;
+			// 
+			// NOM_ARTICLE
+			// 
+			this->NOM_ARTICLE->HeaderText = L"NOM_ARTICLE";
+			this->NOM_ARTICLE->Name = L"NOM_ARTICLE";
+			// 
+			// STOCK
+			// 
+			this->STOCK->HeaderText = L"STOCK";
+			this->STOCK->Name = L"STOCK";
+			// 
+			// PRIX_ARTICLE
+			// 
+			this->PRIX_ARTICLE->HeaderText = L"PRIX_ARTICLE";
+			this->PRIX_ARTICLE->Name = L"PRIX_ARTICLE";
+			// 
+			// SEUIL_APPROVISIONEMENT
+			// 
+			this->SEUIL_APPROVISIONEMENT->HeaderText = L"SEUIL_APPROVISIONEMENT";
+			this->SEUIL_APPROVISIONEMENT->Name = L"SEUIL_APPROVISIONEMENT";
+			// 
+			// TVA_ARTICLE
+			// 
+			this->TVA_ARTICLE->HeaderText = L"TVA_ARTICLE";
+			this->TVA_ARTICLE->Name = L"TVA_ARTICLE";
+			// 
+			// NATURE
+			// 
+			this->NATURE->HeaderText = L"NATURE";
+			this->NATURE->Name = L"NATURE";
+			// 
+			// COULEUR
+			// 
+			this->COULEUR->HeaderText = L"COULEUR";
+			this->COULEUR->Name = L"COULEUR";
 			// 
 			// pnlFilter
 			// 
@@ -361,6 +399,7 @@ namespace AppliProjetPOO {
 			this->buttonSupprimerValidation->TabIndex = 7;
 			this->buttonSupprimerValidation->Text = L"Supprimer";
 			this->buttonSupprimerValidation->UseVisualStyleBackColor = false;
+			this->buttonSupprimerValidation->Click += gcnew System::EventHandler(this, &Stocks::buttonSupprimerValidation_Click);
 			// 
 			// textBoxIDSuppr
 			// 
@@ -374,41 +413,6 @@ namespace AppliProjetPOO {
 			this->textBoxIDSuppr->Size = System::Drawing::Size(158, 20);
 			this->textBoxIDSuppr->TabIndex = 8;
 			this->textBoxIDSuppr->Text = L"Entrer l\'ID...";
-			// 
-			// NOM_ARTICLE
-			// 
-			this->NOM_ARTICLE->HeaderText = L"NOM_ARTICLE";
-			this->NOM_ARTICLE->Name = L"NOM_ARTICLE";
-			// 
-			// STOCK
-			// 
-			this->STOCK->HeaderText = L"STOCK";
-			this->STOCK->Name = L"STOCK";
-			// 
-			// PRIX_ARTICLE
-			// 
-			this->PRIX_ARTICLE->HeaderText = L"PRIX_ARTICLE";
-			this->PRIX_ARTICLE->Name = L"PRIX_ARTICLE";
-			// 
-			// SEUIL_APPROVISIONEMENT
-			// 
-			this->SEUIL_APPROVISIONEMENT->HeaderText = L"SEUIL_APPROVISIONEMENT";
-			this->SEUIL_APPROVISIONEMENT->Name = L"SEUIL_APPROVISIONEMENT";
-			// 
-			// TVA_ARTICLE
-			// 
-			this->TVA_ARTICLE->HeaderText = L"TVA_ARTICLE";
-			this->TVA_ARTICLE->Name = L"TVA_ARTICLE";
-			// 
-			// NATURE
-			// 
-			this->NATURE->HeaderText = L"NATURE";
-			this->NATURE->Name = L"NATURE";
-			// 
-			// COULEUR
-			// 
-			this->COULEUR->HeaderText = L"COULEUR";
-			this->COULEUR->Name = L"COULEUR";
 			// 
 			// Stocks
 			// 
@@ -450,7 +454,8 @@ namespace AppliProjetPOO {
 
 	private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-
+		textBoxIDSuppr->Visible = true;
+		buttonSupprimerValidation->Visible = true;
 	}
 
 	private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e)
@@ -505,6 +510,17 @@ namespace AppliProjetPOO {
 	{
 		if (tbType->Text == "")
 			this->tbType->Text = "Entrer le Type...";
+	}
+	private: System::Void buttonSupprimerValidation_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		conn->openConnection();
+
+		String^ query = "DELETE FROM Article WHERE ID_ARTICLE = " + textBoxIDSuppr->Text;
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+		cmd->ExecuteNonQuery();
+
+		conn->closeConnection();
 	}
 };
 }
