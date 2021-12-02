@@ -335,7 +335,7 @@ namespace AppliProjetPOO {
 	{
 		conn->openConnection();
 
-		String^ query = "INSERT INTO Commande VALUES ( , '" + dateTimePickerLivraison->Text + "', '" + dateTimePickerEmission->Text + "', '" + dateTimePickerCommande->Text + ", (Select Client.ID_CLIENT from Client INNER JOIN Personne ON Personne.ID_PERSONNE = Client.ID_PERSONNE WHERE Personne.NOM_PRENOM = " + textBoxNom->Text + " AND Personne.PRENOM_PERSONNE = " + textBoxPrenom->Text + ")";
+		String^ query = "INSERT INTO Commande VALUES ( , '" + dateTimePickerLivraison->Text + "', '" + dateTimePickerEmission->Text + "', '" + dateTimePickerCommande->Text + ", (Select Client.ID_CLIENT from Client INNER JOIN Personne ON Personne.ID_PERSONNE = Client.ID_PERSONNE WHERE Personne.NOM_PERSONNE = " + textBoxNom->Text + " AND Personne.PRENOM_PERSONNE = " + textBoxPrenom->Text + ")";
 		String^ query1 = "INSERT INTO Contenir VALUES (" + idCommande + ", (select ID_ARTICLE from Article where NOM_ARTICLE = " + comboBox1->Text +"), " + textBoxQuantite->Text + ")";
 		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
 		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
