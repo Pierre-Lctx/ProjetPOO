@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Connection.h"
+
 namespace AppliProjetPOO {
 
 	using namespace System;
@@ -8,6 +10,7 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
 	/// Description résumée de Adresse
@@ -17,6 +20,7 @@ namespace AppliProjetPOO {
 	private:
 		String^ ville, ^ rue, ^ numRue, ^ batiment, ^ etage, ^ codePostal;
 		bool liveApp;
+	public: Connect^ conn;
 	public:
 		Adresse(void)
 		{
@@ -24,6 +28,24 @@ namespace AppliProjetPOO {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+
+			conn = gcnew Connect();
+
+			conn->openConnection();
+
+			String^ query = "Select NOM_VILLE from Ville";
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			SqlDataReader^ dr = cmd->ExecuteReader();
+
+			while (dr->Read())
+			{
+				cbVille->Items->Add(dr["NOM_VILLE"]);
+			}
+
+			dr->Close();
+
+			conn->closeConnection();
 		}
 
 	protected:
@@ -115,7 +137,7 @@ namespace AppliProjetPOO {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::Color::White;
-			this->label3->Location = System::Drawing::Point(34, 180);
+			this->label3->Location = System::Drawing::Point(34, 169);
 			this->label3->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(149, 33);
@@ -128,7 +150,7 @@ namespace AppliProjetPOO {
 			this->label4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::Color::White;
-			this->label4->Location = System::Drawing::Point(34, 341);
+			this->label4->Location = System::Drawing::Point(34, 345);
 			this->label4->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(149, 33);
@@ -141,7 +163,7 @@ namespace AppliProjetPOO {
 			this->label5->Font = (gcnew System::Drawing::Font(L"Century Gothic", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label5->ForeColor = System::Drawing::Color::White;
-			this->label5->Location = System::Drawing::Point(34, 390);
+			this->label5->Location = System::Drawing::Point(34, 406);
 			this->label5->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(149, 33);
@@ -154,7 +176,7 @@ namespace AppliProjetPOO {
 			this->label6->Font = (gcnew System::Drawing::Font(L"Century Gothic", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label6->ForeColor = System::Drawing::Color::White;
-			this->label6->Location = System::Drawing::Point(34, 235);
+			this->label6->Location = System::Drawing::Point(34, 228);
 			this->label6->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(243, 33);
@@ -163,47 +185,47 @@ namespace AppliProjetPOO {
 			// 
 			// tbRue
 			// 
-			this->tbRue->Location = System::Drawing::Point(218, 180);
+			this->tbRue->Location = System::Drawing::Point(289, 169);
 			this->tbRue->Margin = System::Windows::Forms::Padding(6);
 			this->tbRue->Multiline = true;
 			this->tbRue->Name = L"tbRue";
-			this->tbRue->Size = System::Drawing::Size(219, 33);
+			this->tbRue->Size = System::Drawing::Size(333, 33);
 			this->tbRue->TabIndex = 7;
 			// 
 			// tbBatiment
 			// 
-			this->tbBatiment->Location = System::Drawing::Point(218, 341);
+			this->tbBatiment->Location = System::Drawing::Point(289, 350);
 			this->tbBatiment->Margin = System::Windows::Forms::Padding(6);
 			this->tbBatiment->Multiline = true;
 			this->tbBatiment->Name = L"tbBatiment";
-			this->tbBatiment->Size = System::Drawing::Size(219, 33);
+			this->tbBatiment->Size = System::Drawing::Size(333, 33);
 			this->tbBatiment->TabIndex = 8;
 			// 
 			// tbEtage
 			// 
-			this->tbEtage->Location = System::Drawing::Point(218, 390);
+			this->tbEtage->Location = System::Drawing::Point(289, 411);
 			this->tbEtage->Margin = System::Windows::Forms::Padding(6);
 			this->tbEtage->Multiline = true;
 			this->tbEtage->Name = L"tbEtage";
-			this->tbEtage->Size = System::Drawing::Size(219, 33);
+			this->tbEtage->Size = System::Drawing::Size(333, 33);
 			this->tbEtage->TabIndex = 9;
 			// 
 			// tbNumRue
 			// 
-			this->tbNumRue->Location = System::Drawing::Point(289, 235);
+			this->tbNumRue->Location = System::Drawing::Point(289, 228);
 			this->tbNumRue->Margin = System::Windows::Forms::Padding(6);
 			this->tbNumRue->Multiline = true;
 			this->tbNumRue->Name = L"tbNumRue";
-			this->tbNumRue->Size = System::Drawing::Size(148, 33);
+			this->tbNumRue->Size = System::Drawing::Size(333, 33);
 			this->tbNumRue->TabIndex = 10;
 			// 
 			// cbVille
 			// 
 			this->cbVille->FormattingEnabled = true;
-			this->cbVille->Location = System::Drawing::Point(218, 113);
+			this->cbVille->Location = System::Drawing::Point(289, 113);
 			this->cbVille->Margin = System::Windows::Forms::Padding(6);
 			this->cbVille->Name = L"cbVille";
-			this->cbVille->Size = System::Drawing::Size(219, 33);
+			this->cbVille->Size = System::Drawing::Size(333, 33);
 			this->cbVille->TabIndex = 11;
 			// 
 			// label7
@@ -212,7 +234,7 @@ namespace AppliProjetPOO {
 			this->label7->Font = (gcnew System::Drawing::Font(L"Century Gothic", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label7->ForeColor = System::Drawing::Color::White;
-			this->label7->Location = System::Drawing::Point(34, 285);
+			this->label7->Location = System::Drawing::Point(34, 288);
 			this->label7->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(216, 33);
@@ -221,11 +243,11 @@ namespace AppliProjetPOO {
 			// 
 			// tbCodePostal
 			// 
-			this->tbCodePostal->Location = System::Drawing::Point(262, 285);
+			this->tbCodePostal->Location = System::Drawing::Point(289, 288);
 			this->tbCodePostal->Margin = System::Windows::Forms::Padding(6);
 			this->tbCodePostal->Multiline = true;
 			this->tbCodePostal->Name = L"tbCodePostal";
-			this->tbCodePostal->Size = System::Drawing::Size(175, 33);
+			this->tbCodePostal->Size = System::Drawing::Size(333, 33);
 			this->tbCodePostal->TabIndex = 13;
 			// 
 			// btnValider
@@ -236,9 +258,9 @@ namespace AppliProjetPOO {
 			this->btnValider->Font = (gcnew System::Drawing::Font(L"Century Gothic", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnValider->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->btnValider->Location = System::Drawing::Point(209, 492);
+			this->btnValider->Location = System::Drawing::Point(40, 492);
 			this->btnValider->Name = L"btnValider";
-			this->btnValider->Size = System::Drawing::Size(102, 29);
+			this->btnValider->Size = System::Drawing::Size(603, 29);
 			this->btnValider->TabIndex = 14;
 			this->btnValider->Text = L"Valider";
 			this->btnValider->UseVisualStyleBackColor = true;
@@ -250,7 +272,7 @@ namespace AppliProjetPOO {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			this->ClientSize = System::Drawing::Size(504, 552);
+			this->ClientSize = System::Drawing::Size(686, 552);
 			this->Controls->Add(this->btnValider);
 			this->Controls->Add(this->tbCodePostal);
 			this->Controls->Add(this->label7);
@@ -312,6 +334,17 @@ private: System::Void btnValider_Click(System::Object^ sender, System::EventArgs
 	{
 
 		MessageBox::Show("Tout les champs ne sont pas encore remplis !", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning );
+	}
+	else
+	{
+		conn->openConnection();
+
+		String^ query = "INSERT INTO Adresse Values ";
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+		cmd->ExecuteNonQuery();
+
+		conn->closeConnection();
 	}
 }
 };

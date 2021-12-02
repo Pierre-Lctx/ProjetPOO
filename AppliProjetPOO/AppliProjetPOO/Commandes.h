@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CreateCommande.h"
+#include "ModifCommande.h"
 #include "Connection.h"
 
 namespace AppliProjetPOO {
@@ -85,13 +86,6 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnModifier;
 	private: System::Windows::Forms::Panel^ pnlMain;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-
-
-
-
-
-
-
 
 	private: System::Windows::Forms::Panel^ pnlFilter;
 
@@ -448,7 +442,9 @@ namespace AppliProjetPOO {
 
 	private: System::Void btnModifier_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-
+		ModifCommande^ frmModifCommande = gcnew ModifCommande();
+		active = frmModifCommande;
+		frmModifCommande->ShowDialog();
 	}
 
 	private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventArgs^ e)
