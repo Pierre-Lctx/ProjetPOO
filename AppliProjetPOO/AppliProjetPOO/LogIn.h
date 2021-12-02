@@ -20,7 +20,7 @@ namespace AppliProjetPOO {
 	public ref class LogIn : public System::Windows::Forms::Form
 	{
 	private:
-		MyForm^ mainForm = gcnew MyForm();
+		
 
 	private: Connect^ connecteur;
 
@@ -243,8 +243,16 @@ namespace AppliProjetPOO {
 
 		if (connecteur->connection(mail, password))
 		{
-			this->Hide();
-			mainForm->Show();
+			String^ rqtIDUser = "select ID_PERSONNE from Personne where ADRESSE_MAIL = '" + mail + "'";
+			SqlCommand^ cmdIDUser = gcnew SqlCommand(rqtIDUser, connecteur->getConn());
+			SqlDataReader^ drIDUser = cmdIDUser->ExecuteReader();
+
+			if (drIDUser->Read())
+			{
+				this->Hide();
+				MyForm^ mainform = gcnew MyForm(drIDUser->GetInt32(0));
+			}
+			
 		}
 		else
 		{

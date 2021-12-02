@@ -20,10 +20,12 @@ namespace AppliProjetPOO {
 	public ref class MyProfile : public System::Windows::Forms::Form
 	{
 	public: Connect^ conn;
+		  int ID;
 
 	public:
-		MyProfile(void)
+		MyProfile(int IDuser)
 		{
+			ID = IDuser;
 			InitializeComponent();
 			//
 			//TODO: ajoutez ici le code du constructeur
@@ -750,19 +752,19 @@ namespace AppliProjetPOO {
 		MessageBox::Show("Les modifications ont été enregistrées.");
 
 		conn->openConnection();
-		String^ query1 = "UPDATE PERSONNE SET NOM_PERSONNE'" + labelNom->Text + "'UPDATE PERSONNE SET PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE PERSONNE SET TELEPHONE'" + textBoxTelephone + "'UPDATE PERSONNE SET ADRESSE_MAIL'" + textBoxEmail + "'UPDATE PERSONNE SET DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
+		String^ query1 = "UPDATE PERSONNE SET NOM_PERSONNE'" + labelNom->Text + "'UPDATE PERSONNE SET PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE PERSONNE SET TELEPHONE'" + textBoxTelephone + "'UPDATE PERSONNE SET ADRESSE_MAIL'" + textBoxEmail + "'UPDATE PERSONNE SET DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = "+ID;
 		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
-		//SqlDataReader^ dr1 = cmd1->ExecuteReader();
+		SqlDataReader^ dr1 = cmd1->ExecuteReader();
 		cmd1->ExecuteNonQuery();
-		//while (dr1->Read())
-		//{
-		//	textBoxNom->Text = dr1[0]->ToString();
-		//	textBoxPrenom->Text = dr1[1]->ToString();
-		//	textBoxEmail->Text = dr1[2]->ToString();
-		//	textBoxTelephone->Text = dr1[3]->ToString();
-		//	dateTimePicker2->Text = dr1[4]->ToString();
-		//}
-		//dr1->Close();
+		while (dr1->Read())
+		{
+			textBoxNom->Text = dr1[0]->ToString();
+			textBoxPrenom->Text = dr1[1]->ToString();
+			textBoxEmail->Text = dr1[2]->ToString();
+			textBoxTelephone->Text = dr1[3]->ToString();
+			dateTimePicker2->Text = dr1[4]->ToString();
+		}
+		dr1->Close();
 		conn->closeConnection();
 
 		//conn->openConnection();

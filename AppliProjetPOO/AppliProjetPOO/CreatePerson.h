@@ -431,6 +431,14 @@ namespace AppliProjetPOO {
 		if (checkIsNotVoid())
 		{
 			MessageBox::Show("Ok");
+			if (typePerson == "employe")
+			{
+
+			}
+			if (typePerson == "client")
+			{
+
+			}
 		}
 		else
 		{
