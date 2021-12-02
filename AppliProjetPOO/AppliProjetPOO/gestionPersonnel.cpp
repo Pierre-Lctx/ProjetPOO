@@ -11,6 +11,18 @@ gestPersonnel::gestPersonnel()
 	this->connect = gcnew Connect();
 }
 
+void gestPersonnel::ajouter(int idPersonnelGerer, int etage, int numVoie, String^ nom, String^ prenom, String^ telephone, String^ email, String^ rue, String^ batiment, String^ ville, DateTime^ dateNaissance, DateTime^ dateEmbauche)
+{
+	connect->openConnection();
+
+	String^ query = "";
+	SqlCommand^ cmd = gcnew SqlCommand(query, connect->getConn());
+
+	cmd->ExecuteNonQuery();
+
+	connect->closeConnection();
+}
+
 void gestPersonnel::afficher(DataGridView^ dataGridView)
 {
 	this->connect->openConnection();
