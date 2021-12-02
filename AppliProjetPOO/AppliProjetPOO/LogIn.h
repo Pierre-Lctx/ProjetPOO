@@ -251,6 +251,7 @@ namespace AppliProjetPOO {
 			{
 				this->Hide();
 				MyForm^ mainform = gcnew MyForm(drIDUser->GetInt32(0));
+				mainform->Show();
 			}
 			
 		}
