@@ -89,6 +89,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StructMemberAlignment>16Bytes</StructMemberAlignment>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -138,6 +139,8 @@
     <ClCompile Include="gestionPersonnel.cpp" />
     <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
+    <ClCompile Include="ModifArticle.cpp" />
+    <ClCompile Include="ModifCommande.cpp" />
     <ClCompile Include="ModifierPersonnel.cpp" />
     <ClCompile Include="MyProfile1.cpp" />
     <ClCompile Include="Personnel.cpp" />
@@ -172,6 +175,12 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MenuPrincipal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ModifArticle.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ModifCommande.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ModifierPersonnel.h">
@@ -217,6 +226,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifArticle.resx">
+      <DependentUpon>ModifArticle.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifCommande.resx">
+      <DependentUpon>ModifCommande.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModifierPersonnel.resx">
       <DependentUpon>ModifierPersonnel.h</DependentUpon>

@@ -1,6 +1,5 @@
 #include "Connection.h"
 
-#include "Connection.h"
 
 using namespace connection;
 
@@ -8,8 +7,13 @@ Connect::Connect()
 {
 	this->sqlQuery = "DEFAULT";
 	connStrinfBuilder = gcnew SqlConnectionStringBuilder();
+<<<<<<< HEAD
 	connStrinfBuilder->DataSource = "desktop-LJNHM60\\mssql_ilhan";
 	connStrinfBuilder->InitialCatalog = "ProjetPOO";
+=======
+	connStrinfBuilder->DataSource = "DESKTOP-P3RNDHD";
+	connStrinfBuilder->InitialCatalog = "DBProjet";
+>>>>>>> 64a01ad6bf0d39695520332934fd4b7c2d55ef13
 	connStrinfBuilder->IntegratedSecurity = true;
 
 	this->conn = gcnew SqlConnection(Convert::ToString(connStrinfBuilder));
