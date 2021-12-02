@@ -15,43 +15,16 @@ namespace AppliProjetPOO {
 
 
 	/// <summary>
-	/// Description rÃ©sumÃ©e de MyProfile
+	/// Description résumée de MyProfile
 	/// </summary>
 	public ref class MyProfile : public System::Windows::Forms::Form
 	{
-	public: Connect^ conn = gcnew Connect;
-		  int ID;
-		  DateTime datenaissance, dateembauche;
-	private:
-		void initMyProfil(int ID)
-		{
-			
-
-			conn->openConnection();
-			String^ query1 = "SELECT NOM_PERSONNE, PRENOM_PERSONNE, ADRESSE_MAIL, TELEPHONE, DATE_NAISSANCE, Personnel.DATE_EMBAUCHE FROM PERSONNE INNER JOIN PERSONNEL ON personne.ID_PERSONNE = personnel.ID_PERSONNE WHERE personne.ID_PERSONNE = " + ID;
-			SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
-			SqlDataReader^ dr1 = cmd1->ExecuteReader();
-			if (dr1->Read())
-			{
-				labelNom->Text = dr1[0]->ToString();
-				labelPrenom->Text = dr1[1]->ToString();
-				labelEmail->Text = dr1[2]->ToString();
-				labelTelephone->Text = dr1[3]->ToString();
-				datenaissance = dr1->GetDateTime(4);
-				labelDateNaissance->Text = datenaissance.ToShortDateString()->ToString();
-				dateembauche = dr1->GetDateTime(5);
-				labelDateEmbauche->Text = dateembauche.ToShortDateString()->ToString();
-			}
-			dr1->Close();
-			conn->closeConnection();
-		}
+	public: Connect^ conn;
 
 	public:
-		MyProfile(int IDuser)
+		MyProfile(void)
 		{
-			ID = IDuser;
 			InitializeComponent();
-			initMyProfil(ID);
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
@@ -82,14 +55,14 @@ namespace AppliProjetPOO {
 
 			comboBoxSuperieur->Visible = false;
 
-			//DÃ©claration de la variable de connexion
+			//Déclaration de la variable de connexion
 			
 			conn = gcnew Connect();
 		}
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisÃ©es.
+		/// Nettoyage des ressources utilisées.
 		/// </summary>
 		~MyProfile()
 		{
@@ -131,14 +104,14 @@ namespace AppliProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nÃ©cessaire au concepteur.
+		/// Variable nécessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
+		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -380,7 +353,7 @@ namespace AppliProjetPOO {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(125, 38);
 			this->label2->TabIndex = 4;
-			this->label2->Text = L"PrÃ©nom :";
+			this->label2->Text = L"Prénom :";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label2->Click += gcnew System::EventHandler(this, &MyProfile::label2_Click);
 			// 
@@ -428,7 +401,7 @@ namespace AppliProjetPOO {
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(302, 37);
 			this->label10->TabIndex = 27;
-			this->label10->Text = L"SupÃ©rieur hiÃ©rarchique :";
+			this->label10->Text = L"Supérieur hiérarchique :";
 			// 
 			// label9
 			// 
@@ -498,7 +471,7 @@ namespace AppliProjetPOO {
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(301, 72);
 			this->label4->TabIndex = 6;
-			this->label4->Text = L"NumÃ©ro de tÃ©lÃ©phone :";
+			this->label4->Text = L"Numéro de téléphone :";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label4->Click += gcnew System::EventHandler(this, &MyProfile::label4_Click);
 			// 
@@ -607,7 +580,7 @@ namespace AppliProjetPOO {
 
 		comboBoxSuperieur->Visible = false;
 
-		//RÃ©initialistion du texte
+		//Réinitialistion du texte
 
 		textBoxNom->Text = "";
 		textBoxPrenom->Text = "";
@@ -718,7 +691,7 @@ namespace AppliProjetPOO {
 
 		labelNom->Text = Nom;
 
-		//PrÃ©nom ---------------------------------------
+		//Prénom ---------------------------------------
 
 
 		if (textBoxPrenom->Text == labelPrenom->Text)
@@ -774,24 +747,33 @@ namespace AppliProjetPOO {
 		labelDateEmbauche->Text = DateEmbauche;
 
 
-		MessageBox::Show("Les modifications ont Ã©tÃ© enregistrÃ©es.");
+		MessageBox::Show("Les modifications ont été enregistrées.");
 
+		conn->openConnection();
+		String^ query1 = "UPDATE PERSONNE SET NOM_PERSONNE'" + labelNom->Text + "'UPDATE PERSONNE SET PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE PERSONNE SET TELEPHONE'" + textBoxTelephone + "'UPDATE PERSONNE SET ADRESSE_MAIL'" + textBoxEmail + "'UPDATE PERSONNE SET DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
+		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+		//SqlDataReader^ dr1 = cmd1->ExecuteReader();
+		cmd1->ExecuteNonQuery();
+		//while (dr1->Read())
+		//{
+		//	textBoxNom->Text = dr1[0]->ToString();
+		//	textBoxPrenom->Text = dr1[1]->ToString();
+		//	textBoxEmail->Text = dr1[2]->ToString();
+		//	textBoxTelephone->Text = dr1[3]->ToString();
+		//	dateTimePicker2->Text = dr1[4]->ToString();
+		//}
+		//dr1->Close();
+		conn->closeConnection();
 
-	// UPDATE
+		//conn->openConnection();
+		//String^ query2 = "'UPDATE PERSONNEL SET DATE_EMBAUCHE+" + dateTimePicker1->Text + "WHERE ID_PERSONNE = 5;";
+		//SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
 
-	conn->openConnection();
-	String^ query1 = "UPDATE Personne SET NOM_PERSONNE = '" + labelNom->Text + "', PRENOM_PERSONNE = '" + textBoxPrenom->Text + "', TELEPHONE = '" + textBoxTelephone->Text + "', ADRESSE_MAIL = '" + textBoxEmail->Text + "', DATE_NAISSANCE = '" + dateTimePicker2->Value.ToString() + "' WHERE ID_PERSONNE = "+ID;
-	SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
-	cmd1->ExecuteNonQuery();
-	
-	String^ query2 = "UPDATE PERSONNEL SET DATE_EMBAUCHE = '" + dateTimePicker1->Value.ToString() + "' WHERE ID_PERSONNE = "+ID;
-	SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
-	cmd2->ExecuteNonQuery();
+		//cmd2->ExecuteNonQuery();
 
-	conn->closeConnection();
+		//conn->closeConnection();
 
-	initMyProfil(ID);
-
+		//
 	}
 
 
