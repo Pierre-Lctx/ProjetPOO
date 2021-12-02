@@ -55,10 +55,13 @@ namespace AppliProjetPOO {
 
 			while (dr->Read())
 			{
-				dataGridView1->Rows->Add(dr["NOM_PERSONNE"], dr["PRENOM_PERSONNE"], dr["ADRESSE_MAIL"], dr["TELEPHONE"], dr["DATE_EMBAUCHE"], dr["RUE"], dr["BATIMENT"], dr["ETAGE"], dr["NUMERO_VOIE"], dr["NOM_VILLE"]);
+				dataGridView1->Rows->Add(dr["ID_PERSONNE"], dr["NOM_PERSONNE"], dr["PRENOM_PERSONNE"], dr["ADRESSE_MAIL"], dr["TELEPHONE"], dr["ID_ADRESSE"], dr["ID_ADRESSE_2"]);
 			}
 
 			conn->closeConnection();
+
+			textBoxIDSuppr->Visible = false;
+			buttonSupprimerValidation->Visible = false;
 		}
 
 	protected:

@@ -1171,7 +1171,7 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		
 		nbLigneDGV++;
 		drArticleSimu->Close();
-		con->Close();
+		conn->closeConnection();
 
 	}
 	else
