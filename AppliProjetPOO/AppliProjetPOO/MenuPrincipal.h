@@ -537,8 +537,6 @@ namespace AppliProjetPOO {
 	{
 		C->openChildForm(gcnew AppliProjetPOO::MyProfile, pnlFormShow);
 		lblActiveForm->Text = "Mon Profil";
-
-	
 	}
 
 
