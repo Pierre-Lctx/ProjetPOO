@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Connection.h"
+
 namespace AppliProjetPOO {
 
 	using namespace System;
@@ -8,12 +10,15 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
 	/// Description résumée de MyProfile
 	/// </summary>
 	public ref class MyProfile : public System::Windows::Forms::Form
 	{
+	public: Connect^ conn;
+
 	public:
 		MyProfile(void)
 		{
@@ -25,7 +30,6 @@ namespace AppliProjetPOO {
 			//this->panel2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\user.png")));
 			labelNom->Visible = true;
 			labelPrenom->Visible = true;
-			labelMatricule->Visible = true;
 			labelDateEmbauche->Visible = true;
 			labelEmail->Visible = true;
 			labelTelephone->Visible = true;
@@ -35,7 +39,6 @@ namespace AppliProjetPOO {
 			// textBox
 			textBoxNom->Visible = false;
 			textBoxPrenom->Visible = false;
-			textBoxMatricule->Visible = false;
 			textBoxEmail->Visible = false;
 			textBoxTelephone->Visible = false;
 
@@ -49,6 +52,10 @@ namespace AppliProjetPOO {
 			// comboBox
 
 			comboBoxSuperieur->Visible = false;
+
+			//Déclaration de la variable de connexion
+			
+			conn = gcnew Connect();
 		}
 
 	protected:
@@ -72,7 +79,7 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Label^ labelMatricule;
+
 	private: System::Windows::Forms::Label^ labelNom;
 	private: System::Windows::Forms::Label^ labelPrenom;
 	private: System::Windows::Forms::Panel^ panel2;
@@ -91,8 +98,8 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBoxNom;
 	private: System::Windows::Forms::TextBox^ textBoxPrenom;
-	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::TextBox^ textBoxMatricule;
+
+
 
 
 
@@ -109,7 +116,6 @@ namespace AppliProjetPOO {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyProfile::typeid));
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->labelDateNaissance = (gcnew System::Windows::Forms::Label());
 			this->labelDateEmbauche = (gcnew System::Windows::Forms::Label());
@@ -121,7 +127,6 @@ namespace AppliProjetPOO {
 			this->dateTimePicker2 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->labelMatricule = (gcnew System::Windows::Forms::Label());
 			this->labelNom = (gcnew System::Windows::Forms::Label());
 			this->labelPrenom = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
@@ -129,8 +134,6 @@ namespace AppliProjetPOO {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxNom = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxPrenom = (gcnew System::Windows::Forms::TextBox());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->textBoxMatricule = (gcnew System::Windows::Forms::TextBox());
 			this->buttonModifier = (gcnew System::Windows::Forms::Button());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
@@ -181,7 +184,7 @@ namespace AppliProjetPOO {
 			this->labelDateNaissance->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelDateNaissance->ForeColor = System::Drawing::Color::White;
-			this->labelDateNaissance->Location = System::Drawing::Point(955, 374);
+			this->labelDateNaissance->Location = System::Drawing::Point(955, 378);
 			this->labelDateNaissance->Name = L"labelDateNaissance";
 			this->labelDateNaissance->Size = System::Drawing::Size(244, 42);
 			this->labelDateNaissance->TabIndex = 42;
@@ -274,7 +277,6 @@ namespace AppliProjetPOO {
 			// 
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			this->panel1->Controls->Add(this->labelMatricule);
 			this->panel1->Controls->Add(this->labelNom);
 			this->panel1->Controls->Add(this->labelPrenom);
 			this->panel1->Controls->Add(this->panel2);
@@ -282,8 +284,6 @@ namespace AppliProjetPOO {
 			this->panel1->Controls->Add(this->label2);
 			this->panel1->Controls->Add(this->textBoxNom);
 			this->panel1->Controls->Add(this->textBoxPrenom);
-			this->panel1->Controls->Add(this->label8);
-			this->panel1->Controls->Add(this->textBoxMatricule);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
@@ -291,30 +291,18 @@ namespace AppliProjetPOO {
 			this->panel1->TabIndex = 32;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyProfile::panel1_Paint_1);
 			// 
-			// labelMatricule
-			// 
-			this->labelMatricule->BackColor = System::Drawing::Color::Transparent;
-			this->labelMatricule->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->labelMatricule->ForeColor = System::Drawing::Color::White;
-			this->labelMatricule->Location = System::Drawing::Point(450, 157);
-			this->labelMatricule->Name = L"labelMatricule";
-			this->labelMatricule->Size = System::Drawing::Size(171, 34);
-			this->labelMatricule->TabIndex = 20;
-			this->labelMatricule->Text = L"labelMatricule";
-			this->labelMatricule->Click += gcnew System::EventHandler(this, &MyProfile::labelMatricule_Click);
-			// 
 			// labelNom
 			// 
 			this->labelNom->BackColor = System::Drawing::Color::Transparent;
 			this->labelNom->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelNom->ForeColor = System::Drawing::Color::White;
-			this->labelNom->Location = System::Drawing::Point(450, 48);
+			this->labelNom->Location = System::Drawing::Point(450, 57);
 			this->labelNom->Name = L"labelNom";
 			this->labelNom->Size = System::Drawing::Size(199, 36);
 			this->labelNom->TabIndex = 19;
 			this->labelNom->Text = L"labelNom";
+			this->labelNom->Click += gcnew System::EventHandler(this, &MyProfile::labelNom_Click);
 			// 
 			// labelPrenom
 			// 
@@ -322,7 +310,7 @@ namespace AppliProjetPOO {
 			this->labelPrenom->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelPrenom->ForeColor = System::Drawing::Color::White;
-			this->labelPrenom->Location = System::Drawing::Point(449, 101);
+			this->labelPrenom->Location = System::Drawing::Point(450, 149);
 			this->labelPrenom->Name = L"labelPrenom";
 			this->labelPrenom->Size = System::Drawing::Size(172, 38);
 			this->labelPrenom->TabIndex = 18;
@@ -333,7 +321,6 @@ namespace AppliProjetPOO {
 			// 
 			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			this->panel2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(Image::FromFile("resources\\user.png")));
 			this->panel2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Left;
 			this->panel2->Location = System::Drawing::Point(0, 0);
@@ -347,7 +334,7 @@ namespace AppliProjetPOO {
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
 				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label1->Location = System::Drawing::Point(245, 34);
+			this->label1->Location = System::Drawing::Point(247, 51);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(91, 38);
 			this->label1->TabIndex = 3;
@@ -361,7 +348,7 @@ namespace AppliProjetPOO {
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
 				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label2->Location = System::Drawing::Point(245, 91);
+			this->label2->Location = System::Drawing::Point(247, 139);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(125, 38);
 			this->label2->TabIndex = 4;
@@ -375,7 +362,7 @@ namespace AppliProjetPOO {
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->textBoxNom->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBoxNom->ForeColor = System::Drawing::SystemColors::Window;
-			this->textBoxNom->Location = System::Drawing::Point(453, 48);
+			this->textBoxNom->Location = System::Drawing::Point(454, 61);
 			this->textBoxNom->Name = L"textBoxNom";
 			this->textBoxNom->Size = System::Drawing::Size(100, 22);
 			this->textBoxNom->TabIndex = 8;
@@ -387,35 +374,11 @@ namespace AppliProjetPOO {
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->textBoxPrenom->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBoxPrenom->ForeColor = System::Drawing::SystemColors::Window;
-			this->textBoxPrenom->Location = System::Drawing::Point(453, 105);
+			this->textBoxPrenom->Location = System::Drawing::Point(454, 153);
 			this->textBoxPrenom->Name = L"textBoxPrenom";
 			this->textBoxPrenom->Size = System::Drawing::Size(100, 22);
 			this->textBoxPrenom->TabIndex = 9;
 			this->textBoxPrenom->TextChanged += gcnew System::EventHandler(this, &MyProfile::textBox2_TextChanged);
-			// 
-			// label8
-			// 
-			this->label8->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label8->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(208)), static_cast<System::Int32>(static_cast<System::Byte>(154)),
-				static_cast<System::Int32>(static_cast<System::Byte>(208)));
-			this->label8->Location = System::Drawing::Point(245, 153);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(176, 38);
-			this->label8->TabIndex = 0;
-			this->label8->Text = L"N° Matricule :";
-			this->label8->Click += gcnew System::EventHandler(this, &MyProfile::label8_Click);
-			// 
-			// textBoxMatricule
-			// 
-			this->textBoxMatricule->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
-				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			this->textBoxMatricule->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxMatricule->ForeColor = System::Drawing::SystemColors::Window;
-			this->textBoxMatricule->Location = System::Drawing::Point(453, 161);
-			this->textBoxMatricule->Name = L"textBoxMatricule";
-			this->textBoxMatricule->Size = System::Drawing::Size(103, 22);
-			this->textBoxMatricule->TabIndex = 17;
 			// 
 			// buttonModifier
 			// 
@@ -592,7 +555,6 @@ namespace AppliProjetPOO {
 
 		labelNom->Visible = true;
 		labelPrenom->Visible = true;
-		labelMatricule->Visible = true;
 		labelEmail->Visible = true;
 		labelTelephone->Visible = true;
 		labelDateEmbauche->Visible = true;
@@ -603,7 +565,6 @@ namespace AppliProjetPOO {
 
 		textBoxNom->Visible = false;
 		textBoxPrenom->Visible = false;
-		textBoxMatricule->Visible = false;
 		textBoxEmail->Visible = false;
 		textBoxTelephone->Visible = false;
 
@@ -622,7 +583,6 @@ namespace AppliProjetPOO {
 
 		textBoxNom->Text = "";
 		textBoxPrenom->Text = "";
-		textBoxMatricule->Text = "";
 		textBoxEmail->Text = "";
 		textBoxTelephone->Text = "";
 
@@ -644,7 +604,6 @@ namespace AppliProjetPOO {
 		// label
 		labelNom->Visible = false;
 		labelPrenom->Visible = false;
-		labelMatricule->Visible = false;
 		labelEmail->Visible = false;
 		labelDateEmbauche->Visible = false;
 		labelTelephone->Visible = false;
@@ -655,14 +614,12 @@ namespace AppliProjetPOO {
 		// textBox
 		textBoxNom->Visible = true;
 		textBoxPrenom->Visible = true;
-		textBoxMatricule->Visible = true;
 		textBoxEmail->Visible = true;
 		textBoxTelephone->Visible = true;
 
 
 		textBoxNom->Text = labelNom->Text;
 		textBoxPrenom->Text = labelPrenom->Text;
-		textBoxMatricule->Text = labelMatricule->Text;
 		textBoxEmail->Text = labelEmail->Text;
 		textBoxTelephone->Text = labelTelephone->Text;
 
@@ -688,10 +645,10 @@ namespace AppliProjetPOO {
 	private: System::Void buttonValider_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 
+
 		// label
 		labelNom->Visible = true;
 		labelPrenom->Visible = true;
-		labelMatricule->Visible = true;
 		labelDateEmbauche->Visible = true;
 		labelEmail->Visible = true;
 		labelTelephone->Visible = true;
@@ -701,7 +658,6 @@ namespace AppliProjetPOO {
 		// textBox
 		textBoxNom->Visible = false;
 		textBoxPrenom->Visible = false;
-		textBoxMatricule->Visible = false;
 		textBoxEmail->Visible = false;
 		textBoxTelephone->Visible = false;
 
@@ -716,7 +672,8 @@ namespace AppliProjetPOO {
 
 		comboBoxSuperieur->Visible = false;
 
-		String^ Nom, ^ Prenom, ^ Matricule, ^ Email, ^ NumeroTelephone, ^ DateEmbauche, ^ DateNaissance;
+
+		String^ Nom, ^ Prenom, ^ Email, ^ NumeroTelephone, ^ DateEmbauche, ^ DateNaissance;
 
 		// Nom -----------------------------------------
 
@@ -747,19 +704,6 @@ namespace AppliProjetPOO {
 
 		labelPrenom->Text = Prenom;
 
-		//NumeroMatricule ------------------------------
-
-
-		if (textBoxMatricule->Text == labelMatricule->Text)
-		{
-			Matricule = labelMatricule->Text;
-		}
-		else
-		{
-			Matricule = textBoxMatricule->Text;
-		}
-
-		labelMatricule->Text = Matricule;
 
 		//Email ----------------------------------------
 
@@ -804,6 +748,34 @@ namespace AppliProjetPOO {
 
 		MessageBox::Show("Les modifications ont été enregistrées.");
 
+		String^ query = "UPDATE NOM_PERSONNE'" + textBoxNom->Text + "'UPDATE PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE TELEPHONE'" + textBoxTelephone + "'ADRESSE_MAIL'" + textBoxEmail + "'DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn.get);
+		SqlDataReader^ dr = cmd->ExecuteReader();
+
+		while (dr->Read())
+		{
+			textBoxNom->Text = dr[0]->ToString();
+			textBoxPrenom->Text = dr[1]->ToString();
+			textBoxEmail->Text = dr[2]->ToString();
+			textBoxTelephone->Text = dr[3]->ToString();
+			dateTimePicker2->Text = dr[4]->ToString();
+		}
+		dr->Close();
+		conn->closeConnection();
+
+		String^ query = "'DATE_EMBAUCHE'" + dateTimePicker1 + "'WHERE ID_PERSONNE = 5;";
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConnection());
+
+		SqlDataReader^ dr = cmd->ExecuteReader();
+
+		while (dr->Read())
+		{
+			dateTimePicker1->Text = dr[5]->ToString();
+		}
+		dr->Close();
+		conn->closeConnection();
+
+		
 	}
 
 
@@ -813,5 +785,7 @@ namespace AppliProjetPOO {
 	}
 	private: System::Void labelSuperieur_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void labelNom_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
