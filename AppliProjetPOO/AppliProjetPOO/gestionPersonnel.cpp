@@ -186,3 +186,13 @@ void gestPersonnel::setTelephone(String^ telephone)
 {
 	this->telephone = telephone;
 }
+
+void gestPersonnel::setIDVille(int ID)
+{
+	this->idVille;
+}
+
+int gestPersonnel::getIDVille()
+{
+	return this->idVille;
+}

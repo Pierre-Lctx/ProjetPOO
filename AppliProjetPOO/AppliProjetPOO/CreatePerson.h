@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Adresse.h"
+#include "Connection.h"
 
 namespace AppliProjetPOO {
 
@@ -10,9 +11,10 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
-	/// Description résumée de CreatePerson
+	/// Description rÃ©sumÃ©e de CreatePerson
 	/// </summary>
 	public ref class CreatePerson : public System::Windows::Forms::Form
 	{
@@ -24,6 +26,22 @@ namespace AppliProjetPOO {
 		String^ ville1, ^ rue1, ^ numRue1, ^ batiment1, ^ etage1, ^ numApp1, ^ ville2, ^ rue2, ^ numRue2, ^ batiment2, ^ etage2, ^ numApp2;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Panel^ pnlAdress;
+	private: System::Windows::Forms::DateTimePicker^ dateTimePickerNaissance;
+	private: System::Windows::Forms::TextBox^ textBoxCodeClient;
+	private: System::Windows::Forms::Label^ label2;
+
+
+	public: Connect^ conn;
+	public: Adresse^ adr1;
+	private: System::Windows::Forms::Label^ labelMDP;
+	public:
+	private: System::Windows::Forms::Label^ labelEmbauche;
+	private: System::Windows::Forms::TextBox^ textBoxMDP;
+	private: System::Windows::Forms::DateTimePicker^ dateTimePickerEmbauche;
+	private: System::Windows::Forms::Label^ labelResponsable;
+	private: System::Windows::Forms::TextBox^ textBoxResponsable;
+	private: System::Windows::Forms::Panel^ panelEmploye;
+	public: Adresse^ adr2;
 
 	
 	public:
@@ -57,12 +75,16 @@ namespace AppliProjetPOO {
 				pnlAdress->Size = System::Drawing::Size(372, 154);
 			}
 			
+			conn = gcnew Connect();
+			adr1 = gcnew Adresse();
+			adr2 = gcnew Adresse();
+			panelEmploye->Visible = false;
 
 		}
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~CreatePerson()
 		{
@@ -77,7 +99,7 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Label^ labelNom;
 	private: System::Windows::Forms::Label^ labelPrenom;
 	private: System::Windows::Forms::Label^ labelGenre;
-	private: System::Windows::Forms::ComboBox^ comboBoxGenre;
+
 	private: System::Windows::Forms::TextBox^ textBoxPrenom;
 	private: System::Windows::Forms::TextBox^ textBoxNom;
 	private: System::Windows::Forms::Label^ label7;
@@ -93,14 +115,14 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnAdress2;
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -109,7 +131,6 @@ namespace AppliProjetPOO {
 			this->labelNom = (gcnew System::Windows::Forms::Label());
 			this->labelPrenom = (gcnew System::Windows::Forms::Label());
 			this->labelGenre = (gcnew System::Windows::Forms::Label());
-			this->comboBoxGenre = (gcnew System::Windows::Forms::ComboBox());
 			this->textBoxPrenom = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxNom = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
@@ -124,9 +145,20 @@ namespace AppliProjetPOO {
 			this->btnAdress1 = (gcnew System::Windows::Forms::Button());
 			this->btnAdress2 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->dateTimePickerNaissance = (gcnew System::Windows::Forms::DateTimePicker());
 			this->pnlAdress = (gcnew System::Windows::Forms::Panel());
+			this->textBoxCodeClient = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->labelMDP = (gcnew System::Windows::Forms::Label());
+			this->labelEmbauche = (gcnew System::Windows::Forms::Label());
+			this->textBoxMDP = (gcnew System::Windows::Forms::TextBox());
+			this->dateTimePickerEmbauche = (gcnew System::Windows::Forms::DateTimePicker());
+			this->labelResponsable = (gcnew System::Windows::Forms::Label());
+			this->textBoxResponsable = (gcnew System::Windows::Forms::TextBox());
+			this->panelEmploye = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			this->pnlAdress->SuspendLayout();
+			this->panelEmploye->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -164,9 +196,9 @@ namespace AppliProjetPOO {
 			this->labelNom->Location = System::Drawing::Point(3, 67);
 			this->labelNom->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelNom->Name = L"labelNom";
-			this->labelNom->Size = System::Drawing::Size(120, 30);
+			this->labelNom->Size = System::Drawing::Size(71, 30);
 			this->labelNom->TabIndex = 5;
-			this->labelNom->Text = L"Nom      :";
+			this->labelNom->Text = L"Nom";
 			// 
 			// labelPrenom
 			// 
@@ -177,9 +209,9 @@ namespace AppliProjetPOO {
 			this->labelPrenom->Location = System::Drawing::Point(4, 120);
 			this->labelPrenom->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelPrenom->Name = L"labelPrenom";
-			this->labelPrenom->Size = System::Drawing::Size(119, 30);
+			this->labelPrenom->Size = System::Drawing::Size(105, 30);
 			this->labelPrenom->TabIndex = 6;
-			this->labelPrenom->Text = L"Prénom :";
+			this->labelPrenom->Text = L"PrÃ©nom";
 			// 
 			// labelGenre
 			// 
@@ -190,22 +222,13 @@ namespace AppliProjetPOO {
 			this->labelGenre->Location = System::Drawing::Point(4, 179);
 			this->labelGenre->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelGenre->Name = L"labelGenre";
-			this->labelGenre->Size = System::Drawing::Size(123, 30);
+			this->labelGenre->Size = System::Drawing::Size(240, 30);
 			this->labelGenre->TabIndex = 7;
-			this->labelGenre->Text = L"Genre    :";
-			// 
-			// comboBoxGenre
-			// 
-			this->comboBoxGenre->FormattingEnabled = true;
-			this->comboBoxGenre->Location = System::Drawing::Point(127, 184);
-			this->comboBoxGenre->Margin = System::Windows::Forms::Padding(2);
-			this->comboBoxGenre->Name = L"comboBoxGenre";
-			this->comboBoxGenre->Size = System::Drawing::Size(246, 25);
-			this->comboBoxGenre->TabIndex = 8;
+			this->labelGenre->Text = L"Date de Naissance";
 			// 
 			// textBoxPrenom
 			// 
-			this->textBoxPrenom->Location = System::Drawing::Point(127, 129);
+			this->textBoxPrenom->Location = System::Drawing::Point(310, 129);
 			this->textBoxPrenom->Margin = System::Windows::Forms::Padding(2);
 			this->textBoxPrenom->Multiline = true;
 			this->textBoxPrenom->Name = L"textBoxPrenom";
@@ -214,7 +237,7 @@ namespace AppliProjetPOO {
 			// 
 			// textBoxNom
 			// 
-			this->textBoxNom->Location = System::Drawing::Point(130, 76);
+			this->textBoxNom->Location = System::Drawing::Point(310, 76);
 			this->textBoxNom->Margin = System::Windows::Forms::Padding(2);
 			this->textBoxNom->Multiline = true;
 			this->textBoxNom->Name = L"textBoxNom";
@@ -261,9 +284,9 @@ namespace AppliProjetPOO {
 			this->labelNumTelephone->Location = System::Drawing::Point(632, 474);
 			this->labelNumTelephone->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelNumTelephone->Name = L"labelNumTelephone";
-			this->labelNumTelephone->Size = System::Drawing::Size(293, 30);
+			this->labelNumTelephone->Size = System::Drawing::Size(279, 30);
 			this->labelNumTelephone->TabIndex = 13;
-			this->labelNumTelephone->Text = L"Numéro de téléphone :";
+			this->labelNumTelephone->Text = L"NumÃ©ro de tÃ©lÃ©phone";
 			// 
 			// labelAdresseMail
 			// 
@@ -274,9 +297,9 @@ namespace AppliProjetPOO {
 			this->labelAdresseMail->Location = System::Drawing::Point(65, 474);
 			this->labelAdresseMail->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelAdresseMail->Name = L"labelAdresseMail";
-			this->labelAdresseMail->Size = System::Drawing::Size(178, 30);
+			this->labelAdresseMail->Size = System::Drawing::Size(164, 30);
 			this->labelAdresseMail->TabIndex = 12;
-			this->labelAdresseMail->Text = L"Adresse mail :";
+			this->labelAdresseMail->Text = L"Adresse mail";
 			// 
 			// label10
 			// 
@@ -300,9 +323,9 @@ namespace AppliProjetPOO {
 			this->lblAdress2->Location = System::Drawing::Point(15, 114);
 			this->lblAdress2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblAdress2->Name = L"lblAdress2";
-			this->lblAdress2->Size = System::Drawing::Size(162, 30);
+			this->lblAdress2->Size = System::Drawing::Size(148, 30);
 			this->lblAdress2->TabIndex = 18;
-			this->lblAdress2->Text = L"Facturation :";
+			this->lblAdress2->Text = L"Facturation";
 			// 
 			// lblAdress1
 			// 
@@ -313,15 +336,15 @@ namespace AppliProjetPOO {
 			this->lblAdress1->Location = System::Drawing::Point(15, 72);
 			this->lblAdress1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblAdress1->Name = L"lblAdress1";
-			this->lblAdress1->Size = System::Drawing::Size(164, 30);
+			this->lblAdress1->Size = System::Drawing::Size(115, 30);
 			this->lblAdress1->TabIndex = 17;
-			this->lblAdress1->Text = L"Livraison      :";
+			this->lblAdress1->Text = L"Livraison";
 			// 
 			// button1
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(495, 533);
+			this->button1->Location = System::Drawing::Point(570, 529);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(181, 41);
 			this->button1->TabIndex = 23;
@@ -355,29 +378,137 @@ namespace AppliProjetPOO {
 			// 
 			// panel1
 			// 
+			this->panel1->Controls->Add(this->dateTimePickerNaissance);
 			this->panel1->Controls->Add(this->label3);
 			this->panel1->Controls->Add(this->labelNom);
 			this->panel1->Controls->Add(this->labelPrenom);
 			this->panel1->Controls->Add(this->labelGenre);
 			this->panel1->Controls->Add(this->textBoxNom);
 			this->panel1->Controls->Add(this->textBoxPrenom);
-			this->panel1->Controls->Add(this->comboBoxGenre);
-			this->panel1->Location = System::Drawing::Point(61, 153);
+			this->panel1->Location = System::Drawing::Point(39, 111);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(405, 215);
+			this->panel1->Size = System::Drawing::Size(603, 215);
 			this->panel1->TabIndex = 27;
+			// 
+			// dateTimePickerNaissance
+			// 
+			this->dateTimePickerNaissance->Location = System::Drawing::Point(310, 187);
+			this->dateTimePickerNaissance->Name = L"dateTimePickerNaissance";
+			this->dateTimePickerNaissance->Size = System::Drawing::Size(246, 22);
+			this->dateTimePickerNaissance->TabIndex = 11;
 			// 
 			// pnlAdress
 			// 
+			this->pnlAdress->Controls->Add(this->textBoxCodeClient);
+			this->pnlAdress->Controls->Add(this->label2);
 			this->pnlAdress->Controls->Add(this->label10);
 			this->pnlAdress->Controls->Add(this->lblAdress1);
 			this->pnlAdress->Controls->Add(this->lblAdress2);
 			this->pnlAdress->Controls->Add(this->btnAdress2);
 			this->pnlAdress->Controls->Add(this->btnAdress1);
-			this->pnlAdress->Location = System::Drawing::Point(692, 153);
+			this->pnlAdress->Location = System::Drawing::Point(664, 111);
 			this->pnlAdress->Name = L"pnlAdress";
-			this->pnlAdress->Size = System::Drawing::Size(372, 154);
+			this->pnlAdress->Size = System::Drawing::Size(458, 199);
 			this->pnlAdress->TabIndex = 28;
+			// 
+			// textBoxCodeClient
+			// 
+			this->textBoxCodeClient->Location = System::Drawing::Point(191, 159);
+			this->textBoxCodeClient->Margin = System::Windows::Forms::Padding(2);
+			this->textBoxCodeClient->Multiline = true;
+			this->textBoxCodeClient->Name = L"textBoxCodeClient";
+			this->textBoxCodeClient->Size = System::Drawing::Size(179, 30);
+			this->textBoxCodeClient->TabIndex = 12;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->ForeColor = System::Drawing::Color::White;
+			this->label2->Location = System::Drawing::Point(15, 159);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(159, 30);
+			this->label2->TabIndex = 26;
+			this->label2->Text = L"Code Client";
+			// 
+			// labelMDP
+			// 
+			this->labelMDP->AutoSize = true;
+			this->labelMDP->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->labelMDP->ForeColor = System::Drawing::Color::White;
+			this->labelMDP->Location = System::Drawing::Point(4, 25);
+			this->labelMDP->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->labelMDP->Name = L"labelMDP";
+			this->labelMDP->Size = System::Drawing::Size(174, 30);
+			this->labelMDP->TabIndex = 12;
+			this->labelMDP->Text = L"Mot de passe";
+			// 
+			// labelEmbauche
+			// 
+			this->labelEmbauche->AutoSize = true;
+			this->labelEmbauche->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->labelEmbauche->ForeColor = System::Drawing::Color::White;
+			this->labelEmbauche->Location = System::Drawing::Point(389, 26);
+			this->labelEmbauche->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->labelEmbauche->Name = L"labelEmbauche";
+			this->labelEmbauche->Size = System::Drawing::Size(214, 30);
+			this->labelEmbauche->TabIndex = 13;
+			this->labelEmbauche->Text = L"Date_Embauche";
+			// 
+			// textBoxMDP
+			// 
+			this->textBoxMDP->Location = System::Drawing::Point(182, 26);
+			this->textBoxMDP->Margin = System::Windows::Forms::Padding(2);
+			this->textBoxMDP->Multiline = true;
+			this->textBoxMDP->Name = L"textBoxMDP";
+			this->textBoxMDP->Size = System::Drawing::Size(203, 30);
+			this->textBoxMDP->TabIndex = 15;
+			// 
+			// dateTimePickerEmbauche
+			// 
+			this->dateTimePickerEmbauche->Location = System::Drawing::Point(608, 33);
+			this->dateTimePickerEmbauche->Name = L"dateTimePickerEmbauche";
+			this->dateTimePickerEmbauche->Size = System::Drawing::Size(246, 22);
+			this->dateTimePickerEmbauche->TabIndex = 12;
+			// 
+			// labelResponsable
+			// 
+			this->labelResponsable->AutoSize = true;
+			this->labelResponsable->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->labelResponsable->ForeColor = System::Drawing::Color::White;
+			this->labelResponsable->Location = System::Drawing::Point(873, 26);
+			this->labelResponsable->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->labelResponsable->Name = L"labelResponsable";
+			this->labelResponsable->Size = System::Drawing::Size(165, 30);
+			this->labelResponsable->TabIndex = 29;
+			this->labelResponsable->Text = L"Responsable";
+			// 
+			// textBoxResponsable
+			// 
+			this->textBoxResponsable->Location = System::Drawing::Point(1042, 26);
+			this->textBoxResponsable->Margin = System::Windows::Forms::Padding(2);
+			this->textBoxResponsable->Multiline = true;
+			this->textBoxResponsable->Name = L"textBoxResponsable";
+			this->textBoxResponsable->Size = System::Drawing::Size(210, 30);
+			this->textBoxResponsable->TabIndex = 30;
+			// 
+			// panelEmploye
+			// 
+			this->panelEmploye->Controls->Add(this->dateTimePickerEmbauche);
+			this->panelEmploye->Controls->Add(this->labelResponsable);
+			this->panelEmploye->Controls->Add(this->textBoxMDP);
+			this->panelEmploye->Controls->Add(this->textBoxResponsable);
+			this->panelEmploye->Controls->Add(this->labelEmbauche);
+			this->panelEmploye->Controls->Add(this->labelMDP);
+			this->panelEmploye->Location = System::Drawing::Point(12, 332);
+			this->panelEmploye->Name = L"panelEmploye";
+			this->panelEmploye->Size = System::Drawing::Size(1254, 79);
+			this->panelEmploye->TabIndex = 28;
 			// 
 			// CreatePerson
 			// 
@@ -386,6 +517,7 @@ namespace AppliProjetPOO {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->ClientSize = System::Drawing::Size(1278, 596);
+			this->Controls->Add(this->panelEmploye);
 			this->Controls->Add(this->pnlAdress);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->button1);
@@ -406,6 +538,8 @@ namespace AppliProjetPOO {
 			this->panel1->PerformLayout();
 			this->pnlAdress->ResumeLayout(false);
 			this->pnlAdress->PerformLayout();
+			this->panelEmploye->ResumeLayout(false);
+			this->panelEmploye->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -430,13 +564,30 @@ namespace AppliProjetPOO {
 	{
 		if (checkIsNotVoid())
 		{
-			MessageBox::Show("Ok");
+
 			if (typePerson == "employe")
 			{
+				panelEmploye->Visible = true;
+				conn->openConnection();
+			
+				String^ query = "INSERT INTO Personne VALUES (" + textBoxNom->Text + ", " + textBoxPrenom->Text + ", " + textBoxNumTelephone->Text + ", " + textBoxAdresseMail->Text + ", " + dateTimePickerNaissance->Text + ")";
+				String^ query1 = "INSERT INTO Personnel VALUES (" + dateTimePickerEmbauche->Text + ", '" + textBoxMDP->Text + "', (select ID_ADRESSE from Adresse where NUMERO_VOIE = '" + adr1->getNumRue() + "' and RUE = '" + adr1->getRue() + " and BATIMENT = '" + adr1->getBatiment() + "' and ETAGE = '" + adr1->getEtage() + "'), (select ID_ADRESSE from Adresse where NUMERO_VOIE = '" + adr2->getNumRue() + "' and RUE = '" + adr2->getRue() + " and BATIMENT = '" + adr2->getBatiment() + "' and ETAGE = '" + adr2->getEtage() + "'), (select ID_PERSONNE from Personne WHERE NOM_PERSONNE = '" + textBoxNom->Text + "' and PRENOM_PERSONNE = '" + textBoxPrenom->Text + "'))";
+				SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+				SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
 
+				conn->closeConnection();
 			}
 			if (typePerson == "client")
 			{
+				panelEmploye->Visible = false;
+				conn->openConnection();
+
+				String^ query = "INSERT INTO Personne VALUES (" + textBoxNom->Text + ", " + textBoxPrenom->Text + ", " + textBoxNumTelephone->Text + ", " + textBoxAdresseMail->Text + ", " + dateTimePickerNaissance->Text + ")";
+				String^ query1 = "INSERT INTO Client VALUES (" + textBoxCodeClient->Text + ", (select ID_ADRESSE from Adresse where NUMERO_VOIE = '" + adr1->getNumRue() + "' and RUE = '" + adr1->getRue() + " and BATIMENT = '" + adr1->getBatiment() + "' and ETAGE = '" + adr1->getEtage() + "'), (select ID_ADRESSE from Adresse where NUMERO_VOIE = '" + adr2->getNumRue() + "' and RUE = '" + adr2->getRue() + " and BATIMENT = '" + adr2->getBatiment() + "' and ETAGE = '" + adr2->getEtage() + "'), (select ID_PERSONNE from Personne WHERE NOM_PERSONNE = '" + textBoxNom->Text + "' and PRENOM_PERSONNE = '" + textBoxPrenom->Text + "'))";
+				SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+				SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+
+				conn->closeConnection();
 
 			}
 		}
@@ -449,8 +600,6 @@ private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs
 {
 	if (typePerson == "employe")
 	{
-		Adresse^ adr1 = gcnew Adresse();
-
 		adr1->ShowDialog();
 		adr1App = adr1->getTypeLocation();
 
@@ -505,7 +654,7 @@ private: System::Void btnAdress2_Click(System::Object^ sender, System::EventArgs
 	if (typePerson == "client")
 	{
 
-		Adresse^ adr2 = gcnew Adresse();
+		
 
 		adr2->ShowDialog();
 		adr2App = adr2->getTypeLocation();
