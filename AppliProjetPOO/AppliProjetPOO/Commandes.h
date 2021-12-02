@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CreateCommande.h"
+#include "ModifCommande.h"
 #include "Connection.h"
 
 namespace AppliProjetPOO {
@@ -44,6 +45,9 @@ namespace AppliProjetPOO {
 			}
 
 			conn->closeConnection();
+
+			buttonSupprimerValidation->Visible = false;
+			textBoxIDSuppr->Visible = false;
 		}
 
 	private:
@@ -82,13 +86,6 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnModifier;
 	private: System::Windows::Forms::Panel^ pnlMain;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-
-
-
-
-
-
-
 
 	private: System::Windows::Forms::Panel^ pnlFilter;
 
@@ -445,12 +442,15 @@ namespace AppliProjetPOO {
 
 	private: System::Void btnModifier_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-
+		ModifCommande^ frmModifCommande = gcnew ModifCommande();
+		active = frmModifCommande;
+		frmModifCommande->ShowDialog();
 	}
 
 	private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-
+		textBoxIDSuppr->Visible = true;
+		buttonSupprimerValidation->Visible = true;
 	}
 
 	private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e)
@@ -495,7 +495,17 @@ namespace AppliProjetPOO {
 	}
 private: System::Void buttonSupprimerValidation_Click(System::Object^ sender, System::EventArgs^ e) 
 {
+	conn->openConnection();
 
+	String^ query = "DELETE FROM Commande WHERE ID_COMMANDE = " + textBoxIDSuppr->Text;
+	SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+	String^ query1 = "DELETE FROM Contenir WHERE ID_COMMANDE = " + textBoxIDSuppr->Text;
+	SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+
+	cmd->ExecuteNonQuery();
+	cmd1->ExecuteNonQuery();
+
+	conn->closeConnection();
 }
 };
 }

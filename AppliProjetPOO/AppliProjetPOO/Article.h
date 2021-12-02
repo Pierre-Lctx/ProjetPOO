@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Connection.h"
+
 namespace AppliProjetPOO {
 
 	using namespace System;
@@ -8,12 +10,14 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
 	/// Description résumée de Article
 	/// </summary>
 	public ref class Article : public System::Windows::Forms::Form
 	{
+	public: Connect^ conn;
 	public:
 		Article(void)
 		{
@@ -21,6 +25,8 @@ namespace AppliProjetPOO {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+
+			conn = gcnew Connect();
 		}
 
 	protected:
@@ -101,6 +107,7 @@ namespace AppliProjetPOO {
 			this->label1->Size = System::Drawing::Size(203, 30);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Nom de l\'article";
+			this->label1->Click += gcnew System::EventHandler(this, &Article::label1_Click);
 			// 
 			// textBoxNom
 			// 
@@ -109,6 +116,7 @@ namespace AppliProjetPOO {
 			this->textBoxNom->Name = L"textBoxNom";
 			this->textBoxNom->Size = System::Drawing::Size(320, 30);
 			this->textBoxNom->TabIndex = 1;
+			this->textBoxNom->TextChanged += gcnew System::EventHandler(this, &Article::textBoxNom_TextChanged);
 			// 
 			// textBoxStock
 			// 
@@ -117,6 +125,7 @@ namespace AppliProjetPOO {
 			this->textBoxStock->Name = L"textBoxStock";
 			this->textBoxStock->Size = System::Drawing::Size(320, 30);
 			this->textBoxStock->TabIndex = 3;
+			this->textBoxStock->TextChanged += gcnew System::EventHandler(this, &Article::textBoxStock_TextChanged);
 			// 
 			// label2
 			// 
@@ -129,6 +138,7 @@ namespace AppliProjetPOO {
 			this->label2->Size = System::Drawing::Size(201, 30);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Stocks associés ";
+			this->label2->Click += gcnew System::EventHandler(this, &Article::label2_Click);
 			// 
 			// textBoxSeuilAppro
 			// 
@@ -137,6 +147,7 @@ namespace AppliProjetPOO {
 			this->textBoxSeuilAppro->Name = L"textBoxSeuilAppro";
 			this->textBoxSeuilAppro->Size = System::Drawing::Size(320, 30);
 			this->textBoxSeuilAppro->TabIndex = 7;
+			this->textBoxSeuilAppro->TextChanged += gcnew System::EventHandler(this, &Article::textBoxSeuilAppro_TextChanged);
 			// 
 			// label3
 			// 
@@ -149,6 +160,7 @@ namespace AppliProjetPOO {
 			this->label3->Size = System::Drawing::Size(329, 30);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"Seuil d\'approvisionnement";
+			this->label3->Click += gcnew System::EventHandler(this, &Article::label3_Click);
 			// 
 			// textBoxPrix
 			// 
@@ -157,6 +169,7 @@ namespace AppliProjetPOO {
 			this->textBoxPrix->Name = L"textBoxPrix";
 			this->textBoxPrix->Size = System::Drawing::Size(320, 30);
 			this->textBoxPrix->TabIndex = 5;
+			this->textBoxPrix->TextChanged += gcnew System::EventHandler(this, &Article::textBoxPrix_TextChanged);
 			// 
 			// label4
 			// 
@@ -169,6 +182,7 @@ namespace AppliProjetPOO {
 			this->label4->Size = System::Drawing::Size(184, 30);
 			this->label4->TabIndex = 4;
 			this->label4->Text = L"Prix de l\'article";
+			this->label4->Click += gcnew System::EventHandler(this, &Article::label4_Click);
 			// 
 			// label5
 			// 
@@ -181,6 +195,7 @@ namespace AppliProjetPOO {
 			this->label5->Size = System::Drawing::Size(371, 44);
 			this->label5->TabIndex = 8;
 			this->label5->Text = L"Création de l\'article";
+			this->label5->Click += gcnew System::EventHandler(this, &Article::label5_Click);
 			// 
 			// textBoxCouleur
 			// 
@@ -189,6 +204,7 @@ namespace AppliProjetPOO {
 			this->textBoxCouleur->Name = L"textBoxCouleur";
 			this->textBoxCouleur->Size = System::Drawing::Size(320, 30);
 			this->textBoxCouleur->TabIndex = 14;
+			this->textBoxCouleur->TextChanged += gcnew System::EventHandler(this, &Article::textBoxCouleur_TextChanged);
 			// 
 			// label6
 			// 
@@ -201,6 +217,7 @@ namespace AppliProjetPOO {
 			this->label6->Size = System::Drawing::Size(240, 30);
 			this->label6->TabIndex = 13;
 			this->label6->Text = L"Couleur de l\'article";
+			this->label6->Click += gcnew System::EventHandler(this, &Article::label6_Click);
 			// 
 			// textBoxNature
 			// 
@@ -209,6 +226,7 @@ namespace AppliProjetPOO {
 			this->textBoxNature->Name = L"textBoxNature";
 			this->textBoxNature->Size = System::Drawing::Size(320, 30);
 			this->textBoxNature->TabIndex = 12;
+			this->textBoxNature->TextChanged += gcnew System::EventHandler(this, &Article::textBoxNature_TextChanged);
 			// 
 			// label7
 			// 
@@ -221,6 +239,7 @@ namespace AppliProjetPOO {
 			this->label7->Size = System::Drawing::Size(225, 30);
 			this->label7->TabIndex = 11;
 			this->label7->Text = L"Nature de l\'article";
+			this->label7->Click += gcnew System::EventHandler(this, &Article::label7_Click);
 			// 
 			// textBoxTVA
 			// 
@@ -229,6 +248,7 @@ namespace AppliProjetPOO {
 			this->textBoxTVA->Name = L"textBoxTVA";
 			this->textBoxTVA->Size = System::Drawing::Size(320, 30);
 			this->textBoxTVA->TabIndex = 10;
+			this->textBoxTVA->TextChanged += gcnew System::EventHandler(this, &Article::textBoxTVA_TextChanged);
 			// 
 			// label8
 			// 
@@ -241,6 +261,7 @@ namespace AppliProjetPOO {
 			this->label8->Size = System::Drawing::Size(190, 30);
 			this->label8->TabIndex = 9;
 			this->label8->Text = L"TVA sur l\'article";
+			this->label8->Click += gcnew System::EventHandler(this, &Article::label8_Click);
 			// 
 			// btnValider
 			// 
@@ -250,9 +271,9 @@ namespace AppliProjetPOO {
 			this->btnValider->Font = (gcnew System::Drawing::Font(L"Century Gothic", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnValider->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->btnValider->Location = System::Drawing::Point(325, 610);
+			this->btnValider->Location = System::Drawing::Point(39, 610);
 			this->btnValider->Name = L"btnValider";
-			this->btnValider->Size = System::Drawing::Size(102, 29);
+			this->btnValider->Size = System::Drawing::Size(670, 29);
 			this->btnValider->TabIndex = 15;
 			this->btnValider->Text = L"Valider";
 			this->btnValider->UseVisualStyleBackColor = true;
@@ -302,12 +323,49 @@ namespace AppliProjetPOO {
 
 		if (Nom != "" && Stock != "" && Prix != "" && SeuilAppro != "" && TVA != "" && Nature != "" && Couleur != "")
 		{
+			conn->openConnection();
 
+			String^ query = "INSERT INTO Article VALUES (" + Nom + ", " + Stock + ", " + Prix + ", " + SeuilAppro + ", " + TVA + ", " + Nature + ", " + Couleur + ");";
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			cmd->ExecuteNonQuery();
+
+			conn->closeConnection();
 		}
 		else
 		{
 			MessageBox::Show("Un des champs n'est pas renseigner ! Merci de bien vouloir renseigner tous les champs !");
 		}
 	}
+private: System::Void textBoxCouleur_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBoxNature_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label7_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBoxTVA_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBoxSeuilAppro_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBoxPrix_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBoxStock_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBoxNom_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
