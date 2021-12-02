@@ -1,5 +1,6 @@
 #pragma once
 #include "Connection.h"
+#include <list>
 
 namespace AppliProjetPOO 
 {
@@ -18,12 +19,44 @@ namespace AppliProjetPOO
 	public ref class Stats : public System::Windows::Forms::Form
 	{
 	private:
+		   int nbLigneDGV;
+	private: void hideAllDG()
+	{
+		dgvStat->Columns["prixHT"]->Visible = false;
+		dgvStat->Columns["TVA"]->Visible = false;
+		dgvStat->Columns["margeCommerciale"]->Visible = false;
+		dgvStat->Columns["remiseCommerciale"]->Visible = false;
+		dgvStat->Columns["demarqueInconnu"]->Visible = false;
+		dgvStat->Columns["nomArticle"]->Visible = false;
+		dgvStat->Columns["natureArticle"]->Visible = false;
+		dgvStat->Columns["couleurArticle"]->Visible = false;
+		dgvStat->Columns["stockArticle"]->Visible = false;
+		graphSimulation->Series[0]->Points->Clear();
+		
+	}
+	private: void hideAllLblInfo()
+	{
+		this->graphSimulation->Visible = false;
+		this->lblValueInfo->Visible = false;
+		this->lblTitleInfo->Visible = false;
+		this->lblNonGraph->Visible = false;
+	}
+
+	private:
 		DateTime^ prevDate = gcnew DateTime(0001, 1, 1, 1, 01, 01);
-		String^ Article;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ nomArticle;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ natureArticle;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ couleurArticle;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ stockArticle;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ prixHT;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TVA;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ margeCommerciale;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ remiseCommerciale;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ demarqueInconnu;
 
 	
 
-		   SqlConnection^ con = gcnew SqlConnection("Data Source=" + Environment::MachineName + ";Initial Catalog=DBProjet;Integrated Security=True");
+		   SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-P3RNDHD;Initial Catalog=DBProjet;Integrated Security=True");
 	public:
 		Stats(void)
 		{
@@ -31,6 +64,8 @@ namespace AppliProjetPOO
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+
+			
 
 		}
 
@@ -54,24 +89,14 @@ namespace AppliProjetPOO
 	private: System::Windows::Forms::Label^ lblTitleInfo;
 	private: System::Windows::Forms::Label^ lblNonGraph;
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^ graphSimulation;
-
 	private: System::Windows::Forms::Panel^ panel2;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridView^ dgvStat;
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Panel^ panel4;
 	private: System::Windows::Forms::Button^ btnPrixMoyen;
 	private: System::Windows::Forms::Button^ btnArticleReapro;
 	private: System::Windows::Forms::Button^ btnChiffreAffaire;
 	private: System::Windows::Forms::ComboBox^ cbMois;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ nomArticle;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ stockArticle;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ prixHT;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TVA;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ margeCommerciale;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ remiseCommerciale;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ demarqueInconnu;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ couleurArticle;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ natureArticle;
 	private: System::Windows::Forms::Label^ lblTVA;
 	private: System::Windows::Forms::Button^ btnValeurAchatStock;
 	private: System::Windows::Forms::Button^ btnValeurStock;
@@ -83,13 +108,17 @@ namespace AppliProjetPOO
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ btnLoad;
 	private: System::Windows::Forms::Button^ btnClear;
-	private: System::Windows::Forms::ComboBox^ comboBox7;
+	private: System::Windows::Forms::ComboBox^ cbDemarche;
+
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::ComboBox^ comboBox6;
+	private: System::Windows::Forms::ComboBox^ cbRemise;
+
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::ComboBox^ comboBox5;
+	private: System::Windows::Forms::ComboBox^ cbMarge;
+
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::ComboBox^ comboBox4;
+	private: System::Windows::Forms::ComboBox^ cbTVA;
+
 	private: System::Windows::Forms::Label^ label3;
 
 
@@ -108,25 +137,25 @@ namespace AppliProjetPOO
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->graphSimulation = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->lblNonGraph = (gcnew System::Windows::Forms::Label());
 			this->lblValueInfo = (gcnew System::Windows::Forms::Label());
 			this->lblTitleInfo = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->dgvStat = (gcnew System::Windows::Forms::DataGridView());
 			this->nomArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->natureArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->couleurArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->stockArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->prixHT = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->TVA = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->margeCommerciale = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->remiseCommerciale = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->demarqueInconnu = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->couleurArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->natureArticle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->btnValeurAchatStock = (gcnew System::Windows::Forms::Button());
 			this->btnValeurStock = (gcnew System::Windows::Forms::Button());
@@ -146,18 +175,18 @@ namespace AppliProjetPOO
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->btnLoad = (gcnew System::Windows::Forms::Button());
 			this->btnClear = (gcnew System::Windows::Forms::Button());
-			this->comboBox7 = (gcnew System::Windows::Forms::ComboBox());
+			this->cbDemarche = (gcnew System::Windows::Forms::ComboBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->comboBox6 = (gcnew System::Windows::Forms::ComboBox());
+			this->cbRemise = (gcnew System::Windows::Forms::ComboBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->comboBox5 = (gcnew System::Windows::Forms::ComboBox());
+			this->cbMarge = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
+			this->cbTVA = (gcnew System::Windows::Forms::ComboBox());
 			this->lblTVA = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->graphSimulation))->BeginInit();
 			this->panel2->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStat))->BeginInit();
 			this->panel3->SuspendLayout();
 			this->panel4->SuspendLayout();
 			this->SuspendLayout();
@@ -179,32 +208,44 @@ namespace AppliProjetPOO
 			// 
 			this->graphSimulation->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			chartArea2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			chartArea1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			chartArea2->BorderColor = System::Drawing::Color::White;
-			chartArea2->Name = L"ChartArea1";
-			this->graphSimulation->ChartAreas->Add(chartArea2);
+			chartArea1->BorderColor = System::Drawing::Color::White;
+			chartArea1->Name = L"ChartArea1";
+			this->graphSimulation->ChartAreas->Add(chartArea1);
 			this->graphSimulation->Dock = System::Windows::Forms::DockStyle::Fill;
-			legend2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			legend1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			legend2->ForeColor = System::Drawing::Color::White;
-			legend2->HeaderSeparatorColor = System::Drawing::Color::White;
-			legend2->ItemColumnSeparatorColor = System::Drawing::Color::White;
-			legend2->Name = L"Legend1";
-			legend2->TitleBackColor = System::Drawing::Color::White;
-			legend2->TitleForeColor = System::Drawing::Color::White;
-			legend2->TitleSeparatorColor = System::Drawing::Color::White;
-			this->graphSimulation->Legends->Add(legend2);
+			legend1->ForeColor = System::Drawing::Color::White;
+			legend1->HeaderSeparatorColor = System::Drawing::Color::White;
+			legend1->ItemColumnSeparatorColor = System::Drawing::Color::White;
+			legend1->Name = L"Legend1";
+			legend1->TitleBackColor = System::Drawing::Color::White;
+			legend1->TitleForeColor = System::Drawing::Color::White;
+			legend1->TitleSeparatorColor = System::Drawing::Color::White;
+			this->graphSimulation->Legends->Add(legend1);
 			this->graphSimulation->Location = System::Drawing::Point(0, 0);
 			this->graphSimulation->Name = L"graphSimulation";
 			this->graphSimulation->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
-			series2->ChartArea = L"ChartArea1";
-			series2->LabelForeColor = System::Drawing::Color::White;
-			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
-			this->graphSimulation->Series->Add(series2);
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Prix du stock De l\'article d\'après la simultation";
+			this->graphSimulation->Series->Add(series1);
 			this->graphSimulation->Size = System::Drawing::Size(1006, 267);
 			this->graphSimulation->TabIndex = 0;
+			//Couleurs sur l'Axe X
+			this->graphSimulation->ChartAreas[0]->AxisX->LineColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisX->MajorGrid->LineColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisX->InterlacedColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisX->LabelStyle->ForeColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisX->MajorTickMark->LineColor = Color::White;
+
+			//Couleurs sur l'Axe Y
+			this->graphSimulation->ChartAreas[0]->AxisY->LineColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisY->InterlacedColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisY->MajorGrid->LineColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisY->LabelStyle->ForeColor = Color::White;
+			this->graphSimulation->ChartAreas[0]->AxisY->MajorTickMark->LineColor = Color::White;
 			// 
 			// lblNonGraph
 			// 
@@ -222,60 +263,71 @@ namespace AppliProjetPOO
 			// lblValueInfo
 			// 
 			this->lblValueInfo->AutoSize = true;
-			this->lblValueInfo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblValueInfo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblValueInfo->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
 				static_cast<System::Int32>(static_cast<System::Byte>(221)));
 			this->lblValueInfo->Location = System::Drawing::Point(440, 116);
 			this->lblValueInfo->Name = L"lblValueInfo";
-			this->lblValueInfo->Size = System::Drawing::Size(118, 42);
+			this->lblValueInfo->Size = System::Drawing::Size(102, 37);
 			this->lblValueInfo->TabIndex = 1;
 			this->lblValueInfo->Text = L"label8";
 			// 
 			// lblTitleInfo
 			// 
 			this->lblTitleInfo->AutoSize = true;
-			this->lblTitleInfo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblTitleInfo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblTitleInfo->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(147)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
 				static_cast<System::Int32>(static_cast<System::Byte>(221)));
-			this->lblTitleInfo->Location = System::Drawing::Point(143, 29);
+			this->lblTitleInfo->Location = System::Drawing::Point(33, 26);
 			this->lblTitleInfo->Name = L"lblTitleInfo";
-			this->lblTitleInfo->Size = System::Drawing::Size(118, 42);
+			this->lblTitleInfo->Size = System::Drawing::Size(102, 37);
 			this->lblTitleInfo->TabIndex = 0;
 			this->lblTitleInfo->Text = L"label7";
 			// 
 			// panel2
 			// 
-			this->panel2->Controls->Add(this->dataGridView1);
+			this->panel2->Controls->Add(this->dgvStat);
 			this->panel2->Location = System::Drawing::Point(560, 285);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(722, 333);
 			this->panel2->TabIndex = 1;
 			// 
-			// dataGridView1
+			// dgvStat
 			// 
-			this->dataGridView1->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)),
-				static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(54)));
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
-				this->nomArticle,
-					this->stockArticle, this->prixHT, this->TVA, this->margeCommerciale, this->remiseCommerciale, this->demarqueInconnu, this->couleurArticle,
-					this->natureArticle
+			this->dgvStat->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
+				static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->dgvStat->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvStat->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
+				this->nomArticle, this->natureArticle,
+					this->couleurArticle, this->stockArticle, this->prixHT, this->TVA, this->margeCommerciale, this->remiseCommerciale, this->demarqueInconnu
 			});
-			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->dataGridView1->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
+			this->dgvStat->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->dgvStat->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			this->dataGridView1->Location = System::Drawing::Point(0, 0);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(722, 333);
-			this->dataGridView1->TabIndex = 0;
+			this->dgvStat->Location = System::Drawing::Point(0, 0);
+			this->dgvStat->Name = L"dgvStat";
+			this->dgvStat->Size = System::Drawing::Size(722, 333);
+			this->dgvStat->TabIndex = 0;
 			// 
 			// nomArticle
 			// 
 			this->nomArticle->HeaderText = L"Article";
 			this->nomArticle->Name = L"nomArticle";
 			this->nomArticle->ReadOnly = true;
+			// 
+			// natureArticle
+			// 
+			this->natureArticle->HeaderText = L"Nature Article";
+			this->natureArticle->Name = L"natureArticle";
+			this->natureArticle->ReadOnly = true;
+			// 
+			// couleurArticle
+			// 
+			this->couleurArticle->HeaderText = L"Couleur Article";
+			this->couleurArticle->Name = L"couleurArticle";
+			this->couleurArticle->ReadOnly = true;
 			// 
 			// stockArticle
 			// 
@@ -313,18 +365,6 @@ namespace AppliProjetPOO
 			this->demarqueInconnu->Name = L"demarqueInconnu";
 			this->demarqueInconnu->ReadOnly = true;
 			// 
-			// couleurArticle
-			// 
-			this->couleurArticle->HeaderText = L"Couleur Article";
-			this->couleurArticle->Name = L"couleurArticle";
-			this->couleurArticle->ReadOnly = true;
-			// 
-			// natureArticle
-			// 
-			this->natureArticle->HeaderText = L"Nature Article";
-			this->natureArticle->Name = L"natureArticle";
-			this->natureArticle->ReadOnly = true;
-			// 
 			// panel3
 			// 
 			this->panel3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(70)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
@@ -361,6 +401,7 @@ namespace AppliProjetPOO
 			this->btnValeurAchatStock->TabIndex = 14;
 			this->btnValeurAchatStock->Text = L"Valeur d\'Achat du Stock";
 			this->btnValeurAchatStock->UseVisualStyleBackColor = true;
+			this->btnValeurAchatStock->Click += gcnew System::EventHandler(this, &Stats::btnValeurAchatStock_Click);
 			// 
 			// btnValeurStock
 			// 
@@ -376,6 +417,7 @@ namespace AppliProjetPOO
 			this->btnValeurStock->TabIndex = 13;
 			this->btnValeurStock->Text = L"Valeur Commerciale du Stock";
 			this->btnValeurStock->UseVisualStyleBackColor = true;
+			this->btnValeurStock->Click += gcnew System::EventHandler(this, &Stats::btnValeurStock_Click);
 			// 
 			// btnMoins10Article
 			// 
@@ -391,6 +433,7 @@ namespace AppliProjetPOO
 			this->btnMoins10Article->TabIndex = 12;
 			this->btnMoins10Article->Text = L"Les 10 Articles les Moins Vendus";
 			this->btnMoins10Article->UseVisualStyleBackColor = true;
+			this->btnMoins10Article->Click += gcnew System::EventHandler(this, &Stats::btnMoins10Article_Click);
 			// 
 			// btnPlus10Article
 			// 
@@ -406,6 +449,7 @@ namespace AppliProjetPOO
 			this->btnPlus10Article->TabIndex = 11;
 			this->btnPlus10Article->Text = L"Les 10 Articles les Plus Vendus";
 			this->btnPlus10Article->UseVisualStyleBackColor = true;
+			this->btnPlus10Article->Click += gcnew System::EventHandler(this, &Stats::btnPlus10Article_Click);
 			// 
 			// cbIDClient
 			// 
@@ -429,6 +473,7 @@ namespace AppliProjetPOO
 			this->btnTotalClientPrix->TabIndex = 9;
 			this->btnTotalClientPrix->Text = L"Paiement Total pour le Client";
 			this->btnTotalClientPrix->UseVisualStyleBackColor = true;
+			this->btnTotalClientPrix->Click += gcnew System::EventHandler(this, &Stats::btnTotalClientPrix_Click);
 			// 
 			// cbAnnee
 			// 
@@ -482,6 +527,7 @@ namespace AppliProjetPOO
 			this->btnArticleReapro->TabIndex = 3;
 			this->btnArticleReapro->Text = L"Articles à Réaprovisionner";
 			this->btnArticleReapro->UseVisualStyleBackColor = true;
+			this->btnArticleReapro->Click += gcnew System::EventHandler(this, &Stats::btnArticleReapro_Click);
 			// 
 			// btnChiffreAffaire
 			// 
@@ -523,13 +569,13 @@ namespace AppliProjetPOO
 			this->panel4->Controls->Add(this->label3);
 			this->panel4->Controls->Add(this->btnLoad);
 			this->panel4->Controls->Add(this->btnClear);
-			this->panel4->Controls->Add(this->comboBox7);
+			this->panel4->Controls->Add(this->cbDemarche);
 			this->panel4->Controls->Add(this->label5);
-			this->panel4->Controls->Add(this->comboBox6);
+			this->panel4->Controls->Add(this->cbRemise);
 			this->panel4->Controls->Add(this->label4);
-			this->panel4->Controls->Add(this->comboBox5);
+			this->panel4->Controls->Add(this->cbMarge);
 			this->panel4->Controls->Add(this->label2);
-			this->panel4->Controls->Add(this->comboBox4);
+			this->panel4->Controls->Add(this->cbTVA);
 			this->panel4->Controls->Add(this->lblTVA);
 			this->panel4->Location = System::Drawing::Point(3, 196);
 			this->panel4->Name = L"panel4";
@@ -595,15 +641,16 @@ namespace AppliProjetPOO
 			this->btnClear->TabIndex = 23;
 			this->btnClear->Text = L"Vider";
 			this->btnClear->UseVisualStyleBackColor = true;
+			this->btnClear->Click += gcnew System::EventHandler(this, &Stats::btnClear_Click);
 			// 
-			// comboBox7
+			// cbDemarche
 			// 
-			this->comboBox7->FormattingEnabled = true;
-			this->comboBox7->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"5%", L"3%", L"2%" });
-			this->comboBox7->Location = System::Drawing::Point(395, 77);
-			this->comboBox7->Name = L"comboBox7";
-			this->comboBox7->Size = System::Drawing::Size(43, 21);
-			this->comboBox7->TabIndex = 22;
+			this->cbDemarche->FormattingEnabled = true;
+			this->cbDemarche->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"5%", L"3%", L"2%" });
+			this->cbDemarche->Location = System::Drawing::Point(395, 77);
+			this->cbDemarche->Name = L"cbDemarche";
+			this->cbDemarche->Size = System::Drawing::Size(43, 21);
+			this->cbDemarche->TabIndex = 22;
 			// 
 			// label5
 			// 
@@ -621,14 +668,14 @@ namespace AppliProjetPOO
 			this->label5->TabIndex = 21;
 			this->label5->Text = L"Demarche Inconnu : ";
 			// 
-			// comboBox6
+			// cbRemise
 			// 
-			this->comboBox6->FormattingEnabled = true;
-			this->comboBox6->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"6%", L"5%" });
-			this->comboBox6->Location = System::Drawing::Point(178, 71);
-			this->comboBox6->Name = L"comboBox6";
-			this->comboBox6->Size = System::Drawing::Size(43, 21);
-			this->comboBox6->TabIndex = 20;
+			this->cbRemise->FormattingEnabled = true;
+			this->cbRemise->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"6%", L"5%" });
+			this->cbRemise->Location = System::Drawing::Point(178, 71);
+			this->cbRemise->Name = L"cbRemise";
+			this->cbRemise->Size = System::Drawing::Size(43, 21);
+			this->cbRemise->TabIndex = 20;
 			// 
 			// label4
 			// 
@@ -646,14 +693,14 @@ namespace AppliProjetPOO
 			this->label4->TabIndex = 19;
 			this->label4->Text = L"Remise Commerciale  : ";
 			// 
-			// comboBox5
+			// cbMarge
 			// 
-			this->comboBox5->FormattingEnabled = true;
-			this->comboBox5->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"15%", L"10%", L"5%" });
-			this->comboBox5->Location = System::Drawing::Point(408, 47);
-			this->comboBox5->Name = L"comboBox5";
-			this->comboBox5->Size = System::Drawing::Size(43, 21);
-			this->comboBox5->TabIndex = 18;
+			this->cbMarge->FormattingEnabled = true;
+			this->cbMarge->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"15%", L"10%", L"5%" });
+			this->cbMarge->Location = System::Drawing::Point(408, 47);
+			this->cbMarge->Name = L"cbMarge";
+			this->cbMarge->Size = System::Drawing::Size(43, 21);
+			this->cbMarge->TabIndex = 18;
 			// 
 			// label2
 			// 
@@ -671,14 +718,14 @@ namespace AppliProjetPOO
 			this->label2->TabIndex = 17;
 			this->label2->Text = L"Marge Commerciale  : ";
 			// 
-			// comboBox4
+			// cbTVA
 			// 
-			this->comboBox4->FormattingEnabled = true;
-			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"20%", L"10%", L"5,5%" });
-			this->comboBox4->Location = System::Drawing::Point(78, 42);
-			this->comboBox4->Name = L"comboBox4";
-			this->comboBox4->Size = System::Drawing::Size(43, 21);
-			this->comboBox4->TabIndex = 16;
+			this->cbTVA->FormattingEnabled = true;
+			this->cbTVA->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"20%", L"10%", L"5,5%" });
+			this->cbTVA->Location = System::Drawing::Point(78, 42);
+			this->cbTVA->Name = L"cbTVA";
+			this->cbTVA->Size = System::Drawing::Size(43, 21);
+			this->cbTVA->TabIndex = 16;
 			// 
 			// lblTVA
 			// 
@@ -714,7 +761,7 @@ namespace AppliProjetPOO
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->graphSimulation))->EndInit();
 			this->panel2->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStat))->EndInit();
 			this->panel3->ResumeLayout(false);
 			this->panel3->PerformLayout();
 			this->panel4->ResumeLayout(false);
@@ -725,9 +772,9 @@ namespace AppliProjetPOO
 #pragma endregion
 	private: System::Void Stats_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
-		this->graphSimulation->Visible = false;
-		this->lblValueInfo->Visible = false;
-		this->lblTitleInfo->Visible = false;
+		hideAllDG();
+		dgvStat->Rows->Clear();
+		hideAllLblInfo();
 		this->lblNonGraph->Visible = true;
 
 		String^ rqtYear = "SELECT DATE_COMMANDE From Commande";
@@ -783,6 +830,10 @@ namespace AppliProjetPOO
 
 private: System::Void btnPrixMoyen_Click(System::Object^ sender, System::EventArgs^ e) 
 {
+	hideAllDG();
+	dgvStat->Rows->Clear();
+	hideAllLblInfo();
+
 	this->graphSimulation->Visible = false;
 	this->lblNonGraph->Visible = false;
 	this->lblTitleInfo->Visible = true;
@@ -809,16 +860,16 @@ private: System::Void btnPrixMoyen_Click(System::Object^ sender, System::EventAr
 	con->Close();
 
 }
-private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e)
-{
 
-}
 private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::EventArgs^ e) 
 {
+	hideAllDG();
+	dgvStat->Rows->Clear();
+	hideAllLblInfo();
+
 	if (cbMois->Text != "mois"  && cbAnnee->Text != "annee" )
 	{
 		this->graphSimulation->Visible = false;
-		this->lblNonGraph->Visible = false;
 		this->lblTitleInfo->Visible = true;
 		this->lblTitleInfo->Text = "Le chiffre d'affaire pour le "+ cbMois->Text + "/" + cbAnnee->Text + " est :";
 		this->lblValueInfo->Visible = true;
@@ -841,7 +892,7 @@ private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::Ev
 			{
 				lblValueInfo->Text = "0 €";
 			}
-						
+		
 		}
 	
 		drChiffreAffaire->Close();
@@ -852,6 +903,245 @@ private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::Ev
 	{
 		MessageBox::Show("La Date n'est pas Valide !", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 	}
+}
+private: System::Void btnArticleReapro_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	hideAllDG();
+	dgvStat->Rows->Clear();
+	hideAllLblInfo();
+	
+	dgvStat->Columns["nomArticle"]->Visible = true;
+	dgvStat->Columns["natureArticle"]->Visible = true;
+	dgvStat->Columns["couleurArticle"]->Visible = true;
+	dgvStat->Columns["stockArticle"]->Visible = true;
+
+	
+	this->lblNonGraph->Visible = true;
+	
+
+	String^ rqtArticleReapro = "select NOM_ARTICLE, NATURE, COULEUR, STOCK, SEUIL_APPROVISIONNEMENT from ARTICLE where STOCK < SEUIL_APPROVISIONNEMENT";
+
+	SqlCommand^ cmdArticleReapro = gcnew SqlCommand(rqtArticleReapro, con);
+
+	con->Open();
+
+	SqlDataReader^ drArticleReapro = cmdArticleReapro->ExecuteReader();
+
+	while (drArticleReapro->Read())
+	{
+		dgvStat->Rows->Add(drArticleReapro["NOM_ARTICLE"], drArticleReapro["NATURE"], drArticleReapro["COULEUR"], drArticleReapro["STOCK"]);
+	}
+	drArticleReapro->Close();
+	con->Close();
+}
+private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	hideAllDG();
+	dgvStat->Rows->Clear();
+	hideAllLblInfo();
+
+	lblTitleInfo->Visible = true;
+	lblValueInfo->Visible = true;
+
+	String^ rqtNomClient = "SELECT NOM_PERSONNE, PRENOM_PERSONNE From Personne INNER JOIN Client ON Personne.ID_PERSONNE = " + cbIDClient->Text;
+
+	SqlCommand^ cmdNomClient = gcnew SqlCommand(rqtNomClient, con);
+	con->Open();
+
+	SqlDataReader^ drNomClient = cmdNomClient->ExecuteReader();
+
+	if (drNomClient->Read())
+	{
+		lblTitleInfo->Text = "Le Client ";
+		lblTitleInfo->Text += drNomClient->GetString(1) + "\r\n";
+		lblTitleInfo->Text += drNomClient->GetString(0) + "\r\n";
+		lblTitleInfo->Text += "a dépenser au total :";
+	}
+	drNomClient->Close();
+
+	String^ rqtClientPrix = "select sum(Paiement.MONTANT_TTC) from Paiement inner join Commande on Paiement.ID_COMMANDE = Commande.ID_COMMANDE inner join Client on Commande.ID_CLIENT = " + cbIDClient->Text;
+	
+	SqlCommand^ cmdClientPrix = gcnew SqlCommand(rqtClientPrix, con);
+	
+	SqlDataReader^ drClientPrix = cmdClientPrix->ExecuteReader();
+
+	if (drClientPrix->Read())
+	{
+		lblValueInfo->Text = drClientPrix->GetDouble(0).ToString()  + " €";
+	}
+	drClientPrix->Close();
+
+	con->Close();
+
+
+}
+private: System::Void btnPlus10Article_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	hideAllDG();
+	dgvStat->Rows->Clear();
+	hideAllLblInfo();
+
+	dgvStat->Columns["nomArticle"]->Visible = true;
+	dgvStat->Columns["natureArticle"]->Visible = true;
+	dgvStat->Columns["couleurArticle"]->Visible = true;
+	lblNonGraph->Visible = true;
+
+	String^ rqtPlus10Article = "select top(10) sum(Contenir.QUANTITE), Article.NOM_ARTICLE, Article.NATURE, Article.COULEUR from Contenir inner join Article on Contenir.ID_ARTICLE = Article.ID_ARTICLE group by Contenir.ID_ARTICLE, NOM_ARTICLE, Article.NATURE, Article.COULEUR order by sum(QUANTITE) desc ";
+
+	SqlCommand^ cmdPlus10Article = gcnew SqlCommand(rqtPlus10Article, con);
+
+	con->Open();
+
+	SqlDataReader^ drPlus10Article = cmdPlus10Article->ExecuteReader();
+
+	while (drPlus10Article->Read())
+	{
+		
+		dgvStat->Rows->Add(drPlus10Article["NOM_ARTICLE"], drPlus10Article["NATURE"], drPlus10Article["COULEUR"]);
+
+	}
+	drPlus10Article->Close();
+	con->Close();
+}
+private: System::Void btnMoins10Article_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	hideAllDG();
+	dgvStat->Rows->Clear();
+	hideAllLblInfo();
+
+	dgvStat->Columns["nomArticle"]->Visible = true;
+	dgvStat->Columns["natureArticle"]->Visible = true;
+	dgvStat->Columns["couleurArticle"]->Visible = true;
+	lblNonGraph->Visible = true;
+
+	String^ rqtMoins10Article = "select top(10) sum(Contenir.QUANTITE), Article.NOM_ARTICLE, Article.NATURE, Article.COULEUR from Contenir inner join Article on Contenir.ID_ARTICLE = Article.ID_ARTICLE group by Contenir.ID_ARTICLE, NOM_ARTICLE, Article.NATURE, Article.COULEUR order by sum(QUANTITE) asc ";
+
+	SqlCommand^ cmdMoins10Article = gcnew SqlCommand(rqtMoins10Article, con);
+
+	con->Open();
+
+	SqlDataReader^ drMoins10Article = cmdMoins10Article->ExecuteReader();
+
+	while (drMoins10Article->Read())
+	{
+
+		dgvStat->Rows->Add(drMoins10Article["NOM_ARTICLE"], drMoins10Article["NATURE"], drMoins10Article["COULEUR"]);
+
+	}
+	drMoins10Article->Close();
+	con->Close();
+}
+private: System::Void btnValeurStock_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	hideAllDG();
+	dgvStat->Rows->Clear();
+	hideAllLblInfo();
+
+	lblTitleInfo->Visible = true;
+	lblTitleInfo->Text = "La valeur commerciale du stock est :";
+	lblValueInfo->Visible = true;
+
+	String^ rqtValeurComerciale = "select sum(STOCK*PRIX_ARTICLE) from Article";
+
+	SqlCommand^ cmdValeurCommerciale = gcnew SqlCommand(rqtValeurComerciale, con);
+	con->Open();
+
+	SqlDataReader^ drValeurCommerciale = cmdValeurCommerciale->ExecuteReader();
+
+	if (drValeurCommerciale->Read())
+	{
+		lblValueInfo->Text = drValeurCommerciale->GetDouble(0).ToString();
+	}
+	drValeurCommerciale->Close();
+	con->Close();
+}
+private: System::Void btnValeurAchatStock_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	hideAllDG();
+	dgvStat->Rows->Clear();
+	hideAllLblInfo();
+
+	lblTitleInfo->Visible = true;
+	lblTitleInfo->Text = "La valeur d'achat du stock est :";
+	lblValueInfo->Visible = true;
+
+	String^ rqtValeurAchat = "select sum(STOCK*(PRIX_ARTICLE+TVA_ARTICLE)) from Article";
+
+	SqlCommand^ cmdValeurAchat = gcnew SqlCommand(rqtValeurAchat, con);
+	con->Open();
+
+	SqlDataReader^ drValeurAchat = cmdValeurAchat->ExecuteReader();
+
+	if (drValeurAchat->Read())
+	{
+		lblValueInfo->Text = drValeurAchat->GetDouble(0).ToString();
+	}
+	drValeurAchat->Close();
+	con->Close();
+}
+private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+	hideAllDG();
+	hideAllLblInfo();
+
+	if (cbArticle->Text != "" && cbTVA->Text != "" && cbMarge->Text != "" && cbRemise->Text != "" && cbDemarche->Text != "")
+	{
+		dgvStat->Columns["prixHT"]->Visible = true;
+		dgvStat->Columns["TVA"]->Visible = true;
+		dgvStat->Columns["margeCommerciale"]->Visible = true;
+		dgvStat->Columns["remiseCommerciale"]->Visible = true;
+		dgvStat->Columns["demarqueInconnu"]->Visible = true;
+		dgvStat->Columns["nomArticle"]->Visible = true;
+		dgvStat->Columns["natureArticle"]->Visible = true;
+		dgvStat->Columns["couleurArticle"]->Visible = true;
+		dgvStat->Columns["stockArticle"]->Visible = true;
+
+		graphSimulation->Visible = true;
+		graphSimulation->Series[0]->Points->Clear();
+		
+
+		
+	
+		String^ name = cbArticle->Text;
+
+		String^ rqtArticleSimu = "select NATURE, COULEUR, STOCK, PRIX_ARTICLE from Article where NOM_ARTICLE = '" + name +"'";
+
+		SqlCommand^ cmdArticleSimu = gcnew SqlCommand(rqtArticleSimu, con);
+		con->Open();
+
+		SqlDataReader^ drArticleSimu = cmdArticleSimu->ExecuteReader();
+		if (drArticleSimu->Read())
+		{
+			dgvStat->Rows->Add(cbArticle->Text, drArticleSimu[0], drArticleSimu[1], drArticleSimu[2], drArticleSimu[3], cbTVA->Text, cbMarge->Text, cbRemise->Text, cbDemarche->Text);
+		}
+		nbLigneDGV++;
+	
+		for (int i = 0; i < nbLigneDGV; i++)
+		{
+			double calculValue = 0+i;
+			//calculValue = Convert::ToDouble(dgvStat[i, 3]) * ((Convert::ToDouble(dgvStat[i, 4]) + Convert::ToDouble(cbTVA->Text)) * (Convert::ToDouble(dgvStat[i, 4]) + (Convert::ToDouble(cbMarge->Text) * (Convert::ToDouble(dgvStat[i, 4])));
+			graphSimulation->Series[0]->Points->AddXY("Simulation" + i, calculValue);
+		}
+
+		drArticleSimu->Close();
+		con->Close();
+		
+
+		
+
+	}
+	
+
+
+	}
+private: System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	hideAllDG();
+	hideAllLblInfo();
+	lblNonGraph->Visible = true;
+	dgvStat->Rows->Clear();
+	graphSimulation->Visible = false;
+
 }
 };
 }
