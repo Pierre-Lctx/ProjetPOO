@@ -55,12 +55,16 @@ namespace AppliProjetPOO {
 			String^ query1 = "select Personne.NOM_PERSONNE from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Personnel ON Personne.ID_PERSONNE = Personnel.ID_PERSONNE WHERE Personnel.ID_PERSONNE = 4;";
 			SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
 
+			dr->Close();
+
 			SqlDataReader^ dr1 = cmd1->ExecuteReader();
 
 			while (dr1->Read())
 			{
 				textBoxResponsable->Text = dr1["NOM_PERSONNE"]->ToString();
 			}
+
+			dr1->Close();
 
 			conn->closeConnection();
 		}

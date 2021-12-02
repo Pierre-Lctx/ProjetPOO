@@ -32,7 +32,9 @@ namespace AppliProjetPOO {
 		Form^ active = nullptr;
 		bool IDclick = false;
 		bool NomClick = false;
-		bool PrenomClick = false;
+	private: System::Windows::Forms::Button^ buttonSupprimerValidation;
+	private: System::Windows::Forms::TextBox^ textBoxIDSuppr;
+		   bool PrenomClick = false;
 
 	protected:
 		/// <summary>
@@ -105,6 +107,8 @@ namespace AppliProjetPOO {
 			this->rbID = (gcnew System::Windows::Forms::RadioButton());
 			this->pnlTitle = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->buttonSupprimerValidation = (gcnew System::Windows::Forms::Button());
+			this->textBoxIDSuppr = (gcnew System::Windows::Forms::TextBox());
 			this->pnlButtonChoix->SuspendLayout();
 			this->pnlMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -364,6 +368,35 @@ namespace AppliProjetPOO {
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Stocks";
 			// 
+			// buttonSupprimerValidation
+			// 
+			this->buttonSupprimerValidation->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(24)),
+				static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->buttonSupprimerValidation->FlatAppearance->BorderSize = 0;
+			this->buttonSupprimerValidation->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonSupprimerValidation->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->buttonSupprimerValidation->ForeColor = System::Drawing::Color::White;
+			this->buttonSupprimerValidation->Location = System::Drawing::Point(1108, 555);
+			this->buttonSupprimerValidation->Name = L"buttonSupprimerValidation";
+			this->buttonSupprimerValidation->Size = System::Drawing::Size(158, 20);
+			this->buttonSupprimerValidation->TabIndex = 7;
+			this->buttonSupprimerValidation->Text = L"Supprimer";
+			this->buttonSupprimerValidation->UseVisualStyleBackColor = false;
+			// 
+			// textBoxIDSuppr
+			// 
+			this->textBoxIDSuppr->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(74)), static_cast<System::Int32>(static_cast<System::Byte>(79)),
+				static_cast<System::Int32>(static_cast<System::Byte>(99)));
+			this->textBoxIDSuppr->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxIDSuppr->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(200)), static_cast<System::Int32>(static_cast<System::Byte>(200)),
+				static_cast<System::Int32>(static_cast<System::Byte>(200)));
+			this->textBoxIDSuppr->Location = System::Drawing::Point(945, 555);
+			this->textBoxIDSuppr->Name = L"textBoxIDSuppr";
+			this->textBoxIDSuppr->Size = System::Drawing::Size(158, 20);
+			this->textBoxIDSuppr->TabIndex = 8;
+			this->textBoxIDSuppr->Text = L"Entrer l\'ID...";
+			// 
 			// Stocks
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -371,6 +404,8 @@ namespace AppliProjetPOO {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->ClientSize = System::Drawing::Size(1278, 596);
+			this->Controls->Add(this->buttonSupprimerValidation);
+			this->Controls->Add(this->textBoxIDSuppr);
 			this->Controls->Add(this->pnlButtonChoix);
 			this->Controls->Add(this->pnlMain);
 			this->Name = L"Stocks";
@@ -383,6 +418,7 @@ namespace AppliProjetPOO {
 			this->pnlTitle->ResumeLayout(false);
 			this->pnlTitle->PerformLayout();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
