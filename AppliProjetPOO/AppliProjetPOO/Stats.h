@@ -15,7 +15,7 @@ namespace AppliProjetPOO
 	using namespace connection;
 
 	/// <summary>
-	/// Description résumée de Stats
+	/// Description rÃ©sumÃ©e de Stats
 	/// </summary>
 	public ref class Stats : public System::Windows::Forms::Form
 	{
@@ -32,7 +32,7 @@ namespace AppliProjetPOO
 		dgvStat->Columns["natureArticle"]->Visible = false;
 		dgvStat->Columns["couleurArticle"]->Visible = false;
 		dgvStat->Columns["stockArticle"]->Visible = false;
-		graphSimulation->Series[0]->Points->Clear();
+		
 		
 	}
 	private: void hideAllLblInfo()
@@ -57,7 +57,6 @@ namespace AppliProjetPOO
 
 	public: Connect^ conn;
 
-		   
 	public:
 		Stats(void)
 		{
@@ -72,7 +71,7 @@ namespace AppliProjetPOO
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~Stats()
 		{
@@ -127,14 +126,14 @@ namespace AppliProjetPOO
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -230,7 +229,7 @@ namespace AppliProjetPOO
 			this->graphSimulation->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Prix du stock De l\'article d\'après la simultation";
+			series1->Name = L"Prix du stock De l\'article d\'aprÃ¨s la simultation";
 			this->graphSimulation->Series->Add(series1);
 			this->graphSimulation->Size = System::Drawing::Size(1006, 267);
 			this->graphSimulation->TabIndex = 0;
@@ -332,7 +331,7 @@ namespace AppliProjetPOO
 			// 
 			// stockArticle
 			// 
-			this->stockArticle->HeaderText = L"Quantité";
+			this->stockArticle->HeaderText = L"QuantitÃ©";
 			this->stockArticle->Name = L"stockArticle";
 			this->stockArticle->ReadOnly = true;
 			// 
@@ -526,7 +525,7 @@ namespace AppliProjetPOO
 			this->btnArticleReapro->Name = L"btnArticleReapro";
 			this->btnArticleReapro->Size = System::Drawing::Size(192, 23);
 			this->btnArticleReapro->TabIndex = 3;
-			this->btnArticleReapro->Text = L"Articles à Réaprovisionner";
+			this->btnArticleReapro->Text = L"Articles Ã  RÃ©aprovisionner";
 			this->btnArticleReapro->UseVisualStyleBackColor = true;
 			this->btnArticleReapro->Click += gcnew System::EventHandler(this, &Stats::btnArticleReapro_Click);
 			// 
@@ -775,6 +774,7 @@ namespace AppliProjetPOO
 	{
 		hideAllDG();
 		dgvStat->Rows->Clear();
+		graphSimulation->Series[0]->Points->Clear();
 		hideAllLblInfo();
 		this->lblNonGraph->Visible = true;
 
@@ -833,6 +833,7 @@ private: System::Void btnPrixMoyen_Click(System::Object^ sender, System::EventAr
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	this->graphSimulation->Visible = false;
@@ -852,7 +853,7 @@ private: System::Void btnPrixMoyen_Click(System::Object^ sender, System::EventAr
 
 	if (drPrixMoyen->Read())
 	{
-		lblValueInfo->Text = drPrixMoyen->GetDouble(0).ToString() + " €";
+		lblValueInfo->Text = drPrixMoyen->GetDouble(0).ToString() + " Â€";
 		
 	}
 
@@ -866,6 +867,8 @@ private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::Ev
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	if (cbMois->Text != "mois"  && cbAnnee->Text != "annee" )
@@ -887,11 +890,11 @@ private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::Ev
 		{		
 			try 
 			{
-				lblValueInfo->Text = drChiffreAffaire->GetDouble(0).ToString() + " €";
+				lblValueInfo->Text = drChiffreAffaire->GetDouble(0).ToString() + " Â€";
 			}
 			catch (...)
 			{
-				lblValueInfo->Text = "0 €";
+				lblValueInfo->Text = "0 Â€";
 			}
 		
 		}
@@ -909,6 +912,8 @@ private: System::Void btnArticleReapro_Click(System::Object^ sender, System::Eve
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 	
 	dgvStat->Columns["nomArticle"]->Visible = true;
@@ -939,6 +944,8 @@ private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::E
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	lblTitleInfo->Visible = true;
@@ -957,7 +964,7 @@ private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::E
 		lblTitleInfo->Text = "Le Client ";
 		lblTitleInfo->Text += drNomClient->GetString(1) + "\r\n";
 		lblTitleInfo->Text += drNomClient->GetString(0) + "\r\n";
-		lblTitleInfo->Text += "a dépenser au total :";
+		lblTitleInfo->Text += "a dÃ©penser au total :";
 	}
 	drNomClient->Close();
 
@@ -969,7 +976,7 @@ private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::E
 
 	if (drClientPrix->Read())
 	{
-		lblValueInfo->Text = drClientPrix->GetDouble(0).ToString()  + " €";
+		lblValueInfo->Text = drClientPrix->GetDouble(0).ToString()  + " Â€";
 	}
 	drClientPrix->Close();
 
@@ -981,6 +988,8 @@ private: System::Void btnPlus10Article_Click(System::Object^ sender, System::Eve
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	dgvStat->Columns["nomArticle"]->Visible = true;
@@ -1010,6 +1019,8 @@ private: System::Void btnMoins10Article_Click(System::Object^ sender, System::Ev
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	dgvStat->Columns["nomArticle"]->Visible = true;
@@ -1039,6 +1050,8 @@ private: System::Void btnValeurStock_Click(System::Object^ sender, System::Event
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	lblTitleInfo->Visible = true;
@@ -1064,7 +1077,9 @@ private: System::Void btnValeurStock_Click(System::Object^ sender, System::Event
 private: System::Void btnValeurAchatStock_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	hideAllDG();
+	graphSimulation->Series[0]->Points->Clear();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
 	hideAllLblInfo();
 
 	lblTitleInfo->Visible = true;
@@ -1091,9 +1106,15 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 	{
 	hideAllDG();
 	hideAllLblInfo();
+	lblNonGraph->Visible = true;
+	double tvaNum;
+	double remiseNum;
+	double margeNum;
+	double demarcheNum;
 
 	if (cbArticle->Text != "" && cbTVA->Text != "" && cbMarge->Text != "" && cbRemise->Text != "" && cbDemarche->Text != "")
 	{
+		hideAllLblInfo();
 		dgvStat->Columns["prixHT"]->Visible = true;
 		dgvStat->Columns["TVA"]->Visible = true;
 		dgvStat->Columns["margeCommerciale"]->Visible = true;
@@ -1103,13 +1124,32 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		dgvStat->Columns["natureArticle"]->Visible = true;
 		dgvStat->Columns["couleurArticle"]->Visible = true;
 		dgvStat->Columns["stockArticle"]->Visible = true;
-
 		graphSimulation->Visible = true;
-		graphSimulation->Series[0]->Points->Clear();
 		
+		
+		if (cbTVA->Text == "20%")
+			tvaNum = 0.2;
+		if (cbTVA->Text == "10%")
+			tvaNum = 0.1;
+		if (cbTVA->Text == "5,5%")
+			tvaNum = 0.055;
+		if (cbRemise->Text == "6%")
+			remiseNum = 0.06;
+		if (cbRemise->Text == "5%")
+			remiseNum = 0.05;
+		if (cbMarge->Text == "15%")
+			margeNum = 0.15;
+		if (cbMarge->Text == "10%")
+			margeNum = 0.1;
+		if (cbMarge->Text == "5%")
+			margeNum = 0.05;
+		if (cbDemarche->Text == "5%")
+			demarcheNum = 0.05;
+		if (cbDemarche->Text == "3%")
+			demarcheNum = 0.03;
+		if (cbDemarche->Text == "2%")
+			demarcheNum = 0.02;
 
-		
-	
 		String^ name = cbArticle->Text;
 
 		String^ rqtArticleSimu = "select NATURE, COULEUR, STOCK, PRIX_ARTICLE from Article where NOM_ARTICLE = '" + name +"'";
@@ -1123,21 +1163,19 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		{
 			dgvStat->Rows->Add(cbArticle->Text, drArticleSimu[0], drArticleSimu[1], drArticleSimu[2], drArticleSimu[3], cbTVA->Text, cbMarge->Text, cbRemise->Text, cbDemarche->Text);
 		}
-		nbLigneDGV++;
-	
-		for (int i = 0; i < nbLigneDGV; i++)
-		{
-			double calculValue;
-			calculValue = Convert::ToDouble(dgvStat[i, 3]) * ((Convert::ToDouble(dgvStat[i, 4]) + Convert::ToDouble(cbTVA->Text)) * (Convert::ToDouble(dgvStat[i, 4]) + (Convert::ToDouble(cbMarge->Text) * (Convert::ToDouble(dgvStat[i, 4])) - Convert::ToDouble(cbRemise->Text) * (Convert::ToDouble(dgvStat[i, 4]))- Convert::ToDouble(cbDemarche->Text) * (Convert::ToDouble(dgvStat[i, 4])))));
-			graphSimulation->Series[0]->Points->AddXY("Simulation" + i, calculValue);
-		}
-
-		drArticleSimu->Close();
 		
-		conn->closeConnection();
-	}
-	
 
+		double calculValue;
+		calculValue = Convert::ToDouble(drArticleSimu[2]) * ((Convert::ToDouble(drArticleSimu[3]) + tvaNum) * (Convert::ToDouble(drArticleSimu[3]) + (margeNum) * (Convert::ToDouble(drArticleSimu[3])) - remiseNum * (Convert::ToDouble(drArticleSimu[3])) - demarcheNum * (Convert::ToDouble(drArticleSimu[3]))));
+		graphSimulation->Series[0]->Points->AddXY("Simulation" + nbLigneDGV, calculValue);
+		
+		nbLigneDGV++;
+		drArticleSimu->Close();
+		con->Close();
+
+	}
+	else
+	MessageBox::Show("Tout les champs ne sont pas Remplis", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 
 	}
 private: System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ e) 
@@ -1145,6 +1183,8 @@ private: System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ 
 	hideAllDG();
 	hideAllLblInfo();
 	lblNonGraph->Visible = true;
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	dgvStat->Rows->Clear();
 	graphSimulation->Visible = false;
 
