@@ -36,6 +36,28 @@ namespace AppliProjetPOO {
 		   bool PrenomClick = false;
 
 	public: Connect^ conn;
+		  void fillDGV()
+		  {
+			  dataGridView1->Rows->Clear();
+			  conn = gcnew Connect();
+
+			  conn->openConnection();
+
+			  String^ query = "select Personne.ID_PERSONNE, Personne.NOM_PERSONNE, Personne.PRENOM_PERSONNE, Personne.ADRESSE_MAIL, Personne.TELEPHONE, Client.ID_ADRESSE, Client.ID_ADRESSE_2 from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Client ON Client.ID_PERSONNE = Personne.ID_PERSONNE";
+			  SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			  SqlDataReader^ dr = cmd->ExecuteReader();
+
+			  while (dr->Read())
+			  {
+				  dataGridView1->Rows->Add(dr["ID_PERSONNE"], dr["NOM_PERSONNE"], dr["PRENOM_PERSONNE"], dr["ADRESSE_MAIL"], dr["TELEPHONE"], dr["ID_ADRESSE"], dr["ID_ADRESSE_2"]);
+			  }
+
+			  conn->closeConnection();
+
+			  textBoxIDSuppr->Visible = false;
+			  buttonSupprimerValidation->Visible = false;
+		  }
 
 	public:
 		Client(void)
@@ -44,25 +66,8 @@ namespace AppliProjetPOO {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
-
-			conn = gcnew Connect();
-
-			conn->openConnection();
-
-			String^ query = "select Personne.ID_PERSONNE, Personne.NOM_PERSONNE, Personne.PRENOM_PERSONNE, Personne.ADRESSE_MAIL, Personne.TELEPHONE, Client.ID_ADRESSE, Client.ID_ADRESSE_2 from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Client ON Client.ID_PERSONNE = Personne.ID_PERSONNE";
-			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
-
-			SqlDataReader^ dr = cmd->ExecuteReader();
-
-			while (dr->Read())
-			{
-				dataGridView1->Rows->Add(dr["ID_PERSONNE"], dr["NOM_PERSONNE"], dr["PRENOM_PERSONNE"], dr["ADRESSE_MAIL"], dr["TELEPHONE"], dr["ID_ADRESSE"], dr["ID_ADRESSE_2"]);
-			}
-
-			conn->closeConnection();
-
-			textBoxIDSuppr->Visible = false;
-			buttonSupprimerValidation->Visible = false;
+			fillDGV();
+			
 		}
 
 	protected:
@@ -434,6 +439,7 @@ namespace AppliProjetPOO {
 		CreatePerson^ frmCreatePerson = gcnew CreatePerson("client");
 		active = frmCreatePerson;
 		frmCreatePerson->ShowDialog();
+		fillDGV();
 
 	}
 	private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e)
@@ -503,6 +509,9 @@ namespace AppliProjetPOO {
 		cmd1->ExecuteNonQuery();
 
 		conn->closeConnection();
+		
+		fillDGV();
+
 	}
 private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventArgs^ e) 
 {
