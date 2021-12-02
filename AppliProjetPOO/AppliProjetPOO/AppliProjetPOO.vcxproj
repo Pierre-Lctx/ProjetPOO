@@ -135,8 +135,10 @@
     <ClCompile Include="CreateCommande.cpp" />
     <ClCompile Include="CreatePerson.cpp" />
     <ClCompile Include="Controleur.cpp" />
+    <ClCompile Include="gestionPersonnel.cpp" />
     <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
+    <ClCompile Include="ModifierPersonnel.cpp" />
     <ClCompile Include="MyProfile1.cpp" />
     <ClCompile Include="Personnel.cpp" />
     <ClCompile Include="Stats.cpp" />
@@ -164,11 +166,15 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Controleur.h" />
+    <ClInclude Include="gestionPersonnel.h" />
     <ClInclude Include="gestionProfile.h" />
     <ClInclude Include="LogIn.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MenuPrincipal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ModifierPersonnel.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyProfile1.h">
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierPersonnel.resx">
+      <DependentUpon>ModifierPersonnel.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyProfile1.resx">
       <DependentUpon>MyProfile1.h</DependentUpon>
