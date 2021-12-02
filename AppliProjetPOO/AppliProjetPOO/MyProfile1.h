@@ -197,7 +197,7 @@ namespace AppliProjetPOO {
 			this->labelDateEmbauche->ForeColor = System::Drawing::Color::White;
 			this->labelDateEmbauche->Location = System::Drawing::Point(385, 278);
 			this->labelDateEmbauche->Name = L"labelDateEmbauche";
-			this->labelDateEmbauche->Size = System::Drawing::Size(222, 38);
+			this->labelDateEmbauche->Size = System::Drawing::Size(237, 38);
 			this->labelDateEmbauche->TabIndex = 21;
 			this->labelDateEmbauche->Text = L"labelDateEmbauche";
 			// 
