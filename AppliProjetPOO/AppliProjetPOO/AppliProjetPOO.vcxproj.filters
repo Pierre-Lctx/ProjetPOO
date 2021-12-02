@@ -18,6 +18,8 @@
     <ClCompile Include="TableauBord.cpp" />
     <ClCompile Include="gestionPersonnel.cpp" />
     <ClCompile Include="ModifierPersonnel.cpp" />
+    <ClCompile Include="ModifArticle.cpp" />
+    <ClCompile Include="ModifCommande.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h" />
@@ -38,6 +40,8 @@
     <ClInclude Include="TableauBord.h" />
     <ClInclude Include="gestionPersonnel.h" />
     <ClInclude Include="ModifierPersonnel.h" />
+    <ClInclude Include="ModifArticle.h" />
+    <ClInclude Include="ModifCommande.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\next.png" />
