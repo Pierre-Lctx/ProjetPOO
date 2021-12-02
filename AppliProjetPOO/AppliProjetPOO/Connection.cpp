@@ -8,7 +8,7 @@ Connect::Connect()
 {
 	this->sqlQuery = "DEFAULT";
 	connStrinfBuilder = gcnew SqlConnectionStringBuilder();
-	connStrinfBuilder->DataSource = "DESKTOP-84L8R5Q\\PIERRELECHATREUX";
+	connStrinfBuilder->DataSource = "LAPTOP-07RHIAUR\\MSSQL_BAPTISTE";
 	connStrinfBuilder->InitialCatalog = "DBProjet";
 	connStrinfBuilder->IntegratedSecurity = true;
 
