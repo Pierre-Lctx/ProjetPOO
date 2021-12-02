@@ -27,7 +27,6 @@ namespace AppliProjetPOO {
 
 	private: System::Windows::Forms::Button^ buttonSupprimerValidation;
 
-
 	public: ModifierPersonnel^ frmModify;
 	public: Connect^ conn;
 		
@@ -47,6 +46,20 @@ namespace AppliProjetPOO {
 
 			textBoxIDSuppr->Visible = false;
 			buttonSupprimerValidation->Visible = false;
+
+			conn->openConnection();
+			
+			String^ query = "select Personne.NOM_PERSONNE, Personne.PRENOM_PERSONNE, Personne.ADRESSE_MAIL, Personne.TELEPHONE, Personnel.DATE_EMBAUCHE, Adresse.RUE, Adresse.BATIMENT, Adresse.ETAGE, Adresse.NUMERO_VOIE, Ville.NOM_VILLE from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Personnel ON Personnel.ID_PERSONNE = Personne.ID_PERSONNE INNER JOIN DBProjet.dbo.Adresse ON Personnel.ID_ADRESSE = Adresse.ID_ADRESSE INNER JOIN DBProjet.dbo.Ville ON Ville.ID_VILLE = Adresse.ID_VILLE";
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			SqlDataReader^ dr = cmd->ExecuteReader();
+
+			while (dr->Read())
+			{
+				dataGridView1->Rows->Add();
+			}
+
+			conn->closeConnection();
 		}
 
 	protected:
@@ -68,7 +81,6 @@ namespace AppliProjetPOO {
 
 	private: System::Windows::Forms::Panel^ pnlFilter;
 	private: System::Windows::Forms::TextBox^ tbPrenom;
-
 
 	private: System::Windows::Forms::TextBox^ tbNom;
 
@@ -92,16 +104,7 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnModifier;
 	private: System::Windows::Forms::Button^ btnSupprimer;
 
-
-
 	private: System::Windows::Forms::Panel^ pnlButtonChoix;
-
-
-
-
-
-
-
 
 	private:
 		/// <summary>
