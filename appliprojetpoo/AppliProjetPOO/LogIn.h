@@ -22,10 +22,6 @@ namespace AppliProjetPOO {
 	private:
 		
 
-	public: String^ idPersonne;
-
-	public: String^ IdP{ return idPersonne; };
-
 	private: Connect^ connecteur;
 
 	public:
