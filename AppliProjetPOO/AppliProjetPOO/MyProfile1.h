@@ -748,31 +748,31 @@ namespace AppliProjetPOO {
 
 		MessageBox::Show("Les modifications ont été enregistrées.");
 
-		String^ query = "UPDATE NOM_PERSONNE'" + textBoxNom->Text + "'UPDATE PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE TELEPHONE'" + textBoxTelephone + "'ADRESSE_MAIL'" + textBoxEmail + "'DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
-		SqlCommand^ cmd = gcnew SqlCommand(query, conn.get);
-		SqlDataReader^ dr = cmd->ExecuteReader();
+		String^ query1 = "UPDATE NOM_PERSONNE'" + textBoxNom->Text + "'UPDATE PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE TELEPHONE'" + textBoxTelephone + "'ADRESSE_MAIL'" + textBoxEmail + "'DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
+		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+		SqlDataReader^ dr1 = cmd1->ExecuteReader();
 
-		while (dr->Read())
+		while (dr1->Read())
 		{
-			textBoxNom->Text = dr[0]->ToString();
-			textBoxPrenom->Text = dr[1]->ToString();
-			textBoxEmail->Text = dr[2]->ToString();
-			textBoxTelephone->Text = dr[3]->ToString();
-			dateTimePicker2->Text = dr[4]->ToString();
+			textBoxNom->Text = dr1[0]->ToString();
+			textBoxPrenom->Text = dr1[1]->ToString();
+			textBoxEmail->Text = dr1[2]->ToString();
+			textBoxTelephone->Text = dr1[3]->ToString();
+			dateTimePicker2->Text = dr1[4]->ToString();
 		}
-		dr->Close();
+		dr1->Close();
 		conn->closeConnection();
 
-		String^ query = "'DATE_EMBAUCHE'" + dateTimePicker1 + "'WHERE ID_PERSONNE = 5;";
-		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConnection());
+		String^ query2 = "'DATE_EMBAUCHE'" + dateTimePicker1 + "'WHERE ID_PERSONNE = 5;";
+		SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
 
-		SqlDataReader^ dr = cmd->ExecuteReader();
+		SqlDataReader^ dr2 = cmd2->ExecuteReader();
 
-		while (dr->Read())
+		while (dr2->Read())
 		{
-			dateTimePicker1->Text = dr[5]->ToString();
+			dateTimePicker1->Text = dr2[5]->ToString();
 		}
-		dr->Close();
+		dr2->Close();
 		conn->closeConnection();
 
 		
