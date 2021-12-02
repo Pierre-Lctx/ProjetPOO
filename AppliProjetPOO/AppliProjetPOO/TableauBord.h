@@ -528,9 +528,9 @@ namespace AppliProjetPOO {
 				static_cast<System::Int32>(static_cast<System::Byte>(208)));
 			this->lblNbNewClient->Location = System::Drawing::Point(394, 179);
 			this->lblNbNewClient->Name = L"lblNbNewClient";
-			this->lblNbNewClient->Size = System::Drawing::Size(36, 16);
+			this->lblNbNewClient->Size = System::Drawing::Size(28, 16);
 			this->lblNbNewClient->TabIndex = 9;
-			this->lblNbNewClient->Text = L"+ 20";
+			this->lblNbNewClient->Text = L"+ 3";
 			// 
 			// lblNbEmployé
 			// 

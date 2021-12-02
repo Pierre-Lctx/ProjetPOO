@@ -193,6 +193,7 @@ namespace AppliProjetPOO {
 			this->btnModifier->TabIndex = 2;
 			this->btnModifier->Text = L"Modifier un client";
 			this->btnModifier->UseVisualStyleBackColor = false;
+			this->btnModifier->Click += gcnew System::EventHandler(this, &Client::btnModifier_Click);
 			// 
 			// pnlMain
 			// 
@@ -509,5 +510,9 @@ private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventAr
 	buttonSupprimerValidation->Visible = true;
 }
 
+private: System::Void btnModifier_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+
+}
 };
 }
