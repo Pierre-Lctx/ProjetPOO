@@ -749,11 +749,31 @@ namespace AppliProjetPOO {
 
 		MessageBox::Show("Les modifications ont été enregistrées.");
 
+		// SELECT
+
 		conn->openConnection();
-		String^ query1 = "UPDATE PERSONNE SET NOM_PERSONNE'" + labelNom->Text + "'UPDATE PERSONNE SET PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE PERSONNE SET TELEPHONE'" + textBoxTelephone + "'UPDATE PERSONNE SET ADRESSE_MAIL'" + textBoxEmail + "'UPDATE PERSONNE SET DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
+		String^ query1 = "SELECT NOM_PERSONNE, PRENOM_PERSONNE, ADRESSE_MAIL, TELEPHONE, DATE_NAISSANCE, Personnel.DATE_EMBAUCHE FROM PERSONNE INNER JOIN PERSONNEL ON personne.ID_PERSONNE = personnel.ID_PERSONNE WHERE personne.ID_PERSONNE = 5;;";
 		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
-		//SqlDataReader^ dr1 = cmd1->ExecuteReader();
-		cmd1->ExecuteNonQuery();
+		SqlDataReader^ dr1 = cmd1->ExecuteReader();
+		cmd1->ExecuteReader();
+		while (dr1->Read())
+		{
+			labelNom->Text = dr1["NOM_PERSONNE"]->ToString();
+			labelPrenom->Text = dr1["PRENOM_PERSONNE"]->ToString();
+			labelEmail->Text = dr1["ADRESSE_MAIL"]->ToString();
+			labelTelephone->Text = dr1["TELEPHONE"]->ToString();
+			dateTimePicker2->Text = dr1["Personnel.DATE_EMBAUCHE"]->ToString();
+		}
+		dr1->Close();
+		conn->closeConnection();
+
+		// UPDATE
+
+		//conn->openConnection();
+		//String^ query1 = "UPDATE PERSONNE SET NOM_PERSONNE'" + labelNom->Text + "'UPDATE PERSONNE SET PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE PERSONNE SET TELEPHONE'" + textBoxTelephone + "'UPDATE PERSONNE SET ADRESSE_MAIL'" + textBoxEmail + "'UPDATE PERSONNE SET DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
+		//SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+		//SqlDataReader^ dr1 = cmd1->ExecuteNonQuery();
+		//cmd1->ExecuteNonQuery();
 		//while (dr1->Read())
 		//{
 		//	textBoxNom->Text = dr1[0]->ToString();
@@ -763,17 +783,18 @@ namespace AppliProjetPOO {
 		//	dateTimePicker2->Text = dr1[4]->ToString();
 		//}
 		//dr1->Close();
-		conn->closeConnection();
-
-		//conn->openConnection();
-		//String^ query2 = "'UPDATE PERSONNEL SET DATE_EMBAUCHE+" + dateTimePicker1->Text + "WHERE ID_PERSONNE = 5;";
-		//SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
-
-		//cmd2->ExecuteNonQuery();
-
 		//conn->closeConnection();
 
-		//
+		// UPDATE
+
+		conn->openConnection();
+		String^ query2 = "UPDATE PERSONNEL SET DATE_EMBAUCHE" + dateTimePicker1 + "WHERE ID_PERSONNE = 5;";
+		SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
+
+		cmd2->ExecuteNonQuery();
+		conn->closeConnection();
+
+		
 	}
 
 
