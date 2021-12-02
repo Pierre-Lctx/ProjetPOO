@@ -31,7 +31,7 @@ namespace AppliProjetPOO
 		dgvStat->Columns["natureArticle"]->Visible = false;
 		dgvStat->Columns["couleurArticle"]->Visible = false;
 		dgvStat->Columns["stockArticle"]->Visible = false;
-		graphSimulation->Series[0]->Points->Clear();
+		
 		
 	}
 	private: void hideAllLblInfo()
@@ -56,7 +56,7 @@ namespace AppliProjetPOO
 
 	
 
-		   SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-P3RNDHD;Initial Catalog=DBProjet;Integrated Security=True");
+		   SqlConnection^ con = gcnew SqlConnection("Data Source=LAPTOP-07RHIAUR\\MSSQL_BAPTISTE;Initial Catalog=DBProjet;Integrated Security=True");
 	public:
 		Stats(void)
 		{
@@ -774,6 +774,7 @@ namespace AppliProjetPOO
 	{
 		hideAllDG();
 		dgvStat->Rows->Clear();
+		graphSimulation->Series[0]->Points->Clear();
 		hideAllLblInfo();
 		this->lblNonGraph->Visible = true;
 
@@ -832,6 +833,7 @@ private: System::Void btnPrixMoyen_Click(System::Object^ sender, System::EventAr
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	this->graphSimulation->Visible = false;
@@ -865,6 +867,8 @@ private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::Ev
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	if (cbMois->Text != "mois"  && cbAnnee->Text != "annee" )
@@ -908,6 +912,8 @@ private: System::Void btnArticleReapro_Click(System::Object^ sender, System::Eve
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 	
 	dgvStat->Columns["nomArticle"]->Visible = true;
@@ -938,6 +944,8 @@ private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::E
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	lblTitleInfo->Visible = true;
@@ -979,6 +987,8 @@ private: System::Void btnPlus10Article_Click(System::Object^ sender, System::Eve
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	dgvStat->Columns["nomArticle"]->Visible = true;
@@ -1007,6 +1017,8 @@ private: System::Void btnMoins10Article_Click(System::Object^ sender, System::Ev
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	dgvStat->Columns["nomArticle"]->Visible = true;
@@ -1035,6 +1047,8 @@ private: System::Void btnValeurStock_Click(System::Object^ sender, System::Event
 {
 	hideAllDG();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	hideAllLblInfo();
 
 	lblTitleInfo->Visible = true;
@@ -1058,7 +1072,9 @@ private: System::Void btnValeurStock_Click(System::Object^ sender, System::Event
 private: System::Void btnValeurAchatStock_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	hideAllDG();
+	graphSimulation->Series[0]->Points->Clear();
 	dgvStat->Rows->Clear();
+	nbLigneDGV = 0;
 	hideAllLblInfo();
 
 	lblTitleInfo->Visible = true;
@@ -1083,6 +1099,10 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 	{
 	hideAllDG();
 	hideAllLblInfo();
+	double tvaNum;
+	double remiseNum;
+	double margeNum;
+	double demarcheNum;
 
 	if (cbArticle->Text != "" && cbTVA->Text != "" && cbMarge->Text != "" && cbRemise->Text != "" && cbDemarche->Text != "")
 	{
@@ -1097,11 +1117,31 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		dgvStat->Columns["stockArticle"]->Visible = true;
 
 		graphSimulation->Visible = true;
-		graphSimulation->Series[0]->Points->Clear();
 		
+		
+		if (cbTVA->Text == "20%")
+			tvaNum = 0.2;
+		if (cbTVA->Text == "10%")
+			tvaNum = 0.1;
+		if (cbTVA->Text == "5,5%")
+			tvaNum = 0.055;
+		if (cbRemise->Text == "6%")
+			remiseNum = 0.06;
+		if (cbRemise->Text == "5%")
+			remiseNum = 0.05;
+		if (cbMarge->Text == "15%")
+			margeNum = 0.15;
+		if (cbMarge->Text == "10%")
+			margeNum = 0.1;
+		if (cbMarge->Text == "5%")
+			margeNum = 0.05;
+		if (cbDemarche->Text == "5%")
+			demarcheNum = 0.05;
+		if (cbDemarche->Text == "3%")
+			demarcheNum = 0.03;
+		if (cbDemarche->Text == "2%")
+			demarcheNum = 0.02;
 
-		
-	
 		String^ name = cbArticle->Text;
 
 		String^ rqtArticleSimu = "select NATURE, COULEUR, STOCK, PRIX_ARTICLE from Article where NOM_ARTICLE = '" + name +"'";
@@ -1114,15 +1154,13 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		{
 			dgvStat->Rows->Add(cbArticle->Text, drArticleSimu[0], drArticleSimu[1], drArticleSimu[2], drArticleSimu[3], cbTVA->Text, cbMarge->Text, cbRemise->Text, cbDemarche->Text);
 		}
-		nbLigneDGV++;
-	
-		for (int i = 0; i < nbLigneDGV; i++)
-		{
-			double calculValue;
-			calculValue = Convert::ToDouble(dgvStat[i, 3]) * ((Convert::ToDouble(dgvStat[i, 4]) + Convert::ToDouble(cbTVA->Text)) * (Convert::ToDouble(dgvStat[i, 4]) + (Convert::ToDouble(cbMarge->Text) * (Convert::ToDouble(dgvStat[i, 4])) - Convert::ToDouble(cbRemise->Text) * (Convert::ToDouble(dgvStat[i, 4]))- Convert::ToDouble(cbDemarche->Text) * (Convert::ToDouble(dgvStat[i, 4])))));
-			graphSimulation->Series[0]->Points->AddXY("Simulation" + i, calculValue);
-		}
+		
 
+		double calculValue;
+		calculValue = Convert::ToDouble(drArticleSimu[2]) * ((Convert::ToDouble(drArticleSimu[3]) + tvaNum) * (Convert::ToDouble(drArticleSimu[3]) + (margeNum) * (Convert::ToDouble(drArticleSimu[3])) - remiseNum * (Convert::ToDouble(drArticleSimu[3])) - demarcheNum * (Convert::ToDouble(drArticleSimu[3]))));
+		graphSimulation->Series[0]->Points->AddXY("Simulation" + nbLigneDGV, calculValue);
+		
+		nbLigneDGV++;
 		drArticleSimu->Close();
 		con->Close();
 		
@@ -1139,6 +1177,8 @@ private: System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ 
 	hideAllDG();
 	hideAllLblInfo();
 	lblNonGraph->Visible = true;
+	nbLigneDGV = 0;
+	graphSimulation->Series[0]->Points->Clear();
 	dgvStat->Rows->Clear();
 	graphSimulation->Visible = false;
 
