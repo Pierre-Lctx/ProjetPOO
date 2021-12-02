@@ -12,6 +12,8 @@ namespace AppliProjetPOO {
 	using namespace System::Drawing;
 	using namespace connection;
 
+
+
 	/// <summary>
 	/// Description résumée de MyProfile
 	/// </summary>
@@ -98,9 +100,6 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBoxNom;
 	private: System::Windows::Forms::TextBox^ textBoxPrenom;
-
-
-
 
 
 	private:
@@ -196,7 +195,7 @@ namespace AppliProjetPOO {
 			this->labelDateEmbauche->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->labelDateEmbauche->ForeColor = System::Drawing::Color::White;
-			this->labelDateEmbauche->Location = System::Drawing::Point(382, 278);
+			this->labelDateEmbauche->Location = System::Drawing::Point(385, 278);
 			this->labelDateEmbauche->Name = L"labelDateEmbauche";
 			this->labelDateEmbauche->Size = System::Drawing::Size(222, 38);
 			this->labelDateEmbauche->TabIndex = 21;
@@ -268,10 +267,12 @@ namespace AppliProjetPOO {
 			// 
 			// dateTimePicker1
 			// 
+			this->dateTimePicker1->CustomFormat = L"aaaa-MM-d";
 			this->dateTimePicker1->Location = System::Drawing::Point(386, 282);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
 			this->dateTimePicker1->Size = System::Drawing::Size(132, 22);
 			this->dateTimePicker1->TabIndex = 35;
+			this->dateTimePicker1->ValueChanged += gcnew System::EventHandler(this, &MyProfile::dateTimePicker1_ValueChanged);
 			// 
 			// panel1
 			// 
@@ -644,7 +645,7 @@ namespace AppliProjetPOO {
 	}
 	private: System::Void buttonValider_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-
+	
 
 		// label
 		labelNom->Visible = true;
@@ -748,34 +749,31 @@ namespace AppliProjetPOO {
 
 		MessageBox::Show("Les modifications ont été enregistrées.");
 
-		String^ query1 = "UPDATE NOM_PERSONNE'" + textBoxNom->Text + "'UPDATE PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE TELEPHONE'" + textBoxTelephone + "'ADRESSE_MAIL'" + textBoxEmail + "'DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
+		conn->openConnection();
+		String^ query1 = "UPDATE PERSONNE SET NOM_PERSONNE'" + labelNom->Text + "'UPDATE PERSONNE SET PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE PERSONNE SET TELEPHONE'" + textBoxTelephone + "'UPDATE PERSONNE SET ADRESSE_MAIL'" + textBoxEmail + "'UPDATE PERSONNE SET DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
 		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
-		SqlDataReader^ dr1 = cmd1->ExecuteReader();
-
-		while (dr1->Read())
-		{
-			textBoxNom->Text = dr1[0]->ToString();
-			textBoxPrenom->Text = dr1[1]->ToString();
-			textBoxEmail->Text = dr1[2]->ToString();
-			textBoxTelephone->Text = dr1[3]->ToString();
-			dateTimePicker2->Text = dr1[4]->ToString();
-		}
-		dr1->Close();
+		//SqlDataReader^ dr1 = cmd1->ExecuteReader();
+		cmd1->ExecuteNonQuery();
+		//while (dr1->Read())
+		//{
+		//	textBoxNom->Text = dr1[0]->ToString();
+		//	textBoxPrenom->Text = dr1[1]->ToString();
+		//	textBoxEmail->Text = dr1[2]->ToString();
+		//	textBoxTelephone->Text = dr1[3]->ToString();
+		//	dateTimePicker2->Text = dr1[4]->ToString();
+		//}
+		//dr1->Close();
 		conn->closeConnection();
 
-		String^ query2 = "'DATE_EMBAUCHE'" + dateTimePicker1 + "'WHERE ID_PERSONNE = 5;";
-		SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
+		//conn->openConnection();
+		//String^ query2 = "'UPDATE PERSONNEL SET DATE_EMBAUCHE+" + dateTimePicker1->Text + "WHERE ID_PERSONNE = 5;";
+		//SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
 
-		SqlDataReader^ dr2 = cmd2->ExecuteReader();
+		//cmd2->ExecuteNonQuery();
 
-		while (dr2->Read())
-		{
-			dateTimePicker1->Text = dr2[5]->ToString();
-		}
-		dr2->Close();
-		conn->closeConnection();
+		//conn->closeConnection();
 
-		
+		//
 	}
 
 
@@ -787,5 +785,7 @@ namespace AppliProjetPOO {
 	}
 	private: System::Void labelNom_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void dateTimePicker1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
