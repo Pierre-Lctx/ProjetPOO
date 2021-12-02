@@ -28,6 +28,17 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ buttonSupprimerValidation;
 
 	public: ModifierPersonnel^ frmModify;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nom_Personnel;
+	public:
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Prenom_Personne;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Adresse_Mail_Personnel;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Telephone_Personnel;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DateEmbauche_Personnel;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ RUE;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ BATIMENT;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ETAGE;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NUMERO_VOIE;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NOM_VILLE;
 	public: Connect^ conn;
 		
 	public:
@@ -49,14 +60,14 @@ namespace AppliProjetPOO {
 
 			conn->openConnection();
 			
-			String^ query = "select Personne.NOM_PERSONNE, Personne.PRENOM_PERSONNE, Personne.ADRESSE_MAIL, Personne.TELEPHONE, Personnel.DATE_EMBAUCHE, Adresse.RUE, Adresse.BATIMENT, Adresse.ETAGE, Adresse.NUMERO_VOIE, Ville.NOM_VILLE from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Personnel ON Personnel.ID_PERSONNE = Personne.ID_PERSONNE INNER JOIN DBProjet.dbo.Adresse ON Personnel.ID_ADRESSE = Adresse.ID_ADRESSE INNER JOIN DBProjet.dbo.Ville ON Ville.ID_VILLE = Adresse.ID_VILLE";
+			String^ query = "select Personnel.ID_PERSONNEL, Personne.NOM_PERSONNE, Personne.PRENOM_PERSONNE, Personne.ADRESSE_MAIL, Personne.TELEPHONE, Personnel.DATE_EMBAUCHE, Adresse.RUE, Adresse.BATIMENT, Adresse.ETAGE, Adresse.NUMERO_VOIE, Ville.NOM_VILLE from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Personnel ON Personnel.ID_PERSONNE = Personne.ID_PERSONNE INNER JOIN DBProjet.dbo.Adresse ON Personnel.ID_ADRESSE = Adresse.ID_ADRESSE INNER JOIN DBProjet.dbo.Ville ON Ville.ID_VILLE = Adresse.ID_VILLE";
 			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
 
 			SqlDataReader^ dr = cmd->ExecuteReader();
 
 			while (dr->Read())
 			{
-				dataGridView1->Rows->Add();
+				dataGridView1->Rows->Add(dr["NOM_PERSONNE"], dr["PRENOM_PERSONNE"], dr["ADRESSE_MAIL"], dr["TELEPHONE"], dr["DATE_EMBAUCHE"], dr["RUE"], dr["BATIMENT"], dr["ETAGE"], dr["NUMERO_VOIE"], dr["NOM_VILLE"]);
 			}
 
 			conn->closeConnection();
@@ -92,14 +103,14 @@ namespace AppliProjetPOO {
 
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nom_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Prenom_Personne;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Telephone_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Adresse_Mail_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date_Naissance_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DateEmbauche_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Adresse_Personnel;
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Button^ btnCreer;
 	private: System::Windows::Forms::Button^ btnModifier;
 	private: System::Windows::Forms::Button^ btnSupprimer;
@@ -121,14 +132,6 @@ namespace AppliProjetPOO {
 		{
 			this->pnlMain = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->ID_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nom_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Prenom_Personne = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Telephone_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Adresse_Mail_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Date_Naissance_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->DateEmbauche_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Adresse_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pnlFilter = (gcnew System::Windows::Forms::Panel());
 			this->tbPrenom = (gcnew System::Windows::Forms::TextBox());
 			this->tbNom = (gcnew System::Windows::Forms::TextBox());
@@ -143,6 +146,16 @@ namespace AppliProjetPOO {
 			this->pnlButtonChoix = (gcnew System::Windows::Forms::Panel());
 			this->textBoxIDSuppr = (gcnew System::Windows::Forms::TextBox());
 			this->buttonSupprimerValidation = (gcnew System::Windows::Forms::Button());
+			this->Nom_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Prenom_Personne = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Adresse_Mail_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Telephone_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->DateEmbauche_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->RUE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->BATIMENT = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ETAGE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->NUMERO_VOIE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->NOM_VILLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pnlMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->pnlFilter->SuspendLayout();
@@ -168,64 +181,16 @@ namespace AppliProjetPOO {
 				static_cast<System::Int32>(static_cast<System::Byte>(51)), static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
-				this->ID_Personnel,
-					this->Nom_Personnel, this->Prenom_Personne, this->Telephone_Personnel, this->Adresse_Mail_Personnel, this->Date_Naissance_Personnel,
-					this->DateEmbauche_Personnel, this->Adresse_Personnel
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
+				this->Nom_Personnel,
+					this->Prenom_Personne, this->Adresse_Mail_Personnel, this->Telephone_Personnel, this->DateEmbauche_Personnel, this->RUE, this->BATIMENT,
+					this->ETAGE, this->NUMERO_VOIE, this->NOM_VILLE
 			});
 			this->dataGridView1->Location = System::Drawing::Point(41, 96);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
 			this->dataGridView1->Size = System::Drawing::Size(844, 306);
 			this->dataGridView1->TabIndex = 2;
-			// 
-			// ID_Personnel
-			// 
-			this->ID_Personnel->HeaderText = L"ID";
-			this->ID_Personnel->Name = L"ID_Personnel";
-			this->ID_Personnel->ReadOnly = true;
-			// 
-			// Nom_Personnel
-			// 
-			this->Nom_Personnel->HeaderText = L"Nom";
-			this->Nom_Personnel->Name = L"Nom_Personnel";
-			this->Nom_Personnel->ReadOnly = true;
-			// 
-			// Prenom_Personne
-			// 
-			this->Prenom_Personne->HeaderText = L"Prenom";
-			this->Prenom_Personne->Name = L"Prenom_Personne";
-			this->Prenom_Personne->ReadOnly = true;
-			// 
-			// Telephone_Personnel
-			// 
-			this->Telephone_Personnel->HeaderText = L"Telephone";
-			this->Telephone_Personnel->Name = L"Telephone_Personnel";
-			this->Telephone_Personnel->ReadOnly = true;
-			// 
-			// Adresse_Mail_Personnel
-			// 
-			this->Adresse_Mail_Personnel->HeaderText = L"Adresse Mail";
-			this->Adresse_Mail_Personnel->Name = L"Adresse_Mail_Personnel";
-			this->Adresse_Mail_Personnel->ReadOnly = true;
-			// 
-			// Date_Naissance_Personnel
-			// 
-			this->Date_Naissance_Personnel->HeaderText = L"Date de Naissance";
-			this->Date_Naissance_Personnel->Name = L"Date_Naissance_Personnel";
-			this->Date_Naissance_Personnel->ReadOnly = true;
-			// 
-			// DateEmbauche_Personnel
-			// 
-			this->DateEmbauche_Personnel->HeaderText = L"Date d\'Embauche";
-			this->DateEmbauche_Personnel->Name = L"DateEmbauche_Personnel";
-			this->DateEmbauche_Personnel->ReadOnly = true;
-			// 
-			// Adresse_Personnel
-			// 
-			this->Adresse_Personnel->HeaderText = L"Adresse";
-			this->Adresse_Personnel->Name = L"Adresse_Personnel";
-			this->Adresse_Personnel->ReadOnly = true;
 			// 
 			// pnlFilter
 			// 
@@ -419,6 +384,7 @@ namespace AppliProjetPOO {
 			this->textBoxIDSuppr->Size = System::Drawing::Size(158, 20);
 			this->textBoxIDSuppr->TabIndex = 5;
 			this->textBoxIDSuppr->Text = L"Entrer l\'ID...";
+			this->textBoxIDSuppr->TextChanged += gcnew System::EventHandler(this, &Personnel::textBoxIDSuppr_TextChanged);
 			// 
 			// buttonSupprimerValidation
 			// 
@@ -436,6 +402,61 @@ namespace AppliProjetPOO {
 			this->buttonSupprimerValidation->Text = L"Supprimer";
 			this->buttonSupprimerValidation->UseVisualStyleBackColor = false;
 			this->buttonSupprimerValidation->Click += gcnew System::EventHandler(this, &Personnel::button1_Click);
+			// 
+			// Nom_Personnel
+			// 
+			this->Nom_Personnel->HeaderText = L"Nom";
+			this->Nom_Personnel->Name = L"Nom_Personnel";
+			this->Nom_Personnel->ReadOnly = true;
+			// 
+			// Prenom_Personne
+			// 
+			this->Prenom_Personne->HeaderText = L"Prenom";
+			this->Prenom_Personne->Name = L"Prenom_Personne";
+			this->Prenom_Personne->ReadOnly = true;
+			// 
+			// Adresse_Mail_Personnel
+			// 
+			this->Adresse_Mail_Personnel->HeaderText = L"Adresse Mail";
+			this->Adresse_Mail_Personnel->Name = L"Adresse_Mail_Personnel";
+			this->Adresse_Mail_Personnel->ReadOnly = true;
+			// 
+			// Telephone_Personnel
+			// 
+			this->Telephone_Personnel->HeaderText = L"Telephone";
+			this->Telephone_Personnel->Name = L"Telephone_Personnel";
+			this->Telephone_Personnel->ReadOnly = true;
+			// 
+			// DateEmbauche_Personnel
+			// 
+			this->DateEmbauche_Personnel->HeaderText = L"Date d\'Embauche";
+			this->DateEmbauche_Personnel->Name = L"DateEmbauche_Personnel";
+			this->DateEmbauche_Personnel->ReadOnly = true;
+			// 
+			// RUE
+			// 
+			this->RUE->HeaderText = L"RUE";
+			this->RUE->Name = L"RUE";
+			// 
+			// BATIMENT
+			// 
+			this->BATIMENT->HeaderText = L"BATIMENT";
+			this->BATIMENT->Name = L"BATIMENT";
+			// 
+			// ETAGE
+			// 
+			this->ETAGE->HeaderText = L"ETAGE";
+			this->ETAGE->Name = L"ETAGE";
+			// 
+			// NUMERO_VOIE
+			// 
+			this->NUMERO_VOIE->HeaderText = L"NUMERO_VOIE";
+			this->NUMERO_VOIE->Name = L"NUMERO_VOIE";
+			// 
+			// NOM_VILLE
+			// 
+			this->NOM_VILLE->HeaderText = L"NOM_VILLE";
+			this->NOM_VILLE->Name = L"NOM_VILLE";
 			// 
 			// Personnel
 			// 
@@ -541,5 +562,23 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	conn->closeConnection();
 }
+	private: System::Void textBoxIDSuppr_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+		if (textBoxIDSuppr->ToString() != "")
+		{
+			conn->openConnection();
+
+			String^ query = "DELETE FROM Personnel WHERE ID_PERSONNEL = " + textBoxIDSuppr->ToString();
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			cmd->ExecuteNonQuery();
+
+			conn->closeConnection();
+		}
+		else
+		{
+			MessageBox::Show("L'ID n'est pas rentré ou alors il n'existe pas !");
+		}
+	}
 };
 }
