@@ -9,7 +9,7 @@ namespace gestionPersonnel
 	ref class gestPersonnel
 	{
 	private :
-		int ID_PERSONNE, ID_PERSONNEL_GERER, numVoie, etage;
+		int ID_PERSONNE, ID_PERSONNEL_GERER, numVoie, etage, idVille;
 		String^ nom, ^ prenom, ^ telephone, ^ email, ^ rue, ^ batiment, ^ ville;
 		DateTime^ dateNaissance, ^ dateEmbauche;
 
@@ -36,12 +36,14 @@ namespace gestionPersonnel
 		void setVille(String^);
 		void setDateNaissance(DateTime^);
 		void setDateEmbauche(DateTime^);
+		void setIDVille(int);
 		
 		//Getter
 		int getIDPERSONNE();
 		int getIDPERSONNELGERER();
 		int getNumVoie();
 		int getEtage();
+		int getIDVille();
 		String^ getNom();
 		String^ getPrenom();
 		String^ getTelephone();
