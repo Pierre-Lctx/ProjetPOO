@@ -1118,8 +1118,8 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 	
 		for (int i = 0; i < nbLigneDGV; i++)
 		{
-			double calculValue = 0+i;
-			//calculValue = Convert::ToDouble(dgvStat[i, 3]) * ((Convert::ToDouble(dgvStat[i, 4]) + Convert::ToDouble(cbTVA->Text)) * (Convert::ToDouble(dgvStat[i, 4]) + (Convert::ToDouble(cbMarge->Text) * (Convert::ToDouble(dgvStat[i, 4])));
+			double calculValue;
+			calculValue = Convert::ToDouble(dgvStat[i, 3]) * ((Convert::ToDouble(dgvStat[i, 4]) + Convert::ToDouble(cbTVA->Text)) * (Convert::ToDouble(dgvStat[i, 4]) + (Convert::ToDouble(cbMarge->Text) * (Convert::ToDouble(dgvStat[i, 4])) - Convert::ToDouble(cbRemise->Text) * (Convert::ToDouble(dgvStat[i, 4]))- Convert::ToDouble(cbDemarche->Text) * (Convert::ToDouble(dgvStat[i, 4])))));
 			graphSimulation->Series[0]->Points->AddXY("Simulation" + i, calculValue);
 		}
 
