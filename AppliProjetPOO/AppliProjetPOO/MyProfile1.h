@@ -15,7 +15,7 @@ namespace AppliProjetPOO {
 
 
 	/// <summary>
-	/// Description rÃ©sumÃ©e de MyProfile
+	/// Description résumée de MyProfile
 	/// </summary>
 	public ref class MyProfile : public System::Windows::Forms::Form
 	{
@@ -82,14 +82,14 @@ namespace AppliProjetPOO {
 
 			comboBoxSuperieur->Visible = false;
 
-			//DÃ©claration de la variable de connexion
+			//Déclaration de la variable de connexion
 			
 			conn = gcnew Connect();
 		}
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisÃ©es.
+		/// Nettoyage des ressources utilisées.
 		/// </summary>
 		~MyProfile()
 		{
@@ -131,14 +131,14 @@ namespace AppliProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nÃ©cessaire au concepteur.
+		/// Variable nécessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
+		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -380,7 +380,7 @@ namespace AppliProjetPOO {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(125, 38);
 			this->label2->TabIndex = 4;
-			this->label2->Text = L"PrÃ©nom :";
+			this->label2->Text = L"Prénom :";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label2->Click += gcnew System::EventHandler(this, &MyProfile::label2_Click);
 			// 
@@ -428,7 +428,7 @@ namespace AppliProjetPOO {
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(302, 37);
 			this->label10->TabIndex = 27;
-			this->label10->Text = L"SupÃ©rieur hiÃ©rarchique :";
+			this->label10->Text = L"Supérieur hiérarchique :";
 			// 
 			// label9
 			// 
@@ -498,7 +498,7 @@ namespace AppliProjetPOO {
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(301, 72);
 			this->label4->TabIndex = 6;
-			this->label4->Text = L"NumÃ©ro de tÃ©lÃ©phone :";
+			this->label4->Text = L"Numéro de téléphone :";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label4->Click += gcnew System::EventHandler(this, &MyProfile::label4_Click);
 			// 
@@ -607,7 +607,7 @@ namespace AppliProjetPOO {
 
 		comboBoxSuperieur->Visible = false;
 
-		//RÃ©initialistion du texte
+		//Réinitialistion du texte
 
 		textBoxNom->Text = "";
 		textBoxPrenom->Text = "";
@@ -718,7 +718,7 @@ namespace AppliProjetPOO {
 
 		labelNom->Text = Nom;
 
-		//PrÃ©nom ---------------------------------------
+		//Prénom ---------------------------------------
 
 
 		if (textBoxPrenom->Text == labelPrenom->Text)
@@ -774,8 +774,9 @@ namespace AppliProjetPOO {
 		labelDateEmbauche->Text = DateEmbauche;
 
 
-		MessageBox::Show("Les modifications ont Ã©tÃ© enregistrÃ©es.");
+		MessageBox::Show("Les modifications ont été enregistrées.");
 
+		
 
 	// UPDATE
 
@@ -791,7 +792,6 @@ namespace AppliProjetPOO {
 	conn->closeConnection();
 
 	initMyProfil(ID);
-
 	}
 
 
