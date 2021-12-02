@@ -1099,6 +1099,7 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 	{
 	hideAllDG();
 	hideAllLblInfo();
+	lblNonGraph->Visible = true;
 	double tvaNum;
 	double remiseNum;
 	double margeNum;
@@ -1106,6 +1107,7 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 
 	if (cbArticle->Text != "" && cbTVA->Text != "" && cbMarge->Text != "" && cbRemise->Text != "" && cbDemarche->Text != "")
 	{
+		hideAllLblInfo();
 		dgvStat->Columns["prixHT"]->Visible = true;
 		dgvStat->Columns["TVA"]->Visible = true;
 		dgvStat->Columns["margeCommerciale"]->Visible = true;
@@ -1115,7 +1117,6 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		dgvStat->Columns["natureArticle"]->Visible = true;
 		dgvStat->Columns["couleurArticle"]->Visible = true;
 		dgvStat->Columns["stockArticle"]->Visible = true;
-
 		graphSimulation->Visible = true;
 		
 		
@@ -1163,13 +1164,9 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		nbLigneDGV++;
 		drArticleSimu->Close();
 		con->Close();
-		
-
-		
-
 	}
-	
-
+	else
+	MessageBox::Show("Tout les champs ne sont pas Remplis", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 
 	}
 private: System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ e) 
