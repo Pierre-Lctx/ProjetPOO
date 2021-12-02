@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Article.h"
+#include "Connection.h"
 
 namespace AppliProjetPOO {
 
@@ -10,12 +11,16 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
 	/// Description résumée de Stocks
 	/// </summary>
 	public ref class Stocks : public System::Windows::Forms::Form
 	{
+
+	public: Connect^ conn;
+
 	public:
 		Stocks(void)
 		{
@@ -26,6 +31,22 @@ namespace AppliProjetPOO {
 			this->tbID->ReadOnly = true;
 			this->tbNom->ReadOnly = true;
 			this->tbType->ReadOnly = true;
+
+			conn = gcnew Connect();
+
+			conn->openConnection();
+
+			String^ query = "select NOM_ARTICLE, STOCK, PRIX_ARTICLE, SEUIL_APPROVISIONNEMENT, TVA_ARTICLE, NATURE, COULEUR from DBProjet.dbo.Article;";
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			SqlDataReader^ dr = cmd->ExecuteReader();
+
+			while (dr->Read())
+			{
+				dataGridView1->Rows->Add(dr["NOM_ARTICLE"], dr["STOCK"], dr["PRIX_ARTICLE"], dr["SEUIL_APPROVISIONNEMENT"], dr["TVA_ARTICLE"], dr["NATURE"], dr["COULEUR"]);
+			}
+
+			conn->closeConnection();
 		}
 
 	private:
@@ -34,6 +55,13 @@ namespace AppliProjetPOO {
 		bool NomClick = false;
 	private: System::Windows::Forms::Button^ buttonSupprimerValidation;
 	private: System::Windows::Forms::TextBox^ textBoxIDSuppr;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NOM_ARTICLE;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ STOCK;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PRIX_ARTICLE;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SEUIL_APPROVISIONEMENT;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TVA_ARTICLE;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NATURE;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ COULEUR;
 		   bool PrenomClick = false;
 
 	protected:
@@ -54,14 +82,14 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnModifier;
 	private: System::Windows::Forms::Panel^ pnlMain;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nom_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Prenom_Personne;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Telephone_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Adresse_Mail_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date_Naissance_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DateEmbauche_Personnel;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Adresse_Personnel;
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Panel^ pnlFilter;
 	private: System::Windows::Forms::TextBox^ tbType;
 
@@ -91,14 +119,6 @@ namespace AppliProjetPOO {
 			this->btnModifier = (gcnew System::Windows::Forms::Button());
 			this->pnlMain = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->ID_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nom_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Prenom_Personne = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Telephone_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Adresse_Mail_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Date_Naissance_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->DateEmbauche_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Adresse_Personnel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pnlFilter = (gcnew System::Windows::Forms::Panel());
 			this->tbType = (gcnew System::Windows::Forms::TextBox());
 			this->tbNom = (gcnew System::Windows::Forms::TextBox());
@@ -109,6 +129,13 @@ namespace AppliProjetPOO {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->buttonSupprimerValidation = (gcnew System::Windows::Forms::Button());
 			this->textBoxIDSuppr = (gcnew System::Windows::Forms::TextBox());
+			this->NOM_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->STOCK = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PRIX_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->SEUIL_APPROVISIONEMENT = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->TVA_ARTICLE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->NATURE = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->COULEUR = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pnlButtonChoix->SuspendLayout();
 			this->pnlMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -199,64 +226,15 @@ namespace AppliProjetPOO {
 				static_cast<System::Int32>(static_cast<System::Byte>(51)), static_cast<System::Int32>(static_cast<System::Byte>(73)));
 			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
-				this->ID_Personnel,
-					this->Nom_Personnel, this->Prenom_Personne, this->Telephone_Personnel, this->Adresse_Mail_Personnel, this->Date_Naissance_Personnel,
-					this->DateEmbauche_Personnel, this->Adresse_Personnel
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
+				this->NOM_ARTICLE,
+					this->STOCK, this->PRIX_ARTICLE, this->SEUIL_APPROVISIONEMENT, this->TVA_ARTICLE, this->NATURE, this->COULEUR
 			});
 			this->dataGridView1->Location = System::Drawing::Point(41, 96);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
 			this->dataGridView1->Size = System::Drawing::Size(844, 306);
 			this->dataGridView1->TabIndex = 2;
-			// 
-			// ID_Personnel
-			// 
-			this->ID_Personnel->HeaderText = L"ID";
-			this->ID_Personnel->Name = L"ID_Personnel";
-			this->ID_Personnel->ReadOnly = true;
-			// 
-			// Nom_Personnel
-			// 
-			this->Nom_Personnel->HeaderText = L"Nom";
-			this->Nom_Personnel->Name = L"Nom_Personnel";
-			this->Nom_Personnel->ReadOnly = true;
-			// 
-			// Prenom_Personne
-			// 
-			this->Prenom_Personne->HeaderText = L"Prenom";
-			this->Prenom_Personne->Name = L"Prenom_Personne";
-			this->Prenom_Personne->ReadOnly = true;
-			// 
-			// Telephone_Personnel
-			// 
-			this->Telephone_Personnel->HeaderText = L"Telephone";
-			this->Telephone_Personnel->Name = L"Telephone_Personnel";
-			this->Telephone_Personnel->ReadOnly = true;
-			// 
-			// Adresse_Mail_Personnel
-			// 
-			this->Adresse_Mail_Personnel->HeaderText = L"Adresse Mail";
-			this->Adresse_Mail_Personnel->Name = L"Adresse_Mail_Personnel";
-			this->Adresse_Mail_Personnel->ReadOnly = true;
-			// 
-			// Date_Naissance_Personnel
-			// 
-			this->Date_Naissance_Personnel->HeaderText = L"Date de Naissance";
-			this->Date_Naissance_Personnel->Name = L"Date_Naissance_Personnel";
-			this->Date_Naissance_Personnel->ReadOnly = true;
-			// 
-			// DateEmbauche_Personnel
-			// 
-			this->DateEmbauche_Personnel->HeaderText = L"Date d\'Embauche";
-			this->DateEmbauche_Personnel->Name = L"DateEmbauche_Personnel";
-			this->DateEmbauche_Personnel->ReadOnly = true;
-			// 
-			// Adresse_Personnel
-			// 
-			this->Adresse_Personnel->HeaderText = L"Adresse";
-			this->Adresse_Personnel->Name = L"Adresse_Personnel";
-			this->Adresse_Personnel->ReadOnly = true;
 			// 
 			// pnlFilter
 			// 
@@ -396,6 +374,41 @@ namespace AppliProjetPOO {
 			this->textBoxIDSuppr->Size = System::Drawing::Size(158, 20);
 			this->textBoxIDSuppr->TabIndex = 8;
 			this->textBoxIDSuppr->Text = L"Entrer l\'ID...";
+			// 
+			// NOM_ARTICLE
+			// 
+			this->NOM_ARTICLE->HeaderText = L"NOM_ARTICLE";
+			this->NOM_ARTICLE->Name = L"NOM_ARTICLE";
+			// 
+			// STOCK
+			// 
+			this->STOCK->HeaderText = L"STOCK";
+			this->STOCK->Name = L"STOCK";
+			// 
+			// PRIX_ARTICLE
+			// 
+			this->PRIX_ARTICLE->HeaderText = L"PRIX_ARTICLE";
+			this->PRIX_ARTICLE->Name = L"PRIX_ARTICLE";
+			// 
+			// SEUIL_APPROVISIONEMENT
+			// 
+			this->SEUIL_APPROVISIONEMENT->HeaderText = L"SEUIL_APPROVISIONEMENT";
+			this->SEUIL_APPROVISIONEMENT->Name = L"SEUIL_APPROVISIONEMENT";
+			// 
+			// TVA_ARTICLE
+			// 
+			this->TVA_ARTICLE->HeaderText = L"TVA_ARTICLE";
+			this->TVA_ARTICLE->Name = L"TVA_ARTICLE";
+			// 
+			// NATURE
+			// 
+			this->NATURE->HeaderText = L"NATURE";
+			this->NATURE->Name = L"NATURE";
+			// 
+			// COULEUR
+			// 
+			this->COULEUR->HeaderText = L"COULEUR";
+			this->COULEUR->Name = L"COULEUR";
 			// 
 			// Stocks
 			// 
