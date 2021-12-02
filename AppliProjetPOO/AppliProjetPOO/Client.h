@@ -2,6 +2,7 @@
 
 #include "Controleur.h"
 #include "CreatePerson.h"
+#include "Connection.h"
 
 namespace AppliProjetPOO {
 
@@ -11,6 +12,7 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
 	/// Description résumée de Client
@@ -32,6 +34,8 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Adresse_2_Client;
 		   bool PrenomClick = false;
 
+	public: Connect^ conn;
+
 	public:
 		Client(void)
 		{
@@ -39,6 +43,22 @@ namespace AppliProjetPOO {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+
+			conn = gcnew Connect();
+
+			conn->openConnection();
+
+			String^ query = "select Personne.ID_PERSONNE, Personne.NOM_PERSONNE, Personne.PRENOM_PERSONNE, Personne.ADRESSE_MAIL, Personne.TELEPHONE, Client.ID_ADRESSE, Client.ID_ADRESSE_2 from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Client ON Client.ID_PERSONNE = Personne.ID_PERSONNE";
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			SqlDataReader^ dr = cmd->ExecuteReader();
+
+			while (dr->Read())
+			{
+				dataGridView1->Rows->Add(dr["NOM_PERSONNE"], dr["PRENOM_PERSONNE"], dr["ADRESSE_MAIL"], dr["TELEPHONE"], dr["DATE_EMBAUCHE"], dr["RUE"], dr["BATIMENT"], dr["ETAGE"], dr["NUMERO_VOIE"], dr["NOM_VILLE"]);
+			}
+
+			conn->closeConnection();
 		}
 
 	protected:
@@ -331,6 +351,7 @@ namespace AppliProjetPOO {
 			this->buttonSupprimerValidation->TabIndex = 9;
 			this->buttonSupprimerValidation->Text = L"Supprimer";
 			this->buttonSupprimerValidation->UseVisualStyleBackColor = false;
+			this->buttonSupprimerValidation->Click += gcnew System::EventHandler(this, &Client::buttonSupprimerValidation_Click);
 			// 
 			// textBoxIDSuppr
 			// 
@@ -470,6 +491,18 @@ namespace AppliProjetPOO {
 		if (tbPrenom->Text == "")
 			this->tbPrenom->Text = "Entrer le Prenom...";
 
+	}
+
+	private: System::Void buttonSupprimerValidation_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		conn->openConnection();
+
+		String^ query = "DELETE FROM Client WHERE ID_PERSONNE = " + textBoxIDSuppr->ToString();
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+		cmd->ExecuteNonQuery();
+
+		conn->closeConnection();
 	}
 };
 }

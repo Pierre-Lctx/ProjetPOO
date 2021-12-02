@@ -12,9 +12,10 @@ namespace AppliProjetPOO
 	using namespace System::Data;
 	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
-	/// Description résumée de Stats
+	/// Description rÃ©sumÃ©e de Stats
 	/// </summary>
 	public ref class Stats : public System::Windows::Forms::Form
 	{
@@ -54,9 +55,8 @@ namespace AppliProjetPOO
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ remiseCommerciale;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ demarqueInconnu;
 
-	
+	public: Connect^ conn;
 
-		   SqlConnection^ con = gcnew SqlConnection("Data Source=LAPTOP-07RHIAUR\\MSSQL_BAPTISTE;Initial Catalog=DBProjet;Integrated Security=True");
 	public:
 		Stats(void)
 		{
@@ -65,13 +65,13 @@ namespace AppliProjetPOO
 			//TODO: ajoutez ici le code du constructeur
 			//
 
-			
+			conn = gcnew Connect();
 
 		}
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~Stats()
 		{
@@ -126,14 +126,14 @@ namespace AppliProjetPOO
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -229,7 +229,7 @@ namespace AppliProjetPOO
 			this->graphSimulation->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Prix du stock De l\'article d\'après la simultation";
+			series1->Name = L"Prix du stock De l\'article d\'aprÃ¨s la simultation";
 			this->graphSimulation->Series->Add(series1);
 			this->graphSimulation->Size = System::Drawing::Size(1006, 267);
 			this->graphSimulation->TabIndex = 0;
@@ -331,7 +331,7 @@ namespace AppliProjetPOO
 			// 
 			// stockArticle
 			// 
-			this->stockArticle->HeaderText = L"Quantité";
+			this->stockArticle->HeaderText = L"QuantitÃ©";
 			this->stockArticle->Name = L"stockArticle";
 			this->stockArticle->ReadOnly = true;
 			// 
@@ -525,7 +525,7 @@ namespace AppliProjetPOO
 			this->btnArticleReapro->Name = L"btnArticleReapro";
 			this->btnArticleReapro->Size = System::Drawing::Size(192, 23);
 			this->btnArticleReapro->TabIndex = 3;
-			this->btnArticleReapro->Text = L"Articles à Réaprovisionner";
+			this->btnArticleReapro->Text = L"Articles Ã  RÃ©aprovisionner";
 			this->btnArticleReapro->UseVisualStyleBackColor = true;
 			this->btnArticleReapro->Click += gcnew System::EventHandler(this, &Stats::btnArticleReapro_Click);
 			// 
@@ -780,9 +780,9 @@ namespace AppliProjetPOO
 
 		String^ rqtYear = "SELECT DATE_COMMANDE From Commande";
 
-		SqlCommand^ cmdYear = gcnew SqlCommand(rqtYear, con);
+		SqlCommand^ cmdYear = gcnew SqlCommand(rqtYear, conn->getConn());
 
-		con->Open();
+		conn->openConnection();
 
 		SqlDataReader^ drYear = cmdYear->ExecuteReader();
 
@@ -800,7 +800,7 @@ namespace AppliProjetPOO
 
 		String^ rqtIdClient = "SELECT ID_CLIENT From Client";
 
-		SqlCommand^ cmdIdClient = gcnew SqlCommand(rqtIdClient, con);
+		SqlCommand^ cmdIdClient = gcnew SqlCommand(rqtIdClient, conn->getConn());
 
 		SqlDataReader^ drIdClient = cmdIdClient->ExecuteReader();
 
@@ -813,7 +813,7 @@ namespace AppliProjetPOO
 
 		String^ rqtArticle = "SELECT NOM_ARTICLE From Article";
 
-		SqlCommand^ cmdArticle = gcnew SqlCommand(rqtArticle, con);
+		SqlCommand^ cmdArticle = gcnew SqlCommand(rqtArticle, conn->getConn());
 
 		SqlDataReader^ drArticle = cmdArticle->ExecuteReader();
 
@@ -824,7 +824,7 @@ namespace AppliProjetPOO
 
 		drArticle->Close();
 
-		con->Close();
+		conn->closeConnection();
 	}
 
 
@@ -845,21 +845,21 @@ private: System::Void btnPrixMoyen_Click(System::Object^ sender, System::EventAr
 
 	String^ rqtPrixMoyen = "select avg(MONTANT_TTC) from Paiement";
 
-	SqlCommand^ cmdPrixMoyen = gcnew SqlCommand(rqtPrixMoyen, con);
+	SqlCommand^ cmdPrixMoyen = gcnew SqlCommand(rqtPrixMoyen, conn->getConn());
 
-	con->Open();
+	conn->openConnection();
 
 	SqlDataReader^ drPrixMoyen = cmdPrixMoyen->ExecuteReader();
 
 	if (drPrixMoyen->Read())
 	{
-		lblValueInfo->Text = drPrixMoyen->GetDouble(0).ToString() + " €";
+		lblValueInfo->Text = drPrixMoyen->GetDouble(0).ToString() + " Â€";
 		
 	}
 
 	drPrixMoyen->Close();
 
-	con->Close();
+	conn->closeConnection();
 
 }
 
@@ -880,9 +880,9 @@ private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::Ev
 
 		String^ rqtChiffreAffaire = " select sum(MONTANT_HT) from Paiement where month(DATE_PAIEMENT) = "+ cbMois->Text + " and year(DATE_PAIEMENT) = " + cbAnnee->Text;
 
-		SqlCommand^ cmdChiffreAffaire = gcnew SqlCommand(rqtChiffreAffaire, con);
+		SqlCommand^ cmdChiffreAffaire = gcnew SqlCommand(rqtChiffreAffaire, conn->getConn());
 
-		con->Open();
+		conn->openConnection();
 
 		SqlDataReader^ drChiffreAffaire = cmdChiffreAffaire->ExecuteReader();
 
@@ -890,18 +890,18 @@ private: System::Void btnChiffreAffaire_Click(System::Object^ sender, System::Ev
 		{		
 			try 
 			{
-				lblValueInfo->Text = drChiffreAffaire->GetDouble(0).ToString() + " €";
+				lblValueInfo->Text = drChiffreAffaire->GetDouble(0).ToString() + " Â€";
 			}
 			catch (...)
 			{
-				lblValueInfo->Text = "0 €";
+				lblValueInfo->Text = "0 Â€";
 			}
 		
 		}
 	
 		drChiffreAffaire->Close();
 
-		con->Close();
+		conn->closeConnection();
 	}
 	else
 	{
@@ -927,9 +927,9 @@ private: System::Void btnArticleReapro_Click(System::Object^ sender, System::Eve
 
 	String^ rqtArticleReapro = "select NOM_ARTICLE, NATURE, COULEUR, STOCK, SEUIL_APPROVISIONNEMENT from ARTICLE where STOCK < SEUIL_APPROVISIONNEMENT";
 
-	SqlCommand^ cmdArticleReapro = gcnew SqlCommand(rqtArticleReapro, con);
+	SqlCommand^ cmdArticleReapro = gcnew SqlCommand(rqtArticleReapro, conn->getConn());
 
-	con->Open();
+	conn->openConnection();
 
 	SqlDataReader^ drArticleReapro = cmdArticleReapro->ExecuteReader();
 
@@ -938,7 +938,7 @@ private: System::Void btnArticleReapro_Click(System::Object^ sender, System::Eve
 		dgvStat->Rows->Add(drArticleReapro["NOM_ARTICLE"], drArticleReapro["NATURE"], drArticleReapro["COULEUR"], drArticleReapro["STOCK"]);
 	}
 	drArticleReapro->Close();
-	con->Close();
+	conn->closeConnection();
 }
 private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::EventArgs^ e) 
 {
@@ -953,8 +953,9 @@ private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::E
 
 	String^ rqtNomClient = "SELECT NOM_PERSONNE, PRENOM_PERSONNE From Personne INNER JOIN Client ON Personne.ID_PERSONNE = " + cbIDClient->Text;
 
-	SqlCommand^ cmdNomClient = gcnew SqlCommand(rqtNomClient, con);
-	con->Open();
+	SqlCommand^ cmdNomClient = gcnew SqlCommand(rqtNomClient, conn->getConn());
+	
+	conn->openConnection();
 
 	SqlDataReader^ drNomClient = cmdNomClient->ExecuteReader();
 
@@ -963,23 +964,23 @@ private: System::Void btnTotalClientPrix_Click(System::Object^ sender, System::E
 		lblTitleInfo->Text = "Le Client ";
 		lblTitleInfo->Text += drNomClient->GetString(1) + "\r\n";
 		lblTitleInfo->Text += drNomClient->GetString(0) + "\r\n";
-		lblTitleInfo->Text += "a dépenser au total :";
+		lblTitleInfo->Text += "a dÃ©penser au total :";
 	}
 	drNomClient->Close();
 
 	String^ rqtClientPrix = "select sum(Paiement.MONTANT_TTC) from Paiement inner join Commande on Paiement.ID_COMMANDE = Commande.ID_COMMANDE inner join Client on Commande.ID_CLIENT = " + cbIDClient->Text;
 	
-	SqlCommand^ cmdClientPrix = gcnew SqlCommand(rqtClientPrix, con);
+	SqlCommand^ cmdClientPrix = gcnew SqlCommand(rqtClientPrix, conn->getConn());
 	
 	SqlDataReader^ drClientPrix = cmdClientPrix->ExecuteReader();
 
 	if (drClientPrix->Read())
 	{
-		lblValueInfo->Text = drClientPrix->GetDouble(0).ToString()  + " €";
+		lblValueInfo->Text = drClientPrix->GetDouble(0).ToString()  + " Â€";
 	}
 	drClientPrix->Close();
 
-	con->Close();
+	conn->closeConnection();
 
 
 }
@@ -998,9 +999,9 @@ private: System::Void btnPlus10Article_Click(System::Object^ sender, System::Eve
 
 	String^ rqtPlus10Article = "select top(10) sum(Contenir.QUANTITE), Article.NOM_ARTICLE, Article.NATURE, Article.COULEUR from Contenir inner join Article on Contenir.ID_ARTICLE = Article.ID_ARTICLE group by Contenir.ID_ARTICLE, NOM_ARTICLE, Article.NATURE, Article.COULEUR order by sum(QUANTITE) desc ";
 
-	SqlCommand^ cmdPlus10Article = gcnew SqlCommand(rqtPlus10Article, con);
+	SqlCommand^ cmdPlus10Article = gcnew SqlCommand(rqtPlus10Article, conn->getConn());
 
-	con->Open();
+	conn->openConnection();
 
 	SqlDataReader^ drPlus10Article = cmdPlus10Article->ExecuteReader();
 
@@ -1011,7 +1012,8 @@ private: System::Void btnPlus10Article_Click(System::Object^ sender, System::Eve
 
 	}
 	drPlus10Article->Close();
-	con->Close();
+	
+	conn->closeConnection();
 }
 private: System::Void btnMoins10Article_Click(System::Object^ sender, System::EventArgs^ e) 
 {
@@ -1028,9 +1030,9 @@ private: System::Void btnMoins10Article_Click(System::Object^ sender, System::Ev
 
 	String^ rqtMoins10Article = "select top(10) sum(Contenir.QUANTITE), Article.NOM_ARTICLE, Article.NATURE, Article.COULEUR from Contenir inner join Article on Contenir.ID_ARTICLE = Article.ID_ARTICLE group by Contenir.ID_ARTICLE, NOM_ARTICLE, Article.NATURE, Article.COULEUR order by sum(QUANTITE) asc ";
 
-	SqlCommand^ cmdMoins10Article = gcnew SqlCommand(rqtMoins10Article, con);
+	SqlCommand^ cmdMoins10Article = gcnew SqlCommand(rqtMoins10Article, conn->getConn());
 
-	con->Open();
+	conn->openConnection();
 
 	SqlDataReader^ drMoins10Article = cmdMoins10Article->ExecuteReader();
 
@@ -1041,7 +1043,8 @@ private: System::Void btnMoins10Article_Click(System::Object^ sender, System::Ev
 
 	}
 	drMoins10Article->Close();
-	con->Close();
+	
+	conn->closeConnection();
 }
 private: System::Void btnValeurStock_Click(System::Object^ sender, System::EventArgs^ e)
 {
@@ -1057,8 +1060,9 @@ private: System::Void btnValeurStock_Click(System::Object^ sender, System::Event
 
 	String^ rqtValeurComerciale = "select sum(STOCK*PRIX_ARTICLE) from Article";
 
-	SqlCommand^ cmdValeurCommerciale = gcnew SqlCommand(rqtValeurComerciale, con);
-	con->Open();
+	SqlCommand^ cmdValeurCommerciale = gcnew SqlCommand(rqtValeurComerciale, conn->getConn());
+	
+	conn->openConnection();
 
 	SqlDataReader^ drValeurCommerciale = cmdValeurCommerciale->ExecuteReader();
 
@@ -1067,7 +1071,8 @@ private: System::Void btnValeurStock_Click(System::Object^ sender, System::Event
 		lblValueInfo->Text = drValeurCommerciale->GetDouble(0).ToString();
 	}
 	drValeurCommerciale->Close();
-	con->Close();
+	
+	conn->closeConnection();
 }
 private: System::Void btnValeurAchatStock_Click(System::Object^ sender, System::EventArgs^ e) 
 {
@@ -1083,8 +1088,9 @@ private: System::Void btnValeurAchatStock_Click(System::Object^ sender, System::
 
 	String^ rqtValeurAchat = "select sum(STOCK*(PRIX_ARTICLE+TVA_ARTICLE)) from Article";
 
-	SqlCommand^ cmdValeurAchat = gcnew SqlCommand(rqtValeurAchat, con);
-	con->Open();
+	SqlCommand^ cmdValeurAchat = gcnew SqlCommand(rqtValeurAchat, conn->getConn());
+	
+	conn->openConnection();
 
 	SqlDataReader^ drValeurAchat = cmdValeurAchat->ExecuteReader();
 
@@ -1093,7 +1099,8 @@ private: System::Void btnValeurAchatStock_Click(System::Object^ sender, System::
 		lblValueInfo->Text = drValeurAchat->GetDouble(0).ToString();
 	}
 	drValeurAchat->Close();
-	con->Close();
+	
+	conn->closeConnection();
 }
 private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -1147,8 +1154,9 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 
 		String^ rqtArticleSimu = "select NATURE, COULEUR, STOCK, PRIX_ARTICLE from Article where NOM_ARTICLE = '" + name +"'";
 
-		SqlCommand^ cmdArticleSimu = gcnew SqlCommand(rqtArticleSimu, con);
-		con->Open();
+		SqlCommand^ cmdArticleSimu = gcnew SqlCommand(rqtArticleSimu, conn->getConn());
+		
+		conn->openConnection();
 
 		SqlDataReader^ drArticleSimu = cmdArticleSimu->ExecuteReader();
 		if (drArticleSimu->Read())
@@ -1164,6 +1172,7 @@ private: System::Void btnLoad_Click(System::Object^ sender, System::EventArgs^ e
 		nbLigneDGV++;
 		drArticleSimu->Close();
 		con->Close();
+
 	}
 	else
 	MessageBox::Show("Tout les champs ne sont pas Remplis", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning);
