@@ -12,6 +12,7 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Web;
 	using namespace connection;
 
 	/// <summary>
@@ -82,14 +83,6 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnModifier;
 	private: System::Windows::Forms::Panel^ pnlMain;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Panel^ pnlFilter;
 	private: System::Windows::Forms::TextBox^ tbPrenom;
 	private: System::Windows::Forms::TextBox^ tbNom;
@@ -98,7 +91,6 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::RadioButton^ rbID;
 	private: System::Windows::Forms::Panel^ pnlTitle;
 	private: System::Windows::Forms::Label^ label2;
-
 	private:
 		/// <summary>
 		/// Variable nécessaire au concepteur.
@@ -118,6 +110,13 @@ namespace AppliProjetPOO {
 			this->btnModifier = (gcnew System::Windows::Forms::Button());
 			this->pnlMain = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->ID_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Nom_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Prenom_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Telephone_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Adresse_Mail_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Adresse_1_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Adresse_2_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pnlFilter = (gcnew System::Windows::Forms::Panel());
 			this->tbPrenom = (gcnew System::Windows::Forms::TextBox());
 			this->tbNom = (gcnew System::Windows::Forms::TextBox());
@@ -128,13 +127,6 @@ namespace AppliProjetPOO {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->buttonSupprimerValidation = (gcnew System::Windows::Forms::Button());
 			this->textBoxIDSuppr = (gcnew System::Windows::Forms::TextBox());
-			this->ID_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nom_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Prenom_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Telephone_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Adresse_Mail_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Adresse_1_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Adresse_2_Client = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pnlButtonChoix->SuspendLayout();
 			this->pnlMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -184,6 +176,7 @@ namespace AppliProjetPOO {
 			this->btnSupprimer->TabIndex = 3;
 			this->btnSupprimer->Text = L"Supprimer un client";
 			this->btnSupprimer->UseVisualStyleBackColor = false;
+			this->btnSupprimer->Click += gcnew System::EventHandler(this, &Client::btnSupprimer_Click);
 			// 
 			// btnModifier
 			// 
@@ -228,6 +221,47 @@ namespace AppliProjetPOO {
 			this->dataGridView1->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
 			this->dataGridView1->Size = System::Drawing::Size(743, 306);
 			this->dataGridView1->TabIndex = 2;
+			// 
+			// ID_Client
+			// 
+			this->ID_Client->HeaderText = L"ID";
+			this->ID_Client->Name = L"ID_Client";
+			this->ID_Client->ReadOnly = true;
+			// 
+			// Nom_Client
+			// 
+			this->Nom_Client->HeaderText = L"Nom";
+			this->Nom_Client->Name = L"Nom_Client";
+			this->Nom_Client->ReadOnly = true;
+			// 
+			// Prenom_Client
+			// 
+			this->Prenom_Client->HeaderText = L"Prenom";
+			this->Prenom_Client->Name = L"Prenom_Client";
+			this->Prenom_Client->ReadOnly = true;
+			// 
+			// Telephone_Client
+			// 
+			this->Telephone_Client->HeaderText = L"Telephone";
+			this->Telephone_Client->Name = L"Telephone_Client";
+			this->Telephone_Client->ReadOnly = true;
+			// 
+			// Adresse_Mail_Client
+			// 
+			this->Adresse_Mail_Client->HeaderText = L"Adresse Mail";
+			this->Adresse_Mail_Client->Name = L"Adresse_Mail_Client";
+			this->Adresse_Mail_Client->ReadOnly = true;
+			// 
+			// Adresse_1_Client
+			// 
+			this->Adresse_1_Client->HeaderText = L"ID Adresse Livraison";
+			this->Adresse_1_Client->Name = L"Adresse_1_Client";
+			this->Adresse_1_Client->ReadOnly = true;
+			// 
+			// Adresse_2_Client
+			// 
+			this->Adresse_2_Client->HeaderText = L"ID Adresse Facturation";
+			this->Adresse_2_Client->Name = L"Adresse_2_Client";
 			// 
 			// pnlFilter
 			// 
@@ -369,47 +403,6 @@ namespace AppliProjetPOO {
 			this->textBoxIDSuppr->TabIndex = 10;
 			this->textBoxIDSuppr->Text = L"Entrer l\'ID...";
 			// 
-			// ID_Client
-			// 
-			this->ID_Client->HeaderText = L"ID";
-			this->ID_Client->Name = L"ID_Client";
-			this->ID_Client->ReadOnly = true;
-			// 
-			// Nom_Client
-			// 
-			this->Nom_Client->HeaderText = L"Nom";
-			this->Nom_Client->Name = L"Nom_Client";
-			this->Nom_Client->ReadOnly = true;
-			// 
-			// Prenom_Client
-			// 
-			this->Prenom_Client->HeaderText = L"Prenom";
-			this->Prenom_Client->Name = L"Prenom_Client";
-			this->Prenom_Client->ReadOnly = true;
-			// 
-			// Telephone_Client
-			// 
-			this->Telephone_Client->HeaderText = L"Telephone";
-			this->Telephone_Client->Name = L"Telephone_Client";
-			this->Telephone_Client->ReadOnly = true;
-			// 
-			// Adresse_Mail_Client
-			// 
-			this->Adresse_Mail_Client->HeaderText = L"Adresse Mail";
-			this->Adresse_Mail_Client->Name = L"Adresse_Mail_Client";
-			this->Adresse_Mail_Client->ReadOnly = true;
-			// 
-			// Adresse_1_Client
-			// 
-			this->Adresse_1_Client->HeaderText = L"ID Adresse Livraison";
-			this->Adresse_1_Client->Name = L"Adresse_1_Client";
-			this->Adresse_1_Client->ReadOnly = true;
-			// 
-			// Adresse_2_Client
-			// 
-			this->Adresse_2_Client->HeaderText = L"ID Adresse Facturation";
-			this->Adresse_2_Client->Name = L"Adresse_2_Client";
-			// 
 			// Client
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -500,12 +493,21 @@ namespace AppliProjetPOO {
 	{
 		conn->openConnection();
 
-		String^ query = "DELETE FROM Client WHERE ID_PERSONNE = " + textBoxIDSuppr->ToString();
+		String^ query = "DELETE FROM Client WHERE ID_PERSONNE = " + textBoxIDSuppr->Text;
 		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+		String^ query1 = "DELETE FROM Personne WHERE ID_PERSONNE = " + textBoxIDSuppr->Text;
+		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
 
 		cmd->ExecuteNonQuery();
+		cmd1->ExecuteNonQuery();
 
 		conn->closeConnection();
 	}
+private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	textBoxIDSuppr->Visible = true;
+	buttonSupprimerValidation->Visible = true;
+}
+
 };
 }

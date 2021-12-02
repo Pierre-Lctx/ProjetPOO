@@ -1,6 +1,5 @@
 #include "Connection.h"
 
-#include "Connection.h"
 
 using namespace connection;
 
@@ -8,7 +7,7 @@ Connect::Connect()
 {
 	this->sqlQuery = "DEFAULT";
 	connStrinfBuilder = gcnew SqlConnectionStringBuilder();
-	connStrinfBuilder->DataSource = "LAPTOP-07RHIAUR\\MSSQL_BAPTISTE";
+	connStrinfBuilder->DataSource = "DESKTOP-P3RNDHD";
 	connStrinfBuilder->InitialCatalog = "DBProjet";
 	connStrinfBuilder->IntegratedSecurity = true;
 

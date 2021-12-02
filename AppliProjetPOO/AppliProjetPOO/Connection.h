@@ -2,17 +2,12 @@
 
 //includes
 
-#include <ostream>
-#include <iostream>
-#include <string>
-
 //Déclaration des namespaces utilisés
 
 using namespace System::Data;
 using namespace System::Data::SqlClient;
 using namespace System::Xml;
 using namespace System;
-using namespace std;
 
 namespace connection
 {
