@@ -44,6 +44,9 @@ namespace AppliProjetPOO {
 			}
 
 			conn->closeConnection();
+
+			buttonSupprimerValidation->Visible = false;
+			textBoxIDSuppr->Visible = false;
 		}
 
 	private:
@@ -450,7 +453,8 @@ namespace AppliProjetPOO {
 
 	private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-
+		textBoxIDSuppr->Visible = true;
+		buttonSupprimerValidation->Visible = true;
 	}
 
 	private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e)
@@ -495,7 +499,17 @@ namespace AppliProjetPOO {
 	}
 private: System::Void buttonSupprimerValidation_Click(System::Object^ sender, System::EventArgs^ e) 
 {
+	conn->openConnection();
 
+	String^ query = "DELETE FROM Commande WHERE ID_COMMANDE = " + textBoxIDSuppr->Text;
+	SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+	String^ query1 = "DELETE FROM Contenir WHERE ID_COMMANDE = " + textBoxIDSuppr->Text;
+	SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+
+	cmd->ExecuteNonQuery();
+	cmd1->ExecuteNonQuery();
+
+	conn->closeConnection();
 }
 };
 }

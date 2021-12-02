@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Connection.h"
+
 namespace AppliProjetPOO {
 
 	using namespace System;
@@ -8,12 +10,14 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
 	/// Description résumée de CreateCommande
 	/// </summary>
 	public ref class CreateCommande : public System::Windows::Forms::Form
 	{
+	public: Connect^ conn;
 	public:
 		CreateCommande(void)
 		{
@@ -21,6 +25,24 @@ namespace AppliProjetPOO {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+
+			conn = gcnew Connect();
+
+			conn->openConnection();
+
+			String^ query = "select Commande.NUMERO_COMMANDE, Article.NOM_ARTICLE from DBProjet.dbo.Commande INNER JOIN DBProjet.dbo.Contenir ON Commande.ID_COMMANDE = Contenir.ID_COMMANDE INNER JOIN DBProjet.dbo.Paiement ON Paiement.ID_COMMANDE = Commande.ID_COMMANDE INNER JOIN DBProjet.dbo.Article ON Article.ID_ARTICLE = Contenir.ID_ARTICLE INNER JOIN DBProjet.dbo.Client ON Client.ID_PERSONNE = Commande.ID_CLIENT INNER JOIN DBProjet.dbo.Personne ON Client.ID_CLIENT = Personne.ID_PERSONNE;";
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			SqlDataReader^ dr = cmd->ExecuteReader();
+
+			while (dr->Read())
+			{
+				comboBoxNumeroCommande->Items->Add(dr["NUMERO_COMMANDE"]->ToString());
+				comboBox1->Items->Add(dr["NOM_ARTICLE"]->ToString());
+			}
+
+
+			conn->closeConnection();
 		}
 
 	protected:
@@ -38,34 +60,15 @@ namespace AppliProjetPOO {
 	protected:
 	private: System::Windows::Forms::Button^ btnValider;
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::TextBox^ textBoxTVA;
+	private: System::Windows::Forms::TextBox^ textBoxQuantite;
+
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ textBoxSeuilAppro;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBoxPrix;
-	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ textBoxStock;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBoxNom;
-	private: System::Windows::Forms::Label^ label1;
+
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::ComboBox^ comboBoxNumeroCommande;
 
 	protected:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	private:
 		/// <summary>
@@ -83,23 +86,17 @@ namespace AppliProjetPOO {
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->btnValider = (gcnew System::Windows::Forms::Button());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->textBoxTVA = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxQuantite = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->textBoxSeuilAppro = (gcnew System::Windows::Forms::TextBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBoxPrix = (gcnew System::Windows::Forms::TextBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->textBoxStock = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBoxNom = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->comboBoxNumeroCommande = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(391, 390);
+			this->comboBox1->Location = System::Drawing::Point(391, 135);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(320, 38);
 			this->comboBox1->TabIndex = 74;
@@ -112,9 +109,9 @@ namespace AppliProjetPOO {
 			this->btnValider->Font = (gcnew System::Drawing::Font(L"Century Gothic", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnValider->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->btnValider->Location = System::Drawing::Point(308, 533);
+			this->btnValider->Location = System::Drawing::Point(41, 266);
 			this->btnValider->Name = L"btnValider";
-			this->btnValider->Size = System::Drawing::Size(102, 29);
+			this->btnValider->Size = System::Drawing::Size(670, 29);
 			this->btnValider->TabIndex = 73;
 			this->btnValider->Text = L"Valider";
 			this->btnValider->UseVisualStyleBackColor = true;
@@ -126,19 +123,19 @@ namespace AppliProjetPOO {
 			this->label7->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label7->ForeColor = System::Drawing::Color::White;
-			this->label7->Location = System::Drawing::Point(36, 460);
+			this->label7->Location = System::Drawing::Point(36, 205);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(118, 30);
 			this->label7->TabIndex = 72;
 			this->label7->Text = L"Quantité";
 			// 
-			// textBoxTVA
+			// textBoxQuantite
 			// 
-			this->textBoxTVA->Location = System::Drawing::Point(391, 460);
-			this->textBoxTVA->Multiline = true;
-			this->textBoxTVA->Name = L"textBoxTVA";
-			this->textBoxTVA->Size = System::Drawing::Size(320, 30);
-			this->textBoxTVA->TabIndex = 71;
+			this->textBoxQuantite->Location = System::Drawing::Point(391, 205);
+			this->textBoxQuantite->Multiline = true;
+			this->textBoxQuantite->Name = L"textBoxQuantite";
+			this->textBoxQuantite->Size = System::Drawing::Size(320, 30);
+			this->textBoxQuantite->TabIndex = 71;
 			// 
 			// label8
 			// 
@@ -146,7 +143,7 @@ namespace AppliProjetPOO {
 			this->label8->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label8->ForeColor = System::Drawing::Color::White;
-			this->label8->Location = System::Drawing::Point(33, 393);
+			this->label8->Location = System::Drawing::Point(36, 138);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(89, 30);
 			this->label8->TabIndex = 70;
@@ -158,91 +155,31 @@ namespace AppliProjetPOO {
 			this->label5->Font = (gcnew System::Drawing::Font(L"Century Gothic", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label5->ForeColor = System::Drawing::Color::White;
-			this->label5->Location = System::Drawing::Point(118, 48);
+			this->label5->Location = System::Drawing::Point(117, 9);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(501, 44);
 			this->label5->TabIndex = 69;
 			this->label5->Text = L"Création de la commande";
 			// 
-			// textBoxSeuilAppro
+			// label6
 			// 
-			this->textBoxSeuilAppro->Location = System::Drawing::Point(391, 332);
-			this->textBoxSeuilAppro->Multiline = true;
-			this->textBoxSeuilAppro->Name = L"textBoxSeuilAppro";
-			this->textBoxSeuilAppro->Size = System::Drawing::Size(320, 30);
-			this->textBoxSeuilAppro->TabIndex = 68;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->ForeColor = System::Drawing::Color::White;
-			this->label3->Location = System::Drawing::Point(33, 332);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(214, 30);
-			this->label3->TabIndex = 67;
-			this->label3->Text = L"Date de livraison";
+			this->label6->ForeColor = System::Drawing::Color::White;
+			this->label6->Location = System::Drawing::Point(36, 77);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(298, 30);
+			this->label6->TabIndex = 75;
+			this->label6->Text = L"Numero de commande";
 			// 
-			// textBoxPrix
+			// comboBoxNumeroCommande
 			// 
-			this->textBoxPrix->Location = System::Drawing::Point(391, 268);
-			this->textBoxPrix->Multiline = true;
-			this->textBoxPrix->Name = L"textBoxPrix";
-			this->textBoxPrix->Size = System::Drawing::Size(320, 30);
-			this->textBoxPrix->TabIndex = 66;
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label4->ForeColor = System::Drawing::Color::White;
-			this->label4->Location = System::Drawing::Point(33, 268);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(202, 30);
-			this->label4->TabIndex = 65;
-			this->label4->Text = L"Date d\'émission";
-			// 
-			// textBoxStock
-			// 
-			this->textBoxStock->Location = System::Drawing::Point(391, 201);
-			this->textBoxStock->Multiline = true;
-			this->textBoxStock->Name = L"textBoxStock";
-			this->textBoxStock->Size = System::Drawing::Size(320, 30);
-			this->textBoxStock->TabIndex = 64;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(33, 201);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(217, 30);
-			this->label2->TabIndex = 63;
-			this->label2->Text = L"Prénom du client";
-			// 
-			// textBoxNom
-			// 
-			this->textBoxNom->Location = System::Drawing::Point(391, 137);
-			this->textBoxNom->Multiline = true;
-			this->textBoxNom->Name = L"textBoxNom";
-			this->textBoxNom->Size = System::Drawing::Size(320, 30);
-			this->textBoxNom->TabIndex = 62;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label1->ForeColor = System::Drawing::Color::White;
-			this->label1->Location = System::Drawing::Point(33, 137);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(183, 30);
-			this->label1->TabIndex = 61;
-			this->label1->Text = L"Nom du client";
+			this->comboBoxNumeroCommande->FormattingEnabled = true;
+			this->comboBoxNumeroCommande->Location = System::Drawing::Point(391, 69);
+			this->comboBoxNumeroCommande->Name = L"comboBoxNumeroCommande";
+			this->comboBoxNumeroCommande->Size = System::Drawing::Size(320, 38);
+			this->comboBoxNumeroCommande->TabIndex = 76;
 			// 
 			// CreateCommande
 			// 
@@ -250,21 +187,15 @@ namespace AppliProjetPOO {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(46)), static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)));
-			this->ClientSize = System::Drawing::Size(744, 611);
+			this->ClientSize = System::Drawing::Size(744, 316);
+			this->Controls->Add(this->comboBoxNumeroCommande);
+			this->Controls->Add(this->label6);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->btnValider);
 			this->Controls->Add(this->label7);
-			this->Controls->Add(this->textBoxTVA);
+			this->Controls->Add(this->textBoxQuantite);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->textBoxSeuilAppro);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBoxPrix);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->textBoxStock);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->textBoxNom);
-			this->Controls->Add(this->label1);
 			this->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Margin = System::Windows::Forms::Padding(7, 6, 7, 6);
@@ -277,7 +208,17 @@ namespace AppliProjetPOO {
 #pragma endregion
 	private: System::Void btnValider_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
+		conn->openConnection();
 
+		String^ query = "Update Commande set Commande.NUMERO_COMMANDE = '" + comboBoxNumeroCommande->Text + "'";
+		String^ query1 = "Update Contenir set Contenir.ID_ARTICLE = (select Article.NOM_ARTICLE from Article INNER JOIN Contenir ON Contenir.ID_ARTICLE = Article.ID_ARTICLE WHERE Article.NOM_ARTICLE = " + comboBox1->Text + ") , QUANTITE = " + textBoxQuantite->Text;
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+
+		cmd->ExecuteNonQuery();
+		cmd1->ExecuteNonQuery();
+
+		conn->closeConnection();
 	}
 };
 }
