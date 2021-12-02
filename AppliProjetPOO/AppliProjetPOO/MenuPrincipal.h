@@ -6,7 +6,11 @@
 #include "Personnel.h"
 #include "Controleur.h"
 #include "Client.h"
+
+#include "Stocks.h"
+#include "Commandes.h"
 #include "MyProfile1.h"
+
 
 namespace AppliProjetPOO {
 
@@ -20,7 +24,7 @@ namespace AppliProjetPOO {
 
 
 	/// <summary>
-	/// Description résumée de MyForm
+	/// Description rÃ©sumÃ©e de MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -57,7 +61,7 @@ namespace AppliProjetPOO {
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~MyForm()
 		{
@@ -96,14 +100,14 @@ namespace AppliProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -458,7 +462,7 @@ namespace AppliProjetPOO {
 		pnlNav->Top = btnPerso->Top;
 		btnPerso->BackColor = Color::FromArgb(46, 51, 73);
 		C->openChildForm(gcnew AppliProjetPOO::Personnel, pnlFormShow);
-		this->lblActiveForm->Text = "Gerer le Personnel";
+		this->lblActiveForm->Text = "GÃ©rer le Personnel";
 	}
 
 	private: System::Void btnStock_Click(System::Object^ sender, System::EventArgs^ e)
@@ -466,6 +470,8 @@ namespace AppliProjetPOO {
 		pnlNav->Height = btnStock->Height;
 		pnlNav->Top = btnStock->Top;
 		btnStock->BackColor = Color::FromArgb(46, 51, 73);
+		C->openChildForm(gcnew AppliProjetPOO::Stocks, pnlFormShow);
+		this->lblActiveForm->Text = "GÃ©rer les stocks";
 	}
 	private: System::Void btnClient_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -473,13 +479,15 @@ namespace AppliProjetPOO {
 		pnlNav->Top = btnClient->Top;
 		btnClient->BackColor = Color::FromArgb(46, 51, 73);
 		C->openChildForm(gcnew AppliProjetPOO::Client, pnlFormShow);
-		this->lblActiveForm->Text = "Gérer les clients";
+		this->lblActiveForm->Text = "GÃ©rer les clients";
 	}
 	private: System::Void btnCommande_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnCommande->Height;
 		pnlNav->Top = btnCommande->Top;
 		btnCommande->BackColor = Color::FromArgb(46, 51, 73);
+		C->openChildForm(gcnew AppliProjetPOO::Commandes, pnlFormShow);
+		this->lblActiveForm->Text = "GÃ©rer les commandes";
 	}
 	private: System::Void btnStat_Click(System::Object^ sender, System::EventArgs^ e)
 	{

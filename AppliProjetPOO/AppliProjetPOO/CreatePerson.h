@@ -37,6 +37,25 @@ namespace AppliProjetPOO {
 			typePerson = type;
 			lblAdress1->Visible = false;
 			lblAdress2->Visible = false;
+
+			if (typePerson == "employe")
+			{
+				label1->Text = "Ajouter un Employer";
+				lblAdress1->Visible = true;
+				lblAdress1->Text = "Personnelle    :";
+				lblAdress2->Visible = false;
+				btnAdress2->Visible = false;
+				pnlAdress->Size = System::Drawing::Size(372, 109);
+
+			}
+			if (typePerson == "client")
+			{
+				label1->Text = "Ajouter un Client";
+				lblAdress1->Visible = true;
+				lblAdress2->Visible = true;
+				btnAdress2->Visible = true;
+				pnlAdress->Size = System::Drawing::Size(372, 154);
+			}
 			
 
 		}
@@ -394,23 +413,7 @@ namespace AppliProjetPOO {
 #pragma endregion
 	private: System::Void CreatePerson_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
-		if (typePerson == "employe")
-		{
-			label1->Text = "Ajouter un Employer";
-			lblAdress1->Visible = true;
-			lblAdress1->Text = "Personnelle    :";
-			lblAdress2->Visible = false;
-			btnAdress2->Visible = false;
-			pnlAdress->Size = System::Drawing::Size(372, 109);
-
-		}
-		if (typePerson == "Client")
-		{
-			label1->Text = "Ajouter un Client";
-			lblAdress1->Visible = true;
-			lblAdress2->Visible = true;
-			btnAdress2->Visible = true;
-		}
+		
 	}
 		   
 	private: System::Boolean checkIsNotVoid()
@@ -450,7 +453,7 @@ private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs
 			numRue1 = adr1->getNumRue();
 			batiment1 = adr1->getBatiment();
 			etage1 = adr1->getEtage();
-			numApp1 = adr1->getNumApp();
+			numApp1 = adr1->getCodePostal();
 		}
 		else
 		{
@@ -461,7 +464,7 @@ private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs
 		
 		adr1->Close();
 	}
-	if (typePerson == "Client")
+	if (typePerson == "client")
 	{
 		
 		Adresse^ adr1 = gcnew Adresse();
@@ -476,7 +479,7 @@ private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs
 			numRue1 = adr1->getNumRue();
 			batiment1 = adr1->getBatiment();
 			etage1 = adr1->getEtage();
-			numApp1 = adr1->getNumApp();
+			numApp1 = adr1->getCodePostal();
 		}
 		else
 		{
@@ -491,7 +494,7 @@ private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs
 }
 private: System::Void btnAdress2_Click(System::Object^ sender, System::EventArgs^ e) 
 {
-	if (typePerson == "Client")
+	if (typePerson == "client")
 	{
 
 		Adresse^ adr2 = gcnew Adresse();
@@ -506,7 +509,7 @@ private: System::Void btnAdress2_Click(System::Object^ sender, System::EventArgs
 			numRue2 = adr2->getNumRue();
 			batiment2 = adr2->getBatiment();
 			etage2 = adr2->getEtage();
-			numApp1 = adr2->getNumApp();
+			numApp1 = adr2->getCodePostal();
 		}
 		else
 		{
