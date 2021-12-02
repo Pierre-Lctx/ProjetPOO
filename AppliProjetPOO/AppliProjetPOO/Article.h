@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Connection.h"
+
 namespace AppliProjetPOO {
 
 	using namespace System;
@@ -8,12 +10,14 @@ namespace AppliProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace connection;
 
 	/// <summary>
 	/// Description résumée de Article
 	/// </summary>
 	public ref class Article : public System::Windows::Forms::Form
 	{
+	public: Connect^ conn;
 	public:
 		Article(void)
 		{
@@ -21,6 +25,8 @@ namespace AppliProjetPOO {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+
+			conn = gcnew Connect();
 		}
 
 	protected:
@@ -250,9 +256,9 @@ namespace AppliProjetPOO {
 			this->btnValider->Font = (gcnew System::Drawing::Font(L"Century Gothic", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnValider->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->btnValider->Location = System::Drawing::Point(325, 610);
+			this->btnValider->Location = System::Drawing::Point(39, 610);
 			this->btnValider->Name = L"btnValider";
-			this->btnValider->Size = System::Drawing::Size(102, 29);
+			this->btnValider->Size = System::Drawing::Size(670, 29);
 			this->btnValider->TabIndex = 15;
 			this->btnValider->Text = L"Valider";
 			this->btnValider->UseVisualStyleBackColor = true;
@@ -302,7 +308,14 @@ namespace AppliProjetPOO {
 
 		if (Nom != "" && Stock != "" && Prix != "" && SeuilAppro != "" && TVA != "" && Nature != "" && Couleur != "")
 		{
+			conn->openConnection();
 
+			String^ query = "Udpate Article set NOM_ARTICLE = " + Nom + ", STOCK = " + Stock + ", PRIX_ARTICLE = " + Prix + ", SEUIL_APPROVISIONNEMENT = " + SeuilAppro + ", TVA = " + TVA + ", NATURE = " + Nature + ", COULEUR = " + Couleur + " WHERE NOM_ARTICLE = " + Nom;
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+			cmd->ExecuteNonQuery();
+
+			conn->closeConnection();
 		}
 		else
 		{
