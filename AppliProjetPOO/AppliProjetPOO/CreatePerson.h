@@ -12,7 +12,7 @@ namespace AppliProjetPOO {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Description résumée de CreatePerson
+	/// Description rÃ©sumÃ©e de CreatePerson
 	/// </summary>
 	public ref class CreatePerson : public System::Windows::Forms::Form
 	{
@@ -62,7 +62,7 @@ namespace AppliProjetPOO {
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~CreatePerson()
 		{
@@ -93,14 +93,14 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Button^ btnAdress2;
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -179,7 +179,8 @@ namespace AppliProjetPOO {
 			this->labelPrenom->Name = L"labelPrenom";
 			this->labelPrenom->Size = System::Drawing::Size(119, 30);
 			this->labelPrenom->TabIndex = 6;
-			this->labelPrenom->Text = L"Prénom :";
+			this->labelPrenom->Text = L"PrÃ©nom :";
+
 			// 
 			// labelGenre
 			// 
@@ -263,7 +264,7 @@ namespace AppliProjetPOO {
 			this->labelNumTelephone->Name = L"labelNumTelephone";
 			this->labelNumTelephone->Size = System::Drawing::Size(293, 30);
 			this->labelNumTelephone->TabIndex = 13;
-			this->labelNumTelephone->Text = L"Numéro de téléphone :";
+			this->labelNumTelephone->Text = L"NumÃ©ro de tÃ©lÃ©phone :";
 			// 
 			// labelAdresseMail
 			// 
@@ -431,12 +432,23 @@ namespace AppliProjetPOO {
 		if (checkIsNotVoid())
 		{
 			MessageBox::Show("Ok");
+
 			if (typePerson == "employe")
 			{
 
 			}
 			if (typePerson == "client")
 			{
+
+				panelEmploye->Visible = false;
+				conn->openConnection();
+
+				String^ query = "INSERT INTO Personne VALUES (" + textBoxNom->Text + ", " + textBoxPrenom->Text + ", " + textBoxNumTelephone->Text + ", " + textBoxAdresseMail->Text + ", " + dateTimePickerNaissance->Text + ")";
+				String^ query1 = "INSERT INTO Client VALUES (" + textBoxCodeClient->Text + ", (select ID_ADRESSE from Adresse where NUMERO_VOIE = '" + adr1->getNumRue() + "' and RUE = '" + adr1->getRue() + " and BATIMENT = '" + adr1->getBatiment() + "' and ETAGE = '" + adr1->getEtage() + "'), (select ID_ADRESSE from Adresse where NUMERO_VOIE = '" + adr2->getNumRue() + "' and RUE = '" + adr2->getRue() + " and BATIMENT = '" + adr2->getBatiment() + "' and ETAGE = '" + adr2->getEtage() + "'), (select ID_PERSONNE from Personne WHERE NOM_PERSONNE = '" + textBoxNom->Text + "' and PRENOM_PERSONNE = '" + textBoxPrenom->Text + "'))";
+				SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+				SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+
+				conn->closeConnection();
 
 			}
 		}
