@@ -6,7 +6,6 @@
 #include "Personnel.h"
 #include "Controleur.h"
 #include "Client.h"
-#include "LogIn.h"
 #include "Stocks.h"
 #include "Commandes.h"
 #include "MyProfile1.h"
@@ -21,7 +20,6 @@ namespace AppliProjetPOO {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Runtime::InteropServices;
-	using namespace AppliProjetPOO;
 
 
 	/// <summary>
@@ -30,7 +28,9 @@ namespace AppliProjetPOO {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 
-	private: 
+
+
+	private:
 		Point PanelMouseDownLocation;
 		Controleur^ C = gcnew Controleur();
 		int ID;
@@ -47,16 +47,10 @@ namespace AppliProjetPOO {
 			this->lblActiveForm->Text = "Tableau de bord";
 
 		}
-
-	public: LogIn^ frmLogin;
-	public: String^ idPersonne;
-
 	public:
-
 		MyForm(int IDuser)
 		{
 			ID = IDuser;
-
 			InitializeComponent();
 			startUI(gcnew AppliProjetPOO::TableauBord);
 

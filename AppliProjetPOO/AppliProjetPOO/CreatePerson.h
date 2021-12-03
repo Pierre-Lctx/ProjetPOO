@@ -18,10 +18,10 @@ namespace AppliProjetPOO {
 	/// </summary>
 	public ref class CreatePerson : public System::Windows::Forms::Form
 	{
-	private :
+	private:
 		bool changeClient = false;
 		bool changeEmploye = false;
-		bool adr1App,  adr2App;
+		bool adr1App, adr2App;
 		String^ typePerson;
 		String^ ville1, ^ rue1, ^ numRue1, ^ batiment1, ^ etage1, ^ numApp1, ^ ville2, ^ rue2, ^ numRue2, ^ batiment2, ^ etage2, ^ numApp2;
 	private: System::Windows::Forms::Panel^ panel1;
@@ -43,7 +43,7 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Panel^ panelEmploye;
 	public: Adresse^ adr2;
 
-	
+
 	public:
 		CreatePerson(String^ type)
 		{
@@ -74,7 +74,7 @@ namespace AppliProjetPOO {
 				btnAdress2->Visible = true;
 				pnlAdress->Size = System::Drawing::Size(372, 154);
 			}
-			
+
 			conn = gcnew Connect();
 			adr1 = gcnew Adresse();
 			adr2 = gcnew Adresse();
@@ -117,7 +117,7 @@ namespace AppliProjetPOO {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -545,11 +545,11 @@ namespace AppliProjetPOO {
 
 		}
 #pragma endregion
-	private: System::Void CreatePerson_Load(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void CreatePerson_Load(System::Object^ sender, System::EventArgs^ e)
 	{
-		
+
 	}
-		   
+
 	private: System::Boolean checkIsNotVoid()
 	{
 		if (textBoxNom->Text == "" && textBoxPrenom->Text == "" && textBoxAdresseMail->Text == "" && textBoxNumTelephone->Text == "")
@@ -560,16 +560,15 @@ namespace AppliProjetPOO {
 			return false;
 	}
 
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		if (checkIsNotVoid())
 		{
-
 			if (typePerson == "employe")
 			{
 				panelEmploye->Visible = true;
 				conn->openConnection();
-			
+
 				String^ query = "INSERT INTO Personne VALUES (" + textBoxNom->Text + ", " + textBoxPrenom->Text + ", " + textBoxNumTelephone->Text + ", " + textBoxAdresseMail->Text + ", " + dateTimePickerNaissance->Text + ")";
 				String^ query1 = "INSERT INTO Personnel VALUES (" + dateTimePickerEmbauche->Text + ", '" + textBoxMDP->Text + "', (select ID_ADRESSE from Adresse where NUMERO_VOIE = '" + adr1->getNumRue() + "' and RUE = '" + adr1->getRue() + " and BATIMENT = '" + adr1->getBatiment() + "' and ETAGE = '" + adr1->getEtage() + "'), (select ID_ADRESSE from Adresse where NUMERO_VOIE = '" + adr2->getNumRue() + "' and RUE = '" + adr2->getRue() + " and BATIMENT = '" + adr2->getBatiment() + "' and ETAGE = '" + adr2->getEtage() + "'), (select ID_PERSONNE from Personne WHERE NOM_PERSONNE = '" + textBoxNom->Text + "' and PRENOM_PERSONNE = '" + textBoxPrenom->Text + "'))";
 				SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
@@ -588,7 +587,6 @@ namespace AppliProjetPOO {
 				SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
 
 				conn->closeConnection();
-
 			}
 		}
 		else
@@ -596,87 +594,87 @@ namespace AppliProjetPOO {
 			MessageBox::Show("Vous devez remplir tous les champs !");
 		}
 	}
-private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	if (typePerson == "employe")
+	private: System::Void btnAdress1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		adr1->ShowDialog();
-		adr1App = adr1->getTypeLocation();
+		if (typePerson == "employe")
+		{
+			adr1->ShowDialog();
+			adr1App = adr1->getTypeLocation();
 
-		if (adr1App == true)
-		{
-			ville1 = adr1->getVille();
-			rue1 = adr1->getRue();
-			numRue1 = adr1->getNumRue();
-			batiment1 = adr1->getBatiment();
-			etage1 = adr1->getEtage();
-			numApp1 = adr1->getCodePostal();
+			if (adr1App == true)
+			{
+				ville1 = adr1->getVille();
+				rue1 = adr1->getRue();
+				numRue1 = adr1->getNumRue();
+				batiment1 = adr1->getBatiment();
+				etage1 = adr1->getEtage();
+				numApp1 = adr1->getCodePostal();
+			}
+			else
+			{
+				ville1 = adr1->getVille();
+				rue1 = adr1->getRue();
+				numRue1 = adr1->getNumRue();
+			}
+
+			adr1->Close();
 		}
-		else
+		if (typePerson == "client")
 		{
-			ville1 = adr1->getVille();
-			rue1 = adr1->getRue();
-			numRue1 = adr1->getNumRue();
+
+			Adresse^ adr1 = gcnew Adresse();
+
+			adr1->ShowDialog();
+			adr1App = adr1->getTypeLocation();
+
+			if (adr1App == true)
+			{
+				ville1 = adr1->getVille();
+				rue1 = adr1->getRue();
+				numRue1 = adr1->getNumRue();
+				batiment1 = adr1->getBatiment();
+				etage1 = adr1->getEtage();
+				numApp1 = adr1->getCodePostal();
+			}
+			else
+			{
+				ville1 = adr1->getVille();
+				rue1 = adr1->getRue();
+				numRue1 = adr1->getNumRue();
+			}
+
+			adr1->Close();
 		}
-		
-		adr1->Close();
+
 	}
-	if (typePerson == "client")
+	private: System::Void btnAdress2_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		
-		Adresse^ adr1 = gcnew Adresse();
-
-		adr1->ShowDialog();
-		adr1App = adr1->getTypeLocation();
-
-		if (adr1App == true)
+		if (typePerson == "client")
 		{
-			ville1 = adr1->getVille();
-			rue1 = adr1->getRue();
-			numRue1 = adr1->getNumRue();
-			batiment1 = adr1->getBatiment();
-			etage1 = adr1->getEtage();
-			numApp1 = adr1->getCodePostal();
-		}
-		else
-		{
-			ville1 = adr1->getVille();
-			rue1 = adr1->getRue();
-			numRue1 = adr1->getNumRue();
-		}
 
-		adr1->Close();
+
+
+			adr2->ShowDialog();
+			adr2App = adr2->getTypeLocation();
+
+			if (adr2App == true)
+			{
+				ville2 = adr2->getVille();
+				rue2 = adr2->getRue();
+				numRue2 = adr2->getNumRue();
+				batiment2 = adr2->getBatiment();
+				etage2 = adr2->getEtage();
+				numApp1 = adr2->getCodePostal();
+			}
+			else
+			{
+				ville2 = adr2->getVille();
+				rue2 = adr2->getRue();
+				numRue1 = adr2->getNumRue();
+			}
+
+			adr2->Close();
+		}
 	}
-	
-}
-private: System::Void btnAdress2_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (typePerson == "client")
-	{
-
-		
-
-		adr2->ShowDialog();
-		adr2App = adr2->getTypeLocation();
-
-		if (adr2App == true)
-		{
-			ville2 = adr2->getVille();
-			rue2 = adr2->getRue();
-			numRue2 = adr2->getNumRue();
-			batiment2 = adr2->getBatiment();
-			etage2 = adr2->getEtage();
-			numApp1 = adr2->getCodePostal();
-		}
-		else
-		{
-			ville2 = adr2->getVille();
-			rue2 = adr2->getRue();
-			numRue1 = adr2->getNumRue();
-		}
-
-		adr2->Close();
-	}
-}
-};
+	};
 }

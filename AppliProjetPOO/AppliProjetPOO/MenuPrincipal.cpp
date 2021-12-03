@@ -8,5 +8,5 @@ using namespace System::Windows::Forms;
 [STAThreadAttribute]
 void MainAcceuil()
 {
-
+	
 }
