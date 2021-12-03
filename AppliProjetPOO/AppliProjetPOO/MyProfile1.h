@@ -19,12 +19,39 @@ namespace AppliProjetPOO {
 	/// </summary>
 	public ref class MyProfile : public System::Windows::Forms::Form
 	{
-	public: Connect^ conn;
+	public: Connect^ conn = gcnew Connect;
+		  int ID;
+		  DateTime datenaissance, dateembauche;
+	private:
+		void initMyProfil(int ID)
+		{
+
+
+			conn->openConnection();
+			String^ query1 = "SELECT NOM_PERSONNE, PRENOM_PERSONNE, ADRESSE_MAIL, TELEPHONE, DATE_NAISSANCE, Personnel.DATE_EMBAUCHE FROM PERSONNE INNER JOIN PERSONNEL ON personne.ID_PERSONNE = personnel.ID_PERSONNE WHERE personne.ID_PERSONNE = " + ID;
+			SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+			SqlDataReader^ dr1 = cmd1->ExecuteReader();
+			if (dr1->Read())
+			{
+				labelNom->Text = dr1[0]->ToString();
+				labelPrenom->Text = dr1[1]->ToString();
+				labelEmail->Text = dr1[2]->ToString();
+				labelTelephone->Text = dr1[3]->ToString();
+				datenaissance = dr1->GetDateTime(4);
+				labelDateNaissance->Text = datenaissance.ToShortDateString()->ToString();
+				dateembauche = dr1->GetDateTime(5);
+				labelDateEmbauche->Text = dateembauche.ToShortDateString()->ToString();
+			}
+			dr1->Close();
+			conn->closeConnection();
+		}
 
 	public:
-		MyProfile(void)
+		MyProfile(int IDuser)
 		{
+			ID = IDuser;
 			InitializeComponent();
+			initMyProfil(ID);
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
@@ -56,7 +83,7 @@ namespace AppliProjetPOO {
 			comboBoxSuperieur->Visible = false;
 
 			//Déclaration de la variable de connexion
-			
+
 			conn = gcnew Connect();
 		}
 
@@ -645,7 +672,7 @@ namespace AppliProjetPOO {
 	}
 	private: System::Void buttonValider_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-	
+
 
 		// label
 		labelNom->Visible = true;
@@ -748,17 +775,23 @@ namespace AppliProjetPOO {
 
 
 		MessageBox::Show("Les modifications ont été enregistrées.");
-		
 
 
-		//conn->openConnection();
-		//String^ query2 = "'UPDATE PERSONNEL SET DATE_EMBAUCHE+" + dateTimePicker1->Text + "WHERE ID_PERSONNE = 5;";
-		//SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
 
-		//cmd2->ExecuteNonQuery();
+		// UPDATE
 
-	initMyProfil(ID);
+		conn->openConnection();
+		String^ query1 = "UPDATE Personne SET NOM_PERSONNE = '" + labelNom->Text + "', PRENOM_PERSONNE = '" + textBoxPrenom->Text + "', TELEPHONE = '" + textBoxTelephone->Text + "', ADRESSE_MAIL = '" + textBoxEmail->Text + "', DATE_NAISSANCE = '" + dateTimePicker2->Value.ToString() + "' WHERE ID_PERSONNE = " + ID;
+		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+		cmd1->ExecuteNonQuery();
 
+		String^ query2 = "UPDATE PERSONNEL SET DATE_EMBAUCHE = '" + dateTimePicker1->Value.ToString() + "' WHERE ID_PERSONNE = " + ID;
+		SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
+		cmd2->ExecuteNonQuery();
+
+		conn->closeConnection();
+
+		initMyProfil(ID);
 	}
 
 
@@ -770,7 +803,7 @@ namespace AppliProjetPOO {
 	}
 	private: System::Void labelNom_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void dateTimePicker1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	private: System::Void dateTimePicker1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	};
 }

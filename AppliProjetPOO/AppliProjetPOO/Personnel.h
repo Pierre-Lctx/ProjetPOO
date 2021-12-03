@@ -40,7 +40,7 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NUMERO_VOIE;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NOM_VILLE;
 	public: Connect^ conn;
-		
+
 	public:
 		Personnel(void)
 		{
@@ -59,7 +59,7 @@ namespace AppliProjetPOO {
 			buttonSupprimerValidation->Visible = false;
 
 			conn->openConnection();
-			
+
 			String^ query = "select Personnel.ID_PERSONNEL, Personne.NOM_PERSONNE, Personne.PRENOM_PERSONNE, Personne.ADRESSE_MAIL, Personne.TELEPHONE, Personnel.DATE_EMBAUCHE, Adresse.RUE, Adresse.BATIMENT, Adresse.ETAGE, Adresse.NUMERO_VOIE, Ville.NOM_VILLE from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Personnel ON Personnel.ID_PERSONNE = Personne.ID_PERSONNE INNER JOIN DBProjet.dbo.Adresse ON Personnel.ID_ADRESSE = Adresse.ID_ADRESSE INNER JOIN DBProjet.dbo.Ville ON Ville.ID_VILLE = Adresse.ID_VILLE";
 			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
 
@@ -121,7 +121,7 @@ namespace AppliProjetPOO {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -485,84 +485,84 @@ namespace AppliProjetPOO {
 		}
 #pragma endregion
 
-private: System::Void btnCreer_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	CreatePerson^ frmCreatePerson = gcnew CreatePerson("employe");
-	active = frmCreatePerson;
-	frmCreatePerson->ShowDialog();
-	
+	private: System::Void btnCreer_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		CreatePerson^ frmCreatePerson = gcnew CreatePerson("employe");
+		active = frmCreatePerson;
+		frmCreatePerson->ShowDialog();
 
-}
-private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e) 
-{
-	active->Close();
-}
-private: System::Void rbID_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->tbID->ReadOnly = false;
-	this->tbNom->ReadOnly = true;
-	this->tbPrenom->ReadOnly = true;
-}
-private: System::Void rbNomPrenom_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->tbID->ReadOnly = true;
-	this->tbNom->ReadOnly = false;
-	this->tbPrenom->ReadOnly = false;
-}
-private: System::Void tbID_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->tbID->Text = "";
-}
-private: System::Void tbID_Leave(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (tbID->Text == "")
-		this->tbID->Text = "Entrer l'ID...";
 
-} 
-private: System::Void tbNom_Click(System::Object^ sender, System::EventArgs^ e)
+	}
+	private: System::Void btnCreer_Leave(System::Object^ sender, System::EventArgs^ e)
+	{
+		active->Close();
+	}
+	private: System::Void rbID_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbID->ReadOnly = false;
+		this->tbNom->ReadOnly = true;
+		this->tbPrenom->ReadOnly = true;
+	}
+	private: System::Void rbNomPrenom_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbID->ReadOnly = true;
+		this->tbNom->ReadOnly = false;
+		this->tbPrenom->ReadOnly = false;
+	}
+	private: System::Void tbID_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbID->Text = "";
+	}
+	private: System::Void tbID_Leave(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (tbID->Text == "")
+			this->tbID->Text = "Entrer l'ID...";
+
+	}
+	private: System::Void tbNom_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->tbNom->Text = "";
 	}
-private: System::Void tbNom_Leave(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (tbNom->Text == "")
-		this->tbNom->Text = "Entrer le Nom...";
-	
-}
-private: System::Void tbPrenom_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->tbPrenom->Text = "";
-}
-private: System::Void tbPrenom_Leave(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (tbPrenom->Text == "")
-		this->tbPrenom->Text = "Entrer le Prenom...";
-	
-}
+	private: System::Void tbNom_Leave(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (tbNom->Text == "")
+			this->tbNom->Text = "Entrer le Nom...";
 
-private: System::Void btnModifier_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	frmModify->ShowDialog();
-}
+	}
+	private: System::Void tbPrenom_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->tbPrenom->Text = "";
+	}
+	private: System::Void tbPrenom_Leave(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (tbPrenom->Text == "")
+			this->tbPrenom->Text = "Entrer le Prenom...";
 
-private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	buttonSupprimerValidation->Visible = true;
-	textBoxIDSuppr->Visible = true;
-}
+	}
 
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	conn->openConnection();
+	private: System::Void btnModifier_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		frmModify->ShowDialog();
+	}
 
-	String^ query = "DELETE FROM PERSONNEL WHERE ID_PERSONNE = " + textBoxIDSuppr->Text;
-	SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+	private: System::Void btnSupprimer_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		buttonSupprimerValidation->Visible = true;
+		textBoxIDSuppr->Visible = true;
+	}
 
-	cmd->ExecuteNonQuery();
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		conn->openConnection();
 
-	conn->closeConnection();
-}
-	private: System::Void textBoxIDSuppr_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+		String^ query = "DELETE FROM PERSONNEL WHERE ID_PERSONNE = " + textBoxIDSuppr->Text;
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+
+		cmd->ExecuteNonQuery();
+
+		conn->closeConnection();
+	}
+	private: System::Void textBoxIDSuppr_TextChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		if (textBoxIDSuppr->ToString() != "")
 		{
@@ -580,5 +580,5 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			MessageBox::Show("L'ID n'est pas rentré ou alors il n'existe pas !");
 		}
 	}
-};
+	};
 }
