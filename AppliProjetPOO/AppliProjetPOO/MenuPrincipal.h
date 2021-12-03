@@ -27,15 +27,11 @@ namespace AppliProjetPOO {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
-
-
-
 	private:
 		Point PanelMouseDownLocation;
 		Controleur^ C = gcnew Controleur();
-		int ID;
-
-
+	
+	
 
 	private:
 		void startUI(Form^ frm)
@@ -52,7 +48,7 @@ namespace AppliProjetPOO {
 		{
 			ID = IDuser;
 			InitializeComponent();
-			startUI(gcnew AppliProjetPOO::TableauBord);
+			startUI(gcnew AppliProjetPOO::TableauBord );
 
 			//
 			//TODO: ajoutez ici le code du constructeur
@@ -75,14 +71,22 @@ namespace AppliProjetPOO {
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
 	private: System::Windows::Forms::Button^ btnTableauBord;
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Panel^ pnlFormShow;
+
 	private: System::Windows::Forms::Button^ btnOption;
+
 	private: System::Windows::Forms::Button^ btnStat;
+
 	private: System::Windows::Forms::Button^ btnCommande;
+
+
 	private: System::Windows::Forms::Button^ btnClient;
+
 	private: System::Windows::Forms::Button^ btnStock;
+
 	private: System::Windows::Forms::Button^ btnPerso;
 	private: System::Windows::Forms::Panel^ pnlNav;
 	private: System::Windows::Forms::Label^ lblActiveForm;
@@ -436,7 +440,7 @@ namespace AppliProjetPOO {
 
 #pragma region ButtonNavigation
 
-		//Bouton du menu avec Animation et redirection
+	//Bouton du menu avec Animation et redirection
 	private: System::Void btnTableauBord_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		pnlNav->Height = btnTableauBord->Height;
@@ -489,7 +493,7 @@ namespace AppliProjetPOO {
 		C->openChildForm(gcnew AppliProjetPOO::Stats, pnlFormShow);
 		this->lblActiveForm->Text = "Statistiques";
 	}
-	private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void btnOption_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		pnlNav->Height = btnOption->Height;
 		pnlNav->Top = btnOption->Top;
@@ -519,18 +523,18 @@ namespace AppliProjetPOO {
 	{
 		btnStat->BackColor = Color::FromArgb(24, 30, 54);
 	}
-	private: System::Void btnOption_Leave(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void btnOption_Leave(System::Object^ sender, System::EventArgs^ e) 
 	{
 		btnStat->BackColor = Color::FromArgb(24, 30, 54);
 	}
 
-		   //picture Click pour acceder au form MyProfile
-	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e)
+	//picture Click pour acceder au form MyProfile
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		C->openChildForm(gcnew AppliProjetPOO::MyProfile(ID), pnlFormShow);
+		C->openChildForm(gcnew AppliProjetPOO::MyProfile, pnlFormShow);
 		lblActiveForm->Text = "Mon Profil";
 
-
+	
 	}
 
 
@@ -540,7 +544,7 @@ namespace AppliProjetPOO {
 	}
 
 
-		   //Bouton Exit pour fermer toute l'application
+	//Bouton Exit pour fermer toute l'application
 	private: System::Void btnExit_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
 	{
 		this->btnExit->BackColor = Color::FromArgb(223, 55, 55);
@@ -553,18 +557,18 @@ namespace AppliProjetPOO {
 	}
 	private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Application::Exit();
+			   Application::Exit();
 	}
 #pragma endregion
 
-
+	
 #pragma region DragForm
 
-	private: void dragFormMouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-	{
-		if (e->Button == System::Windows::Forms::MouseButtons::Left)
-			PanelMouseDownLocation = e->Location;
-	}
+private: void dragFormMouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	if (e->Button == System::Windows::Forms::MouseButtons::Left)
+		PanelMouseDownLocation = e->Location;
+}
 	private: void dragFormMouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
 	{
 		if (e->Button == System::Windows::Forms::MouseButtons::Left)
@@ -574,25 +578,25 @@ namespace AppliProjetPOO {
 		}
 	}
 
-	private: System::Void pnlDrag1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-	{
-		dragFormMouseDown(sender, e);
-	}
-	private: System::Void pnlDrag1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-	{
-		dragFormMouseMove(sender, e);
-	}
-	private: System::Void pnlDrag2_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-	{
-		dragFormMouseDown(sender, e);
-	}
-	private: System::Void pnlDrag2_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-	{
-		dragFormMouseMove(sender, e);
-	}
+private: System::Void pnlDrag1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	dragFormMouseDown(sender, e);
+}
+private: System::Void pnlDrag1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	dragFormMouseMove(sender, e);
+}
+private: System::Void pnlDrag2_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	dragFormMouseDown(sender, e);
+}
+private: System::Void pnlDrag2_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	dragFormMouseMove(sender, e);
+}
 #pragma endregion
 
 
 
-	};
+};
 }
