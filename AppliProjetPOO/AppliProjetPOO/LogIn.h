@@ -20,11 +20,7 @@ namespace AppliProjetPOO {
 	public ref class LogIn : public System::Windows::Forms::Form
 	{
 	private:
-		
 
-	public: String^ idPersonne;
-
-	public: String^ IdP{ return idPersonne; };
 
 	private: Connect^ connecteur;
 
@@ -257,11 +253,12 @@ namespace AppliProjetPOO {
 				MyForm^ mainform = gcnew MyForm(drIDUser->GetInt32(0));
 				mainform->Show();
 			}
-			
+
 		}
 		else
 		{
 			MessageBox::Show("Les informations rentrées sont fausses !!!");
+			connecteur->closeConnection();
 		}
 	}
 

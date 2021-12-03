@@ -8,14 +8,14 @@ namespace gestionPersonnel
 {
 	ref class gestPersonnel
 	{
-	private :
+	private:
 		int ID_PERSONNE, ID_PERSONNEL_GERER, numVoie, etage, idVille;
 		String^ nom, ^ prenom, ^ telephone, ^ email, ^ rue, ^ batiment, ^ ville;
 		DateTime^ dateNaissance, ^ dateEmbauche;
 
 		Connect^ connect;
 
-	public :
+	public:
 		gestPersonnel();
 		void afficher(DataGridView^);
 		void supprimer(int);
@@ -37,7 +37,7 @@ namespace gestionPersonnel
 		void setDateNaissance(DateTime^);
 		void setDateEmbauche(DateTime^);
 		void setIDVille(int);
-		
+
 		//Getter
 		int getIDPERSONNE();
 		int getIDPERSONNELGERER();

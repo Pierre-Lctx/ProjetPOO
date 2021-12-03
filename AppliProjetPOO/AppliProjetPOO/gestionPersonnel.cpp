@@ -26,9 +26,9 @@ void gestPersonnel::ajouter(int idPersonnelGerer, int etage, int numVoie, String
 void gestPersonnel::afficher(DataGridView^ dataGridView)
 {
 	this->connect->openConnection();
-	
+
 	String^ query = "select Personne.ID_PERSONNE, Personne.NOM_PERSONNE, Personne.PRENOM_PERSONNE, Personne.TELEPHONE, Personne.ADRESSE_MAIL, Personne.DATE_NAISSANCE, Personnel.DATE_EMBAUCHE, Personnel.ID_PERSONNEL_GERER, Adresse.NUMERO_VOIE, Adresse.RUE, Adresse.BATIMENT, Adresse.ETAGE, Ville.NOM_VILLE from DBProjet.dbo.Personne INNER JOIN DBProjet.dbo.Personnel ON Personne.ID_PERSONNE = Personnel.ID_PERSONNE INNER JOIN DBProjet.dbo.Adresse ON Personnel.ID_ADRESSE = Adresse.ID_ADRESSE INNER JOIN DBProjet.dbo.Ville ON Adresse.ID_VILLE = Ville.ID_VILLE; ";
-	SqlCommand^ cmd = gcnew SqlCommand(query ,connect->getConn());
+	SqlCommand^ cmd = gcnew SqlCommand(query, connect->getConn());
 
 	SqlDataReader^ dr = cmd->ExecuteReader();
 
