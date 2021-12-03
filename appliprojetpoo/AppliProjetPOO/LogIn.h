@@ -22,10 +22,6 @@ namespace AppliProjetPOO {
 	private:
 		MyForm^ mainForm = gcnew MyForm();
 
-	public: String^ idPersonne;
-
-	public: String^ IdP{ return idPersonne; };
-
 	private: Connect^ connecteur;
 
 	public:

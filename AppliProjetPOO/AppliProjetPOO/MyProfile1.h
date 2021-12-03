@@ -15,7 +15,7 @@ namespace AppliProjetPOO {
 
 
 	/// <summary>
-	/// Description résumée de MyProfile
+	/// Description rÃ©sumÃ©e de MyProfile
 	/// </summary>
 	public ref class MyProfile : public System::Windows::Forms::Form
 	{
@@ -55,14 +55,14 @@ namespace AppliProjetPOO {
 
 			comboBoxSuperieur->Visible = false;
 
-			//Déclaration de la variable de connexion
+			//DÃ©claration de la variable de connexion
 			
 			conn = gcnew Connect();
 		}
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~MyProfile()
 		{
@@ -104,14 +104,14 @@ namespace AppliProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -353,7 +353,7 @@ namespace AppliProjetPOO {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(125, 38);
 			this->label2->TabIndex = 4;
-			this->label2->Text = L"Prénom :";
+			this->label2->Text = L"PrÃ©nom :";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label2->Click += gcnew System::EventHandler(this, &MyProfile::label2_Click);
 			// 
@@ -401,7 +401,7 @@ namespace AppliProjetPOO {
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(302, 37);
 			this->label10->TabIndex = 27;
-			this->label10->Text = L"Supérieur hiérarchique :";
+			this->label10->Text = L"SupÃ©rieur hiÃ©rarchique :";
 			// 
 			// label9
 			// 
@@ -471,7 +471,7 @@ namespace AppliProjetPOO {
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(301, 72);
 			this->label4->TabIndex = 6;
-			this->label4->Text = L"Numéro de téléphone :";
+			this->label4->Text = L"NumÃ©ro de tÃ©lÃ©phone :";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label4->Click += gcnew System::EventHandler(this, &MyProfile::label4_Click);
 			// 
@@ -580,7 +580,7 @@ namespace AppliProjetPOO {
 
 		comboBoxSuperieur->Visible = false;
 
-		//Réinitialistion du texte
+		//RÃ©initialistion du texte
 
 		textBoxNom->Text = "";
 		textBoxPrenom->Text = "";
@@ -691,7 +691,7 @@ namespace AppliProjetPOO {
 
 		labelNom->Text = Nom;
 
-		//Prénom ---------------------------------------
+		//PrÃ©nom ---------------------------------------
 
 
 		if (textBoxPrenom->Text == labelPrenom->Text)
@@ -747,23 +747,9 @@ namespace AppliProjetPOO {
 		labelDateEmbauche->Text = DateEmbauche;
 
 
-		MessageBox::Show("Les modifications ont été enregistrées.");
+		MessageBox::Show("Les modifications ont Ã©tÃ© enregistrÃ©es.");
+		
 
-		conn->openConnection();
-		String^ query1 = "UPDATE PERSONNE SET NOM_PERSONNE'" + labelNom->Text + "'UPDATE PERSONNE SET PRENOM_PERSONNE'" + textBoxPrenom->Text + "'UPDATE PERSONNE SET TELEPHONE'" + textBoxTelephone + "'UPDATE PERSONNE SET ADRESSE_MAIL'" + textBoxEmail + "'UPDATE PERSONNE SET DATE_NAISSANCE'" + dateTimePicker2 + "'WHERE ID_PERSONNE = 5;";
-		SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
-		//SqlDataReader^ dr1 = cmd1->ExecuteReader();
-		cmd1->ExecuteNonQuery();
-		//while (dr1->Read())
-		//{
-		//	textBoxNom->Text = dr1[0]->ToString();
-		//	textBoxPrenom->Text = dr1[1]->ToString();
-		//	textBoxEmail->Text = dr1[2]->ToString();
-		//	textBoxTelephone->Text = dr1[3]->ToString();
-		//	dateTimePicker2->Text = dr1[4]->ToString();
-		//}
-		//dr1->Close();
-		conn->closeConnection();
 
 		//conn->openConnection();
 		//String^ query2 = "'UPDATE PERSONNEL SET DATE_EMBAUCHE+" + dateTimePicker1->Text + "WHERE ID_PERSONNE = 5;";
@@ -771,9 +757,8 @@ namespace AppliProjetPOO {
 
 		//cmd2->ExecuteNonQuery();
 
-		//conn->closeConnection();
+	initMyProfil(ID);
 
-		//
 	}
 
 
