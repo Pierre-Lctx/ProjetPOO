@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Connection.h"
+#include "gestionPersonnel.h"
 
 namespace AppliProjetPOO {
 
@@ -11,6 +12,7 @@ namespace AppliProjetPOO {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace connection;
+	using namespace gestionPersonnel;
 
 	/// <summary>
 	/// Description résumée de Adresse
@@ -21,6 +23,7 @@ namespace AppliProjetPOO {
 		String^ ville, ^ rue, ^ numRue, ^ batiment, ^ etage, ^ codePostal;
 		bool liveApp;
 	public: Connect^ conn;
+	public: gestPersonnel^ Personnel;
 	public:
 		Adresse(void)
 		{
@@ -30,6 +33,7 @@ namespace AppliProjetPOO {
 			//
 
 			conn = gcnew Connect();
+			Personnel = gcnew gestPersonnel();
 
 			conn->openConnection();
 
@@ -80,7 +84,7 @@ namespace AppliProjetPOO {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -298,54 +302,68 @@ namespace AppliProjetPOO {
 		}
 #pragma endregion
 
-		public:
-			String^ getVille()
-			{
-				return ville;
-			}
-			String^ getRue()
-			{
-				return rue;
-			}
-			String^ getNumRue()
-			{
-				return numRue;
-			}
-			String^ getBatiment()
-			{
-				return batiment;
-			}
-			String^ getEtage()
-			{
-				return etage;
-			}
-			String^ getCodePostal()
-			{
-				return codePostal;
-			}
-			bool getTypeLocation()
-			{
-				return liveApp;
-			}
-	
-private: System::Void btnValider_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (cbVille->Text == "" || tbRue->Text == "" || tbNumRue->Text == "" || tbBatiment->Text == "" || tbEtage->Text == "" || tbCodePostal->Text == "")
+	public:
+		String^ getVille()
+		{
+			return ville;
+		}
+		String^ getRue()
+		{
+			return rue;
+		}
+		String^ getNumRue()
+		{
+			return numRue;
+		}
+		String^ getBatiment()
+		{
+			return batiment;
+		}
+		String^ getEtage()
+		{
+			return etage;
+		}
+		String^ getCodePostal()
+		{
+			return codePostal;
+		}
+		bool getTypeLocation()
+		{
+			return liveApp;
+		}
+
+	private: System::Void btnValider_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		if (cbVille->Text == "" || tbRue->Text == "" || tbNumRue->Text == "" || tbBatiment->Text == "" || tbEtage->Text == "" || tbCodePostal->Text == "")
+		{
 
-		MessageBox::Show("Tout les champs ne sont pas encore remplis !", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning );
+			MessageBox::Show("Tout les champs ne sont pas encore remplis !", "Attention", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		}
+		else
+		{
+			conn->openConnection();
+
+			String^ query = "INSERT INTO Ville Values ('" + cbVille->Text + "', '" + tbCodePostal->Text + "')";
+			String^ query1 = "INSERT INTO Adresse Values ('" + tbNumRue->Text + "', '" + tbRue->Text + "', '" + tbBatiment->Text + "', " + tbEtage->Text + ", (select ID_VILLE from Ville Where NOM_VILLE = '" + cbVille->Text + "'))";
+
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
+			SqlCommand^ cmd1 = gcnew SqlCommand(query1, conn->getConn());
+
+			cmd->ExecuteNonQuery();
+			cmd1->ExecuteNonQuery();
+
+			String^ query2 = "Select ID_VILLE from Ville Where NOM_VILLE = " + cbVille->Text;
+			SqlCommand^ cmd2 = gcnew SqlCommand(query2, conn->getConn());
+
+			SqlDataReader^ dr = cmd2->ExecuteReader();
+
+			while (dr->Read())
+			{
+				Personnel->setIDVille(Convert::ToInt32(dr["ID_VILLE"]->ToString()));
+			}
+
+			conn->closeConnection();
+		}
 	}
-	else
-	{
-		conn->openConnection();
-
-		String^ query = "INSERT INTO Adresse Values ";
-		SqlCommand^ cmd = gcnew SqlCommand(query, conn->getConn());
-
-		cmd->ExecuteNonQuery();
-
-		conn->closeConnection();
-	}
-}
-};
+	};
 }
